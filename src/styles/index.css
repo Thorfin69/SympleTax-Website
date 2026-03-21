@@ -1,0 +1,11 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* Global paragraph tightening */
+p, li, span {
+  letter-spacing: -0.3px;
+}
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.5px;
+}
