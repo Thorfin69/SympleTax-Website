@@ -1,73 +1,149 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { PaintStreak } from "../ui/PaintStreak";
 
 export function MidCTA() {
   return (
-    <section className="bg-white py-[60px]">
+    <section className="bg-[#f5f1e8] py-[120px]">
       <div className="max-w-[1330px] mx-auto px-[70px]">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative overflow-hidden rounded-[12px] border border-white/10"
-          style={{ height: "420px" }}
-        >
-          {/* Background photo */}
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&h=600&fit=crop&q=85"
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover object-center"
-          />
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-[#0f172a]/80" />
+        <div className="flex items-center gap-[80px]">
 
-          {/* Content */}
-          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-[64px]">
-            {/* Eyebrow */}
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-8 h-[1.5px] bg-[#00A4A4]" />
-              <span className="font-['Inter'] font-medium text-[13px] uppercase tracking-widest text-[#00A4A4]">
-                Free consultation
+          {/* LEFT — text content */}
+          <motion.div
+            initial={{ opacity: 0, x: -32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75 }}
+            className="flex flex-col gap-[32px] flex-1"
+          >
+            {/* Pill badge */}
+            <div>
+              <span
+                className="inline-flex items-center font-['Outfit'] font-bold text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] uppercase"
+                style={{ fontSize: "13px", letterSpacing: "0.06em" }}
+              >
+                free consultation
               </span>
-              <div className="w-8 h-[1.5px] bg-[#00A4A4]" />
             </div>
 
-            {/* Heading */}
+            {/* Headline */}
             <h2
-              className="font-['Inter'] font-bold text-white leading-[1.08] mb-4"
-              style={{ fontSize: "clamp(32px, 3.5vw, 48px)", letterSpacing: "-1.5px" }}
+              className="font-['Outfit'] font-black text-[#0f172a]"
+              style={{
+                fontSize: "clamp(44px, 5vw, 64px)",
+                lineHeight: "1.04",
+                letterSpacing: "-2px",
+              }}
             >
-              Stop Fighting the IRS Alone.
+              Stop Fighting<br />
+              the IRS{" "}
+              <PaintStreak color="purple">Alone.</PaintStreak>
             </h2>
 
-            {/* Paragraph */}
+            {/* Body */}
             <p
-              className="font-['Inter'] text-white/75 leading-[1.65] mb-8"
-              style={{ fontSize: "16px", letterSpacing: "-0.3px", maxWidth: "480px" }}
+              className="font-['Inter'] font-normal text-[#0f172a]/70 leading-[1.65]"
+              style={{ fontSize: "18px", letterSpacing: "-0.3px", maxWidth: "460px" }}
             >
               Our licensed professionals have resolved over $500M in tax debt.
               A free consultation costs you nothing — inaction costs you everything.
             </p>
 
             {/* CTAs */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-[20px]">
               <Link
                 to="/contact"
-                className="bg-gradient-to-r from-[#00A4A4] to-[#007a7a] hover:from-[#007a7a] hover:to-[#005f5f] text-white px-7 py-3.5 rounded-full font-['Inter'] font-semibold text-[15px] transition-all shadow-[0_8px_24px_rgba(0,164,164,0.3)] hover:shadow-[0_12px_32px_rgba(0,164,164,0.4)]"
+                className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white rounded-full hover:scale-[1.02] transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.25)] hover:shadow-[0_12px_32px_rgba(0,164,164,0.35)]"
+                style={{ paddingLeft: "28px", paddingRight: "28px", paddingTop: "17px", paddingBottom: "17px" }}
               >
-                Get Free Consultation
+                <span
+                  className="font-['Inter'] font-semibold text-white"
+                  style={{ fontSize: "16px", letterSpacing: "-0.32px" }}
+                >
+                  Get Free Consultation
+                </span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M3 13L13 3M13 3H5M13 3V11"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </Link>
+
               <Link
                 to="/services"
-                className="border-2 border-white/40 text-white px-7 py-3.5 rounded-full font-['Inter'] font-semibold text-[15px] hover:bg-white/10 transition-colors"
+                className="inline-flex items-center justify-center rounded-full border-[1.5px] border-[#0f172a] text-[#0f172a] hover:bg-[#0f172a] hover:text-white transition-all duration-300"
+                style={{ paddingLeft: "24px", paddingRight: "24px", paddingTop: "17px", paddingBottom: "17px" }}
               >
-                View All Services
+                <span
+                  className="font-['Inter'] font-semibold"
+                  style={{ fontSize: "16px", letterSpacing: "-0.32px" }}
+                >
+                  View All Services
+                </span>
               </Link>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          {/* RIGHT — photo with teal shape behind it */}
+          <motion.div
+            initial={{ opacity: 0, x: 32 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0.15 }}
+            className="relative flex-shrink-0"
+            style={{ width: "460px", height: "560px" }}
+          >
+            {/* Teal rounded-square background shape */}
+            <div
+              className="absolute bg-[#00A4A4]"
+              style={{
+                width: "400px",
+                height: "490px",
+                borderRadius: "24px",
+                bottom: "0px",
+                right: "0px",
+                zIndex: 0,
+              }}
+            />
+
+            {/* Decorative teal circle accent */}
+            <div
+              className="absolute bg-[#00A4A4]/30 rounded-full"
+              style={{
+                width: "80px",
+                height: "80px",
+                top: "20px",
+                left: "20px",
+                zIndex: 1,
+              }}
+            />
+
+            {/* Photo */}
+            <div
+              className="absolute overflow-hidden"
+              style={{
+                width: "400px",
+                height: "490px",
+                borderRadius: "20px",
+                bottom: "20px",
+                right: "20px",
+                zIndex: 2,
+              }}
+            >
+              <ImageWithFallback
+                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=600&fit=crop&q=80"
+                alt="Professional tax consultant"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );

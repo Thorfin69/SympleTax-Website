@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { PaintStreak } from "../ui/PaintStreak";
 
 const SERVICES = [
   { title: "IRS Tax Resolution & Defense", href: "/services" },
@@ -11,12 +12,12 @@ const SERVICES = [
   { title: "Unfiled Returns & Back Tax Filing", href: "/services" },
 ];
 
-function ArrowIcon({ white = true }: { white?: boolean }) {
+function ArrowIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
       <path
         d="M3 13L13 3M13 3H5M13 3V11"
-        stroke={white ? "white" : "#0f172a"}
+        stroke="white"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -27,15 +28,7 @@ function ArrowIcon({ white = true }: { white?: boolean }) {
 
 export function SolutionsOverview() {
   return (
-    <section className="bg-white py-[120px] relative overflow-hidden">
-      {/* Background gradient overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "linear-gradient(235deg, rgba(15, 23, 42, 0) 0%, rgb(15, 23, 42) 50%)",
-        }}
-      />
-
+    <section className="bg-[#0f172a] py-[120px] relative overflow-hidden">
       <div className="max-w-[1330px] mx-auto px-[70px] relative">
         <div className="flex gap-[120px] items-start">
 
@@ -43,21 +36,31 @@ export function SolutionsOverview() {
           <div className="w-[520px] shrink-0 flex flex-col gap-[60px]">
 
             {/* Header */}
-            <div className="flex flex-col gap-[22px]">
-              <div className="flex items-center gap-[10px]">
-                <div className="bg-[#00A4A4] h-px w-[35px] shrink-0" />
+            <div className="flex flex-col gap-[24px]">
+              {/* Pill Badge */}
+              <div>
                 <span
-                  className="font-['Inter'] font-medium uppercase text-[#f9fafb]"
-                  style={{ fontSize: "14px", letterSpacing: "-0.28px" }}
+                  className="font-['Inter'] font-medium uppercase text-white border-[1.5px] border-white rounded-[50px] px-[16px] py-[7px] inline-block"
+                  style={{ fontSize: "12px", letterSpacing: "0.08em" }}
                 >
-                  Tailored Solutions
+                  our services
                 </span>
               </div>
+
               <h2
-                className="font-['Inter'] font-bold text-[#f9fafb] leading-[1.08] whitespace-pre-line"
-                style={{ fontSize: "48px", letterSpacing: "-1.5px" }}
+                className="font-['Outfit'] font-black text-white leading-[1.05]"
+                style={{
+                  fontSize: "clamp(40px, 5vw, 64px)",
+                  letterSpacing: "-2px",
+                }}
               >
-                {"Our Expertise,\nYour Success"}
+                Our{" "}
+                <PaintStreak color="teal">
+                  <span className="text-[#00A4A4]">Expertise</span>
+                </PaintStreak>
+                ,{" "}
+                <br />
+                Your Success
               </h2>
 
               <motion.p
@@ -65,15 +68,19 @@ export function SolutionsOverview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="font-['Inter'] font-normal text-[#f9fafb]/80 leading-[1.65] max-w-[440px]"
-                style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
+                className="font-['Inter'] font-normal leading-[1.65] max-w-[440px]"
+                style={{
+                  fontSize: "16px",
+                  letterSpacing: "-0.3px",
+                  color: "rgba(249,250,251,0.75)",
+                }}
               >
                 We offer a comprehensive range of tax resolution services designed to protect your assets, reduce your liability, and help you move forward with confidence.
               </motion.p>
             </div>
 
             {/* Image + Button */}
-            <div className="flex flex-col gap-[18.8px]">
+            <div className="flex flex-col gap-[18px]">
               <div className="h-[270px] rounded-[8px] overflow-hidden w-full relative">
                 <ImageWithFallback
                   src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=700&h=400&fit=crop&q=80"
@@ -82,19 +89,19 @@ export function SolutionsOverview() {
                 />
               </div>
 
-              <div className="pt-[13.2px]">
+              <div className="pt-[12px]">
                 <Link
                   to="/services"
-                  className="bg-gradient-to-r from-[#00A4A4] to-[#007a7a] hover:from-[#007a7a] hover:to-[#005f5f] inline-flex items-center gap-[10px] px-7 rounded-full shadow-[0_8px_24px_rgba(0,164,164,0.3)] transition-all"
+                  className="bg-gradient-to-r from-[#00A4A4] to-[#007a7a] hover:from-[#007a7a] hover:to-[#005f5f] hover:scale-[1.02] inline-flex items-center gap-[10px] px-[28px] rounded-full shadow-[0_8px_24px_rgba(0,164,164,0.3)] transition-all"
                   style={{ paddingTop: "17px", paddingBottom: "17px" }}
                 >
                   <span
-                    className="font-['Inter'] font-semibold text-white leading-[17.6px] tracking-[-0.32px]"
-                    style={{ fontSize: "16px" }}
+                    className="font-['Inter'] font-semibold text-white"
+                    style={{ fontSize: "16px", letterSpacing: "-0.32px" }}
                   >
                     Explore all services
                   </span>
-                  <ArrowIcon white />
+                  <ArrowIcon />
                 </Link>
               </div>
             </div>
@@ -112,31 +119,28 @@ export function SolutionsOverview() {
               >
                 <Link
                   to={service.href}
-                  className="flex items-center gap-[20px] py-[30px] relative group"
+                  className="flex items-center gap-[20px] py-[28px] relative group border-b border-white/10"
                 >
-                  {/* Title */}
-                  <div className="flex-1 h-[32px] overflow-hidden relative">
+                  {/* Title with slide-up hover animation */}
+                  <div className="flex-1 h-[30px] overflow-hidden relative">
                     <div
-                      className="absolute top-0 left-0 font-['Inter'] font-semibold text-[#f9fafb] leading-[28.8px] tracking-[-0.96px] whitespace-nowrap group-hover:top-[-32px] transition-all duration-300"
-                      style={{ fontSize: "24px" }}
+                      className="absolute top-0 left-0 font-['Outfit'] font-bold text-white whitespace-nowrap group-hover:top-[-30px] transition-all duration-300"
+                      style={{ fontSize: "22px", letterSpacing: "-0.5px", lineHeight: "30px" }}
                     >
                       {service.title}
                     </div>
                     <div
-                      className="absolute top-[32px] left-0 font-['Inter'] font-semibold text-[#f9fafb] leading-[28.8px] tracking-[-0.96px] whitespace-nowrap group-hover:top-0 transition-all duration-300"
-                      style={{ fontSize: "24px" }}
+                      className="absolute top-[30px] left-0 font-['Outfit'] font-bold text-white whitespace-nowrap group-hover:top-0 transition-all duration-300"
+                      style={{ fontSize: "22px", letterSpacing: "-0.5px", lineHeight: "30px" }}
                     >
                       {service.title}
                     </div>
                   </div>
 
-                  {/* Arrow Circle */}
-                  <div className="w-[50px] h-[50px] bg-[#007a7a] rounded-full flex items-center justify-center shrink-0">
-                    <ArrowIcon white />
+                  {/* Arrow Circle in teal */}
+                  <div className="w-[48px] h-[48px] bg-[#00A4A4] rounded-full flex items-center justify-center shrink-0 group-hover:bg-[#007a7a] transition-colors duration-300">
+                    <ArrowIcon />
                   </div>
-
-                  {/* Bottom border */}
-                  <div className="absolute inset-0 border-b border-[rgba(148,163,184,0.5)] pointer-events-none" />
                 </Link>
               </motion.div>
             ))}

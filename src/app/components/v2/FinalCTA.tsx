@@ -1,115 +1,97 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
+import { PaintStreak } from "../ui/PaintStreak";
 
 export function FinalCTA() {
   return (
-    <section className="py-[120px] bg-[#0f172a] relative overflow-hidden">
-      {/* Decorative Element */}
-      <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-40">
+    <section className="overflow-hidden relative" style={{ backgroundColor: "#f5f1e8" }}>
+
+      {/* Top: cream section with huge bold text */}
+      <div className="max-w-[1330px] mx-auto px-[70px] pt-[120px] pb-[80px] relative">
+
+        {/* Teal circle blob — top right decorative */}
         <div
-          className="w-full h-full bg-gradient-to-br from-[#00A4A4]/15 to-transparent blur-[80px] rounded-full"
-          aria-hidden="true"
+          className="absolute top-[-60px] right-[-40px] rounded-full pointer-events-none"
+          style={{ width: "320px", height: "320px", backgroundColor: "#00A4A4", opacity: 0.12 }}
         />
-      </div>
 
-      <div className="max-w-[1330px] mx-auto px-[70px] relative">
-        <div className="flex flex-col items-center text-center gap-[40px]">
-
-          {/* Label */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center gap-[10px]"
-          >
-            <div className="bg-[#00A4A4] h-px w-[35px]" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="flex flex-col items-start gap-[32px] max-w-[800px]"
+        >
+          {/* Pill badge */}
+          <div className="inline-flex items-center border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px]">
             <span
-              className="font-['Inter'] font-medium uppercase text-[#00A4A4]"
-              style={{ fontSize: "14px", letterSpacing: "0.05em" }}
+              className="font-['Outfit'] font-semibold text-[#0f172a]"
+              style={{ fontSize: "13px", letterSpacing: "0.04em" }}
             >
-              Get Started Today
+              get started
             </span>
-            <div className="bg-[#00A4A4] h-px w-[35px]" />
-          </motion.div>
+          </div>
 
-          {/* Heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-['Inter'] font-semibold text-white max-w-[700px]"
-            style={{ fontSize: "clamp(36px, 5vw, 64px)", lineHeight: "1.1", letterSpacing: "-2px", textWrap: 'balance' }}
+          {/* Massive headline — like the FB ad */}
+          <h2
+            className="font-['Outfit'] font-black text-[#0f172a] leading-[1.0]"
+            style={{ fontSize: "clamp(48px, 6vw, 80px)", letterSpacing: "-3px" }}
           >
-            Take Control of Your Financial Future Today
-          </motion.h2>
+            Stop Dealing<br />
+            With The IRS{" "}
+            <PaintStreak color="blue-gray">Alone.</PaintStreak>
+          </h2>
 
-          {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="font-['Inter'] font-normal text-white/75 leading-[1.65] max-w-[560px]"
-            style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
+          <p
+            className="font-['Inter'] font-normal text-[#475569] leading-[1.65]"
+            style={{ fontSize: "18px", letterSpacing: "-0.3px", maxWidth: "560px" }}
           >
-            Thousands of Americans have already resolved their IRS debt with our licensed professionals. A free, confidential consultation is your first step toward financial peace of mind.
-          </motion.p>
+            Talk to a tax relief expert today — completely free, no pressure, no obligation.
+          </p>
 
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          {/* CTA Row */}
+          <div className="flex flex-wrap items-center gap-[20px]">
             <Link
               to="/contact"
-              className="bg-gradient-to-r from-[#00A4A4] to-[#007a7a] hover:from-[#007a7a] hover:to-[#005f5f] text-white inline-flex items-center gap-[10px] px-8 rounded-full shadow-[0_8px_24px_rgba(0,164,164,0.3)] hover:shadow-[0_12px_32px_rgba(0,164,164,0.4)] transition-all"
-              style={{ paddingTop: "17px", paddingBottom: "17px" }}
+              className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['Outfit'] font-bold rounded-full px-[36px] transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)] hover:shadow-[0_12px_32px_rgba(0,164,164,0.4)]"
+              style={{ paddingTop: "18px", paddingBottom: "18px", fontSize: "17px" }}
             >
-              <span
-                className="font-['Inter'] font-semibold text-white leading-[17.6px] tracking-[-0.32px]"
-                style={{ fontSize: "16px" }}
-              >
-                Schedule a Free Consultation
-              </span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 13L13 3M13 3H5M13 3V11" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              Get My Free Consultation
             </Link>
-          </motion.div>
+            <span
+              className="font-['Inter'] text-[#94a3b8]"
+              style={{ fontSize: "14px" }}
+            >
+              No credit card. No commitment. Just answers.
+            </span>
+          </div>
+        </motion.div>
+      </div>
 
-          {/* Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 pt-4"
-          >
+      {/* Bottom: teal bar — mirrors trust strip from FB ad */}
+      <div style={{ backgroundColor: "#00A4A4" }}>
+        <div className="max-w-[1330px] mx-auto px-[70px] py-[28px]">
+          <div className="flex flex-wrap items-center justify-between gap-[24px]">
             {[
-              "Licensed Enrolled Agents & CPAs",
-              "No Upfront Fees",
-              "Free Confidential Consultation",
+              { icon: "🔒", text: "256-bit encryption" },
+              { icon: "📋", text: "100% Online. No Pressure. Fully Secured and Confidential." },
+              { icon: "⭐", text: "Licensed CPAs — Not Enrolled Agents" },
+              { icon: "💬", text: "Free Consultation — No Upfront Fees" },
             ].map((item) => (
-              <div key={item} className="flex items-center gap-2">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8.5L6.5 12L13 5" stroke="#00A4A4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+              <div key={item.text} className="flex items-center gap-[10px]">
+                <span style={{ fontSize: "18px" }}>{item.icon}</span>
                 <span
-                  className="font-['Inter'] font-normal text-white/75"
-                  style={{ fontSize: "14px", letterSpacing: "-0.28px" }}
+                  className="font-['Inter'] font-medium text-white/90"
+                  style={{ fontSize: "13px" }}
                 >
-                  {item}
+                  {item.text}
                 </span>
               </div>
             ))}
-          </motion.div>
-
+          </div>
         </div>
       </div>
+
     </section>
   );
 }

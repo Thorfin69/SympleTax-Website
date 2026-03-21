@@ -1,146 +1,248 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
-import { TrendingUp, ArrowUpRight } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { PaintStreak } from "../ui/PaintStreak";
 
 const CASE_RESULTS = [
   {
-    image: "https://images.unsplash.com/photo-1586486855514-8c633cc6fd38?auto=format&fit=crop&q=80&w=800",
-    situation: "Single taxpayer with several years of unfiled returns and active bank levies. Faced immediate financial hardship due to wage garnishment.",
-    owed: "$87,400",
-    settled: "$3,200",
-    saved: "96.3%",
-    title: "Taxpayer Debt Relief",
+    firstName: "Marcus",
+    fromAmount: "$87,400",
+    toAmount: "$3,200",
+    saved: "96%",
+    situation:
+      "Single taxpayer with several years of unfiled returns and active bank levies. Faced immediate financial hardship due to wage garnishment.",
+    personImage:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face&q=80",
+    strokeColor: "purple" as const,
   },
   {
-    image: "https://images.unsplash.com/photo-1734018959374-07d2e109592c?auto=format&fit=crop&q=80&w=800",
-    situation: "Small business owner facing payroll tax penalties and aggressive IRS collection. Threat of business closure was resolved within 60 days.",
-    owed: "$142,650",
-    settled: "$12,400",
-    saved: "91.3%",
-    title: "Payroll Tax Settlement",
+    firstName: "Diana",
+    fromAmount: "$142,650",
+    toAmount: "$12,400",
+    saved: "91%",
+    situation:
+      "Small business owner facing payroll tax penalties and aggressive IRS collection. Threat of business closure resolved within 60 days.",
+    personImage:
+      "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=500&fit=crop&crop=face&q=80",
+    strokeColor: "pink" as const,
   },
   {
-    image: "https://images.unsplash.com/photo-1624953336495-0b5af4d962f2?auto=format&fit=crop&q=80&w=800",
-    situation: "Retiree with a tax lien from a decade-old unresolved assessment. Secured a full lien release and protected their retirement assets.",
-    owed: "$52,000",
-    settled: "$1,850",
-    saved: "96.4%",
-    title: "Tax Lien Release",
+    firstName: "Robert",
+    fromAmount: "$52,000",
+    toAmount: "$1,850",
+    saved: "96%",
+    situation:
+      "Retiree with a tax lien from a decade-old unresolved assessment. Secured a full lien release and protected all retirement assets.",
+    personImage:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=face&q=80",
+    strokeColor: "teal" as const,
   },
 ];
 
+function HandDrawnArrow() {
+  return (
+    <svg width="90" height="50" viewBox="0 0 90 50" fill="none">
+      <path
+        d="M8,40 C18,20 40,12 62,22 C72,27 80,34 84,40"
+        stroke="#1e293b"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <path
+        d="M74,32 L84,40 L72,44"
+        stroke="#1e293b"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
 export function CaseResultSpotlight() {
+  const featured = CASE_RESULTS[0];
   const carouselItems = [...CASE_RESULTS, ...CASE_RESULTS, ...CASE_RESULTS];
 
   return (
-    <section className="py-[120px] bg-[#f9fafb] overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-10">
-        <div className="flex items-end justify-between mb-16">
-          <div className="flex flex-col gap-[22px] max-w-[550px]">
-            <div className="flex items-center gap-[10px]">
-              <div className="bg-[#00A4A4] h-px w-[35px]" />
-              <span className="font-['Inter'] font-medium uppercase text-[#00A4A4] text-[14px] tracking-widest">
-                Proven Performance
+    <section className="py-[120px] overflow-hidden" style={{ backgroundColor: "#f5f1e8" }}>
+      <div className="max-w-[1330px] mx-auto px-[70px]">
+
+        {/* ── Featured Case — FB ad "Ramon" style ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="relative bg-white rounded-[24px] overflow-hidden flex flex-col lg:flex-row gap-0 mb-[60px] shadow-[0_8px_48px_rgba(0,0,0,0.08)]"
+        >
+          {/* Left: Text */}
+          <div className="flex-1 flex flex-col gap-[28px] p-[56px]">
+
+            {/* Pill badge — "case story" style */}
+            <div className="inline-flex items-center border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] w-fit">
+              <span
+                className="font-['Outfit'] font-semibold text-[#0f172a]"
+                style={{ fontSize: "13px", letterSpacing: "0.04em" }}
+              >
+                case story
               </span>
             </div>
-            <h2 className="font-['Inter'] font-bold text-[#0f172a] text-[48px] leading-[1.08]" style={{ textWrap: 'balance', letterSpacing: "-1.5px" }}>
-              Real cases. <span className="text-[#00A4A4]">Real savings.</span>
+
+            {/* Headline — large bold like FB ad */}
+            <h2
+              className="font-['Outfit'] font-black text-[#0f172a] leading-[1.05]"
+              style={{ fontSize: "clamp(32px, 3.5vw, 50px)", letterSpacing: "-1.5px" }}
+            >
+              {featured.firstName} Worked With Us To<br />
+              Reduce His Tax Debt From{" "}
+              <span className="text-[#0f172a]">{featured.fromAmount}</span>{" "}
+              To{" "}
+              <PaintStreak color="purple">{featured.toAmount}!</PaintStreak>
             </h2>
+
+            <p
+              className="font-['Inter'] font-normal text-[#475569] leading-[1.65] max-w-[440px]"
+              style={{ fontSize: "16px" }}
+            >
+              {featured.situation}
+            </p>
+
+            {/* CTA + arrow */}
+            <div className="flex items-center gap-[24px] mt-[4px]">
+              <Link
+                to="/contact"
+                className="border-[2px] border-[#00A4A4] text-[#00A4A4] font-['Outfit'] font-bold rounded-[10px] px-[28px] py-[13px] hover:bg-[#00A4A4] hover:text-white transition-all duration-200 uppercase tracking-wide"
+                style={{ fontSize: "15px" }}
+              >
+                Learn How
+              </Link>
+              <div style={{ transform: "rotate(-10deg)" }}>
+                <HandDrawnArrow />
+              </div>
+            </div>
+
+            {/* Disclaimer */}
+            <p className="font-['Inter'] text-[12px] text-[#94a3b8] italic mt-auto">
+              * Client name changed for privacy. Results may vary based on individual circumstances.
+            </p>
           </div>
-          <Link
-            to="/about"
-            className="bg-[#0f172a] text-white inline-flex items-center gap-3 px-8 py-4 rounded-full transition-all hover:bg-[#00A4A4]"
+
+          {/* Right: Person photo on teal shape */}
+          <div
+            className="relative lg:w-[380px] shrink-0 flex items-end justify-center overflow-hidden"
+            style={{ minHeight: "460px" }}
           >
-            <span className="font-['Inter'] font-semibold">View all case results</span>
-            <ArrowUpRight className="w-5 h-5" />
-          </Link>
+            {/* Teal rounded-square bg shape */}
+            <div
+              className="absolute bottom-0 right-0 left-[40px]"
+              style={{
+                height: "88%",
+                backgroundColor: "#00A4A4",
+                borderRadius: "20px 0 0 0",
+              }}
+            />
+            {/* Person cutout photo */}
+            <div className="relative z-10 w-full h-full flex items-end justify-center" style={{ paddingTop: "40px" }}>
+              <ImageWithFallback
+                src={featured.personImage}
+                alt=""
+                className="h-full object-cover object-top"
+                style={{ maxHeight: "440px", width: "300px" }}
+              />
+            </div>
+            {/* Saved badge floating */}
+            <div
+              className="absolute top-[24px] left-[24px] z-20 bg-[#0f172a] text-white rounded-full px-[16px] py-[8px]"
+            >
+              <span className="font-['Outfit'] font-bold" style={{ fontSize: "15px" }}>
+                {featured.saved} Saved
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ── Section label ── */}
+        <div className="flex items-center gap-[10px] mb-[32px]">
+          <div className="bg-[#00A4A4] h-px w-[35px]" />
+          <span
+            className="font-['Outfit'] font-medium uppercase text-[#00A4A4]"
+            style={{ fontSize: "14px", letterSpacing: "0.05em" }}
+          >
+            More Case Results
+          </span>
         </div>
 
-        {/* Continuous Moving Carousel */}
-        <div className="relative -mx-6 md:-mx-10 px-6 md:px-10">
-          <div className="overflow-hidden">
-            <motion.div
-              className="flex gap-6 w-max"
-              animate={{
-                x: [0, -1 * (CASE_RESULTS.length * 420 + CASE_RESULTS.length * 24)],
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 45,
-                  ease: "linear",
-                },
-              }}
-              whileHover={{ animationPlayState: "paused" }}
-            >
-              {carouselItems.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="w-[420px] rounded-xl overflow-hidden flex flex-col group cursor-pointer shrink-0 border border-slate-100 hover:border-[#00A4A4]/20 shadow-[0_4px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.12)] bg-white transition-all duration-300"
-                >
-                  {/* Image Section */}
-                  <div className="h-[260px] overflow-hidden relative">
-                    <ImageWithFallback
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute top-4 right-4 bg-[#00A4A4] text-white px-3 py-1 rounded-full text-xs font-bold font-['Inter']">
-                      {item.saved} Saved
-                    </div>
-                    <motion.div
-                      animate={{ x: ["-100%", "200%"] }}
-                      transition={{
-                        repeat: Infinity,
-                        duration: 3,
-                        delay: idx * 1.2,
-                        repeatDelay: 4,
-                      }}
-                      className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 pointer-events-none"
-                    />
+        {/* ── Scrolling carousel of smaller case cards ── */}
+        <div className="relative -mx-[70px] overflow-hidden">
+          <motion.div
+            className="flex gap-[24px] w-max px-[70px]"
+            animate={{
+              x: [0, -(CASE_RESULTS.length * 380 + CASE_RESULTS.length * 24)],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 40,
+                ease: "linear",
+              },
+            }}
+          >
+            {carouselItems.map((item, idx) => (
+              <div
+                key={idx}
+                className="w-[360px] bg-white rounded-[20px] overflow-hidden shrink-0 border border-[#e8e4da] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300"
+              >
+                {/* Photo area */}
+                <div className="relative h-[200px] overflow-hidden" style={{ backgroundColor: "#00A4A4" }}>
+                  <ImageWithFallback
+                    src={item.personImage}
+                    alt=""
+                    className="w-full h-full object-cover object-top"
+                  />
+                  {/* Pill badge */}
+                  <div className="absolute top-[14px] left-[14px] border-[1.5px] border-white rounded-[50px] px-[12px] py-[5px] bg-white/90">
+                    <span className="font-['Outfit'] font-semibold text-[#0f172a]" style={{ fontSize: "11px", letterSpacing: "0.04em" }}>
+                      case story
+                    </span>
                   </div>
+                  <div className="absolute top-[14px] right-[14px] bg-[#0f172a] text-white rounded-full px-[12px] py-[5px]">
+                    <span className="font-['Outfit'] font-bold" style={{ fontSize: "12px" }}>{item.saved} saved</span>
+                  </div>
+                </div>
 
-                  {/* Content Section */}
-                  <div className="flex flex-col gap-6 p-8 grow justify-between">
+                {/* Text */}
+                <div className="p-[28px] flex flex-col gap-[16px]">
+                  <p className="font-['Inter'] text-[14px] text-[#475569] leading-[1.6] line-clamp-2">
+                    {item.situation}
+                  </p>
+                  <div className="flex items-end justify-between pt-[16px] border-t border-[#f0ece4]">
                     <div>
-                      <div className="flex items-center gap-2 mb-4">
-                        <TrendingUp className="w-4 h-4 text-[#00A4A4]" />
-                        <span className="text-xs font-bold uppercase tracking-widest text-[#0f172a]/40">
-                          {item.title}
-                        </span>
+                      <div className="font-['Inter'] text-[11px] text-[#94a3b8] uppercase tracking-widest mb-[2px]">Settled For</div>
+                      <div className="font-['Outfit'] font-black text-[#00A4A4] leading-none" style={{ fontSize: "28px" }}>
+                        {item.toAmount}
                       </div>
-
-                      <p className="font-['Inter'] text-[16px] leading-relaxed line-clamp-3 mb-6 text-[#475569]">
-                        {item.situation}
-                      </p>
                     </div>
-
-                    <div className="pt-6 border-t border-slate-100">
-                      <div className="flex justify-between items-end">
-                        <div className="flex flex-col gap-1">
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-[#475569]/60">Settled For</span>
-                          <span className="text-[32px] font-bold text-[#00A4A4] leading-none">{item.settled}</span>
-                        </div>
-                        <div className="flex flex-col items-end gap-1">
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-[#475569]/60">Total Debt</span>
-                          <span className="text-[18px] font-medium line-through leading-none text-[#475569]/40">{item.owed}</span>
-                        </div>
+                    <div className="text-right">
+                      <div className="font-['Inter'] text-[11px] text-[#94a3b8] uppercase tracking-widest mb-[2px]">From</div>
+                      <div className="font-['Outfit'] font-bold text-[#94a3b8] line-through" style={{ fontSize: "16px" }}>
+                        {item.fromAmount}
                       </div>
                     </div>
                   </div>
                 </div>
-              ))}
-            </motion.div>
-          </div>
+              </div>
+            ))}
+          </motion.div>
 
-          {/* Fades for smooth edge */}
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f9fafb] to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#f9fafb] to-transparent z-10 pointer-events-none" />
+          {/* Fade edges */}
+          <div className="absolute inset-y-0 left-0 w-[100px] bg-gradient-to-r from-[#f5f1e8] to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-[100px] bg-gradient-to-l from-[#f5f1e8] to-transparent z-10 pointer-events-none" />
         </div>
 
-        <p className="text-center font-['Inter'] text-[13px] text-[#475569]/50 mt-12 italic">
+        <p className="text-center font-['Inter'] text-[12px] text-[#94a3b8] italic mt-[40px]">
           * Results may vary based on individual circumstances. Past performance does not guarantee future outcomes.
         </p>
       </div>

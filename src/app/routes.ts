@@ -9,7 +9,7 @@ import SympleTaxPage from "./SympleTaxPage";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/draft",
     Component: HomePage,
   },
   {
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
     Component: SympleTaxPage,
   },
   {
-    path: "/home",
+    path: "/",
     Component: HomePageV2,
   },
 ]);

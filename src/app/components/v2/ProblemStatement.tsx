@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
+import { PaintStreak } from "../ui/PaintStreak";
 
 const PROBLEMS = [
   {
@@ -39,43 +40,46 @@ export function ProblemStatement() {
   const [activeId, setActiveId] = useState<string>("01");
 
   return (
-    <section className="bg-[#f9fafb] py-[120px]">
+    <section className="bg-[#ffffff] py-[120px]">
       <div className="max-w-[1330px] mx-auto px-[70px]">
 
-        {/* Section Header — h2 left, paragraph + CTA right */}
-        <div className="flex items-end justify-between gap-12 mb-[60px]">
-          <div className="flex flex-col gap-[22px]">
-            <div className="flex items-center gap-[10px]">
-              <div className="bg-[#00A4A4] h-px w-[35px] shrink-0" />
-              <span className="font-['Inter'] font-medium text-[14px] uppercase tracking-[0.05em] text-[#00A4A4]">
+        {/* Section Header */}
+        <div className="flex items-end justify-between gap-[48px] mb-[64px]">
+          <div className="flex flex-col gap-[20px]">
+            {/* Pill badge */}
+            <div>
+              <span
+                className="font-['Inter'] font-medium uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] inline-block"
+                style={{ fontSize: "12px", letterSpacing: "0.08em" }}
+              >
                 Why Choose Us
               </span>
             </div>
             <h2
-              className="font-['Inter'] font-bold text-[#0f172a] leading-[1.08]"
-              style={{ fontSize: "48px", textWrap: "balance", letterSpacing: "-1.5px" }}
+              className="font-['Outfit'] font-black text-[#0f172a] leading-[1.06]"
+              style={{ fontSize: "clamp(36px, 4.5vw, 60px)", letterSpacing: "-2px" }}
             >
               Expert Guidance,{" "}
-              <br />Proven Results
+              <PaintStreak color="teal">Proven Results</PaintStreak>
             </h2>
           </div>
 
           {/* Paragraph + CTA */}
-          <div className="flex flex-col items-end gap-5 shrink-0 max-w-[320px]">
+          <div className="flex flex-col items-end gap-[20px] shrink-0 max-w-[340px]">
             <p
-              className="font-['Inter'] font-medium text-[#475569] leading-[1.65] text-right"
+              className="font-['Inter'] font-normal text-[#475569] leading-[1.65] text-right"
               style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
             >
-              We provide tailored tax solutions to help you resolve your situation with confidence
+              We provide tailored tax solutions to help you resolve your situation with confidence.
             </p>
             <Link
               to="/services"
-              className="bg-gradient-to-r from-[#00A4A4] to-[#007a7a] hover:from-[#007a7a] hover:to-[#005f5f] text-white flex items-center gap-4 px-8 py-4 rounded-full transition-all whitespace-nowrap shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
+              className="bg-gradient-to-r from-[#00A4A4] to-[#007a7a] hover:from-[#007a7a] hover:to-[#005f5f] text-white flex items-center gap-[14px] px-[28px] py-[14px] rounded-full transition-all whitespace-nowrap shadow-[0_8px_24px_rgba(0,164,164,0.3)] hover:scale-[1.02]"
             >
-              <span className="font-['Inter'] font-semibold" style={{ fontSize: "16px" }}>
+              <span className="font-['Inter'] font-semibold" style={{ fontSize: "15px" }}>
                 View All Services
               </span>
-              <ArrowUpRight className="size-5" />
+              <ArrowUpRight className="w-[18px] h-[18px]" />
             </Link>
           </div>
         </div>
@@ -83,8 +87,8 @@ export function ProblemStatement() {
         {/* Main Layout — 50/50 */}
         <div className="flex items-stretch gap-[60px]">
 
-          {/* Left Image — 50%, crossfades on tab change */}
-          <div className="hidden lg:block w-[50%] shrink-0 h-[540px] rounded-[8px] overflow-hidden relative">
+          {/* Left Image — crossfades on tab change */}
+          <div className="hidden lg:block w-[50%] shrink-0 h-[560px] rounded-[16px] overflow-hidden relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeId}
@@ -95,7 +99,7 @@ export function ProblemStatement() {
                 className="absolute inset-0"
               >
                 <ImageWithFallback
-                  src={PROBLEMS.find(p => p.id === activeId)!.image}
+                  src={PROBLEMS.find((p) => p.id === activeId)!.image}
                   alt=""
                   className="w-full h-full object-cover object-center"
                 />
@@ -103,7 +107,7 @@ export function ProblemStatement() {
             </AnimatePresence>
           </div>
 
-          {/* Right: Accordion — 50% */}
+          {/* Right: Accordion */}
           <div className="flex-1 flex flex-col justify-center">
             <div className="border-t border-slate-200">
               {PROBLEMS.map((item) => {
@@ -112,12 +116,25 @@ export function ProblemStatement() {
                   <div key={item.id} className="border-b border-slate-200">
                     <button
                       onClick={() => setActiveId(item.id)}
-                      className="flex items-center gap-[24px] w-full text-left py-[28px] group"
+                      className="flex items-center gap-[22px] w-full text-left py-[26px] group"
                     >
-                      <span className="font-['Inter'] font-medium text-[24px] text-[#94a3b8] shrink-0 w-[50px]">
-                        [{item.id}]
-                      </span>
-                      <span className={`font-['Inter'] font-medium text-[24px] transition-colors ${isActive ? "text-[#0f172a]" : "text-[#94a3b8] group-hover:text-[#00A4A4]"}`}>
+                      {/* Number chip — teal rounded square */}
+                      <div className="w-[40px] h-[40px] rounded-[10px] bg-[#00A4A4]/10 flex items-center justify-center flex-shrink-0">
+                        <span
+                          className="font-['Outfit'] font-black text-[#00A4A4]"
+                          style={{ fontSize: "14px" }}
+                        >
+                          {item.id}
+                        </span>
+                      </div>
+                      <span
+                        className={`font-['Outfit'] font-bold transition-colors ${
+                          isActive
+                            ? "text-[#0f172a]"
+                            : "text-slate-400 group-hover:text-[#00A4A4]"
+                        }`}
+                        style={{ fontSize: "22px" }}
+                      >
                         {item.title}
                       </span>
                     </button>
@@ -131,22 +148,28 @@ export function ProblemStatement() {
                           transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
                           className="overflow-hidden"
                         >
-                          <div className="pb-[40px] pl-[74px]">
-                            <p className="font-['Inter'] font-normal text-[16px] text-[#475569] leading-[1.6] mb-6">
+                          <div className="pb-[40px] pl-[62px]">
+                            <p
+                              className="font-['Inter'] font-normal text-[#475569] leading-[1.65] mb-[20px]"
+                              style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
+                            >
                               {item.description}
                             </p>
                             <motion.button
                               whileHover="hover"
-                              className="flex items-center gap-3 group/btn"
+                              className="flex items-center gap-[8px]"
                             >
-                              <span className="font-['Inter'] font-medium text-[15px] text-[#00A4A4]">
+                              <span
+                                className="font-['Inter'] font-medium text-[#00A4A4]"
+                                style={{ fontSize: "15px" }}
+                              >
                                 Learn More
                               </span>
                               <motion.div
                                 variants={{ hover: { x: 4 } }}
                                 transition={{ duration: 0.25, ease: "easeOut" }}
                               >
-                                <ArrowUpRight className="text-[#00A4A4] size-[18px]" />
+                                <ArrowUpRight className="text-[#00A4A4] w-[17px] h-[17px]" />
                               </motion.div>
                             </motion.button>
                           </div>
