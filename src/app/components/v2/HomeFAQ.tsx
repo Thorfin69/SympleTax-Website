@@ -52,7 +52,7 @@ export function HomeFAQ() {
               {/* Pill badge */}
               <div>
                 <span
-                  className="font-['Inter'] font-medium text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] uppercase inline-block"
+                  className="font-['Inter'] font-bold text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] uppercase inline-block"
                   style={{ fontSize: "12px", letterSpacing: "0.07em" }}
                 >
                   Common Questions

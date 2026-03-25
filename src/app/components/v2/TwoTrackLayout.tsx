@@ -112,7 +112,7 @@ export function TwoTrackLayout() {
             {/* Pill badge */}
             <div>
               <span
-                className="font-['Inter'] font-medium uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] inline-block"
+                className="font-['Inter'] font-bold uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] inline-block"
                 style={{ fontSize: "12px", letterSpacing: "0.08em" }}
               >
                 Two Paths To Relief
@@ -160,7 +160,7 @@ export function TwoTrackLayout() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.35 }}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-[20px]"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-[16px]"
           >
             {track.items.map((item, i) => (
               <motion.div
@@ -168,21 +168,24 @@ export function TwoTrackLayout() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.06, duration: 0.3 }}
-                className="bg-[#ffffff] rounded-[16px] p-[28px] flex flex-col gap-[16px] group hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300"
+                className="bg-white rounded-[20px] p-[32px] flex flex-col gap-[20px] group border border-[#ece8e0] hover:border-[#00A4A4]/30 transition-all duration-300"
               >
-                {/* Teal icon square */}
-                <div className="w-[42px] h-[42px] rounded-[10px] bg-[#00A4A4]/10 flex items-center justify-center flex-shrink-0">
-                  <item.icon className="w-[20px] h-[20px] text-[#00A4A4]" />
+                {/* Icon square — very light teal wash, like reference */}
+                <div
+                  className="w-[48px] h-[48px] rounded-[12px] flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: "rgba(0,164,164,0.08)" }}
+                >
+                  <item.icon className="w-[22px] h-[22px] text-[#00A4A4]" strokeWidth={1.5} />
                 </div>
-                <div className="flex flex-col gap-[8px]">
+                <div className="flex flex-col gap-[10px] flex-1">
                   <h3
-                    className="font-['Outfit'] font-bold text-[#0f172a] leading-[1.2]"
-                    style={{ fontSize: "18px" }}
+                    className="font-['Outfit'] font-bold text-[#0f172a] leading-[1.25]"
+                    style={{ fontSize: "17px", letterSpacing: "-0.3px" }}
                   >
                     {item.title}
                   </h3>
                   <p
-                    className="font-['Inter'] font-normal text-[#475569] leading-[1.6]"
+                    className="font-['Inter'] font-normal text-[#64748b] leading-[1.65]"
                     style={{ fontSize: "14px" }}
                   >
                     {item.desc}
@@ -190,10 +193,10 @@ export function TwoTrackLayout() {
                 </div>
                 <Link
                   to="/services"
-                  className="font-['Inter'] font-semibold text-[#00A4A4] flex items-center gap-[4px] mt-auto hover:gap-[8px] transition-all duration-200"
-                  style={{ fontSize: "13px" }}
+                  className="font-['Inter'] font-semibold text-[#00A4A4] flex items-center gap-[5px] group-hover:gap-[8px] transition-all duration-200 mt-auto"
+                  style={{ fontSize: "14px" }}
                 >
-                  Learn More <span>→</span>
+                  Learn More <span aria-hidden>→</span>
                 </Link>
               </motion.div>
             ))}

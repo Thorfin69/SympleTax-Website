@@ -5,7 +5,6 @@ import AboutPage from "./AboutPage";
 import ProcessPage from "./ProcessPage";
 import ServicesPage from "./ServicesPage";
 import ContactPage from "./ContactPage";
-import SympleTaxPage from "./SympleTaxPage";
 
 export const router = createBrowserRouter([
   {
@@ -29,11 +28,11 @@ export const router = createBrowserRouter([
     Component: ContactPage,
   },
   {
-    path: "/v2",
-    Component: SympleTaxPage,
+    path: "/",
+    Component: HomePageV2,
   },
   {
-    path: "/",
+    path: "/home",
     Component: HomePageV2,
   },
 ]);

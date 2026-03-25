@@ -3,6 +3,10 @@ import { Link } from "react-router";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { PaintStreak } from "../ui/PaintStreak";
 
+import marcusImg from "../../../assets/878b317dd302900b43da77ef917f051b39213cf4.png";
+import dianaImg from "../../../assets/28dfdf44796fe25651464c030f0066b092e7dda1.png";
+import robertImg from "../../../assets/964911e923d805988378a396f48923502c0869f4.png";
+
 const CASE_RESULTS = [
   {
     firstName: "Marcus",
@@ -11,8 +15,7 @@ const CASE_RESULTS = [
     saved: "96%",
     situation:
       "Single taxpayer with several years of unfiled returns and active bank levies. Faced immediate financial hardship due to wage garnishment.",
-    personImage:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face&q=80",
+    personImage: marcusImg,
     strokeColor: "purple" as const,
   },
   {
@@ -22,8 +25,7 @@ const CASE_RESULTS = [
     saved: "91%",
     situation:
       "Small business owner facing payroll tax penalties and aggressive IRS collection. Threat of business closure resolved within 60 days.",
-    personImage:
-      "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=500&fit=crop&crop=face&q=80",
+    personImage: dianaImg,
     strokeColor: "pink" as const,
   },
   {
@@ -33,8 +35,7 @@ const CASE_RESULTS = [
     saved: "96%",
     situation:
       "Retiree with a tax lien from a decade-old unresolved assessment. Secured a full lien release and protected all retirement assets.",
-    personImage:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=face&q=80",
+    personImage: robertImg,
     strokeColor: "teal" as const,
   },
 ];
@@ -83,10 +84,10 @@ export function CaseResultSpotlight() {
             {/* Pill badge — "case story" style */}
             <div className="inline-flex items-center border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] w-fit">
               <span
-                className="font-['Outfit'] font-semibold text-[#0f172a]"
+                className="font-['Outfit'] font-bold text-[#0f172a]"
                 style={{ fontSize: "13px", letterSpacing: "0.04em" }}
               >
-                case story
+                Case Story
               </span>
             </div>
 
@@ -196,18 +197,12 @@ export function CaseResultSpotlight() {
                 className="w-[360px] bg-white rounded-[20px] overflow-hidden shrink-0 border border-[#e8e4da] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300"
               >
                 {/* Photo area */}
-                <div className="relative h-[200px] overflow-hidden" style={{ backgroundColor: "#00A4A4" }}>
+                <div className="relative h-[250px] overflow-hidden" style={{ backgroundColor: "#00A4A4" }}>
                   <ImageWithFallback
                     src={item.personImage}
                     alt=""
                     className="w-full h-full object-cover object-top"
                   />
-                  {/* Pill badge */}
-                  <div className="absolute top-[14px] left-[14px] border-[1.5px] border-white rounded-[50px] px-[12px] py-[5px] bg-white/90">
-                    <span className="font-['Outfit'] font-semibold text-[#0f172a]" style={{ fontSize: "11px", letterSpacing: "0.04em" }}>
-                      case story
-                    </span>
-                  </div>
                   <div className="absolute top-[14px] right-[14px] bg-[#0f172a] text-white rounded-full px-[12px] py-[5px]">
                     <span className="font-['Outfit'] font-bold" style={{ fontSize: "12px" }}>{item.saved} saved</span>
                   </div>

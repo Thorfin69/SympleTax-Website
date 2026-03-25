@@ -26,9 +26,55 @@ function ArrowIcon() {
   );
 }
 
+function BackgroundLines() {
+  return (
+    <svg
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      viewBox="0 0 1400 700"
+      preserveAspectRatio="xMidYMid slice"
+      fill="none"
+      aria-hidden="true"
+    >
+      {/* Flowing curved lines — teal, low opacity */}
+      <path
+        d="M-100,180 C200,80 500,320 800,200 C1100,80 1300,280 1500,160"
+        stroke="#00A4A4"
+        strokeWidth="1.2"
+        opacity="0.12"
+      />
+      <path
+        d="M-100,320 C150,200 450,440 750,320 C1050,200 1250,400 1500,280"
+        stroke="#00A4A4"
+        strokeWidth="1"
+        opacity="0.08"
+      />
+      <path
+        d="M-100,480 C200,360 480,560 780,440 C1080,320 1300,500 1500,400"
+        stroke="#00A4A4"
+        strokeWidth="0.8"
+        opacity="0.06"
+      />
+      {/* Diagonal accent line — bolder */}
+      <path
+        d="M900,0 C1000,150 950,350 1100,500 C1200,600 1350,650 1400,700"
+        stroke="#00A4A4"
+        strokeWidth="1.5"
+        opacity="0.10"
+      />
+      <path
+        d="M600,0 C700,200 650,400 800,550 C900,660 1050,700 1100,700"
+        stroke="#00A4A4"
+        strokeWidth="1"
+        opacity="0.07"
+      />
+    </svg>
+  );
+}
+
 export function SolutionsOverview() {
   return (
     <section className="bg-[#0f172a] py-[120px] relative overflow-hidden">
+      <BackgroundLines />
       <div className="max-w-[1330px] mx-auto px-[70px] relative">
         <div className="flex gap-[120px] items-start">
 
@@ -40,10 +86,10 @@ export function SolutionsOverview() {
               {/* Pill Badge */}
               <div>
                 <span
-                  className="font-['Inter'] font-medium uppercase text-white border-[1.5px] border-white rounded-[50px] px-[16px] py-[7px] inline-block"
+                  className="font-['Inter'] font-bold uppercase text-white border-[1.5px] border-white rounded-[50px] px-[16px] py-[7px] inline-block"
                   style={{ fontSize: "12px", letterSpacing: "0.08em" }}
                 >
-                  our services
+                  Our Services
                 </span>
               </div>
 

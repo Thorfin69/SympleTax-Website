@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useState } from "react";
-import { Phone, Mail, MapPin, CheckCircle2 } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { PaintStreak } from "../ui/PaintStreak";
 
 const CONTACT_ITEMS = [
@@ -10,13 +10,6 @@ const CONTACT_ITEMS = [
   { icon: MapPin, label: "Irvine, CA", sub: "Serving clients nationwide", href: null },
 ];
 
-const TRUST_SIGNALS = [
-  "Licensed CPAs & Enrolled Agents",
-  "Free Consultation — No Obligation",
-  "Flat-Fee Transparent Pricing",
-  "IRS Power of Attorney Filed For You",
-  "Results-First Guarantee",
-];
 
 export function HomeContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -37,7 +30,7 @@ export function HomeContactForm() {
             {/* Pill badge */}
             <div>
               <span
-                className="font-['Inter'] font-medium text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] uppercase inline-block"
+                className="font-['Inter'] font-bold text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] uppercase inline-block"
                 style={{ fontSize: "12px", letterSpacing: "0.07em" }}
               >
                 Free Consultation
@@ -116,48 +109,6 @@ export function HomeContactForm() {
               })}
             </div>
 
-            {/* Trust signals */}
-            <div
-              className="rounded-[20px] flex flex-col"
-              style={{
-                background: "rgba(255,255,255,0.55)",
-                border: "1.5px solid rgba(0,164,164,0.15)",
-                padding: "28px 28px",
-                gap: "14px",
-              }}
-            >
-              <span
-                className="font-['Outfit'] font-bold text-[#0f172a]"
-                style={{ fontSize: "13px", letterSpacing: "0.06em", textTransform: "uppercase" }}
-              >
-                Why SympleTax
-              </span>
-              {TRUST_SIGNALS.map((signal) => (
-                <div key={signal} className="flex items-center gap-[12px]">
-                  <CheckCircle2
-                    style={{ width: "18px", height: "18px", color: "#00A4A4", flexShrink: 0 }}
-                  />
-                  <span
-                    className="font-['Inter'] font-normal text-[#334155]"
-                    style={{ fontSize: "15px", letterSpacing: "-0.2px" }}
-                  >
-                    {signal}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Teal circle blob decorative */}
-            <div
-              className="w-[160px] h-[160px] rounded-full pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(0,164,164,0.13) 0%, rgba(0,164,164,0.04) 65%, transparent 100%)",
-                marginLeft: "-24px",
-                marginTop: "-30px",
-              }}
-              aria-hidden="true"
-            />
           </div>
 
           {/* Right: Form */}

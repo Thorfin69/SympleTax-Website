@@ -46,7 +46,7 @@ export function BlogPreview() {
             {/* Pill badge */}
             <div>
               <span
-                className="font-['Inter'] font-medium uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px]"
+                className="font-['Inter'] font-bold uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px]"
                 style={{ fontSize: "12px", letterSpacing: "0.08em" }}
               >
                 Financial Insights

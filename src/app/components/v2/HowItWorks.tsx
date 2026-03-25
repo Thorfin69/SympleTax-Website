@@ -50,10 +50,10 @@ export function HowItWorks() {
           {/* Pill Badge */}
           <div>
             <span
-              className="font-['Inter'] font-medium uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] inline-block"
+              className="font-['Inter'] font-bold uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] inline-block"
               style={{ fontSize: "12px", letterSpacing: "0.08em" }}
             >
-              our approach
+              Our Approach
             </span>
           </div>
 
@@ -82,7 +82,7 @@ export function HowItWorks() {
         {/* Two-column layout */}
         <div className="flex flex-col lg:flex-row gap-[40px] items-stretch">
 
-          {/* Left: Crossfading image */}
+          {/* Left: Crossfading image + step indicator */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -104,9 +104,55 @@ export function HowItWorks() {
                   alt=""
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-[#0f172a]/20" />
+                <div className="absolute inset-0 bg-[#0f172a]/40" />
               </motion.div>
             </AnimatePresence>
+
+            {/* Step counter — bottom-left overlay */}
+            <div className="absolute bottom-[24px] left-[24px] right-[24px] z-10 flex items-end justify-between">
+              {/* Current step label */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-col gap-[4px]"
+                >
+                  <span className="font-['Inter'] text-white/60" style={{ fontSize: "12px", letterSpacing: "0.08em" }}>
+                    STEP
+                  </span>
+                  <span className="font-['Outfit'] font-black text-white" style={{ fontSize: "36px", letterSpacing: "-1px", lineHeight: 1 }}>
+                    {activeTab}
+                    <span className="font-['Inter'] font-normal text-white/50" style={{ fontSize: "16px", letterSpacing: "0" }}>
+                      {" "}/ {String(STEPS.length).padStart(2, "0")}
+                    </span>
+                  </span>
+                  <span className="font-['Outfit'] font-semibold text-white" style={{ fontSize: "16px" }}>
+                    {STEPS.find((s) => s.id === activeTab)!.title}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Progress dots */}
+              <div className="flex items-center gap-[8px]">
+                {STEPS.map((step) => (
+                  <button
+                    key={step.id}
+                    onClick={() => setActiveTab(step.id)}
+                    className="transition-all duration-300"
+                    style={{
+                      width: activeTab === step.id ? "28px" : "8px",
+                      height: "8px",
+                      borderRadius: "4px",
+                      backgroundColor: activeTab === step.id ? "#00A4A4" : "rgba(255,255,255,0.4)",
+                    }}
+                    aria-label={`Go to step ${step.id}`}
+                  />
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           {/* Right: Accordion */}

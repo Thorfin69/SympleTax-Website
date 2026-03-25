@@ -67,10 +67,10 @@ export function IRSNoticeCallout() {
             {/* Pill badge — "tax help" style */}
             <div className="inline-flex items-center border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] w-fit">
               <span
-                className="font-['Outfit'] font-semibold text-[#0f172a]"
+                className="font-['Outfit'] font-bold text-[#0f172a]"
                 style={{ fontSize: "13px", letterSpacing: "0.04em" }}
               >
-                tax help
+                Tax Help
               </span>
             </div>
 

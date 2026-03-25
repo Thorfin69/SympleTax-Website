@@ -110,8 +110,8 @@ export function ResultsNumbers() {
               <div className="relative">
                 <PaintStreak color={stat.strokeColor}>
                   <span
-                    className="font-['Outfit'] font-black text-[#0f172a] leading-[1.0]"
-                    style={{ fontSize: "clamp(48px, 5vw, 72px)", letterSpacing: "-3px" }}
+                    className="font-['Outfit'] font-black text-[#0f172a] leading-[1.0] whitespace-nowrap"
+                    style={{ fontSize: "60px", letterSpacing: "-2px" }}
                   >
                     {stat.prefix}
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
