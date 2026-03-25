@@ -149,9 +149,9 @@ export function Footer() {
                     aria-label={label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-[38px] h-[38px] rounded-[8px] border border-white/10 flex items-center justify-center text-white/40 hover:border-[#00A4A4]/50 hover:text-[#00A4A4] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
+                    className="w-[44px] h-[44px] rounded-[9px] border border-white/10 flex items-center justify-center text-white/40 hover:border-[#00A4A4]/50 hover:text-[#00A4A4] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
                   >
-                    <Icon className="w-[15px] h-[15px]" aria-hidden="true" />
+                    <Icon className="w-[17px] h-[17px]" aria-hidden="true" />
                   </a>
                 ))}
               </div>
@@ -215,7 +215,7 @@ export function Footer() {
         <div className="border-t border-white/[0.07] py-[24px] flex flex-col md:flex-row items-center justify-between gap-[16px]">
           <p
             className="font-['DM_Sans'] text-white/35"
-            style={{ fontSize: "12px" }}
+            style={{ fontSize: "14px" }}
           >
             © {new Date().getFullYear()} SympleTax. All Rights Reserved. Powered by{" "}
             <a
@@ -240,7 +240,7 @@ export function Footer() {
                   key={label}
                   href={href}
                   className="group relative inline-block font-['DM_Sans'] text-white/35 hover:text-[#00A4A4] transition-colors focus:outline-none focus-visible:underline"
-                  style={{ fontSize: "12px" }}
+                  style={{ fontSize: "14px" }}
                 >
                   {label}
                   <span className="absolute -bottom-[2px] left-0 w-0 h-[1px] bg-[#00A4A4] transition-all duration-300 group-hover:w-full" />
