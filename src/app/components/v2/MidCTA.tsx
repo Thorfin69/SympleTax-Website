@@ -20,7 +20,7 @@ export function MidCTA() {
             {/* Pill badge */}
             <div>
               <span
-                className="inline-flex items-center font-['Outfit'] font-bold text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] uppercase"
+                className="inline-flex items-center font-['DM_Sans'] font-bold text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] uppercase"
                 style={{ fontSize: "13px", letterSpacing: "0.06em" }}
               >
                 Free Consultation
@@ -29,7 +29,7 @@ export function MidCTA() {
 
             {/* Headline */}
             <h2
-              className="font-['Outfit'] font-black text-[#0f172a]"
+              className="font-['DM_Sans'] font-black text-[#0f172a]"
               style={{
                 fontSize: "clamp(44px, 5vw, 64px)",
                 lineHeight: "1.04",
@@ -43,7 +43,7 @@ export function MidCTA() {
 
             {/* Body */}
             <p
-              className="font-['Inter'] font-normal text-[#0f172a]/70 leading-[1.65]"
+              className="font-['DM_Sans'] font-normal text-[#0f172a]/70 leading-[1.65]"
               style={{ fontSize: "18px", letterSpacing: "-0.3px", maxWidth: "460px" }}
             >
               Our licensed professionals have resolved over $500M in tax debt.
@@ -53,15 +53,15 @@ export function MidCTA() {
             {/* CTAs */}
             <div className="flex items-center gap-[20px]">
               <Link
-                to="/contact"
+                to="https://ti.sympletax.com"
                 className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white rounded-full hover:scale-[1.02] transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.25)] hover:shadow-[0_12px_32px_rgba(0,164,164,0.35)]"
                 style={{ paddingLeft: "28px", paddingRight: "28px", paddingTop: "17px", paddingBottom: "17px" }}
               >
                 <span
-                  className="font-['Inter'] font-semibold text-white"
+                  className="font-['DM_Sans'] font-semibold text-white"
                   style={{ fontSize: "16px", letterSpacing: "-0.32px" }}
                 >
-                  Get Free Consultation
+                  Get a Free Consultation
                 </span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path
@@ -80,7 +80,7 @@ export function MidCTA() {
                 style={{ paddingLeft: "24px", paddingRight: "24px", paddingTop: "17px", paddingBottom: "17px" }}
               >
                 <span
-                  className="font-['Inter'] font-semibold"
+                  className="font-['DM_Sans'] font-semibold"
                   style={{ fontSize: "16px", letterSpacing: "-0.32px" }}
                 >
                   View All Services

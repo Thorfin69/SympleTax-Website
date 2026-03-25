@@ -30,7 +30,7 @@ export function HomeContactForm() {
             {/* Pill badge */}
             <div>
               <span
-                className="font-['Inter'] font-bold text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] uppercase inline-block"
+                className="font-['DM_Sans'] font-bold text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] uppercase inline-block"
                 style={{ fontSize: "12px", letterSpacing: "0.07em" }}
               >
                 Free Consultation
@@ -39,7 +39,7 @@ export function HomeContactForm() {
 
             {/* H2 with PaintStreak */}
             <h2
-              className="font-['Outfit'] font-black text-[#0f172a] leading-[1.06]"
+              className="font-['DM_Sans'] font-black text-[#0f172a] leading-[1.06]"
               style={{
                 fontSize: "clamp(32px, 4vw, 52px)",
                 letterSpacing: "-2px",
@@ -52,7 +52,7 @@ export function HomeContactForm() {
             </h2>
 
             <p
-              className="font-['Inter'] font-normal text-[#4a5568] leading-[1.65]"
+              className="font-['DM_Sans'] font-normal text-[#4a5568] leading-[1.65]"
               style={{ fontSize: "16px", letterSpacing: "-0.3px", maxWidth: "400px" }}
             >
               Tell us about your tax situation. Our licensed experts will review your case and contact you with a free, no-obligation strategy.
@@ -78,13 +78,13 @@ export function HomeContactForm() {
                     </div>
                     <div className="flex flex-col">
                       <span
-                        className="font-['Inter'] font-semibold text-[#0f172a] transition-colors duration-300 group-hover:text-[#00A4A4]"
+                        className="font-['DM_Sans'] font-semibold text-[#0f172a] transition-colors duration-300 group-hover:text-[#00A4A4]"
                         style={{ fontSize: "15px", letterSpacing: "-0.3px", lineHeight: "1.2" }}
                       >
                         {label}
                       </span>
                       <span
-                        className="font-['Inter'] font-normal text-[#94a3b8]"
+                        className="font-['DM_Sans'] font-normal text-[#94a3b8]"
                         style={{ fontSize: "13px" }}
                       >
                         {sub}
@@ -138,13 +138,13 @@ export function HomeContactForm() {
                   </div>
                   <div>
                     <h3
-                      className="font-['Outfit'] font-bold text-[#0f172a]"
+                      className="font-['DM_Sans'] font-bold text-[#0f172a]"
                       style={{ fontSize: "28px", letterSpacing: "-1px", lineHeight: "1.2", marginBottom: "10px" }}
                     >
                       Request Received
                     </h3>
                     <p
-                      className="font-['Inter'] font-normal text-[#475569] leading-[1.6] mx-auto"
+                      className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.6] mx-auto"
                       style={{ fontSize: "16px", maxWidth: "300px" }}
                     >
                       A licensed tax expert will review your case and contact you within 24 hours.
@@ -152,7 +152,7 @@ export function HomeContactForm() {
                   </div>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="font-['Inter'] font-normal text-[#00A4A4] underline"
+                    className="font-['DM_Sans'] font-normal text-[#00A4A4] underline"
                     style={{ fontSize: "14px" }}
                   >
                     Submit another request
@@ -162,13 +162,13 @@ export function HomeContactForm() {
                 <form onSubmit={handleSubmit} className="flex flex-col" style={{ gap: "22px" }}>
                   <div style={{ marginBottom: "6px" }}>
                     <h3
-                      className="font-['Outfit'] font-bold text-[#0f172a]"
+                      className="font-['DM_Sans'] font-bold text-[#0f172a]"
                       style={{ fontSize: "24px", letterSpacing: "-0.8px", lineHeight: "1.25" }}
                     >
                       Tell us your story
                     </h3>
                     <p
-                      className="font-['Inter'] font-normal text-[#64748b]"
+                      className="font-['DM_Sans'] font-normal text-[#64748b]"
                       style={{ fontSize: "14px", marginTop: "6px" }}
                     >
                       We'll review your case and reach out within 24 hours.
@@ -187,13 +187,13 @@ export function HomeContactForm() {
 
                   <div className="flex flex-col" style={{ gap: "8px" }}>
                     <label
-                      className="font-['Inter'] font-medium text-[#0f172a]"
+                      className="font-['DM_Sans'] font-medium text-[#0f172a]"
                       style={{ fontSize: "14px", letterSpacing: "-0.28px" }}
                     >
                       Select Tax Problem
                     </label>
                     <select
-                      className="font-['Inter'] text-[#0f172a] focus:outline-none transition-colors appearance-none"
+                      className="font-['DM_Sans'] text-[#0f172a] focus:outline-none transition-colors appearance-none"
                       style={{
                         fontSize: "16px",
                         background: "#f9f7f3",
@@ -214,7 +214,7 @@ export function HomeContactForm() {
 
                   <div className="flex flex-col" style={{ gap: "8px" }}>
                     <label
-                      className="font-['Inter'] font-medium text-[#0f172a]"
+                      className="font-['DM_Sans'] font-medium text-[#0f172a]"
                       style={{ fontSize: "14px", letterSpacing: "-0.28px" }}
                     >
                       Additional Details
@@ -222,7 +222,7 @@ export function HomeContactForm() {
                     <textarea
                       rows={4}
                       placeholder="Please describe your situation..."
-                      className="font-['Inter'] text-[#0f172a] focus:outline-none transition-colors resize-none"
+                      className="font-['DM_Sans'] text-[#0f172a] focus:outline-none transition-colors resize-none"
                       style={{
                         fontSize: "16px",
                         background: "#f9f7f3",
@@ -246,7 +246,7 @@ export function HomeContactForm() {
                     }}
                   >
                     <span
-                      className="font-['Outfit'] font-bold text-white"
+                      className="font-['DM_Sans'] font-bold text-white"
                       style={{ fontSize: "16px", letterSpacing: "-0.2px" }}
                     >
                       Analyze My Case
@@ -257,7 +257,7 @@ export function HomeContactForm() {
                   </button>
 
                   <p
-                    className="text-center font-['Inter'] font-normal text-[#94a3b8]"
+                    className="text-center font-['DM_Sans'] font-normal text-[#94a3b8]"
                     style={{ fontSize: "13px", letterSpacing: "-0.2px" }}
                   >
                     Your data is encrypted and secure. By submitting, you agree to our Privacy Policy.
@@ -287,7 +287,7 @@ function FormField({
   return (
     <div className="flex flex-col" style={{ gap: "8px" }}>
       <label
-        className="font-['Inter'] font-medium text-[#0f172a]"
+        className="font-['DM_Sans'] font-medium text-[#0f172a]"
         style={{ fontSize: "14px", letterSpacing: "-0.28px" }}
       >
         {label}{required && " *"}
@@ -296,7 +296,7 @@ function FormField({
         type={type}
         placeholder={placeholder}
         required={required}
-        className="font-['Inter'] text-[#0f172a] focus:outline-none transition-colors"
+        className="font-['DM_Sans'] text-[#0f172a] focus:outline-none transition-colors"
         style={{
           fontSize: "16px",
           background: "#f9f7f3",

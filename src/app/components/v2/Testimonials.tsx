@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router";
 
 const TESTIMONIALS = [
   {
@@ -44,8 +45,8 @@ const CAROUSEL_ITEMS = [...TESTIMONIALS, ...TESTIMONIALS];
 
 export function Testimonials() {
   return (
-    <section className="py-[120px] overflow-hidden" style={{ backgroundColor: "#f5f1e8" }}>
-      <div className="max-w-[1330px] mx-auto px-[70px]">
+    <section className="py-[64px] lg:py-[120px] overflow-hidden" style={{ backgroundColor: "#f5f1e8" }}>
+      <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
 
         {/* Section header */}
         <motion.div
@@ -53,14 +54,14 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex items-end justify-between gap-[48px] mb-[64px]"
+          className="flex flex-col gap-[20px] lg:flex-row lg:items-end lg:justify-between lg:gap-[48px] mb-[40px] lg:mb-[64px]"
         >
           <div className="flex flex-col gap-[20px]">
             {/* Eyebrow */}
             <div className="flex items-center gap-[10px]">
               <div className="bg-[#00A4A4] h-px w-[35px]" />
               <span
-                className="font-['Inter'] font-medium uppercase text-[#00A4A4]"
+                className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
                 style={{ fontSize: "14px", letterSpacing: "0.05em" }}
               >
                 Client Stories
@@ -68,8 +69,8 @@ export function Testimonials() {
             </div>
 
             <h2
-              className="font-['Outfit'] font-black text-[#0f172a] leading-[1.05]"
-              style={{ fontSize: "clamp(36px, 4.5vw, 58px)", letterSpacing: "-2px" }}
+              className="font-['DM_Sans'] font-black text-[#0f172a] leading-[1.05]"
+              style={{ fontSize: "clamp(28px, 7vw, 58px)", letterSpacing: "-2px" }}
             >
               Real Cases.{" "}
               <span className="text-[#00A4A4]">Real People.</span>
@@ -77,7 +78,7 @@ export function Testimonials() {
           </div>
 
           <p
-            className="font-['Inter'] font-normal text-[#475569] leading-[1.65] shrink-0 max-w-[360px] text-right"
+            className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65] lg:shrink-0 lg:max-w-[360px] lg:text-right"
             style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
           >
             Thousands of Americans have trusted SympleTax to fight the IRS on their behalf — and won.
@@ -89,9 +90,9 @@ export function Testimonials() {
       {/* Full-bleed carousel */}
       <div className="relative">
         <motion.div
-          className="flex gap-[24px] w-max"
+          className="flex gap-[16px] md:gap-[24px] w-max"
           animate={{
-            x: [0, -(TESTIMONIALS.length * 560 + TESTIMONIALS.length * 24)],
+            x: [0, -(TESTIMONIALS.length * 340 + TESTIMONIALS.length * 16)],
           }}
           transition={{
             x: {
@@ -101,18 +102,18 @@ export function Testimonials() {
               ease: "linear",
             },
           }}
-          style={{ paddingLeft: "70px" }}
+          style={{ paddingLeft: "25px" }}
         >
           {CAROUSEL_ITEMS.map((item, idx) => (
             <div
               key={idx}
-              className="shrink-0 flex"
-              style={{ width: "560px" }}
+              className="shrink-0"
+              style={{ width: "320px" }}
             >
               {/* Card */}
               <div
-                className="flex-1 flex flex-col justify-between bg-white px-[40px] py-[40px] rounded-[20px] shadow-[0_4px_24px_rgba(0,0,0,0.07)]"
-                style={{ minHeight: "320px" }}
+                className="flex flex-col justify-between bg-white px-[24px] py-[28px] rounded-[20px] shadow-[0_4px_24px_rgba(0,0,0,0.07)]"
+                style={{ minHeight: "260px", borderRight: "1.5px solid rgba(0,164,164,0.25)" }}
               >
                 {/* Stars */}
                 <div className="flex items-center gap-[4px] mb-[20px]">
@@ -125,7 +126,7 @@ export function Testimonials() {
 
                 {/* Quote body */}
                 <p
-                  className="font-['Inter'] font-normal text-[#1e293b] leading-[1.7] flex-1"
+                  className="font-['DM_Sans'] font-normal text-[#1e293b] leading-[1.7] flex-1"
                   style={{ fontSize: "16px", letterSpacing: "-0.2px" }}
                 >
                   {item.quote}
@@ -135,13 +136,13 @@ export function Testimonials() {
                 <div className="flex items-end justify-between mt-[32px]">
                   <div className="flex flex-col gap-[4px]">
                     <span
-                      className="font-['Outfit'] font-bold text-[#00A4A4] uppercase"
+                      className="font-['DM_Sans'] font-bold text-[#00A4A4] uppercase"
                       style={{ fontSize: "16px", letterSpacing: "0.06em" }}
                     >
                       {item.name}
                     </span>
                     <span
-                      className="font-['Inter'] font-normal text-[#94a3b8] uppercase"
+                      className="font-['DM_Sans'] font-normal text-[#94a3b8] uppercase"
                       style={{ fontSize: "11px", letterSpacing: "0.06em" }}
                     >
                       {item.location}
@@ -150,7 +151,7 @@ export function Testimonials() {
 
                   {/* Large decorative open-quote */}
                   <span
-                    className="font-['Outfit'] font-black text-[#00A4A4] leading-none select-none"
+                    className="font-['DM_Sans'] font-black text-[#00A4A4] leading-none select-none"
                     style={{ fontSize: "72px", lineHeight: "0.7", opacity: 0.45 }}
                     aria-hidden="true"
                   >
@@ -159,11 +160,6 @@ export function Testimonials() {
                 </div>
               </div>
 
-              {/* Teal vertical divider — between cards */}
-              <div
-                className="shrink-0"
-                style={{ width: "1.5px", backgroundColor: "#00A4A4", opacity: 0.25 }}
-              />
             </div>
           ))}
         </motion.div>
@@ -184,6 +180,27 @@ export function Testimonials() {
           }}
         />
       </div>
+
+      {/* "See All Case Studies" button */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="flex justify-center mt-[56px]"
+      >
+        <Link
+            to="https://ti.sympletax.com"
+          className="inline-flex items-center gap-[10px] border-[1.5px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:bg-[#00A4A4] hover:text-white transition-all duration-300 hover:scale-[1.02]"
+          style={{ fontSize: "15px", padding: "14px 36px", letterSpacing: "-0.2px" }}
+          aria-label="See all case studies"
+        >
+          See All Case Studies
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </Link>
+      </motion.div>
 
     </section>
   );

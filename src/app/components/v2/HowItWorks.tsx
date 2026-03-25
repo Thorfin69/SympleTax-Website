@@ -1,281 +1,232 @@
-import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
-import { ImageWithFallback } from "../figma/ImageWithFallback";
-import { PaintStreak } from "../ui/PaintStreak";
+import { motion } from "motion/react";
+import { SearchCheck, ShieldCheck } from "lucide-react";
+import { Link } from "react-router";
+import vectorPng from "../../../assets/vector.png";
 
-const STEPS = [
+const PHASES = [
   {
-    id: "01",
-    title: "Deep Collaboration",
+    number: "01",
+    label: "Phase One",
+    title: "Strategic Discovery",
     description:
-      "We work as an extension of your team—immersing ourselves in your goals, challenges, and vision to ensure aligned outcomes. We believe great results come from working closely together.",
-    features: ["Joint Strategy Sessions", "Dedicated Account Manager", "Transparent Communication"],
-    image: "https://images.unsplash.com/photo-1560472355-536de3962603?w=900&h=600&fit=crop&q=80",
+      "Before we can resolve your tax debt, we need to fully understand your situation. We dig into the details so nothing surprises you — or us — during negotiations.",
+    steps: [
+      "Pull & analyze your full IRS transcripts",
+      "Identify the best resolution path for your case",
+      "File Power of Attorney (IRS Form 2848)",
+      "Assess financial hardship qualifications",
+      "Stop active collections, levies & garnishments",
+    ],
+    Icon: SearchCheck,
   },
   {
-    id: "02",
-    title: "Expertise",
+    number: "02",
+    label: "Phase Two",
+    title: "Resolution",
     description:
-      "Our team brings decades of combined experience in tax resolution, law, and accounting to every case. We provide the mastery needed for complex tax relief.",
-    features: ["Enrolled Agent Oversight", "Tax Attorney Consultation", "CPA-Led Financial Reviews"],
-    image: "https://images.unsplash.com/photo-1554224311-beee4686418d?w=900&h=600&fit=crop&q=80",
-  },
-  {
-    id: "03",
-    title: "Tailored Solutions",
-    description:
-      "No two tax cases are the same. We develop bespoke resolution paths that prioritize your financial stability and long-term peace of mind.",
-    features: ["Custom Relief Roadmaps", "Asset Protection Focus", "Bespoke Negotiation Tactics"],
-    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=900&h=600&fit=crop&q=80",
-  },
-  {
-    id: "04",
-    title: "Impact",
-    description:
-      "Our focus is on measurable results—stopping collections, reducing liabilities, and giving you back your financial freedom and confidence.",
-    features: ["IRS Debt Reduction", "Lien & Levy Removal", "Penalty Abatement Success"],
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&h=600&fit=crop&q=80",
+      "We take over all IRS communication and negotiate aggressively on your behalf. Our goal is the maximum reduction legally available to you.",
+    steps: [
+      "Negotiate directly with the IRS on your behalf",
+      "Submit Offer in Compromise or Installment Agreement",
+      "Resolve penalties, interest, liens & levies",
+      "File any missing or unfiled tax returns",
+      "Close your case & restore full tax compliance",
+    ],
+    Icon: ShieldCheck,
   },
 ];
 
 export function HowItWorks() {
-  const [activeTab, setActiveTab] = useState<string>("01");
-
   return (
-    <section className="py-[120px]" style={{ backgroundColor: "#f5f1e8" }}>
-      <div className="max-w-[1330px] mx-auto px-[70px]">
+    <section className="py-[64px] lg:py-[120px] bg-white">
+      <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
 
         {/* Section Header */}
-        <div className="flex flex-col gap-[24px] mb-[72px]">
-          {/* Pill Badge */}
-          <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-[40px] lg:mb-[72px]"
+        >
+          <div className="flex items-center justify-center gap-[10px] mb-[20px]">
+            <div className="bg-[#00A4A4] h-px w-[35px]" />
             <span
-              className="font-['Inter'] font-bold uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] inline-block"
-              style={{ fontSize: "12px", letterSpacing: "0.08em" }}
+              className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+              style={{ fontSize: "14px", letterSpacing: "0.05em" }}
             >
-              Our Approach
+              Our Process
+            </span>
+            <div className="bg-[#00A4A4] h-px w-[35px]" />
+          </div>
+
+          <h2
+            className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08] mb-[20px]"
+            style={{ fontSize: "clamp(28px, 6.5vw, 58px)", letterSpacing: "-1.5px" }}
+          >
+            Our Two-Phase Approach
+          </h2>
+
+          <p
+            className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65] mx-auto"
+            style={{ fontSize: "16px", letterSpacing: "-0.3px", maxWidth: "520px" }}
+          >
+            Every case follows the same proven two-phase process — built around transparency, speed, and the best possible outcome for you.
+          </p>
+        </motion.div>
+
+        {/* Two Phase Cards — both teal */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[24px] items-stretch">
+          {PHASES.map((phase, idx) => (
+            <motion.div
+              key={phase.number}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.15 }}
+              className="rounded-[24px] overflow-hidden flex flex-col"
+              style={{ backgroundColor: "#00A4A4" }}
+            >
+              {/* Subtle white top accent bar */}
+              <div style={{ height: "4px", backgroundColor: "rgba(255,255,255,0.3)" }} />
+
+              <div className="flex flex-col gap-[24px] p-[28px] lg:p-[52px] lg:gap-[32px] flex-1">
+
+                {/* Icon above heading */}
+                <div
+                  className="flex items-center justify-center rounded-[16px]"
+                  style={{
+                    width: "56px",
+                    height: "56px",
+                    backgroundColor: "rgba(255,255,255,0.18)",
+                  }}
+                  aria-hidden="true"
+                >
+                  <phase.Icon className="w-[28px] h-[28px] text-white" strokeWidth={1.5} />
+                </div>
+
+                {/* Phase badge */}
+                <span
+                  className="font-['DM_Sans'] font-bold rounded-full px-[14px] py-[6px] w-fit"
+                  style={{
+                    fontSize: "12px",
+                    letterSpacing: "0.08em",
+                    backgroundColor: "rgba(255,255,255,0.12)",
+                    color: "rgba(255,255,255,0.75)",
+                  }}
+                >
+                  {phase.label.toUpperCase()}
+                </span>
+
+                {/* Number + Title */}
+                <div className="flex items-start gap-[20px]">
+                  <span
+                    className="font-['DM_Sans'] font-bold text-white/20 leading-none shrink-0"
+                    style={{ fontSize: "clamp(52px, 12vw, 80px)", letterSpacing: "-4px", lineHeight: "0.85" }}
+                    aria-hidden="true"
+                  >
+                    {phase.number}
+                  </span>
+                  <h3
+                    className="font-['DM_Sans'] font-bold text-white leading-[1.1]"
+                    style={{ fontSize: "clamp(28px, 2.5vw, 38px)", letterSpacing: "-1px", paddingTop: "8px" }}
+                  >
+                    {phase.title}
+                  </h3>
+                </div>
+
+                {/* Description */}
+                <p
+                  className="font-['DM_Sans'] font-normal text-white/70 leading-[1.65]"
+                  style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
+                >
+                  {phase.description}
+                </p>
+
+                {/* Steps */}
+                <ul className="flex flex-col gap-[14px] flex-1">
+                  {phase.steps.map((step) => (
+                    <li key={step} className="flex items-start gap-[14px]">
+                      <div
+                        className="shrink-0 rounded-full flex items-center justify-center mt-[2px]"
+                        style={{ width: "20px", height: "20px", backgroundColor: "rgba(255,255,255,0.2)", minWidth: "20px" }}
+                        aria-hidden="true"
+                      >
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                          <path d="M1 4l2.5 2.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
+                      <span
+                        className="font-['DM_Sans'] font-normal text-white/85 leading-[1.55]"
+                        style={{ fontSize: "15px", letterSpacing: "-0.2px" }}
+                      >
+                        {step}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom CTA bar — white card with curved teal divider line */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-[48px] relative overflow-hidden rounded-[20px] bg-white flex flex-col lg:flex-row items-center lg:items-start justify-between gap-[32px] text-center lg:text-left"
+          style={{
+            padding: "32px 48px",
+            boxShadow: "0 4px 32px rgba(0,0,0,0.07)",
+            border: "1px solid #e8edf2",
+          }}
+        >
+          {/* Left: text */}
+          <div className="flex flex-col gap-[6px] flex-1">
+            <span
+              className="font-['DM_Sans'] font-bold text-[#0f172a] text-[23px] lg:text-[20px]"
+              style={{ letterSpacing: "-0.5px" }}
+            >
+              Ready to resolve your tax situation?
+            </span>
+            <span
+              className="font-['DM_Sans'] font-normal text-[#64748b]"
+              style={{ fontSize: "15px" }}
+            >
+              Free consultation — no obligation, no upfront fees.
             </span>
           </div>
 
-          <div className="flex items-end justify-between gap-[48px]">
-            <h2
-              className="font-['Outfit'] font-black text-[#0f172a] leading-[1.05]"
-              style={{
-                fontSize: "clamp(36px, 4.5vw, 60px)",
-                letterSpacing: "-2px",
-              }}
-            >
-              How We Deliver{" "}
-              <PaintStreak color="pink">
-                <span className="text-[#0f172a]">Results</span>
-              </PaintStreak>
-            </h2>
-            <p
-              className="font-['Inter'] font-normal text-[#475569] leading-[1.65] shrink-0 max-w-[380px] text-right"
-              style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
-            >
-              Every case is different. Our process is built around deep expertise, transparent communication, and measurable outcomes for every client we serve.
-            </p>
+          {/* Center: curved teal divider */}
+          <div className="hidden lg:block absolute left-1/2 top-0 h-full pointer-events-none" style={{ transform: "translateX(-50%)" }} aria-hidden="true">
+            <img
+              src={vectorPng}
+              alt=""
+              className="h-full w-auto object-contain"
+            />
           </div>
-        </div>
 
-        {/* Two-column layout */}
-        <div className="flex flex-col lg:flex-row gap-[40px] items-stretch">
-
-          {/* Left: Crossfading image + step indicator */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:w-[50%] min-h-[452px] relative rounded-[12px] overflow-hidden"
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="absolute inset-0"
-              >
-                <ImageWithFallback
-                  src={STEPS.find((s) => s.id === activeTab)!.image}
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-[#0f172a]/40" />
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Step counter — bottom-left overlay */}
-            <div className="absolute bottom-[24px] left-[24px] right-[24px] z-10 flex items-end justify-between">
-              {/* Current step label */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex flex-col gap-[4px]"
-                >
-                  <span className="font-['Inter'] text-white/60" style={{ fontSize: "12px", letterSpacing: "0.08em" }}>
-                    STEP
-                  </span>
-                  <span className="font-['Outfit'] font-black text-white" style={{ fontSize: "36px", letterSpacing: "-1px", lineHeight: 1 }}>
-                    {activeTab}
-                    <span className="font-['Inter'] font-normal text-white/50" style={{ fontSize: "16px", letterSpacing: "0" }}>
-                      {" "}/ {String(STEPS.length).padStart(2, "0")}
-                    </span>
-                  </span>
-                  <span className="font-['Outfit'] font-semibold text-white" style={{ fontSize: "16px" }}>
-                    {STEPS.find((s) => s.id === activeTab)!.title}
-                  </span>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Progress dots */}
-              <div className="flex items-center gap-[8px]">
-                {STEPS.map((step) => (
-                  <button
-                    key={step.id}
-                    onClick={() => setActiveTab(step.id)}
-                    className="transition-all duration-300"
-                    style={{
-                      width: activeTab === step.id ? "28px" : "8px",
-                      height: "8px",
-                      borderRadius: "4px",
-                      backgroundColor: activeTab === step.id ? "#00A4A4" : "rgba(255,255,255,0.4)",
-                    }}
-                    aria-label={`Go to step ${step.id}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right: Accordion */}
-          <div className="lg:w-[50%] flex flex-col shrink-0">
-            <div
-              className="rounded-[16px] overflow-hidden divide-y divide-slate-100"
-              style={{
-                background: "white",
-                boxShadow: "0 8px_32px rgba(0,0,0,0.08)",
-              }}
+          {/* Right: buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-[16px] shrink-0">
+            <Link
+              to="https://ti.sympletax.com"
+              className="inline-flex items-center justify-center bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 whitespace-nowrap"
+              style={{ fontSize: "15px", padding: "14px 28px" }}
             >
-              {STEPS.map((step) => {
-                const isOpen = activeTab === step.id;
-                return (
-                  <div
-                    key={step.id}
-                    className="transition-colors duration-300"
-                    style={{
-                      borderLeft: isOpen ? "4px solid #00A4A4" : "4px solid transparent",
-                      backgroundColor: isOpen ? "rgba(0,164,164,0.03)" : "white",
-                    }}
-                  >
-                    <button
-                      onClick={() => setActiveTab(step.id)}
-                      className="flex items-center gap-[20px] w-full text-left px-[28px] py-[22px] group"
-                    >
-                      {/* Step number */}
-                      <span
-                        className="font-['Outfit'] font-black shrink-0 w-[44px] leading-none transition-colors duration-300"
-                        style={{
-                          fontSize: "32px",
-                          letterSpacing: "-1px",
-                          color: isOpen ? "#00A4A4" : "#e2e8f0",
-                        }}
-                      >
-                        {step.id}
-                      </span>
-
-                      {/* Title */}
-                      <span
-                        className="font-['Outfit'] font-bold flex-1 transition-colors duration-300"
-                        style={{
-                          fontSize: "20px",
-                          letterSpacing: "-0.4px",
-                          color: isOpen ? "#0f172a" : "#94a3b8",
-                        }}
-                      >
-                        {step.title}
-                      </span>
-
-                      {/* Chevron */}
-                      <div
-                        className="shrink-0 w-[36px] h-[36px] rounded-full flex items-center justify-center transition-all duration-300"
-                        style={{
-                          backgroundColor: isOpen ? "#00A4A4" : "#f1f5f9",
-                          transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                        }}
-                      >
-                        <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
-                          <path
-                            d="M1 1L6 6L11 1"
-                            stroke={isOpen ? "white" : "#94a3b8"}
-                            strokeWidth="1.8"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </div>
-                    </button>
-
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
-                          className="overflow-hidden"
-                        >
-                          <div
-                            className="pb-[24px]"
-                            style={{ paddingLeft: "calc(28px + 44px + 20px)", paddingRight: "28px" }}
-                          >
-                            <p
-                              className="font-['Inter'] font-normal text-[#475569] leading-[1.7] mb-[16px]"
-                              style={{ fontSize: "15px", letterSpacing: "-0.2px" }}
-                            >
-                              {step.description}
-                            </p>
-                            {/* Feature pills */}
-                            <div className="flex flex-wrap gap-[8px]">
-                              {step.features.map((f) => (
-                                <span
-                                  key={f}
-                                  className="inline-flex items-center gap-[6px] px-[12px] py-[6px] rounded-full font-['Inter'] font-medium text-[#0f172a]"
-                                  style={{
-                                    fontSize: "12px",
-                                    backgroundColor: "#f5f1e8",
-                                    border: "1px solid rgba(0,164,164,0.2)",
-                                  }}
-                                >
-                                  <span
-                                    className="rounded-full shrink-0"
-                                    style={{
-                                      width: "6px",
-                                      height: "6px",
-                                      backgroundColor: "#00A4A4",
-                                    }}
-                                  />
-                                  {f}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-            </div>
+              Get a Free Consultation
+            </Link>
+            <Link
+              to="/services"
+              className="font-['DM_Sans'] font-medium text-[#0f172a] hover:text-[#00A4A4] transition-colors whitespace-nowrap flex items-center gap-[5px]"
+              style={{ fontSize: "15px" }}
+            >
+              View All Services →
+            </Link>
           </div>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );

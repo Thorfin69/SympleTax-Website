@@ -49,14 +49,14 @@ export function ProblemStatement() {
             {/* Pill badge */}
             <div>
               <span
-                className="font-['Inter'] font-bold uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] inline-block"
+                className="font-['DM_Sans'] font-bold uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] inline-block"
                 style={{ fontSize: "12px", letterSpacing: "0.08em" }}
               >
                 Why Choose Us
               </span>
             </div>
             <h2
-              className="font-['Outfit'] font-black text-[#0f172a] leading-[1.06]"
+              className="font-['DM_Sans'] font-black text-[#0f172a] leading-[1.06]"
               style={{ fontSize: "clamp(36px, 4.5vw, 60px)", letterSpacing: "-2px" }}
             >
               Expert Guidance,{" "}
@@ -67,7 +67,7 @@ export function ProblemStatement() {
           {/* Paragraph + CTA */}
           <div className="flex flex-col items-end gap-[20px] shrink-0 max-w-[340px]">
             <p
-              className="font-['Inter'] font-normal text-[#475569] leading-[1.65] text-right"
+              className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65] text-right"
               style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
             >
               We provide tailored tax solutions to help you resolve your situation with confidence.
@@ -76,7 +76,7 @@ export function ProblemStatement() {
               to="/services"
               className="bg-gradient-to-r from-[#00A4A4] to-[#007a7a] hover:from-[#007a7a] hover:to-[#005f5f] text-white flex items-center gap-[14px] px-[28px] py-[14px] rounded-full transition-all whitespace-nowrap shadow-[0_8px_24px_rgba(0,164,164,0.3)] hover:scale-[1.02]"
             >
-              <span className="font-['Inter'] font-semibold" style={{ fontSize: "15px" }}>
+              <span className="font-['DM_Sans'] font-semibold" style={{ fontSize: "15px" }}>
                 View All Services
               </span>
               <ArrowUpRight className="w-[18px] h-[18px]" />
@@ -121,14 +121,14 @@ export function ProblemStatement() {
                       {/* Number chip — teal rounded square */}
                       <div className="w-[40px] h-[40px] rounded-[10px] bg-[#00A4A4]/10 flex items-center justify-center flex-shrink-0">
                         <span
-                          className="font-['Outfit'] font-black text-[#00A4A4]"
+                          className="font-['DM_Sans'] font-black text-[#00A4A4]"
                           style={{ fontSize: "14px" }}
                         >
                           {item.id}
                         </span>
                       </div>
                       <span
-                        className={`font-['Outfit'] font-bold transition-colors ${
+                        className={`font-['DM_Sans'] font-bold transition-colors ${
                           isActive
                             ? "text-[#0f172a]"
                             : "text-slate-400 group-hover:text-[#00A4A4]"
@@ -150,7 +150,7 @@ export function ProblemStatement() {
                         >
                           <div className="pb-[40px] pl-[62px]">
                             <p
-                              className="font-['Inter'] font-normal text-[#475569] leading-[1.65] mb-[20px]"
+                              className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65] mb-[20px]"
                               style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
                             >
                               {item.description}
@@ -160,7 +160,7 @@ export function ProblemStatement() {
                               className="flex items-center gap-[8px]"
                             >
                               <span
-                                className="font-['Inter'] font-medium text-[#00A4A4]"
+                                className="font-['DM_Sans'] font-medium text-[#00A4A4]"
                                 style={{ fontSize: "15px" }}
                               >
                                 Learn More

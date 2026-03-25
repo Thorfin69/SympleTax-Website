@@ -1,218 +1,256 @@
 import { Linkedin, Instagram, Facebook, Youtube } from "lucide-react";
+import sympletaxFooterLogo from "../../../assets/sympletax-footer.png";
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
+    </svg>
+  );
+}
 import { Link } from "react-router";
 
-const NAV_COL_1 = [
-  { name: "Home", href: "/" },
+const COMPANY_LINKS = [
   { name: "About Us", href: "/about" },
-  { name: "Our Process", href: "/process" },
-  { name: "Services", href: "/services" },
-  { name: "Contact", href: "/contact" },
+  { name: "How It Works", href: "/process" },
+  { name: "Our Services", href: "/services" },
+  { name: "Contact Us", href: "/contact" },
+  { name: "Free Consultation", href: "/contact" },
 ];
 
-const NAV_COL_2 = [
-  { name: "Offer in Compromise", href: "/services" },
-  { name: "Installment Agreement", href: "/services" },
-  { name: "Penalty Abatement", href: "/services" },
-  { name: "Wage Garnishment", href: "/services" },
-  { name: "IRS Notices", href: "/services" },
+const TAX_SERVICES = [
+  { name: "Tax Negotiation", href: "/contact" },
+  { name: "Tax Relief", href: "/contact" },
+  { name: "Tax Settlement", href: "/contact" },
+  { name: "Tax Resolution", href: "/contact" },
+  { name: "Offer in Compromise", href: "/contact" },
+  { name: "Penalty Abatement", href: "/contact" },
+  { name: "Currently Not Collectible", href: "/contact" },
+  { name: "Innocent Spouse Relief", href: "/contact" },
+  { name: "Tax Knowledge Center", href: "/contact" },
+];
+
+const RESOURCES = [
+  { name: "IRS Notice Center", href: "/resources" },
+  { name: "Frequently Asked Questions", href: "/#faq" },
+  { name: "Common IRS Notices", href: "/resources" },
+  { name: "IRS Fresh Start Program", href: "/resources" },
+  { name: "Case Results", href: "/resources" },
+  { name: "Tax Glossary", href: "/resources" },
 ];
 
 const SOCIALS = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Youtube, href: "#", label: "YouTube" },
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Instagram, href: "https://www.instagram.com/sympletax", label: "SympleTax on Instagram" },
+  { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61583684011496", label: "SympleTax on Facebook" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/sympletax/", label: "SympleTax on LinkedIn" },
+  { icon: TikTokIcon, href: "https://tiktok.com/sympletax", label: "SympleTax on TikTok" },
+  { icon: Youtube, href: "#", label: "SympleTax on YouTube" },
 ];
+
+function FooterCol({ heading, links }: { heading: string; links: { name: string; href: string }[] }) {
+  return (
+    <div className="flex flex-col gap-[20px]">
+      <p
+        className="font-['DM_Sans'] font-bold text-white uppercase"
+        style={{ fontSize: "12px", letterSpacing: "0.1em" }}
+      >
+        {heading}
+      </p>
+      <ul className="flex flex-col gap-[14px]" role="list">
+        {links.map((link) => (
+          <li key={link.name}>
+            <Link
+              to={link.href}
+              className="group relative inline-block font-['DM_Sans'] font-normal text-white/55 hover:text-[#00A4A4] transition-colors duration-200 focus:outline-none focus-visible:underline"
+              style={{ fontSize: "16px", letterSpacing: "-0.1px" }}
+            >
+              {link.name}
+              <span className="absolute -bottom-[2px] left-0 w-0 h-[1px] bg-[#00A4A4] transition-all duration-300 group-hover:w-full" />
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export function Footer() {
   return (
-    <footer className="bg-[#0f172a] text-white overflow-hidden relative">
-
-      {/* Teal decorative blob — low opacity */}
-      <div
-        className="absolute top-[-120px] right-[-180px] w-[600px] h-[600px] rounded-full pointer-events-none select-none"
-        style={{
-          background: "radial-gradient(circle, #00A4A4 0%, transparent 70%)",
-          opacity: 0.05,
-        }}
-      />
-      <div
-        className="absolute bottom-[80px] left-[-150px] w-[400px] h-[400px] rounded-full pointer-events-none select-none"
-        style={{
-          background: "radial-gradient(circle, #00A4A4 0%, transparent 70%)",
-          opacity: 0.04,
-        }}
-      />
+    <footer className="bg-[#0f172a] text-white rounded-t-[48px] lg:rounded-t-[64px] overflow-hidden" aria-label="Site footer">
 
       {/* Main grid */}
-      <div className="max-w-[1330px] mx-auto px-[70px] relative">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1px_auto_1px_auto_1px_1fr] pt-[72px] pb-[64px]">
+      <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] pt-[60px] lg:pt-[80px] pb-[0px]">
+        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr_1fr_1fr] gap-[48px] lg:gap-[60px] pb-[48px] lg:pb-[64px]">
 
-          {/* Col 1: Logo + tagline + socials */}
-          <div className="flex flex-col justify-between pr-[48px] pb-[40px] lg:pb-0">
+          {/* Col 1: Brand + Contact + Socials */}
+          <div className="flex flex-col gap-[32px]">
             <div>
-              <Link to="/" className="inline-block mb-[32px]">
+              <Link to="/" className="inline-block mb-[24px]" aria-label="SympleTax home">
                 <img
-                  src="https://pub-af595d5658084c1db74f624e385553fe.r2.dev/IMG_5368.png"
+                  src={sympletaxFooterLogo}
                   alt="SympleTax"
-                  className="h-[40px] w-auto object-contain brightness-0 invert"
+                  className="h-[36px] w-auto object-contain brightness-0 invert"
                 />
               </Link>
               <p
-                className="font-['Inter'] text-white/60 leading-[1.7] max-w-[240px]"
-                style={{ fontSize: "14px", letterSpacing: "-0.2px" }}
+                className="font-['DM_Sans'] font-normal text-white/55 leading-[1.7]"
+                style={{ fontSize: "16px", letterSpacing: "-0.1px", maxWidth: "240px" }}
               >
-                SympleTax is a licensed tax resolution firm dedicated to stopping IRS collections and restoring your financial freedom.
+                SympleTax has helped hundreds of Americans resolve their IRS tax debt. Now it's your turn.
               </p>
             </div>
 
-            {/* Socials */}
-            <div className="flex items-center gap-[10px] mt-[40px]">
-              {SOCIALS.map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="w-[40px] h-[40px] rounded-[8px] border border-white/10 flex items-center justify-center text-white/40 hover:border-[#00A4A4]/50 hover:text-[#00A4A4] transition-all duration-200"
-                >
-                  <Icon className="w-[16px] h-[16px]" />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="hidden lg:block bg-white/[0.07]" />
-
-          {/* Col 2: Nav col 1 */}
-          <div className="px-[48px] py-[4px]">
-            <p
-              className="font-['Outfit'] font-bold text-white mb-[24px]"
-              style={{ fontSize: "13px", letterSpacing: "0.08em" }}
-            >
-              NAVIGATION
-            </p>
-            <ul className="flex flex-col gap-[16px]">
-              {NAV_COL_1.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="font-['Inter'] font-normal text-white/60 hover:text-[#00A4A4] transition-colors duration-200"
-                    style={{ fontSize: "14px" }}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Divider */}
-          <div className="hidden lg:block bg-white/[0.07]" />
-
-          {/* Col 3: Nav col 2 */}
-          <div className="px-[48px] py-[4px]">
-            <p
-              className="font-['Outfit'] font-bold text-white mb-[24px]"
-              style={{ fontSize: "13px", letterSpacing: "0.08em" }}
-            >
-              SERVICES
-            </p>
-            <ul className="flex flex-col gap-[16px]">
-              {NAV_COL_2.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    to={link.href}
-                    className="font-['Inter'] font-normal text-white/60 hover:text-[#00A4A4] transition-colors duration-200"
-                    style={{ fontSize: "14px" }}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Divider */}
-          <div className="hidden lg:block bg-white/[0.07]" />
-
-          {/* Col 4: Contact */}
-          <div className="flex flex-col justify-between pl-[48px] pt-[4px] pb-[4px]">
-            <div>
+            <div className="flex flex-col gap-[10px]">
               <p
-                className="font-['Outfit'] font-bold text-white mb-[24px]"
-                style={{ fontSize: "13px", letterSpacing: "0.08em" }}
+                className="font-['DM_Sans'] font-bold text-white uppercase"
+                style={{ fontSize: "12px", letterSpacing: "0.1em" }}
               >
-                CONTACT
+                Contact Us
               </p>
               <p
-                className="font-['Outfit'] font-bold text-white leading-[1.4] mb-[28px]"
-                style={{ fontSize: "clamp(20px, 1.8vw, 28px)", letterSpacing: "-0.5px" }}
+                className="font-['DM_Sans'] font-normal text-white/55"
+                style={{ fontSize: "16px" }}
               >
-                Irvine, California<br />
-                United States
+                111 West Ocean Blvd, Long Beach, CA 90802
               </p>
               <a
                 href="tel:+19492873015"
-                className="block font-['Inter'] font-medium text-white/75 hover:text-[#00A4A4] transition-colors mb-[12px] border-b border-white/10 pb-[6px] w-fit"
-                style={{ fontSize: "15px", letterSpacing: "-0.3px" }}
+                className="group relative inline-block font-['DM_Sans'] font-semibold text-[#00A4A4] hover:text-[#00c0c0] transition-colors focus:outline-none focus-visible:underline"
+                style={{ fontSize: "16px" }}
+                aria-label="Call SympleTax at (949) 287-3015"
               >
-                +1 (949) 287-3015
+                (949) 287-3015
+                <span className="absolute -bottom-[2px] left-0 w-0 h-[1px] bg-[#00c0c0] transition-all duration-300 group-hover:w-full" />
               </a>
               <a
                 href="mailto:info@sympletax.com"
-                className="block font-['Inter'] font-medium text-white/75 hover:text-[#00A4A4] transition-colors border-b border-white/10 pb-[6px] w-fit"
-                style={{ fontSize: "15px", letterSpacing: "-0.3px" }}
+                className="group relative inline-block font-['DM_Sans'] font-normal text-white/55 hover:text-[#00A4A4] transition-colors focus:outline-none focus-visible:underline"
+                style={{ fontSize: "16px" }}
+                aria-label="Email SympleTax"
               >
                 info@sympletax.com
+                <span className="absolute -bottom-[2px] left-0 w-0 h-[1px] bg-[#00A4A4] transition-all duration-300 group-hover:w-full" />
               </a>
             </div>
+
+            {/* Social icons */}
+            <div>
+              <p
+                className="font-['DM_Sans'] font-bold text-white uppercase mb-[14px]"
+                style={{ fontSize: "12px", letterSpacing: "0.1em" }}
+              >
+                Connect With Us
+              </p>
+              <div className="flex items-center gap-[10px]">
+                {SOCIALS.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-[38px] h-[38px] rounded-[8px] border border-white/10 flex items-center justify-center text-white/40 hover:border-[#00A4A4]/50 hover:text-[#00A4A4] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
+                  >
+                    <Icon className="w-[15px] h-[15px]" aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
+
+          {/* Col 2: Company */}
+          <FooterCol heading="Company" links={COMPANY_LINKS} />
+
+          {/* Col 3: Tax Services */}
+          <FooterCol heading="Tax Services" links={TAX_SERVICES} />
+
+          {/* Col 4: Resources */}
+          <FooterCol heading="Tax Resources" links={RESOURCES} />
         </div>
 
-        {/* Large SYMPLETAX watermark */}
-        <div className="border-t border-white/[0.06] -mx-[70px] overflow-hidden">
+        {/* Disclaimer section */}
+        <div className="border-t border-white/[0.07] py-[48px] flex flex-col gap-[20px]">
           <p
-            className="font-['Outfit'] font-black text-white leading-none select-none whitespace-nowrap text-center"
-            style={{
-              fontSize: "clamp(80px, 13vw, 196px)",
-              letterSpacing: "-4px",
-              padding: "16px 0 8px",
-              opacity: 0.04,
-            }}
+            className="font-['DM_Sans'] font-bold text-white/50 uppercase"
+            style={{ fontSize: "11px", letterSpacing: "0.1em" }}
           >
-            SYMPLETAX
+            Website Disclaimer
+          </p>
+          <p
+            className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7]"
+            style={{ fontSize: "14.5px" }}
+          >
+            Estimates and statements about program performance are based on historical results and specific client situations. Individual results will vary based on circumstances which include, but are not limited to, your financial situation and the accuracy and timeliness of the information you provide to SympleTax. We do not guarantee that your taxes owed will be reduced by a specific amount or percentage, paid off within a specific period, or that you will qualify for any IRS or state programs. Penalties and interest will continue to accrue until your tax liability is fully paid to the IRS and state.
+          </p>
+          <p
+            className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7]"
+            style={{ fontSize: "14.5px" }}
+          >
+            SympleTax is a private tax resolution company independent from the IRS. We are not affiliated with or endorsed by the IRS or any government agency. We are licensed tax professionals. We do not assume tax liability, make payments to taxing authorities or creditors, or provide tax, bankruptcy, accounting, or legal advice. Results vary. Nothing here constitutes legal or financial advice. For official IRS information, visit{" "}
+            <a
+              href="https://www.irs.gov"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-[#00A4A4] underline transition-colors"
+              aria-label="Visit IRS.gov (opens in new tab)"
+            >
+              IRS.gov
+            </a>.
+          </p>
+          <p
+            className="font-['DM_Sans'] font-bold text-white/40 mt-[8px]"
+            style={{ fontSize: "11px", letterSpacing: "0.05em" }}
+          >
+            Testimonials &amp; Reviews
+          </p>
+          <p
+            className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7]"
+            style={{ fontSize: "14.5px" }}
+          >
+            Testimonials were provided by actual SympleTax clients and are the clients' sole opinions and experiences. Clients were not compensated. These are individual results which will vary based on circumstances. We do not claim that they are typical results that consumers will generally achieve. Nothing included here should be taken as a guarantee, warranty, prediction, or representation about the results of your situation.
           </p>
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/[0.06] py-[20px] flex flex-col md:flex-row items-center justify-between gap-[16px]">
+        <div className="border-t border-white/[0.07] py-[24px] flex flex-col md:flex-row items-center justify-between gap-[16px]">
           <p
-            className="font-['Inter'] text-white/40"
-            style={{ fontSize: "12px", letterSpacing: "-0.1px" }}
+            className="font-['DM_Sans'] text-white/35"
+            style={{ fontSize: "12px" }}
           >
-            © {new Date().getFullYear()} SympleTax. All Rights Reserved.
+            © {new Date().getFullYear()} SympleTax. All Rights Reserved. Powered by{" "}
+            <a
+              href="https://blitzstudio.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-[#00A4A4] transition-colors"
+              aria-label="Blitz Studio website"
+            >
+              Blitz Studio
+            </a>
           </p>
-          <div className="flex items-center gap-[24px]">
-            {["Privacy Policy", "Terms of Service", "Disclaimer"].map((label) => (
-              <a
-                key={label}
-                href="#"
-                className="font-['Inter'] text-white/40 hover:text-[#00A4A4] transition-colors"
-                style={{ fontSize: "12px", letterSpacing: "-0.1px" }}
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-          <p
-            className="font-['Inter'] text-white/20 italic"
-            style={{ fontSize: "11px" }}
-          >
-            SympleTax does not provide legal advice. Results may vary.
-          </p>
+          <nav aria-label="Legal links">
+            <div className="flex items-center gap-[24px]">
+              {[
+                { label: "Privacy Policy", href: "#" },
+                { label: "Terms of Service", href: "#" },
+                { label: "Disclaimer", href: "#" },
+                { label: "California Privacy Rights", href: "#" },
+              ].map(({ label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="group relative inline-block font-['DM_Sans'] text-white/35 hover:text-[#00A4A4] transition-colors focus:outline-none focus-visible:underline"
+                  style={{ fontSize: "12px" }}
+                >
+                  {label}
+                  <span className="absolute -bottom-[2px] left-0 w-0 h-[1px] bg-[#00A4A4] transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
+            </div>
+          </nav>
         </div>
       </div>
+
 
     </footer>
   );

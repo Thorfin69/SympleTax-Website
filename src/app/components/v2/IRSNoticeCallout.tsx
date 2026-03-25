@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
+import ctaArrowSvg from "../../../assets/cta-arrow.svg";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { PaintStreak } from "../ui/PaintStreak";
 
@@ -12,31 +13,9 @@ const NOTICE_TYPES = [
   { code: "CP14", label: "First Balance Due Notice" },
 ];
 
-function HandDrawnArrow() {
-  return (
-    <svg width="100" height="54" viewBox="0 0 100 54" fill="none">
-      <path
-        d="M6,45 C18,25 42,14 66,24 C78,29 88,37 92,46"
-        stroke="#94a3b8"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M81,37 L92,46 L79,49"
-        stroke="#94a3b8"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-    </svg>
-  );
-}
-
 export function IRSNoticeCallout() {
   return (
-    <section className="py-[120px] relative overflow-hidden" style={{ backgroundColor: "#f5f1e8" }}>
+    <section className="py-[64px] lg:py-[120px] relative overflow-hidden" style={{ backgroundColor: "#f5f1e8" }}>
 
       {/* Teal watercolor blob — decorative background shape */}
       <div
@@ -53,8 +32,8 @@ export function IRSNoticeCallout() {
         }}
       />
 
-      <div className="max-w-[1330px] mx-auto px-[70px] relative">
-        <div className="flex items-center gap-[80px]">
+      <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] relative">
+        <div className="flex flex-col gap-[48px] lg:flex-row lg:items-center lg:gap-[80px]">
 
           {/* Left: Text content */}
           <motion.div
@@ -67,7 +46,7 @@ export function IRSNoticeCallout() {
             {/* Pill badge — "tax help" style */}
             <div className="inline-flex items-center border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] w-fit">
               <span
-                className="font-['Outfit'] font-bold text-[#0f172a]"
+                className="font-['DM_Sans'] font-bold uppercase text-[#0f172a]"
                 style={{ fontSize: "13px", letterSpacing: "0.04em" }}
               >
                 Tax Help
@@ -76,18 +55,22 @@ export function IRSNoticeCallout() {
 
             {/* Big bold headline — FB ad style */}
             <h2
-              className="font-['Outfit'] font-black text-[#0f172a] leading-[1.05]"
-              style={{ fontSize: "clamp(36px, 4vw, 56px)", letterSpacing: "-2px" }}
+              className="font-['DM_Sans'] font-black text-[#0f172a] leading-[1.05]"
+              style={{
+                fontSize: "clamp(26px, 7vw, 56px)",
+                letterSpacing: "-2px",
+                // Keep the headline to 3 lines (desktop and mobile).
+                display: "-webkit-box",
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
             >
-              You Might Owe The{" "}
-              <PaintStreak color="pink">IRS</PaintStreak>{" "}
-              Less Than<br />
-              You Think — Or<br />
-              Nothing At All.
+              You Might Owe The <PaintStreak color="pink">IRS</PaintStreak> Less Than You Think.
             </h2>
 
             <p
-              className="font-['Inter'] font-normal text-[#475569] leading-[1.65]"
+              className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65]"
               style={{ fontSize: "16px", letterSpacing: "-0.3px", maxWidth: "460px" }}
             >
               Don't panic — but don't wait. Whether it's an audit, levy notice, or balance due, our licensed experts decode it and respond within 24 hours.
@@ -104,17 +87,17 @@ export function IRSNoticeCallout() {
                   transition={{ delay: idx * 0.06, duration: 0.35 }}
                 >
                   <Link
-                    to="/contact"
+                    to="https://ti.sympletax.com"
                     className="flex items-center gap-[20px] py-[14px] border-b border-[#d8d3c8] group hover:pl-[6px] transition-all duration-200"
                   >
                     <span
-                      className="font-['Outfit'] font-bold text-[#00A4A4] shrink-0 w-[70px]"
+                      className="font-['DM_Sans'] font-bold text-[#00A4A4] shrink-0 w-[70px]"
                       style={{ fontSize: "13px" }}
                     >
                       {notice.code}
                     </span>
                     <span
-                      className="font-['Inter'] font-medium text-[#0f172a] group-hover:text-[#00A4A4] transition-colors flex-1"
+                      className="font-['DM_Sans'] font-medium text-[#0f172a] group-hover:text-[#00A4A4] transition-colors flex-1"
                       style={{ fontSize: "15px" }}
                     >
                       {notice.label}
@@ -135,10 +118,10 @@ export function IRSNoticeCallout() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="w-[400px] shrink-0 flex flex-col gap-[32px]"
+            className="w-full lg:w-[400px] lg:shrink-0 flex flex-col gap-[32px]"
           >
             {/* Person photo on teal bg shape */}
-            <div className="relative rounded-[20px] overflow-hidden" style={{ height: "380px" }}>
+            <div className="relative rounded-[20px] overflow-hidden" style={{ height: "clamp(240px, 50vw, 380px)" }}>
               {/* Teal bg */}
               <div className="absolute inset-0" style={{ backgroundColor: "#00A4A4" }} />
               {/* Photo */}
@@ -150,33 +133,38 @@ export function IRSNoticeCallout() {
               {/* Overlay gradient */}
               <div
                 className="absolute inset-0"
-                style={{ background: "linear-gradient(to top, rgba(0,164,164,0.6) 0%, transparent 50%)" }}
+                style={{ background: "linear-gradient(to top, rgba(0,164,164,0.3) 0%, transparent 50%)" }}
               />
             </div>
 
             {/* Arrow + CTA */}
             <div className="flex flex-col gap-[20px] bg-white rounded-[20px] p-[28px] border border-[#e8e4da]">
               <div className="flex items-center gap-[12px]">
-                <div style={{ transform: "rotate(10deg)" }}>
-                  <HandDrawnArrow />
+                <div style={{ transform: "rotate(10deg)" }} className="shrink-0">
+                  <ImageWithFallback
+                    src={ctaArrowSvg}
+                    alt=""
+                    className="block object-contain"
+                    style={{ width: "100px", height: "54px" }}
+                  />
                 </div>
                 <p
-                  className="font-['Outfit'] font-bold text-[#0f172a] leading-[1.3]"
+                  className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.3]"
                   style={{ fontSize: "18px" }}
                 >
                   We'll decode your notice in 24 hours — free.
                 </p>
               </div>
               <Link
-                to="/contact"
-                className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['Outfit'] font-bold rounded-full text-center transition-all duration-200 shadow-[0_6px_20px_rgba(0,164,164,0.3)]"
+                to="https://ti.sympletax.com"
+                className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full text-center transition-all duration-200 shadow-[0_6px_20px_rgba(0,164,164,0.3)]"
                 style={{ fontSize: "15px", padding: "14px 24px" }}
               >
                 Analyze My Notice
               </Link>
               <div className="flex items-center gap-[8px]">
                 <div className="w-2 h-2 rounded-full bg-green-400" />
-                <span className="font-['Inter'] text-[13px] text-[#475569]">Free 24h review — no obligation</span>
+                <span className="font-['DM_Sans'] text-[13px] text-[#475569]">Free 24h review — no obligation</span>
               </div>
             </div>
           </motion.div>

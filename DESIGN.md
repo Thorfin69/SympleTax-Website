@@ -237,3 +237,67 @@ Never use background images without overlays.
 - Body: `text-[#475569]`
 - Labels/eyebrows: `text-[#00A4A4]` or `text-[#0f172a]`
 - Dividers: `border-slate-100` or `border-slate-200`
+
+---
+
+## 11. Mobile Design Standards (from ATTAX learnings)
+
+### Single Breakpoint Rule
+Use only `lg:` (1024px) for desktop/mobile splits. Do NOT mix `sm:`, `md:`, and `lg:` for layout shifts — keep it simple.
+
+### Mobile Typography Scale
+| Element     | Mobile size         | Notes                                      |
+|-------------|---------------------|--------------------------------------------|
+| H1          | `clamp(30px, 8vw, 88px)` | 30px minimum on 375px viewport       |
+| H2          | `clamp(28px, 7vw, 58px)` | 28–30px on phones, never 36px+ min   |
+| H3          | `clamp(22px, 5vw, 36px)` |                                      |
+| Body        | 15–16px             | Exact, not responsive                      |
+| Card body   | 13–14px             | Inside compressed card                     |
+| Eyebrow     | 12–14px             | Always uppercase + letter-spacing          |
+
+### Mobile Padding
+```
+Horizontal: px-[25px] lg:px-[70px]    (standard gutters)
+Vertical:   py-[64px] lg:py-[120px]   (section spacing)
+```
+
+### Mobile Layout Patterns
+- **2-col grids → 1-col on mobile**: `grid grid-cols-1 lg:grid-cols-2`
+- **Side-by-side → stack on mobile**: `flex flex-col gap-[48px] lg:flex-row lg:gap-[80px]`
+- **Carousel cards**: 320px wide on mobile (was 360–560px for desktop)
+- **Images**: use `clamp()` for heights, never fixed tall values like `height: 460px`
+- **CTA buttons on mobile**: `inline-flex` never `w-full`; max around 280px
+
+### Full-Bleed Carousel Technique
+```tsx
+<div className="-mx-[25px] lg:-mx-[70px] overflow-hidden">
+  <motion.div className="flex gap-[16px] px-[25px] lg:px-[70px]">
+```
+
+### Z-Index Stack
+| Layer              | z-index  |
+|--------------------|----------|
+| Cookie banner      | z-[90]   |
+| Disclaimer banner  | z-[100]  |
+| Navbar bar         | z-[105]  |
+| Mobile backdrop    | z-[110]  |
+| Mobile menu panel  | z-[120]  |
+
+Cookie banner shows AFTER disclaimer accepted. Events: `window.dispatchEvent(new Event("sympletax:disclaimer-accepted"))`.
+
+### Body scroll lock for mobile menu
+```tsx
+useEffect(() => {
+  document.body.style.overflow = isOpen ? "hidden" : "";
+  return () => { document.body.style.overflow = ""; };
+}, [isOpen]);
+```
+
+### Overflow prevention
+```css
+/* In index.css */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+```

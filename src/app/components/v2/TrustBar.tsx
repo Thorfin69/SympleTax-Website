@@ -38,10 +38,10 @@ export function TrustBar() {
                 <point.icon className="w-5 h-5 text-white" />
               </div>
               <div className="flex flex-col">
-                <h4 className="font-['Outfit'] font-bold text-[15px] text-white mb-0.5 tracking-wide uppercase">
+                <h4 className="font-['DM_Sans'] font-bold text-[15px] text-white mb-0.5 tracking-wide uppercase">
                   {point.title}
                 </h4>
-                <p className="font-['Inter'] text-[13px] text-white/75 leading-[1.4]">
+                <p className="font-['DM_Sans'] text-[13px] text-white/75 leading-[1.4]">
                   {point.description}
                 </p>
               </div>

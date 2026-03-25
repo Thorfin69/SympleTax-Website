@@ -60,7 +60,7 @@ export function FinalCTA() {
           {/* Pill badge */}
           <div className="inline-flex items-center border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] w-fit mb-[28px]">
             <span
-              className="font-['Outfit'] font-bold text-[#0f172a]"
+              className="font-['DM_Sans'] font-bold uppercase text-[#0f172a]"
               style={{ fontSize: "13px", letterSpacing: "0.04em" }}
             >
               Get Started
@@ -69,7 +69,7 @@ export function FinalCTA() {
 
           {/* Headline — two lines like Polston layout */}
           <h2
-            className="font-['Outfit'] font-black text-[#0f172a] leading-[1.08] mb-[12px]"
+            className="font-['DM_Sans'] font-black text-[#0f172a] leading-[1.08] mb-[12px]"
             style={{ fontSize: "clamp(36px, 4vw, 54px)", letterSpacing: "-2px" }}
           >
             Looking For Tax Resolution Services?
@@ -77,7 +77,7 @@ export function FinalCTA() {
 
           {/* Teal handwritten-feel subline */}
           <p
-            className="font-['Outfit'] font-black mb-[36px]"
+            className="font-['DM_Sans'] font-black mb-[36px]"
             style={{
               fontSize: "clamp(28px, 3vw, 40px)",
               letterSpacing: "-1px",
@@ -91,18 +91,18 @@ export function FinalCTA() {
           {/* CTA button — teal, uppercase with arrow */}
           <div className="flex flex-wrap items-center gap-[20px] mb-[20px]">
             <Link
-              to="/contact"
-              className="inline-flex items-center gap-[12px] bg-[#00A4A4] hover:bg-[#007a7a] hover:scale-[1.02] text-white font-['Outfit'] font-bold rounded-full uppercase transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)] hover:shadow-[0_12px_32px_rgba(0,164,164,0.4)]"
+              to="https://ti.sympletax.com"
+              className="inline-flex items-center gap-[12px] bg-[#00A4A4] hover:bg-[#007a7a] hover:scale-[1.02] text-white font-['DM_Sans'] font-bold rounded-full uppercase transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)] hover:shadow-[0_12px_32px_rgba(0,164,164,0.4)]"
               style={{ fontSize: "14px", letterSpacing: "0.08em", padding: "17px 32px" }}
             >
-              Get Your Free Consultation
+              Get a Free Consultation
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M3 13L13 3M13 3H5M13 3V11" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
           </div>
 
-          <span className="font-['Inter'] text-[#94a3b8]" style={{ fontSize: "13px" }}>
+          <span className="font-['DM_Sans'] text-[#94a3b8]" style={{ fontSize: "13px" }}>
             No credit card. No commitment. Just answers.
           </span>
         </motion.div>
@@ -116,7 +116,7 @@ export function FinalCTA() {
               <div key={text} className="flex items-center gap-[10px]">
                 <Icon className="w-[16px] h-[16px] text-white flex-shrink-0" strokeWidth={1.8} />
                 <span
-                  className="font-['Inter'] font-medium text-white/90"
+                  className="font-['DM_Sans'] font-medium text-white/90"
                   style={{ fontSize: "13px" }}
                 >
                   {text}

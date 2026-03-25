@@ -112,14 +112,14 @@ export function TwoTrackLayout() {
             {/* Pill badge */}
             <div>
               <span
-                className="font-['Inter'] font-bold uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] inline-block"
+                className="font-['DM_Sans'] font-bold uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px] inline-block"
                 style={{ fontSize: "12px", letterSpacing: "0.08em" }}
               >
                 Two Paths To Relief
               </span>
             </div>
             <h2
-              className="font-['Outfit'] font-black text-[#0f172a] leading-[1.06]"
+              className="font-['DM_Sans'] font-black text-[#0f172a] leading-[1.06]"
               style={{ fontSize: "clamp(32px, 4vw, 52px)", letterSpacing: "-2px" }}
             >
               We Meet You{" "}
@@ -127,7 +127,7 @@ export function TwoTrackLayout() {
             </h2>
           </div>
           <p
-            className="font-['Inter'] font-normal text-[#475569] leading-[1.65] shrink-0 max-w-[360px] text-right"
+            className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65] shrink-0 max-w-[360px] text-right"
             style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
           >
             Whether you're drowning in back taxes or facing an IRS notice, we have a proven path forward — tailored to your exact situation.
@@ -140,7 +140,7 @@ export function TwoTrackLayout() {
             <button
               key={key}
               onClick={() => switchTrack(key)}
-              className={`px-[22px] py-[10px] rounded-full font-['Outfit'] font-bold border-[2px] transition-all duration-200 ${
+              className={`px-[22px] py-[10px] rounded-full font-['DM_Sans'] font-bold border-[2px] transition-all duration-200 ${
                 activeTrack === key
                   ? "bg-[#00A4A4] text-white border-[#00A4A4]"
                   : "bg-[#f5f1e8] text-[#0f172a] border-[#0f172a] hover:border-[#00A4A4] hover:text-[#00A4A4]"
@@ -179,13 +179,13 @@ export function TwoTrackLayout() {
                 </div>
                 <div className="flex flex-col gap-[10px] flex-1">
                   <h3
-                    className="font-['Outfit'] font-bold text-[#0f172a] leading-[1.25]"
+                    className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.25]"
                     style={{ fontSize: "17px", letterSpacing: "-0.3px" }}
                   >
                     {item.title}
                   </h3>
                   <p
-                    className="font-['Inter'] font-normal text-[#64748b] leading-[1.65]"
+                    className="font-['DM_Sans'] font-normal text-[#64748b] leading-[1.65]"
                     style={{ fontSize: "14px" }}
                   >
                     {item.desc}
@@ -193,7 +193,7 @@ export function TwoTrackLayout() {
                 </div>
                 <Link
                   to="/services"
-                  className="font-['Inter'] font-semibold text-[#00A4A4] flex items-center gap-[5px] group-hover:gap-[8px] transition-all duration-200 mt-auto"
+                  className="font-['DM_Sans'] font-semibold text-[#00A4A4] flex items-center gap-[5px] group-hover:gap-[8px] transition-all duration-200 mt-auto"
                   style={{ fontSize: "14px" }}
                 >
                   Learn More <span aria-hidden>→</span>
@@ -204,32 +204,31 @@ export function TwoTrackLayout() {
         </AnimatePresence>
 
         {/* Bottom CTA bar */}
-        <div className="mt-[44px] rounded-[16px] bg-[#ffffff] px-[40px] py-[28px] flex items-center justify-between gap-[32px] shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
-          <div className="flex flex-col gap-[6px]">
+        <div className="mt-[44px] rounded-[16px] bg-[#ffffff] px-[40px] py-[28px] flex flex-col lg:flex-row items-center lg:items-start justify-between gap-[32px] shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
+          <div className="flex flex-col gap-[6px] text-center lg:text-left">
             <span
-              className="font-['Outfit'] font-bold text-[#0f172a]"
-              style={{ fontSize: "20px" }}
+              className="font-['DM_Sans'] font-bold text-[#0f172a] text-[23px] lg:text-[20px]"
             >
               Ready to resolve your tax situation?
             </span>
             <span
-              className="font-['Inter'] text-[#475569]"
+              className="font-['DM_Sans'] text-[#475569]"
               style={{ fontSize: "14px" }}
             >
               Free consultation — no obligation, no upfront fees.
             </span>
           </div>
-          <div className="flex items-center gap-[14px] flex-shrink-0">
+          <div className="flex flex-col sm:flex-row items-center gap-[14px] flex-shrink-0">
             <Link
-              to="/contact"
-              className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['Outfit'] font-bold px-[24px] py-[12px] rounded-full transition-colors duration-200 whitespace-nowrap hover:scale-[1.02]"
+              to="https://ti.sympletax.com"
+              className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold px-[24px] py-[12px] rounded-full transition-colors duration-200 whitespace-nowrap hover:scale-[1.02]"
               style={{ fontSize: "14px" }}
             >
-              Get Free Consultation
+              Get a Free Consultation
             </Link>
             <Link
               to="/services"
-              className="text-[#0f172a] font-['Inter'] font-medium flex items-center gap-[4px] hover:text-[#00A4A4] transition-colors whitespace-nowrap"
+              className="text-[#0f172a] font-['DM_Sans'] font-medium flex items-center gap-[4px] hover:text-[#00A4A4] transition-colors whitespace-nowrap"
               style={{ fontSize: "14px" }}
             >
               View All Services →

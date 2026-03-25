@@ -46,7 +46,7 @@ export function BlogPreview() {
             {/* Pill badge */}
             <div>
               <span
-                className="font-['Inter'] font-bold uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px]"
+                className="font-['DM_Sans'] font-bold uppercase text-[#0f172a] border-[1.5px] border-[#0f172a] rounded-[50px] px-[16px] py-[7px]"
                 style={{ fontSize: "12px", letterSpacing: "0.08em" }}
               >
                 Financial Insights
@@ -55,7 +55,7 @@ export function BlogPreview() {
 
             {/* Headline */}
             <h2
-              className="font-['Outfit'] font-black text-[#0f172a] leading-[1.0]"
+              className="font-['DM_Sans'] font-black text-[#0f172a] leading-[1.0]"
               style={{ fontSize: "clamp(36px, 4vw, 56px)", letterSpacing: "-2px" }}
             >
               Expert Tips And{" "}
@@ -70,7 +70,7 @@ export function BlogPreview() {
           {/* View all CTA */}
           <Link to="/resources" className="shrink-0">
             <span
-              className="inline-flex items-center gap-[10px] font-['Inter'] font-semibold text-white rounded-full px-[28px] py-[14px] transition-all duration-200"
+              className="inline-flex items-center gap-[10px] font-['DM_Sans'] font-semibold text-white rounded-full px-[28px] py-[14px] transition-all duration-200"
               style={{
                 background: "#00A4A4",
                 fontSize: "15px",
@@ -118,7 +118,7 @@ export function BlogPreview() {
                   className="absolute top-[14px] left-[14px] bg-white/95 backdrop-blur-sm rounded-full px-[12px] py-[5px]"
                 >
                   <span
-                    className="font-['Inter'] font-semibold text-[#0f172a] uppercase"
+                    className="font-['DM_Sans'] font-semibold text-[#0f172a] uppercase"
                     style={{ fontSize: "11px", letterSpacing: "0.06em" }}
                   >
                     {post.category}
@@ -130,13 +130,13 @@ export function BlogPreview() {
               <div className="flex flex-col flex-1 justify-between p-[32px] gap-[20px]">
                 <div className="flex flex-col gap-[14px]">
                   <h3
-                    className="font-['Outfit'] font-bold text-[#0f172a] leading-[1.2]"
+                    className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.2]"
                     style={{ fontSize: "22px", letterSpacing: "-0.8px" }}
                   >
                     {post.title}
                   </h3>
                   <p
-                    className="font-['Inter'] font-normal text-[#64748b] leading-[1.65]"
+                    className="font-['DM_Sans'] font-normal text-[#64748b] leading-[1.65]"
                     style={{ fontSize: "15px", letterSpacing: "-0.2px" }}
                   >
                     {post.description}
@@ -146,7 +146,7 @@ export function BlogPreview() {
                 {/* Read More row */}
                 <Link to="/resources" className="flex items-center justify-between group/cta">
                   <span
-                    className="font-['Inter'] font-semibold text-[#0f172a] group-hover/cta:text-[#00A4A4] transition-colors"
+                    className="font-['DM_Sans'] font-semibold text-[#0f172a] group-hover/cta:text-[#00A4A4] transition-colors"
                     style={{ fontSize: "15px", letterSpacing: "-0.3px" }}
                   >
                     Read More
@@ -190,7 +190,7 @@ export function BlogPreview() {
                   <div className="flex items-center gap-[8px]">
                     <div style={{ width: "24px", height: "1px", background: "#00A4A4" }} />
                     <span
-                      className="font-['Outfit'] font-medium uppercase text-[#00A4A4]"
+                      className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
                       style={{ fontSize: "11px", letterSpacing: "0.08em" }}
                     >
                       Our Blog
@@ -198,14 +198,14 @@ export function BlogPreview() {
                   </div>
 
                   <h3
-                    className="font-['Outfit'] font-black text-white leading-[1.15]"
+                    className="font-['DM_Sans'] font-black text-white leading-[1.15]"
                     style={{ fontSize: "28px", letterSpacing: "-1px" }}
                   >
                     Expert advice, industry trends, and practical tips to help you stay ahead.
                   </h3>
 
                   <p
-                    className="font-['Inter'] font-normal text-white/50 leading-[1.65]"
+                    className="font-['DM_Sans'] font-normal text-white/50 leading-[1.65]"
                     style={{ fontSize: "14px", letterSpacing: "-0.2px" }}
                   >
                     Stay informed with guides written by licensed tax professionals — updated monthly.
@@ -215,7 +215,7 @@ export function BlogPreview() {
                 {/* Bottom CTA */}
                 <div className="flex items-center justify-between mt-[40px]">
                   <span
-                    className="font-['Inter'] font-semibold text-white group-hover:text-[#00A4A4] transition-colors"
+                    className="font-['DM_Sans'] font-semibold text-white group-hover:text-[#00A4A4] transition-colors"
                     style={{ fontSize: "15px", letterSpacing: "-0.3px" }}
                   >
                     Browse All Articles

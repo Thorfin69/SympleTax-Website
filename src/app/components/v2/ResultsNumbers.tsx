@@ -68,7 +68,7 @@ export function ResultsNumbers() {
           <div className="flex items-center gap-[10px]">
             <div className="bg-[#00A4A4] h-px w-[35px]" />
             <span
-              className="font-['Outfit'] font-medium uppercase text-[#00A4A4]"
+              className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
               style={{ fontSize: "14px", letterSpacing: "0.05em" }}
             >
               Our Track Record
@@ -76,7 +76,7 @@ export function ResultsNumbers() {
           </div>
           <div className="flex items-end justify-between gap-12">
             <h2
-              className="font-['Outfit'] font-black text-[#0f172a] leading-[1.05]"
+              className="font-['DM_Sans'] font-black text-[#0f172a] leading-[1.05]"
               style={{ fontSize: "clamp(36px, 4.5vw, 60px)", letterSpacing: "-2px" }}
             >
               The Fastest Growing<br />
@@ -84,7 +84,7 @@ export function ResultsNumbers() {
               <PaintStreak color="teal">in the Nation.</PaintStreak>
             </h2>
             <p
-              className="font-['Inter'] font-normal text-[#475569] leading-[1.65] shrink-0 max-w-[360px] text-right"
+              className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65] shrink-0 max-w-[360px] text-right"
               style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
             >
               Real numbers from real clients. We measure our success by what we resolve for you, not what we promise.
@@ -110,7 +110,7 @@ export function ResultsNumbers() {
               <div className="relative">
                 <PaintStreak color={stat.strokeColor}>
                   <span
-                    className="font-['Outfit'] font-black text-[#0f172a] leading-[1.0] whitespace-nowrap"
+                    className="font-['DM_Sans'] font-black text-[#0f172a] leading-[1.0] whitespace-nowrap"
                     style={{ fontSize: "60px", letterSpacing: "-2px" }}
                   >
                     {stat.prefix}
@@ -119,7 +119,7 @@ export function ResultsNumbers() {
                 </PaintStreak>
               </div>
               <span
-                className="font-['Inter'] font-normal text-[#475569] leading-[1.4]"
+                className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.4]"
                 style={{ fontSize: "15px" }}
               >
                 {stat.label}
@@ -137,13 +137,13 @@ export function ResultsNumbers() {
           className="flex items-center gap-[24px] mt-[48px]"
         >
           <Link
-            to="/contact"
-            className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['Outfit'] font-bold rounded-full transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
+            to="https://ti.sympletax.com"
+            className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
             style={{ fontSize: "16px", padding: "16px 32px" }}
           >
             Join 12,000+ Resolved Cases
           </Link>
-          <span className="font-['Inter'] text-[14px] text-[#94a3b8]">
+          <span className="font-['DM_Sans'] text-[14px] text-[#94a3b8]">
             Free consultation — no credit card required
           </span>
         </motion.div>
