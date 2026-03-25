@@ -61,7 +61,7 @@ export function Testimonials() {
             <div className="flex items-center gap-[10px]">
               <div className="bg-[#00A4A4] h-px w-[35px]" />
               <span
-                className="font-['DM_Sans'] font-semibold uppercase text-[#005858]"
+                className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
                 style={{ fontSize: "14px", letterSpacing: "0.05em" }}
               >
                 Client Stories
@@ -73,7 +73,7 @@ export function Testimonials() {
               style={{ fontSize: "clamp(28px, 7vw, 58px)", letterSpacing: "-2px" }}
             >
               Real Cases.{" "}
-              <span className="text-[#005858]">Real People.</span>
+              <span className="text-[#00A4A4]">Real People.</span>
             </h2>
           </div>
 
@@ -136,13 +136,13 @@ export function Testimonials() {
                 <div className="flex items-end justify-between mt-[32px]">
                   <div className="flex flex-col gap-[4px]">
                     <span
-                      className="font-['DM_Sans'] font-bold text-[#005858] uppercase"
+                      className="font-['DM_Sans'] font-bold text-[#00A4A4] uppercase"
                       style={{ fontSize: "16px", letterSpacing: "0.06em" }}
                     >
                       {item.name}
                     </span>
                     <span
-                      className="font-['DM_Sans'] font-normal text-[#475569] uppercase"
+                      className="font-['DM_Sans'] font-normal text-[#94a3b8] uppercase"
                       style={{ fontSize: "11px", letterSpacing: "0.06em" }}
                     >
                       {item.location}
@@ -151,8 +151,8 @@ export function Testimonials() {
 
                   {/* Large decorative open-quote */}
                   <span
-                    className="font-['DM_Sans'] font-black text-[#005858] leading-none select-none"
-                    style={{ fontSize: "72px", lineHeight: "0.7", opacity: 0.35 }}
+                    className="font-['DM_Sans'] font-black text-[#00A4A4] leading-none select-none"
+                    style={{ fontSize: "72px", lineHeight: "0.7", opacity: 0.45 }}
                     aria-hidden="true"
                   >
                     &#x201C;
@@ -191,7 +191,7 @@ export function Testimonials() {
       >
         <Link
             to="https://ti.sympletax.com"
-          className="inline-flex items-center gap-[10px] border-[1.5px] border-[#005858] text-[#005858] font-['DM_Sans'] font-bold rounded-full hover:bg-[#005858] hover:text-white transition-all duration-300 hover:scale-[1.02]"
+          className="inline-flex items-center gap-[10px] border-[1.5px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:bg-[#00A4A4] hover:text-white transition-all duration-300 hover:scale-[1.02]"
           style={{ fontSize: "15px", padding: "14px 36px", letterSpacing: "-0.2px" }}
           aria-label="See all case studies"
         >

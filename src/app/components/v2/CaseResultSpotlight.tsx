@@ -158,7 +158,7 @@ export function CaseResultSpotlight() {
             <div className="flex items-center gap-[24px] mt-[4px]">
               <Link
                 to="https://ti.sympletax.com"
-                className="border-[2px] border-[#005858] text-[#005858] font-['DM_Sans'] font-bold rounded-[10px] px-[28px] py-[13px] hover:bg-[#005858] hover:text-white transition-all duration-200 uppercase tracking-wide"
+                className="border-[2px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-[10px] px-[28px] py-[13px] hover:bg-[#00A4A4] hover:text-white transition-all duration-200 uppercase tracking-wide"
                 style={{ fontSize: "15px" }}
               >
                 Learn How
@@ -169,7 +169,7 @@ export function CaseResultSpotlight() {
             </div>
 
             {/* Disclaimer */}
-            <p className="font-['DM_Sans'] text-[12px] text-[#64748b] italic mt-auto">
+            <p className="font-['DM_Sans'] text-[12px] text-[#94a3b8] italic mt-auto">
               * Client name changed for privacy. Results may vary based on individual circumstances.
             </p>
           </div>
@@ -212,9 +212,9 @@ export function CaseResultSpotlight() {
 
         {/* ── Section label ── */}
         <div className="flex items-center gap-[10px] mb-[32px]">
-          <div className="bg-[#005858] h-px w-[35px]" />
+          <div className="bg-[#00A4A4] h-px w-[35px]" />
           <span
-            className="font-['DM_Sans'] font-semibold uppercase text-[#0f172a]"
+            className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
             style={{ fontSize: "14px", letterSpacing: "0.05em" }}
           >
             More Case Results
@@ -261,14 +261,14 @@ export function CaseResultSpotlight() {
                   </p>
                   <div className="flex items-end justify-between pt-[16px] border-t border-[#f0ece4]">
                     <div>
-                      <div className="font-['DM_Sans'] text-[11px] text-[#64748b] uppercase tracking-widest mb-[2px]">Settled For</div>
-                      <div className="font-['DM_Sans'] font-black text-[#005858] leading-none" style={{ fontSize: "28px" }}>
+                      <div className="font-['DM_Sans'] text-[11px] text-[#94a3b8] uppercase tracking-widest mb-[2px]">Settled For</div>
+                      <div className="font-['DM_Sans'] font-black text-[#00A4A4] leading-none" style={{ fontSize: "28px" }}>
                         {item.toAmount}
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="font-['DM_Sans'] text-[11px] text-[#64748b] uppercase tracking-widest mb-[2px]">From</div>
-                      <div className="font-['DM_Sans'] font-bold text-[#64748b] line-through" style={{ fontSize: "16px" }}>
+                      <div className="font-['DM_Sans'] text-[11px] text-[#94a3b8] uppercase tracking-widest mb-[2px]">From</div>
+                      <div className="font-['DM_Sans'] font-bold text-[#94a3b8] line-through" style={{ fontSize: "16px" }}>
                         {item.fromAmount}
                       </div>
                     </div>
@@ -283,7 +283,7 @@ export function CaseResultSpotlight() {
           <div className="absolute inset-y-0 right-0 w-[100px] bg-gradient-to-l from-[#f5f1e8] to-transparent z-10 pointer-events-none" />
         </div>
 
-        <p className="text-center font-['DM_Sans'] text-[12px] text-[#475569] italic mt-[40px]">
+        <p className="text-center font-['DM_Sans'] text-[12px] text-[#94a3b8] italic mt-[40px]">
           * Results may vary based on individual circumstances. Past performance does not guarantee future outcomes.
         </p>
       </div>
