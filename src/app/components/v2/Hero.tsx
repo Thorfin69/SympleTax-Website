@@ -151,7 +151,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, ease: "easeOut", delay: 0.25 }}
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[84%] max-w-[336px] z-10"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[84%] max-w-[480px] z-10"
         >
           <img
             src={heroBannerImg}
@@ -161,7 +161,7 @@ export function Hero() {
             decoding="async"
             fetchPriority="high"
             className="w-full object-contain object-bottom"
-            style={{ maxHeight: "54vh" }}
+            style={{ maxHeight: "217px" }}
           />
         </motion.div>
       </div>
