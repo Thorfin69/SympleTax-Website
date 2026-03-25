@@ -156,6 +156,10 @@ export function Hero() {
           <img
             src={heroBannerImg}
             alt="Happy family relieved from IRS tax debt"
+            width={1426}
+            height={858}
+            decoding="async"
+            fetchPriority="high"
             className="w-full object-contain object-bottom"
             style={{ maxHeight: "54vh" }}
           />
@@ -200,6 +204,10 @@ export function Hero() {
           <img
             src={heroBannerImg}
             alt="Happy family relieved from IRS tax debt"
+            width={1426}
+            height={858}
+            decoding="async"
+            fetchPriority="high"
             className="w-full object-contain object-bottom"
             style={{ maxHeight: "88vh" }}
           />

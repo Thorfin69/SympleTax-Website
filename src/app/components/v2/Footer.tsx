@@ -172,19 +172,19 @@ export function Footer() {
         <div className="border-t border-white/[0.07] py-[48px] flex flex-col gap-[20px]">
           <p
             className="font-['DM_Sans'] font-bold text-white/50 uppercase"
-            style={{ fontSize: "11px", letterSpacing: "0.1em" }}
+            style={{ fontSize: "13px", letterSpacing: "0.1em" }}
           >
             Website Disclaimer
           </p>
           <p
             className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7]"
-            style={{ fontSize: "14.5px" }}
+            style={{ fontSize: "15px" }}
           >
             Estimates and statements about program performance are based on historical results and specific client situations. Individual results will vary based on circumstances which include, but are not limited to, your financial situation and the accuracy and timeliness of the information you provide to SympleTax. We do not guarantee that your taxes owed will be reduced by a specific amount or percentage, paid off within a specific period, or that you will qualify for any IRS or state programs. Penalties and interest will continue to accrue until your tax liability is fully paid to the IRS and state.
           </p>
           <p
             className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7]"
-            style={{ fontSize: "14.5px" }}
+            style={{ fontSize: "15px" }}
           >
             SympleTax is a private tax resolution company independent from the IRS. We are not affiliated with or endorsed by the IRS or any government agency. We are licensed tax professionals. We do not assume tax liability, make payments to taxing authorities or creditors, or provide tax, bankruptcy, accounting, or legal advice. Results vary. Nothing here constitutes legal or financial advice. For official IRS information, visit{" "}
             <a
@@ -199,13 +199,13 @@ export function Footer() {
           </p>
           <p
             className="font-['DM_Sans'] font-bold text-white/40 mt-[8px]"
-            style={{ fontSize: "11px", letterSpacing: "0.05em" }}
+            style={{ fontSize: "13px", letterSpacing: "0.05em" }}
           >
             Testimonials &amp; Reviews
           </p>
           <p
             className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7]"
-            style={{ fontSize: "14.5px" }}
+            style={{ fontSize: "15px" }}
           >
             Testimonials were provided by actual SympleTax clients and are the clients' sole opinions and experiences. Clients were not compensated. These are individual results which will vary based on circumstances. We do not claim that they are typical results that consumers will generally achieve. Nothing included here should be taken as a guarantee, warranty, prediction, or representation about the results of your situation.
           </p>

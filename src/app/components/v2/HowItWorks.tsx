@@ -92,18 +92,14 @@ export function HowItWorks() {
 
               <div className="flex flex-col gap-[24px] p-[28px] lg:p-[52px] lg:gap-[32px] flex-1">
 
-                {/* Icon above heading */}
-                <div
-                  className="flex items-center justify-center rounded-[16px]"
-                  style={{
-                    width: "56px",
-                    height: "56px",
-                    backgroundColor: "rgba(255,255,255,0.18)",
-                  }}
+                {/* Step number on top */}
+                <span
+                  className="font-['DM_Sans'] font-bold text-white/20 leading-none"
+                  style={{ fontSize: "clamp(52px, 12vw, 80px)", letterSpacing: "-4px", lineHeight: "0.85" }}
                   aria-hidden="true"
                 >
-                  <phase.Icon className="w-[28px] h-[28px] text-white" strokeWidth={1.5} />
-                </div>
+                  {phase.number}
+                </span>
 
                 {/* Phase badge */}
                 <span
@@ -118,22 +114,13 @@ export function HowItWorks() {
                   {phase.label.toUpperCase()}
                 </span>
 
-                {/* Number + Title */}
-                <div className="flex items-start gap-[20px]">
-                  <span
-                    className="font-['DM_Sans'] font-bold text-white/20 leading-none shrink-0"
-                    style={{ fontSize: "clamp(52px, 12vw, 80px)", letterSpacing: "-4px", lineHeight: "0.85" }}
-                    aria-hidden="true"
-                  >
-                    {phase.number}
-                  </span>
-                  <h3
-                    className="font-['DM_Sans'] font-bold text-white leading-[1.1]"
-                    style={{ fontSize: "clamp(28px, 2.5vw, 38px)", letterSpacing: "-1px", paddingTop: "8px" }}
-                  >
-                    {phase.title}
-                  </h3>
-                </div>
+                {/* Title */}
+                <h3
+                  className="font-['DM_Sans'] font-bold text-white leading-[1.1]"
+                  style={{ fontSize: "clamp(28px, 2.5vw, 38px)", letterSpacing: "-1px" }}
+                >
+                  {phase.title}
+                </h3>
 
                 {/* Description */}
                 <p
@@ -165,6 +152,19 @@ export function HowItWorks() {
                     </li>
                   ))}
                 </ul>
+
+                {/* Icon at bottom */}
+                <div
+                  className="flex items-center justify-center rounded-[16px] mt-auto"
+                  style={{
+                    width: "56px",
+                    height: "56px",
+                    backgroundColor: "rgba(255,255,255,0.18)",
+                  }}
+                  aria-hidden="true"
+                >
+                  <phase.Icon className="w-[28px] h-[28px] text-white" strokeWidth={1.5} />
+                </div>
               </div>
             </motion.div>
           ))}

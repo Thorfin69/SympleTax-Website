@@ -25,9 +25,9 @@ export function DisclaimerBanner() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          role="dialog"
-          aria-modal="false"
+          role="region"
           aria-label="Legal disclaimer"
+          aria-live="polite"
           initial={{ y: 120, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 120, opacity: 0 }}

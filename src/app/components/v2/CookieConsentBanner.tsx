@@ -49,11 +49,21 @@ const CATEGORIES = [
   },
 ];
 
-function Toggle({ enabled, onChange }: { enabled: boolean; onChange: () => void }) {
+function Toggle({
+  enabled,
+  onChange,
+  ariaLabel,
+}: {
+  enabled: boolean;
+  onChange: () => void;
+  ariaLabel: string;
+}) {
   return (
     <button
+      type="button"
       role="switch"
       aria-checked={enabled}
+      aria-label={ariaLabel}
       onClick={onChange}
       className="relative inline-flex h-[26px] w-[48px] shrink-0 cursor-pointer rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] focus-visible:ring-offset-2"
       style={{ backgroundColor: enabled ? "#00A4A4" : "#d1d5db" }}
@@ -80,9 +90,12 @@ function CategoryRow({
     <div className="border-b last:border-b-0" style={{ borderColor: "#f0ece4" }}>
       <div className="flex items-center gap-[16px] py-[18px]">
         <button
+          type="button"
           onClick={() => setExpanded((v) => !v)}
           className="flex items-center gap-[10px] flex-1 text-left focus:outline-none focus-visible:underline"
           aria-expanded={expanded}
+          aria-controls={`cookie-category-${category.key}`}
+          id={`cookie-category-trigger-${category.key}`}
         >
           <ChevronDown
             className="w-[16px] h-[16px] shrink-0 transition-transform duration-200 text-[#64748b]"
@@ -98,12 +111,19 @@ function CategoryRow({
             Always Active
           </span>
         ) : (
-          <Toggle enabled={enabled} onChange={onToggle} />
+          <Toggle
+            enabled={enabled}
+            onChange={onToggle}
+            ariaLabel={`Allow ${category.label.toLowerCase()} cookies`}
+          />
         )}
       </div>
       <AnimatePresence initial={false}>
         {expanded && (
           <motion.div
+            id={`cookie-category-${category.key}`}
+            role="region"
+            aria-labelledby={`cookie-category-trigger-${category.key}`}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -208,8 +228,7 @@ export function CookieConsentBanner() {
             exit={{ y: 120, opacity: 0 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             className="hidden sm:flex fixed bottom-[24px] left-[90px] right-[90px] z-[89] max-w-[820px] mx-auto"
-            role="dialog"
-            aria-modal="false"
+            role="region"
             aria-label="Cookie consent"
           >
             <div
