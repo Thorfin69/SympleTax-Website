@@ -16,7 +16,7 @@ export function Hero() {
   return (
     <section
       className="relative overflow-hidden flex flex-col"
-      style={{ minHeight: "100vh", backgroundColor: "#00A4A4" }}
+      style={{ minHeight: "100vh", backgroundColor: "#006b6b" }}
     >
       {/* ── Concentric circles ─────────────────────────────────────────────────
           Center point = bottom-center of section.
@@ -75,8 +75,8 @@ export function Hero() {
         >
           <div className="bg-white/40 h-px w-[30px]" />
           <span
-            className="font-['DM_Sans'] font-medium uppercase text-white/75"
-            style={{ fontSize: "12px", letterSpacing: "0.08em" }}
+            className="font-['DM_Sans'] font-semibold uppercase text-white"
+            style={{ fontSize: "13px", letterSpacing: "0.08em" }}
           >
             IRS Tax Relief Experts
           </span>
@@ -106,13 +106,13 @@ export function Hero() {
         >
           <Link
             to="https://ti.sympletax.com"
-            className="inline-flex items-center justify-center bg-white text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)] transition-all duration-300 shadow-[0_8px_28px_rgba(0,0,0,0.15)] w-full"
+            className="inline-flex items-center justify-center bg-white text-[#003838] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)] transition-all duration-300 shadow-[0_8px_28px_rgba(0,0,0,0.15)] w-full"
             style={{ fontSize: "16px", padding: "16px 40px", letterSpacing: "-0.3px" }}
             aria-label="Get started with a free tax consultation"
           >
             Get Started
           </Link>
-          <p className="font-['DM_Sans'] font-normal text-white/60 text-center" style={{ fontSize: "12px" }}>
+          <p className="font-['DM_Sans'] font-medium text-white text-center" style={{ fontSize: "13px" }}>
             &#9201; Free consultation · No credit card required
           </p>
         </motion.div>
@@ -133,7 +133,9 @@ export function Hero() {
                 <path d="M10 1l2.39 4.84 5.34.78-3.86 3.77.91 5.31L10 13.27l-4.78 2.51.91-5.31L2.27 6.62l5.34-.78L10 1z" />
               </svg>
             ))}
-            <span className="font-['DM_Sans'] font-semibold text-white ml-[4px]" style={{ fontSize: "13px" }}>5.0 Stars</span>
+            <span className="font-['DM_Sans'] font-bold text-white ml-[4px]" style={{ fontSize: "14px" }}>
+              5.0 Stars
+            </span>
           </div>
           {["Licensed CPAs & EAs", "$99 Flat Fee"].map((badge) => (
             <div key={badge} className="flex items-center gap-[6px]">
@@ -141,7 +143,9 @@ export function Hero() {
                 <circle cx="8" cy="8" r="8" fill="rgba(255,255,255,0.2)" />
                 <path d="M5 8l2.5 2.5L11 5.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span className="font-['DM_Sans'] font-medium text-white/75" style={{ fontSize: "12px" }}>{badge}</span>
+              <span className="font-['DM_Sans'] font-semibold text-white" style={{ fontSize: "13px" }}>
+                {badge}
+              </span>
             </div>
           ))}
         </motion.div>
@@ -179,15 +183,15 @@ export function Hero() {
         >
           <Link
             to="https://ti.sympletax.com"
-            className="inline-flex items-center justify-center bg-white text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)] transition-all duration-300 shadow-[0_8px_28px_rgba(0,0,0,0.15)] w-full"
+            className="inline-flex items-center justify-center bg-white text-[#003838] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)] transition-all duration-300 shadow-[0_8px_28px_rgba(0,0,0,0.15)] w-full"
             style={{ fontSize: "16px", padding: "18px 48px", letterSpacing: "-0.3px" }}
             aria-label="Get started with a free tax consultation"
           >
             Get Started
           </Link>
           <p
-            className="font-['DM_Sans'] font-normal text-white/60 text-center w-full"
-            style={{ fontSize: "14px" }}
+            className="font-['DM_Sans'] font-medium text-white text-center w-full"
+            style={{ fontSize: "15px" }}
           >
             &#9201; Free consultation · No credit card required
           </p>
@@ -232,7 +236,7 @@ export function Hero() {
             <span className="font-['DM_Sans'] font-semibold text-white" style={{ fontSize: "21px" }}>
               5.0 Stars
             </span>
-            <span className="font-['DM_Sans'] font-normal text-white/60" style={{ fontSize: "18px" }}>
+            <span className="font-['DM_Sans'] font-medium text-white" style={{ fontSize: "18px" }}>
               Licensed &amp; Accredited
             </span>
           </div>
@@ -245,7 +249,7 @@ export function Hero() {
             ].map((badge) => (
               <div key={badge} className="flex items-center gap-[11px] justify-end">
                 <span
-                  className="font-['DM_Sans'] font-medium text-white/75"
+                  className="font-['DM_Sans'] font-semibold text-white"
                   style={{ fontSize: "18px" }}
                   dangerouslySetInnerHTML={{ __html: badge }}
                 />

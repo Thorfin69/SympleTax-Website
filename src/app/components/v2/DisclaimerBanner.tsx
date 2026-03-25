@@ -55,7 +55,7 @@ export function DisclaimerBanner() {
             </p>
             <button
               onClick={accept}
-              className="shrink-0 bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f172a]"
+              className="shrink-0 bg-[#005858] hover:bg-[#004040] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f172a]"
               style={{ fontSize: "13px", padding: "10px 24px", whiteSpace: "nowrap" }}
               aria-label="Accept disclaimer and close"
             >

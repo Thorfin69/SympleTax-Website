@@ -149,7 +149,7 @@ export function Footer() {
                     aria-label={label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-[38px] h-[38px] rounded-[8px] border border-white/10 flex items-center justify-center text-white/40 hover:border-[#00A4A4]/50 hover:text-[#00A4A4] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
+                    className="w-[38px] h-[38px] rounded-[8px] border border-white/10 flex items-center justify-center text-white/70 hover:border-[#00A4A4]/50 hover:text-[#00A4A4] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
                   >
                     <Icon className="w-[15px] h-[15px]" aria-hidden="true" />
                   </a>
@@ -171,19 +171,19 @@ export function Footer() {
         {/* Disclaimer section */}
         <div className="border-t border-white/[0.07] py-[48px] flex flex-col gap-[20px]">
           <p
-            className="font-['DM_Sans'] font-bold text-white/50 uppercase"
+            className="font-['DM_Sans'] font-bold text-white/80 uppercase"
             style={{ fontSize: "13px", letterSpacing: "0.1em" }}
           >
             Website Disclaimer
           </p>
           <p
-            className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7]"
+            className="font-['DM_Sans'] font-normal text-white/75 leading-[1.7]"
             style={{ fontSize: "15px" }}
           >
             Estimates and statements about program performance are based on historical results and specific client situations. Individual results will vary based on circumstances which include, but are not limited to, your financial situation and the accuracy and timeliness of the information you provide to SympleTax. We do not guarantee that your taxes owed will be reduced by a specific amount or percentage, paid off within a specific period, or that you will qualify for any IRS or state programs. Penalties and interest will continue to accrue until your tax liability is fully paid to the IRS and state.
           </p>
           <p
-            className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7]"
+            className="font-['DM_Sans'] font-normal text-white/75 leading-[1.7]"
             style={{ fontSize: "15px" }}
           >
             SympleTax is a private tax resolution company independent from the IRS. We are not affiliated with or endorsed by the IRS or any government agency. We are licensed tax professionals. We do not assume tax liability, make payments to taxing authorities or creditors, or provide tax, bankruptcy, accounting, or legal advice. Results vary. Nothing here constitutes legal or financial advice. For official IRS information, visit{" "}
@@ -191,20 +191,20 @@ export function Footer() {
               href="https://www.irs.gov"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/50 hover:text-[#00A4A4] underline transition-colors"
+              className="text-white/85 hover:text-[#00A4A4] underline transition-colors"
               aria-label="Visit IRS.gov (opens in new tab)"
             >
               IRS.gov
             </a>.
           </p>
           <p
-            className="font-['DM_Sans'] font-bold text-white/40 mt-[8px]"
+            className="font-['DM_Sans'] font-bold text-white/75 mt-[8px]"
             style={{ fontSize: "13px", letterSpacing: "0.05em" }}
           >
             Testimonials &amp; Reviews
           </p>
           <p
-            className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7]"
+            className="font-['DM_Sans'] font-normal text-white/75 leading-[1.7]"
             style={{ fontSize: "15px" }}
           >
             Testimonials were provided by actual SympleTax clients and are the clients' sole opinions and experiences. Clients were not compensated. These are individual results which will vary based on circumstances. We do not claim that they are typical results that consumers will generally achieve. Nothing included here should be taken as a guarantee, warranty, prediction, or representation about the results of your situation.
@@ -214,7 +214,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/[0.07] py-[24px] flex flex-col md:flex-row items-center justify-between gap-[16px]">
           <p
-            className="font-['DM_Sans'] text-white/35"
+            className="font-['DM_Sans'] text-white/70"
             style={{ fontSize: "12px" }}
           >
             © {new Date().getFullYear()} SympleTax. All Rights Reserved. Powered by{" "}
@@ -222,7 +222,7 @@ export function Footer() {
               href="https://blitzstudio.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/50 hover:text-[#00A4A4] transition-colors"
+              className="text-white/80 underline decoration-white/60 underline-offset-[3px] hover:text-[#00A4A4] hover:decoration-[#00A4A4] transition-colors"
               aria-label="Blitz Studio website"
             >
               Blitz Studio
@@ -239,7 +239,7 @@ export function Footer() {
                 <a
                   key={label}
                   href={href}
-                  className="group relative inline-block font-['DM_Sans'] text-white/35 hover:text-[#00A4A4] transition-colors focus:outline-none focus-visible:underline"
+                  className="group relative inline-block font-['DM_Sans'] text-white/70 hover:text-[#00A4A4] transition-colors focus:outline-none focus-visible:underline"
                   style={{ fontSize: "12px" }}
                 >
                   {label}
