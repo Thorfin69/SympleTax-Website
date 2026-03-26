@@ -35,6 +35,12 @@ const HOME_FAQS = [
       "Unlike firms that rely on sales reps, every case at SympleTax is handled directly by a licensed Enrolled Agent or CPA. We offer transparent, flat-fee pricing and a results-first approach. We focus on measurable outcomes — not just paperwork.",
   },
   {
+    id: "06",
+    question: "What documents do you need to start my case?",
+    answer:
+      "To evaluate your options, we typically request your recent IRS notices (and/or CP letters), current tax balance details, and copies of any unfiled returns if applicable. We also review your income and expense information (for CNC/OIC analysis), plus basic identification. Once retained, we guide you through the exact documents we need based on your situation — no guesswork.",
+  },
+  {
     id: "07",
     question: "Can you help with both federal and state tax debt?",
     answer:
@@ -60,8 +66,8 @@ const HOME_FAQS = [
   },
 ];
 
-const LEFT_FAQS = HOME_FAQS.slice(0, 5);
-const RIGHT_FAQS = HOME_FAQS.slice(5, 10);
+const LEFT_FAQS = HOME_FAQS.slice(0, 6);
+const RIGHT_FAQS = HOME_FAQS.slice(6, 11);
 
 function FAQItem({ faq, activeId, setActiveId }: { faq: typeof HOME_FAQS[0]; activeId: string | null; setActiveId: (id: string | null) => void }) {
   const isOpen = activeId === faq.id;
