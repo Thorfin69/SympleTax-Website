@@ -188,7 +188,6 @@ export default function AboutPage() {
               {[
                 { value: "500+", label: "Cases Resolved" },
                 { value: "99%", label: "Best Result Achieved" },
-                { value: "$99", label: "Flat Fee to Start" },
                 { value: "48hrs", label: "Average Response Time" },
               ].map((stat, idx) => (
                 <motion.div

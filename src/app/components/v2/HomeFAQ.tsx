@@ -35,12 +35,6 @@ const HOME_FAQS = [
       "Unlike firms that rely on sales reps, every case at SympleTax is handled directly by a licensed Enrolled Agent or CPA. We offer transparent, flat-fee pricing and a results-first approach. We focus on measurable outcomes — not just paperwork.",
   },
   {
-    id: "06",
-    question: "What does the $99 flat fee include?",
-    answer:
-      "The $99 flat fee covers your initial Strategic Discovery phase — a full IRS transcript analysis, identification of your best resolution options, and filing of your Power of Attorney. There are no hidden fees. We will clearly outline any additional costs before proceeding.",
-  },
-  {
     id: "07",
     question: "Can you help with both federal and state tax debt?",
     answer:

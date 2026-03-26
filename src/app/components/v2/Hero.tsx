@@ -135,7 +135,7 @@ export function Hero() {
             ))}
             <span className="font-['DM_Sans'] font-semibold text-white ml-[4px]" style={{ fontSize: "13px" }}>5.0 Stars</span>
           </div>
-          {["Licensed CPAs & EAs", "$99 Flat Fee"].map((badge) => (
+          {["Licensed CPAs & EAs"].map((badge) => (
             <div key={badge} className="flex items-center gap-[6px]">
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <circle cx="8" cy="8" r="8" fill="rgba(255,255,255,0.2)" />
@@ -240,7 +240,6 @@ export function Hero() {
           <div className="flex flex-col gap-[13px]">
             {[
               "Licensed CPAs &amp; EAs",
-              "$99 Flat Fee — No Surprises",
               "256-bit Encrypted &amp; Secure",
             ].map((badge) => (
               <div key={badge} className="flex items-center gap-[11px] justify-end">

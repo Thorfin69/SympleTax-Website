@@ -503,7 +503,6 @@ export default function ContactPage() {
               {[
                 { stat: "500+", label: "Cases Resolved" },
                 { stat: "48hrs", label: "Average Response Time" },
-                { stat: "$99", label: "Flat Fee to Start" },
                 { stat: "100%", label: "Confidential Process" },
               ].map((item, idx) => (
                 <motion.div
