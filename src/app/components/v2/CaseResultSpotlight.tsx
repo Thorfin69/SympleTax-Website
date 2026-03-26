@@ -5,7 +5,7 @@ import { PaintStreak } from "../ui/PaintStreak";
 
 import caseStoryImg from "../../../assets/casestory99.png";
 import portraitRamon from "../../../assets/portrait_ramon_new.jpg";
-import portraitDiana from "../../../assets/portrait_diana_new.jpg";
+import portraitDiana from "../../../assets/family-double-piggyback-small.jpg";
 import portraitRobert from "../../../assets/portrait_robert_new.jpg";
 import portraitElena from "../../../assets/portrait_elena_new.jpg";
 import portraitJames from "../../../assets/portrait_james_new.jpg";
@@ -25,9 +25,9 @@ const CASE_RESULTS = [
   },
   {
     firstName: "Diana",
-    fromAmount: "$142,650",
-    toAmount: "$12,400",
-    saved: "91%",
+    fromAmount: "$32,800",
+    toAmount: "$1,800",
+    saved: "95%",
     situation:
       "Small business owner facing payroll tax penalties and aggressive IRS collection. Threat of business closure resolved within 60 days.",
     personImage: portraitDiana,
@@ -35,9 +35,9 @@ const CASE_RESULTS = [
   },
   {
     firstName: "Robert",
-    fromAmount: "$52,000",
+    fromAmount: "$21,500",
     toAmount: "$1,850",
-    saved: "96%",
+    saved: "91%",
     situation:
       "Retiree with a tax lien from a decade-old unresolved assessment. Secured a full lien release and protected all retirement assets.",
     personImage: portraitRobert,
@@ -45,9 +45,9 @@ const CASE_RESULTS = [
   },
   {
     firstName: "Elena",
-    fromAmount: "$88,400",
-    toAmount: "$9,200",
-    saved: "90%",
+    fromAmount: "$17,900",
+    toAmount: "$625",
+    saved: "97%",
     situation:
       "Self-employed consultant hit with back taxes after an audit. We reconstructed income, filed amended returns, and negotiated an affordable installment that stopped levies.",
     personImage: portraitElena,
@@ -55,9 +55,9 @@ const CASE_RESULTS = [
   },
   {
     firstName: "James",
-    fromAmount: "$31,200",
+    fromAmount: "$15,400",
     toAmount: "$2,100",
-    saved: "93%",
+    saved: "86%",
     situation:
       "Wage garnishment and multiple CP notices after years of unfiled returns. Filed all missing years, then secured penalty relief and a payment plan he could actually afford.",
     personImage: portraitJames,
@@ -65,9 +65,9 @@ const CASE_RESULTS = [
   },
   {
     firstName: "Sandra",
-    fromAmount: "$67,500",
-    toAmount: "$5,400",
-    saved: "92%",
+    fromAmount: "$23,750",
+    toAmount: "$1,350",
+    saved: "94%",
     situation:
       "Divorce left her with a joint liability she didn’t know about. Innocent spouse documentation and a structured settlement cut the balance and cleared the threat of a lien sale.",
     personImage: portraitSandra,
@@ -75,9 +75,9 @@ const CASE_RESULTS = [
   },
   {
     firstName: "Nicole",
-    fromAmount: "$115,000",
-    toAmount: "$14,800",
-    saved: "87%",
+    fromAmount: "$28,400",
+    toAmount: "$2,150",
+    saved: "92%",
     situation:
       "Nurse practitioner with state and federal balances after a practice transition. Combined offer strategy and CNC review — collections paused while we built a long-term resolution.",
     personImage: portraitNicole,
