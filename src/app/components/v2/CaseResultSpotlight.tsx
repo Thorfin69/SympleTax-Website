@@ -56,7 +56,7 @@ const CASE_RESULTS = [
   {
     firstName: "James",
     fromAmount: "$15,400",
-    toAmount: "$2,100",
+    toAmount: "$2,250",
     saved: "86%",
     situation:
       "Wage garnishment and multiple CP notices after years of unfiled returns. Filed all missing years, then secured penalty relief and a payment plan he could actually afford.",
@@ -76,7 +76,7 @@ const CASE_RESULTS = [
   {
     firstName: "Nicole",
     fromAmount: "$28,400",
-    toAmount: "$2,150",
+    toAmount: "$2,250",
     saved: "92%",
     situation:
       "Nurse practitioner with state and federal balances after a practice transition. Combined offer strategy and CNC review — collections paused while we built a long-term resolution.",
