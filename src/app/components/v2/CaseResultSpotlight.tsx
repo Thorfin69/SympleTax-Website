@@ -15,7 +15,7 @@ import portraitNicole from "../../../assets/portrait_nicole_new.jpg";
 const CASE_RESULTS = [
   {
     firstName: "Ramon",
-    fromAmount: "$19,349",
+    fromAmount: "$17,000",
     toAmount: "$200",
     saved: "99%",
     situation:
@@ -25,7 +25,7 @@ const CASE_RESULTS = [
   },
   {
     firstName: "Diana",
-    fromAmount: "$32,800",
+    fromAmount: "$15,000",
     toAmount: "$1,800",
     saved: "95%",
     situation:
@@ -35,7 +35,7 @@ const CASE_RESULTS = [
   },
   {
     firstName: "Robert",
-    fromAmount: "$21,500",
+    fromAmount: "$14,000",
     toAmount: "$1,850",
     saved: "91%",
     situation:
@@ -45,7 +45,7 @@ const CASE_RESULTS = [
   },
   {
     firstName: "Elena",
-    fromAmount: "$17,900",
+    fromAmount: "$12,000",
     toAmount: "$625",
     saved: "97%",
     situation:
@@ -55,7 +55,7 @@ const CASE_RESULTS = [
   },
   {
     firstName: "James",
-    fromAmount: "$15,400",
+    fromAmount: "$11,000",
     toAmount: "$2,250",
     saved: "86%",
     situation:
@@ -65,7 +65,7 @@ const CASE_RESULTS = [
   },
   {
     firstName: "Sandra",
-    fromAmount: "$23,750",
+    fromAmount: "$16,000",
     toAmount: "$1,350",
     saved: "94%",
     situation:
@@ -75,7 +75,7 @@ const CASE_RESULTS = [
   },
   {
     firstName: "Nicole",
-    fromAmount: "$28,400",
+    fromAmount: "$13,000",
     toAmount: "$2,250",
     saved: "92%",
     situation:
