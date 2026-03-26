@@ -4,13 +4,13 @@ import { ImageWithFallback } from "../figma/ImageWithFallback";
 import { PaintStreak } from "../ui/PaintStreak";
 
 import caseStoryImg from "../../../assets/casestory99.png";
-import portraitRamon from "../../../assets/0c5bbaeca45442a991d954e8877f8720f267b8a4.png";
-import portraitDiana from "../../../assets/0e3e822fafdb7890635e046acca00eee71155258.png";
-import portraitRobert from "../../../assets/6ee4d06b3c1e7b9b298fe6d85749b9b5aae87d8e.png";
-import portraitElena from "../../../assets/28dfdf44796fe25651464c030f0066b092e7dda1.png";
-import portraitJames from "../../../assets/86eb88a74055e41eef66f8d6367cb9121d8f2fcb.png";
-import portraitSandra from "../../../assets/a5d64563effd0fb42bf4a155ae255a7c9bc1e56e.png";
-import portraitNicole from "../../../assets/d96267f251faded52c16f94f0ea0ddcc7da63439.png";
+import portraitRamon from "../../../assets/portrait_ramon_new.jpg";
+import portraitDiana from "../../../assets/portrait_diana_new.jpg";
+import portraitRobert from "../../../assets/portrait_robert_new.jpg";
+import portraitElena from "../../../assets/portrait_elena_new.jpg";
+import portraitJames from "../../../assets/portrait_james_new.jpg";
+import portraitSandra from "../../../assets/portrait_sandra_new.jpg";
+import portraitNicole from "../../../assets/portrait_nicole_new.jpg";
 
 const CASE_RESULTS = [
   {
@@ -157,7 +157,7 @@ export function CaseResultSpotlight() {
             {/* CTA + arrow */}
             <div className="flex items-center gap-[24px] mt-[4px]">
               <Link
-                to="https://ti.sympletax.com"
+                to="https://ti.sympletax.com/free-consultation"
                 className="border-[2px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-[10px] px-[28px] py-[13px] hover:bg-[#00A4A4] hover:text-white transition-all duration-200 uppercase tracking-wide"
                 style={{ fontSize: "15px" }}
               >

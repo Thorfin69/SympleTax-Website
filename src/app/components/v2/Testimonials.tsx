@@ -190,7 +190,7 @@ export function Testimonials() {
         className="flex justify-center mt-[56px]"
       >
         <Link
-            to="https://ti.sympletax.com"
+            to="https://ti.sympletax.com/free-consultation"
           className="inline-flex items-center gap-[10px] border-[1.5px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:bg-[#00A4A4] hover:text-white transition-all duration-300 hover:scale-[1.02]"
           style={{ fontSize: "15px", padding: "14px 36px", letterSpacing: "-0.2px" }}
           aria-label="See all case studies"
