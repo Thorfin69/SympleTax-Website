@@ -66,8 +66,8 @@ const HOME_FAQS = [
   },
 ];
 
-const LEFT_FAQS = HOME_FAQS.slice(0, 6);
-const RIGHT_FAQS = HOME_FAQS.slice(6, 11);
+const LEFT_FAQS = HOME_FAQS.slice(0, 5);
+const RIGHT_FAQS = HOME_FAQS.slice(5, 11);
 
 function FAQItem({ faq, activeId, setActiveId }: { faq: typeof HOME_FAQS[0]; activeId: string | null; setActiveId: (id: string | null) => void }) {
   const isOpen = activeId === faq.id;
