@@ -8,6 +8,10 @@ import ProcessPage from "./ProcessPage";
 import ServicesPage from "./ServicesPage";
 import ContactPage from "./ContactPage";
 import ResourcesPage from "./ResourcesPage";
+import BlogArticlePage from "./BlogArticlePage";
+import LegalPage from "./LegalPage";
+import SolutionsPage from "./SolutionsPage";
+import ServiceDetailPage from "./ServiceDetailPage";
 
 const redirectHome = {
   element: createElement(Navigate, { to: "/", replace: true }),
@@ -18,8 +22,11 @@ const draftRoutes = [
   { path: "/about", ...redirectHome },
   { path: "/process", ...redirectHome },
   { path: "/services", ...redirectHome },
+  { path: "/solutions", ...redirectHome },
+  { path: "/solutions/:slug", ...redirectHome },
   { path: "/contact", ...redirectHome },
   { path: "/resources", ...redirectHome },
+  { path: "/resources/:slug", ...redirectHome },
 ];
 
 const liveRoutes = [
@@ -27,8 +34,11 @@ const liveRoutes = [
   { path: "/about", Component: AboutPage },
   { path: "/process", Component: ProcessPage },
   { path: "/services", Component: ServicesPage },
+  { path: "/solutions", Component: SolutionsPage },
+  { path: "/solutions/:slug", Component: ServiceDetailPage },
   { path: "/contact", Component: ContactPage },
   { path: "/resources", Component: ResourcesPage },
+  { path: "/resources/:slug", Component: BlogArticlePage },
 ];
 
 export const router = createBrowserRouter([
@@ -40,6 +50,14 @@ export const router = createBrowserRouter([
   {
     path: "/home",
     Component: HomePageV2,
+  },
+  {
+    path: "/legal/:tab",
+    Component: LegalPage,
+  },
+  {
+    path: "/legal",
+    Component: LegalPage,
   },
   ...(SITE_ONLY_HOME_LIVE ? [{ path: "*", ...redirectHome }] : []),
 ]);

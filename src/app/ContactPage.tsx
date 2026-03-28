@@ -1,8 +1,20 @@
 import { motion, AnimatePresence } from "motion/react";
 import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
-import { Phone, Mail, MapPin, Clock, Shield, ExternalLink } from "lucide-react";
+import { Testimonials } from "./components/v2/Testimonials";
+import { ImageWithFallback } from "./components/figma/ImageWithFallback";
+import { Phone, Mail, MapPin, Clock, Shield, ExternalLink, Instagram } from "lucide-react";
 import { useEffect, useState } from "react";
+
+import feedImg1 from "../../650321405_122097914025122800_4577503060609393561_n.jpg";
+import feedImg2 from "../../651173716_122102903487122800_4091566060201860687_n.jpg";
+import feedImg3 from "../../652943268_122103584361122800_6297573296820253944_n.jpg";
+import feedImg4 from "../../653106919_122102903481122800_5641194311721553293_n.jpg";
+import feedImg5 from "../../654349707_122104586823122800_5314580373899672598_n.jpg";
+import feedImg6 from "../../655591656_122104586829122800_5873864143193721839_n.jpg";
+import feedImg7 from "../../649497464_122096904597122800_6185958289926593262_n.jpg";
+
+const FEED_IMAGES = [feedImg1, feedImg2, feedImg3, feedImg4, feedImg5, feedImg6, feedImg7];
 
 const DEBT_OPTIONS = [
   { value: "", label: "Select an amount" },
@@ -28,7 +40,7 @@ const CONTACT_DETAILS = [
     value: "info@sympletax.com",
     sub: "We reply within 24 hours",
     href: "mailto:info@sympletax.com",
-    color: "#8b5cf6",
+    color: "#00A4A4",
   },
   {
     icon: MapPin,
@@ -36,7 +48,7 @@ const CONTACT_DETAILS = [
     value: "Irvine, CA",
     sub: "Serving clients nationwide",
     href: null,
-    color: "#f59e0b",
+    color: "#00A4A4",
   },
   {
     icon: Clock,
@@ -44,16 +56,10 @@ const CONTACT_DETAILS = [
     value: "Within 24 Hours",
     sub: "Business days, Mon–Fri",
     href: null,
-    color: "#10b981",
+    color: "#00A4A4",
   },
 ];
 
-const TRUST_ITEMS = [
-  "Licensed CPAs & Tax Professionals",
-  "100% Confidential — 256-bit encrypted",
-  "No obligation — cancel anytime",
-  "We never share your information",
-];
 
 export default function ContactPage() {
   useEffect(() => {
@@ -142,26 +148,6 @@ export default function ContactPage() {
                 </p>
               </motion.div>
 
-              {/* Trust pills row — desktop only */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="hidden lg:flex flex-col gap-[10px] shrink-0"
-              >
-                {TRUST_ITEMS.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-[10px] px-[16px] py-[9px] rounded-full"
-                    style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
-                  >
-                    <div className="w-[6px] h-[6px] rounded-full bg-[#00A4A4] shrink-0" aria-hidden="true" />
-                    <span className="font-['DM_Sans'] font-normal text-white/70" style={{ fontSize: "13px" }}>
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </motion.div>
 
             </div>
           </div>
@@ -496,36 +482,77 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* ── 03. Trust bar ─────────────────────────────────────────────────── */}
-        <section className="py-[48px] bg-[#f5f1e8]" aria-label="Why clients trust SympleTax">
+        {/* ── 04. Client Success Stories ────────────────────────────────────── */}
+        <Testimonials />
+
+        {/* ── 05. Social Feed ───────────────────────────────────────────────── */}
+        <section className="py-[64px] lg:py-[120px] bg-white" aria-label="SympleTax social feed">
           <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-[24px] lg:gap-[40px]">
-              {[
-                { stat: "500+", label: "Cases Resolved" },
-                { stat: "48hrs", label: "Average Response Time" },
-                { stat: "100%", label: "Confidential Process" },
-              ].map((item, idx) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.07 }}
-                  className="text-center flex flex-col gap-[6px]"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[24px] mb-[40px]"
+            >
+              <div>
+                <div className="flex items-center gap-[10px] mb-[16px]">
+                  <div className="bg-[#00A4A4] h-px w-[35px]" />
+                  <span
+                    className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+                    style={{ fontSize: "14px", letterSpacing: "0.05em" }}
+                  >
+                    From Our Feed
+                  </span>
+                </div>
+                <h2
+                  className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
+                  style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-1.5px" }}
                 >
-                  <span
-                    className="font-['DM_Sans'] font-bold text-[#00A4A4] leading-none"
-                    style={{ fontSize: "clamp(24px, 4vw, 40px)", letterSpacing: "-1.5px" }}
+                  Tax Help, Plain And Simple
+                </h2>
+              </div>
+              <a
+                href="https://www.instagram.com/sympletax"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-medium text-[#00A4A4] hover:text-[#007a7a] transition-colors shrink-0 focus:outline-none focus-visible:underline"
+                style={{ fontSize: "15px" }}
+                aria-label="Follow SympleTax on Instagram (opens in new tab)"
+              >
+                <Instagram style={{ width: "18px", height: "18px" }} aria-hidden="true" />
+                Follow @sympletax
+              </a>
+            </motion.div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-[12px] lg:gap-[16px]">
+              {FEED_IMAGES.slice(0, 4).map((src, idx) => (
+                <motion.a
+                  key={idx}
+                  href="https://www.instagram.com/sympletax"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  className="group relative rounded-[16px] overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
+                  style={{ aspectRatio: "1 / 1" }}
+                  aria-label={`SympleTax Instagram post ${idx + 1} (opens in new tab)`}
+                >
+                  <ImageWithFallback
+                    src={src}
+                    alt={`SympleTax Instagram post ${idx + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                  />
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    style={{ backgroundColor: "rgba(0,164,164,0.55)" }}
+                    aria-hidden="true"
                   >
-                    {item.stat}
-                  </span>
-                  <span
-                    className="font-['DM_Sans'] font-normal text-[#475569]"
-                    style={{ fontSize: "13px" }}
-                  >
-                    {item.label}
-                  </span>
-                </motion.div>
+                    <Instagram style={{ width: "28px", height: "28px", color: "white" }} />
+                  </div>
+                </motion.a>
               ))}
             </div>
           </div>

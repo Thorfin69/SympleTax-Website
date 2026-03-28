@@ -11,29 +11,29 @@ const SERVICES_DROPDOWN = {
     {
       heading: "Tax Services",
       links: [
-        { name: "Tax Negotiation", href: "/services" },
-        { name: "Tax Relief", href: "/services" },
-        { name: "Tax Settlement", href: "/services" },
-        { name: "Tax Resolution", href: "/services" },
+        { name: "Tax Negotiation", href: "/solutions" },
+        { name: "Tax Relief", href: "/solutions" },
+        { name: "Tax Settlement", href: "/solutions" },
+        { name: "Tax Resolution", href: "/solutions" },
         { name: "Tax Knowledge Center", href: "/resources" },
       ],
     },
     {
       heading: "Fresh Start Programs",
       links: [
-        { name: "Offer in Compromise", href: "/services" },
-        { name: "Penalty Abatement", href: "/services" },
-        { name: "Currently Not Collectible", href: "/services" },
-        { name: "Innocent Spouse Relief", href: "/services" },
+        { name: "Offer in Compromise", href: "/solutions/offer-in-compromise" },
+        { name: "Penalty Abatement", href: "/solutions/penalty-abatement" },
+        { name: "Currently Not Collectible", href: "/solutions/currently-not-collectible" },
+        { name: "Innocent Spouse Relief", href: "/solutions/innocent-spouse-relief" },
       ],
     },
     {
       heading: "Get Help With",
       links: [
-        { name: "IRS Back Taxes", href: "/contact" },
-        { name: "Wage Garnishment", href: "/contact" },
-        { name: "Tax Liens & Levies", href: "/contact" },
-        { name: "Unfiled Tax Returns", href: "/contact" },
+        { name: "IRS Back Taxes", href: "/solutions/back-taxes" },
+        { name: "Wage Garnishment", href: "/solutions/wage-garnishment" },
+        { name: "Tax Liens & Levies", href: "/solutions/tax-lien" },
+        { name: "Unfiled Tax Returns", href: "/solutions/unfiled-returns" },
       ],
     },
   ],
@@ -49,27 +49,27 @@ const RESOURCES_LINKS = {
   left: {
     heading: "Tax Resources",
     links: [
-      { name: "IRS Notice Center", href: "/resources" },
-      { name: "Frequently Asked Questions", href: "/#faq" },
-      { name: "Common IRS Notices", href: "/resources" },
-      { name: "Tax Glossary", href: "/resources" },
-      { name: "Case Results", href: "/resources" },
+      { name: "IRS Notice Center", href: "/resources/irs-cp90-notice" },
+      { name: "Frequently Asked Questions", href: "/resources" },
+      { name: "Common IRS Notices", href: "/resources/irs-cp90-notice" },
+      { name: "Wage Garnishment Guide", href: "/resources/wage-garnishment" },
+      { name: "When to Hire a Professional", href: "/resources/when-to-hire-professional" },
     ],
   },
   right: {
     heading: "IRS Programs",
     links: [
-      { name: "IRS Fresh Start Program", href: "/resources" },
-      { name: "Offer in Compromise", href: "/services" },
-      { name: "Currently Not Collectible", href: "/services" },
-      { name: "Penalty Abatement", href: "/services" },
-      { name: "Installment Agreements", href: "/services" },
+      { name: "IRS Fresh Start Program", href: "/solutions/fresh-start-program" },
+      { name: "Offer in Compromise", href: "/solutions/offer-in-compromise" },
+      { name: "Currently Not Collectible", href: "/solutions/currently-not-collectible" },
+      { name: "Penalty Abatement", href: "/solutions/penalty-abatement" },
+      { name: "Installment Agreements", href: "/solutions/installment-agreement" },
     ],
   },
   image: {
     src: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&h=500&fit=crop&q=80",
-    headline: "We're Here\nTo Help.",
-    cta: "Get Started →",
+    headline: "We're Here To Help.",
+    cta: "Get Started",
     href: "/contact",
   },
 };
@@ -104,26 +104,26 @@ const MOBILE_NAV_ITEMS = [
     name: "Our Services",
     href: "/services",
     accordion: [
-      { name: "Tax Negotiation", href: "/services" },
-      { name: "Tax Relief", href: "/services" },
-      { name: "Tax Settlement", href: "/services" },
-      { name: "Tax Resolution", href: "/services" },
-      { name: "Offer in Compromise", href: "/services" },
-      { name: "Penalty Abatement", href: "/services" },
-      { name: "Currently Not Collectible", href: "/services" },
-      { name: "Innocent Spouse Relief", href: "/services" },
+      { name: "Tax Negotiation", href: "/solutions" },
+      { name: "Tax Relief", href: "/solutions" },
+      { name: "Tax Settlement", href: "/solutions" },
+      { name: "Tax Resolution", href: "/solutions" },
+      { name: "Offer in Compromise", href: "/solutions/offer-in-compromise" },
+      { name: "Penalty Abatement", href: "/solutions/penalty-abatement" },
+      { name: "Currently Not Collectible", href: "/solutions/currently-not-collectible" },
+      { name: "Innocent Spouse Relief", href: "/solutions/innocent-spouse-relief" },
     ],
   },
   {
     name: "Resources",
     href: "/resources",
     accordion: [
-      { name: "IRS Notice Center", href: "/resources" },
-      { name: "Frequently Asked Questions", href: "/#faq" },
-      { name: "Common IRS Notices", href: "/resources" },
-      { name: "Tax Glossary", href: "/resources" },
-      { name: "Case Results", href: "/resources" },
-      { name: "IRS Fresh Start Program", href: "/resources" },
+      { name: "All Resources", href: "/resources" },
+      { name: "IRS Notice Center", href: "/resources/irs-cp90-notice" },
+      { name: "Common IRS Notices", href: "/resources/irs-cp90-notice" },
+      { name: "Wage Garnishment Guide", href: "/resources/wage-garnishment" },
+      { name: "When to Hire a Professional", href: "/resources/when-to-hire-professional" },
+      { name: "IRS Fresh Start Program", href: "/solutions/fresh-start-program" },
     ],
   },
   {
@@ -384,21 +384,27 @@ export function Navbar() {
                               ))}
                             </ul>
                           </div>
-                          <div className="relative overflow-hidden" style={{ minHeight: "280px" }}>
+                          <div
+                            className="flex flex-col justify-between p-[32px] relative overflow-hidden"
+                            style={{ minHeight: "280px" }}
+                          >
                             <img src={RESOURCES_LINKS.image.src} alt="" className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
                             <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, rgba(0,164,164,0.82) 0%, rgba(0,90,90,0.92) 100%)" }} aria-hidden="true" />
-                            <div className="relative z-10 flex flex-col justify-between h-full p-[24px]">
-                              <p className="font-['DM_Sans'] font-bold text-white leading-[1.15]" style={{ fontSize: "22px", letterSpacing: "-0.5px", whiteSpace: "pre-line" }}>
-                                {RESOURCES_LINKS.image.headline}
+                            <p className="font-['DM_Sans'] font-bold text-white leading-[1.15] relative z-10" style={{ fontSize: "22px", letterSpacing: "-0.5px" }}>
+                              {RESOURCES_LINKS.image.headline}
+                            </p>
+                            <div className="flex flex-col gap-[10px] relative z-10">
+                              <p className="font-['DM_Sans'] font-normal text-white/70" style={{ fontSize: "13px", lineHeight: "1.55" }}>
+                                A licensed professional will review your case for free — no commitment.
                               </p>
-                              <Link
-                                to={RESOURCES_LINKS.image.href}
+                              <a
+                                href={RESOURCES_LINKS.image.href}
                                 onClick={() => setActiveDropdown(null)}
                                 className="inline-flex items-center justify-center bg-white text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-200 focus:outline-none"
                                 style={{ fontSize: "13px", padding: "11px 20px" }}
                               >
                                 {RESOURCES_LINKS.image.cta}
-                              </Link>
+                              </a>
                             </div>
                           </div>
                         </div>

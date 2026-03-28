@@ -1,34 +1,49 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Link } from "react-router";
 import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
-import { useEffect } from "react";
-import { Shield, TrendingDown, Users, Eye, CheckCircle, Star } from "lucide-react";
+import { Testimonials } from "./components/v2/Testimonials";
+import { ImageWithFallback } from "./components/figma/ImageWithFallback";
+import { useEffect, useRef } from "react";
+import { Shield, TrendingDown, Users, Eye, CheckCircle, Star, Instagram } from "lucide-react";
+
+import ariFounderPhoto from "../assets/ari-founder.jpg";
+import feedImg1 from "../../650321405_122097914025122800_4577503060609393561_n.jpg";
+import feedImg2 from "../../651173716_122102903487122800_4091566060201860687_n.jpg";
+import feedImg3 from "../../652943268_122103584361122800_6297573296820253944_n.jpg";
+import feedImg4 from "../../653106919_122102903481122800_5641194311721553293_n.jpg";
+import feedImg5 from "../../654349707_122104586823122800_5314580373899672598_n.jpg";
+import feedImg6 from "../../655591656_122104586829122800_5873864143193721839_n.jpg";
+import feedImg7 from "../../649497464_122096904597122800_6185958289926593262_n.jpg";
+import portraitRobert from "../assets/portrait_robert_new.jpg";
+import portraitJames from "../assets/portrait_james_new.jpg";
+import portraitRamon from "../assets/portrait_ramon_new.jpg";
+import portraitElena from "../assets/portrait_elena_new.jpg";
+import portraitSandra from "../assets/portrait_sandra_new.jpg";
+import portraitNicole from "../assets/portrait_nicole_new.jpg";
+import familyPhoto from "../assets/family-double-piggyback-small.jpg";
+import seniorsPhoto from "../assets/depositphotos_12485569-Happy-senior-friends-having-breakfast.webp";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const VALUES = [
   {
     icon: Eye,
-    color: "#00A4A4",
     title: "Transparency",
     body: "Flat-fee pricing from day one. You know exactly what you're paying before we start — no hidden costs, no bait-and-switch, no upsell.",
   },
   {
     icon: Star,
-    color: "#f59e0b",
     title: "Experience",
     body: "Every case is handled by a licensed CPA or former IRS professional — not a salesperson. Direct access to the expert working your file.",
   },
   {
     icon: TrendingDown,
-    color: "#10b981",
     title: "Results",
     body: "We negotiate aggressively to get the maximum reduction legally available. Our track record: clients regularly settle for pennies on the dollar.",
   },
   {
     icon: Users,
-    color: "#8b5cf6",
     title: "No Judgment",
     body: "Tax debt happens to good people. We don't lecture — we listen, investigate, and get to work. Your past doesn't define what we can achieve together.",
   },
@@ -60,7 +75,7 @@ const PROCESS_STEPS = [
 
 const TEAM = [
   {
-    name: "Ari Ehrenberg",
+    name: "Ari AlaEddin",
     title: "Founder & Principal",
     bio: "Ari founded SympleTax after watching clients get overcharged by large tax relief firms that prioritized revenue over results. His mission: make expert IRS representation accessible and honest.",
     credential: "Licensed Tax Professional",
@@ -77,26 +92,14 @@ const TEAM = [
   },
 ];
 
-const TESTIMONIALS = [
-  {
-    quote: "SympleTax stopped my wage garnishment within 48 hours. I finally had my paycheck back and a real plan to move forward. Their team had my absolute best interests at heart.",
-    name: "Michael R.",
-    location: "Irvine, CA",
-    tag: "Wage Garnishment Stopped",
-  },
-  {
-    quote: "I owed over $150,000 in back taxes and thought my life was over. SympleTax settled it for just $4,500. Their expertise through the IRS process was unlike anything I'd seen.",
-    name: "Leslie C.",
-    location: "Austin, TX",
-    tag: "$150K Settled for $4,500",
-  },
-  {
-    quote: "After three terrifying IRS notices, I was paralyzed with fear. SympleTax resolved everything in six months. I never had to speak to the IRS once.",
-    name: "Sarah T.",
-    location: "Miami, FL",
-    tag: "Full IRS Resolution",
-  },
+
+const CAROUSEL_IMAGES = [
+  portraitRobert, portraitJames, portraitRamon,
+  portraitElena, portraitSandra, portraitNicole,
 ];
+
+const CARD_COLORS = ["#e4f8f8", "#eef2ff", "#fdf8ee"];
+const CARD_BORDER = ["rgba(0,164,164,0.15)", "rgba(99,102,241,0.12)", "rgba(245,158,11,0.15)"];
 
 const GUARANTEE_POINTS = [
   "Enrolled in a resolution program or your money back",
@@ -104,6 +107,150 @@ const GUARANTEE_POINTS = [
   "All IRS communication handled exclusively by us",
   "You'll never be surprised by a hidden fee",
 ];
+
+// ─── ProcessCard ──────────────────────────────────────────────────────────────
+
+function ProcessCard({ step, colorIdx }: { step: (typeof PROCESS_STEPS)[0]; colorIdx: number }) {
+  return (
+    <div
+      className="w-full h-full rounded-[24px] p-[28px] lg:p-[40px] flex flex-col lg:flex-row gap-[24px] lg:gap-[40px]"
+      style={{
+        backgroundColor: CARD_COLORS[colorIdx],
+        border: `1px solid ${CARD_BORDER[colorIdx]}`,
+        boxShadow: "0 16px 48px rgba(0,0,0,0.09)",
+      }}
+    >
+      {/* Step number */}
+      <div className="shrink-0 flex flex-row lg:flex-col gap-[12px] items-center lg:items-start">
+        <div
+          className="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center font-['DM_Sans'] font-bold text-white"
+          style={{
+            background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
+            boxShadow: "0 8px 20px rgba(0,164,164,0.35)",
+            fontSize: "20px",
+            letterSpacing: "-0.5px",
+          }}
+          aria-label={`Step ${step.number}`}
+        >
+          {step.number}
+        </div>
+        <span className="font-['DM_Sans'] font-medium text-[#00A4A4] lg:hidden" style={{ fontSize: "13px" }}>
+          {step.duration}
+        </span>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 flex flex-col gap-[12px]">
+        <div>
+          <h3
+            className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.2]"
+            style={{ fontSize: "clamp(18px, 2vw, 22px)", letterSpacing: "-0.5px" }}
+          >
+            {step.title}
+          </h3>
+          <span className="font-['DM_Sans'] font-medium text-[#00A4A4] hidden lg:block" style={{ fontSize: "13px" }}>
+            {step.duration}
+          </span>
+        </div>
+        <p
+          className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.7]"
+          style={{ fontSize: "15px", letterSpacing: "-0.2px" }}
+        >
+          {step.body}
+        </p>
+        <ul className="flex flex-col gap-[8px]">
+          {step.items.map((item) => (
+            <li key={item} className="flex items-center gap-[10px]">
+              <CheckCircle className="w-[14px] h-[14px] text-[#00A4A4] shrink-0" aria-hidden="true" />
+              <span className="font-['DM_Sans'] font-normal text-[#475569]" style={{ fontSize: "13px", letterSpacing: "-0.1px" }}>
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Right CTA */}
+      <div className="shrink-0 flex flex-row lg:flex-col items-center justify-start lg:justify-center gap-[8px] lg:min-w-[140px]">
+        <Link
+          to="/contact"
+          className="inline-flex items-center gap-[8px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
+          style={{
+            fontSize: "13px",
+            padding: "12px 20px",
+            background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
+            boxShadow: "0 8px 20px rgba(0,164,164,0.28)",
+          }}
+          aria-label={`Get started — ${step.title}`}
+        >
+          Get Started
+        </Link>
+        <p className="font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "11px" }}>
+          Free · No obligation
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// ─── ProcessStack ──────────────────────────────────────────────────────────────
+
+function ProcessStack() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  // Card 1 gradually shifts up and scales back as later cards stack on top
+  const y1 = useTransform(scrollYProgress, [0.2, 0.45, 0.55, 0.8], [0, -22, -22, -44]);
+  const scale1 = useTransform(scrollYProgress, [0.2, 0.45, 0.55, 0.8], [1, 0.97, 0.97, 0.94]);
+
+  // Card 2 slides in from bottom, then shifts up when card 3 arrives
+  const y2 = useTransform(scrollYProgress, [0.18, 0.45, 0.55, 0.8], [560, 0, 0, -22]);
+  const scale2 = useTransform(scrollYProgress, [0.55, 0.8], [1, 0.97]);
+
+  // Card 3 slides in last
+  const y3 = useTransform(scrollYProgress, [0.53, 0.8], [560, 0]);
+
+  return (
+    <div ref={containerRef} style={{ height: "320vh" }}>
+      <div className="sticky top-0 overflow-hidden" style={{ height: "100vh" }}>
+        <div className="h-full flex items-center">
+          <div className="max-w-[1330px] mx-auto px-[70px] w-full">
+            <div className="relative w-full" style={{ height: "clamp(340px, 48vh, 440px)" }}>
+
+              {/* Card 1 */}
+              <motion.div
+                className="absolute inset-0"
+                style={{ y: y1, scale: scale1, zIndex: 1, transformOrigin: "top center" }}
+              >
+                <ProcessCard step={PROCESS_STEPS[0]} colorIdx={0} />
+              </motion.div>
+
+              {/* Card 2 */}
+              <motion.div
+                className="absolute inset-0"
+                style={{ y: y2, scale: scale2, zIndex: 2, transformOrigin: "top center" }}
+              >
+                <ProcessCard step={PROCESS_STEPS[1]} colorIdx={1} />
+              </motion.div>
+
+              {/* Card 3 */}
+              <motion.div
+                className="absolute inset-0"
+                style={{ y: y3, zIndex: 3 }}
+              >
+                <ProcessCard step={PROCESS_STEPS[2]} colorIdx={2} />
+              </motion.div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -128,136 +275,172 @@ export default function AboutPage() {
 
         {/* ── 01. Page Hero ─────────────────────────────────────────────────── */}
         <section
-          className="pt-[120px] lg:pt-[160px] pb-[64px] lg:pb-[100px] relative overflow-hidden"
-          style={{ backgroundColor: "#0f172a" }}
+          className="relative overflow-hidden bg-white flex flex-col"
+          style={{ minHeight: "100svh" }}
           aria-label="About SympleTax"
         >
-          {/* Subtle teal radial glow */}
-          <div
-            className="absolute pointer-events-none"
+          {/* Animated floating circles background */}
+          <motion.div
+            className="absolute pointer-events-none rounded-full"
             style={{
-              right: "0",
-              top: "0",
-              width: "600px",
-              height: "600px",
-              background: "radial-gradient(circle at 80% 20%, rgba(0,164,164,0.15) 0%, transparent 65%)",
+              width: "700px", height: "700px",
+              top: "-200px", left: "-180px",
+              background: "radial-gradient(circle, rgba(0,164,164,0.07) 0%, transparent 70%)",
             }}
+            animate={{ y: [-30, 30, -30], x: [-15, 15, -15] }}
+            transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+            aria-hidden="true"
+          />
+          <motion.div
+            className="absolute pointer-events-none rounded-full"
+            style={{
+              width: "500px", height: "500px",
+              top: "60px", right: "-60px",
+              background: "radial-gradient(circle, rgba(0,164,164,0.06) 0%, transparent 70%)",
+            }}
+            animate={{ y: [20, -25, 20], x: [12, -12, 12] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            aria-hidden="true"
+          />
+          <motion.div
+            className="absolute pointer-events-none rounded-full"
+            style={{
+              width: "380px", height: "380px",
+              bottom: "220px", left: "35%",
+              background: "radial-gradient(circle, rgba(99,102,241,0.05) 0%, transparent 70%)",
+            }}
+            animate={{ y: [-12, 22, -12], x: [-18, 8, -18] }}
+            transition={{ duration: 17, repeat: Infinity, ease: "easeInOut" }}
+            aria-hidden="true"
+          />
+          <motion.div
+            className="absolute pointer-events-none rounded-full"
+            style={{
+              width: "260px", height: "260px",
+              bottom: "260px", right: "15%",
+              background: "radial-gradient(circle, rgba(0,164,164,0.08) 0%, transparent 70%)",
+            }}
+            animate={{ y: [15, -20, 15], x: [-8, 18, -8] }}
+            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
             aria-hidden="true"
           />
 
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="max-w-[760px]"
-            >
-              {/* Eyebrow */}
-              <div className="flex items-center gap-[10px] mb-[28px]">
-                <div className="bg-[#00A4A4] h-px w-[35px]" />
-                <span
-                  className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                  style={{ fontSize: "13px", letterSpacing: "0.08em" }}
-                >
-                  Who We Are
-                </span>
-              </div>
-
-              <h1
-                className="font-['DM_Sans'] font-bold text-white leading-[1.06] mb-[28px]"
-                style={{ fontSize: "clamp(36px, 5.5vw, 72px)", letterSpacing: "-2.5px" }}
+          {/* Text content */}
+          <div className="flex-1 relative z-10 pt-[120px] lg:pt-[160px]">
+            <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] pb-[48px] lg:pb-[64px]">
+              <motion.div
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className="max-w-[720px]"
               >
-                We're in Your Corner<br />
-                <span className="text-[#00A4A4]">When the IRS Isn't</span>
-              </h1>
+                {/* Eyebrow */}
+                <div className="flex items-center gap-[10px] mb-[28px]">
+                  <div className="bg-[#00A4A4] h-px w-[35px]" />
+                  <span
+                    className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+                    style={{ fontSize: "14px", letterSpacing: "0.05em" }}
+                  >
+                    Who We Are
+                  </span>
+                </div>
 
-              <p
-                className="font-['DM_Sans'] font-normal text-white/70 leading-[1.7]"
-                style={{ fontSize: "clamp(16px, 1.5vw, 19px)", letterSpacing: "-0.3px", maxWidth: "580px" }}
-              >
-                SympleTax was built for one reason — to give everyday people a fighting chance against complex tax problems. No jargon. No fear tactics. Just expert professionals who work for you.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── 02. Stats bar ─────────────────────────────────────────────────── */}
-        <section className="py-[48px] lg:py-[64px] bg-[#00A4A4]" aria-label="Our results">
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-[32px] lg:gap-[60px]">
-              {[
-                { value: "500+", label: "Cases Resolved" },
-                { value: "99%", label: "Best Result Achieved" },
-                { value: "48hrs", label: "Average Response Time" },
-              ].map((stat, idx) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className="flex flex-col gap-[6px]"
+                <h1
+                  className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.06] mb-[28px]"
+                  style={{ fontSize: "clamp(36px, 5.5vw, 72px)", letterSpacing: "-2.5px" }}
                 >
-                  <span
-                    className="font-['DM_Sans'] font-bold text-white leading-none"
-                    style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-2px" }}
+                  We're in Your Corner<br />
+                  <span className="text-[#00A4A4]">When the IRS Isn't</span>
+                </h1>
+
+                <p
+                  className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.7] mb-[40px]"
+                  style={{ fontSize: "clamp(16px, 1.5vw, 19px)", letterSpacing: "-0.3px", maxWidth: "560px" }}
+                >
+                  SympleTax was built for one reason — to give everyday people a fighting chance against complex tax problems. No jargon. No fear tactics. Just expert professionals who work for you.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-[14px]">
+                  <Link
+                    to="https://ti.sympletax.com/free-consultation"
+                    className="inline-flex items-center justify-center text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
+                    style={{
+                      fontSize: "15px",
+                      padding: "16px 32px",
+                      background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
+                      boxShadow: "0 8px 24px rgba(0,164,164,0.3)",
+                    }}
                   >
-                    {stat.value}
-                  </span>
-                  <span
-                    className="font-['DM_Sans'] font-normal text-white/70"
-                    style={{ fontSize: "14px", letterSpacing: "-0.1px" }}
+                    Get a Free Consultation
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center font-['DM_Sans'] font-medium text-[#0f172a] hover:text-[#00A4A4] transition-colors whitespace-nowrap rounded-full"
+                    style={{ fontSize: "15px", padding: "16px 32px", border: "1.5px solid #e2e8f0" }}
                   >
-                    {stat.label}
-                  </span>
-                </motion.div>
-              ))}
+                    Contact Us →
+                  </Link>
+                </div>
+              </motion.div>
             </div>
+          </div>
+
+          {/* Infinite scroll image carousel — stays in viewport at bottom of hero */}
+          <div className="relative z-10 overflow-hidden pb-[40px] lg:pb-[56px]">
+            <motion.div
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 65, ease: "linear", repeat: Infinity }}
+              className="flex gap-[18px] pl-[18px]"
+              style={{ width: "max-content" }}
+            >
+              {[...CAROUSEL_IMAGES, ...CAROUSEL_IMAGES].map((src, i) => (
+                <div
+                  key={i}
+                  className="shrink-0 rounded-[24px] overflow-hidden"
+                  style={{
+                    width: "clamp(200px, 17vw, 270px)",
+                    height: "clamp(280px, 32vh, 400px)",
+                  }}
+                >
+                  <ImageWithFallback
+                    src={src}
+                    alt=""
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+              ))}
+            </motion.div>
           </div>
         </section>
 
         {/* ── 03. Our Story ─────────────────────────────────────────────────── */}
         <section className="py-[64px] lg:py-[120px] bg-white" aria-label="Our story">
           <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-            <div className="flex flex-col gap-[48px] lg:flex-row lg:gap-[100px] lg:items-center">
+            <div className="flex flex-col gap-[48px] lg:flex-row lg:gap-[100px] lg:items-stretch">
 
-              {/* Left: Founder photo */}
+              {/* Left: Story photo */}
               <motion.div
                 initial={{ opacity: 0, x: -24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
-                className="w-full lg:w-[400px] lg:shrink-0"
+                className="w-full lg:w-[420px] lg:shrink-0 group"
               >
                 <div
-                  className="relative rounded-[24px] overflow-hidden"
-                  style={{ height: "clamp(280px, 50vw, 480px)", backgroundColor: "#f5f1e8" }}
+                  className="relative rounded-[24px] overflow-hidden h-full"
+                  style={{ minHeight: "480px" }}
                 >
-                  {/* Placeholder founder photo with initials */}
+                  <ImageWithFallback
+                    src={familyPhoto}
+                    alt="Happy family relieved after resolving their tax debt"
+                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  {/* Subtle dark overlay that lightens on hover */}
                   <div
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{ background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)" }}
-                  >
-                    <span
-                      className="font-['DM_Sans'] font-bold text-white/30"
-                      style={{ fontSize: "120px", letterSpacing: "-4px" }}
-                    >
-                      AE
-                    </span>
-                  </div>
-                  {/* Credential badge */}
-                  <div
-                    className="absolute bottom-[20px] left-[20px] right-[20px] bg-white rounded-[14px] px-[20px] py-[14px] flex items-center gap-[12px]"
-                    style={{ boxShadow: "0 8px 28px rgba(0,0,0,0.12)" }}
-                  >
-                    <div className="w-[36px] h-[36px] bg-[#00A4A4] rounded-full flex items-center justify-center shrink-0">
-                      <Shield className="w-[16px] h-[16px] text-white" />
-                    </div>
-                    <div>
-                      <p className="font-['DM_Sans'] font-bold text-[#0f172a]" style={{ fontSize: "14px" }}>Ari Ehrenberg</p>
-                      <p className="font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "12px" }}>Founder · Licensed Tax Professional</p>
-                    </div>
-                  </div>
+                    className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0"
+                    style={{ background: "linear-gradient(180deg, transparent 40%, rgba(15,23,42,0.35) 100%)" }}
+                    aria-hidden="true"
+                  />
                 </div>
               </motion.div>
 
@@ -274,7 +457,7 @@ export default function AboutPage() {
                     <div className="bg-[#00A4A4] h-px w-[35px]" />
                     <span
                       className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                      style={{ fontSize: "13px", letterSpacing: "0.08em" }}
+                      style={{ fontSize: "14px", letterSpacing: "0.05em" }}
                     >
                       Our Story
                     </span>
@@ -314,7 +497,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── 04. Values / Why Us ───────────────────────────────────────────── */}
-        <section className="py-[64px] lg:py-[120px]" style={{ backgroundColor: "#f5f1e8" }} aria-label="Why clients choose SympleTax">
+        <section className="py-[64px] lg:py-[120px]" style={{ backgroundColor: "#f9fafb" }} aria-label="Why clients choose SympleTax">
           <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
 
             <motion.div
@@ -328,7 +511,7 @@ export default function AboutPage() {
                 <div className="bg-[#00A4A4] h-px w-[35px]" />
                 <span
                   className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                  style={{ fontSize: "13px", letterSpacing: "0.08em" }}
+                  style={{ fontSize: "14px", letterSpacing: "0.05em" }}
                 >
                   Why SympleTax
                 </span>
@@ -342,7 +525,7 @@ export default function AboutPage() {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[24px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[20px]">
               {VALUES.map((v, idx) => {
                 const Icon = v.icon;
                 return (
@@ -352,20 +535,23 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: idx * 0.08 }}
-                    className="bg-white rounded-[20px] p-[32px] lg:p-[40px] flex gap-[24px]"
-                    style={{ boxShadow: "0 2px 20px rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.04)" }}
+                    className="bg-white rounded-[20px] p-[32px] lg:p-[36px] flex flex-col gap-[20px]"
+                    style={{ boxShadow: "0 2px 20px rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.06)" }}
                   >
+                    {/* Icon */}
                     <div
-                      className="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center shrink-0"
-                      style={{ backgroundColor: v.color + "18" }}
+                      className="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center"
+                      style={{ backgroundColor: "rgba(0,164,164,0.08)", border: "1px solid rgba(0,164,164,0.15)" }}
                       aria-hidden="true"
                     >
-                      <Icon style={{ width: "22px", height: "22px", color: v.color }} />
+                      <Icon style={{ width: "22px", height: "22px", color: "#00A4A4" }} />
                     </div>
-                    <div className="flex flex-col gap-[10px]">
+
+                    {/* Text */}
+                    <div className="flex flex-col gap-[10px] flex-1">
                       <h3
                         className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.2]"
-                        style={{ fontSize: "18px", letterSpacing: "-0.4px" }}
+                        style={{ fontSize: "22px", letterSpacing: "-0.5px" }}
                       >
                         {v.title}
                       </h3>
@@ -376,10 +562,81 @@ export default function AboutPage() {
                         {v.body}
                       </p>
                     </div>
+
+                    {/* Learn More */}
+                    <Link
+                      to="/contact"
+                      className="inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold text-[#00A4A4] hover:text-[#007a7a] transition-colors"
+                      style={{ fontSize: "15px" }}
+                    >
+                      Learn More
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </Link>
                   </motion.div>
                 );
               })}
             </div>
+
+            {/* ── Inline CTA strip ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-[24px] bg-white rounded-[20px] px-[32px] lg:px-[48px] py-[32px] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-[24px] overflow-hidden relative"
+              style={{ boxShadow: "0 2px 20px rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.06)" }}
+            >
+              {/* Decorative teal arc */}
+              <svg
+                className="absolute right-[160px] bottom-[-20px] pointer-events-none hidden lg:block"
+                width="160" height="100" viewBox="0 0 160 100" fill="none"
+                aria-hidden="true"
+              >
+                <path d="M0 80 Q80 0 160 60" stroke="#00A4A4" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.25" />
+              </svg>
+
+              <div className="flex flex-col gap-[6px]">
+                <p
+                  className="font-['DM_Sans'] font-bold text-[#0f172a]"
+                  style={{ fontSize: "22px", letterSpacing: "-0.5px" }}
+                >
+                  Ready to resolve your tax situation?
+                </p>
+                <p
+                  className="font-['DM_Sans'] font-normal text-[#475569]"
+                  style={{ fontSize: "15px" }}
+                >
+                  Free consultation — no obligation, no upfront fees.
+                </p>
+              </div>
+
+              <div className="flex items-center gap-[16px] shrink-0">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-[8px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02]"
+                  style={{
+                    fontSize: "15px",
+                    padding: "14px 28px",
+                    background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
+                    boxShadow: "0 8px 24px rgba(0,164,164,0.3)",
+                  }}
+                >
+                  Get Free Consultation
+                </Link>
+                <Link
+                  to="/services"
+                  className="font-['DM_Sans'] font-medium text-[#0f172a] hover:text-[#00A4A4] transition-colors inline-flex items-center gap-[6px]"
+                  style={{ fontSize: "15px" }}
+                >
+                  View All Services
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </div>
+            </motion.div>
 
           </div>
         </section>
@@ -412,7 +669,7 @@ export default function AboutPage() {
               </h2>
             </motion.div>
 
-            <div className="flex flex-col gap-[0px]">
+            <div className="flex flex-col gap-[16px]">
               {PROCESS_STEPS.map((step, idx) => (
                 <motion.div
                   key={step.number}
@@ -420,7 +677,8 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: idx * 0.12 }}
-                  className="flex flex-col lg:flex-row gap-[24px] lg:gap-[60px] py-[40px] lg:py-[48px] border-b border-[#e8e4da]"
+                  className="flex flex-col lg:flex-row gap-[24px] lg:gap-[60px] py-[40px] px-[32px] lg:py-[48px] lg:px-[40px] rounded-[20px]"
+                  style={{ border: "1px solid #e2e8f0", backgroundColor: "#ffffff" }}
                 >
                   {/* Step number */}
                   <div className="flex items-start gap-[20px] lg:w-[200px] lg:shrink-0">
@@ -491,7 +749,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── 05. Team / Credentials ────────────────────────────────────────── */}
-        <section className="py-[64px] lg:py-[120px] bg-[#0f172a]" aria-label="Our team">
+        <section className="py-[64px] lg:py-[120px]" style={{ backgroundColor: "#f9fafb" }} aria-label="Our team">
           <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
 
             <motion.div
@@ -505,178 +763,107 @@ export default function AboutPage() {
                 <div className="bg-[#00A4A4] h-px w-[35px]" />
                 <span
                   className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                  style={{ fontSize: "13px", letterSpacing: "0.08em" }}
+                  style={{ fontSize: "14px", letterSpacing: "0.05em" }}
                 >
                   Our Team
                 </span>
               </div>
               <h2
-                className="font-['DM_Sans'] font-bold text-white leading-[1.08]"
+                className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
                 style={{ fontSize: "clamp(28px, 4vw, 52px)", letterSpacing: "-1.5px" }}
               >
                 The People Behind Your Resolution
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[24px] mb-[48px] lg:mb-[64px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[28px]">
               {TEAM.map((member, idx) => (
                 <motion.div
                   key={member.name}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="flex gap-[24px] rounded-[20px] p-[28px] lg:p-[36px]"
-                  style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)" }}
+                  transition={{ duration: 0.6, delay: idx * 0.12 }}
+                  className="rounded-[24px] overflow-hidden relative"
+                  style={{
+                    height: "clamp(380px, 50vw, 480px)",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.10)",
+                  }}
                 >
-                  {/* Avatar */}
-                  <div
-                    className="w-[60px] h-[60px] rounded-full flex items-center justify-center shrink-0 font-['DM_Sans'] font-bold text-white"
-                    style={{ backgroundColor: member.bg, fontSize: "18px" }}
-                    aria-hidden="true"
-                  >
-                    {member.initials}
-                  </div>
-                  <div className="flex flex-col gap-[8px]">
-                    <div>
-                      <h3
-                        className="font-['DM_Sans'] font-bold text-white leading-[1.2]"
-                        style={{ fontSize: "18px", letterSpacing: "-0.4px" }}
+                  {/* Photo / gradient background */}
+                  {idx === 0 ? (
+                    <ImageWithFallback
+                      src={ariFounderPhoto}
+                      alt="Ari AlaEddin, Founder of SympleTax"
+                      className="absolute inset-0 w-full h-full object-cover object-center"
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center"
+                      style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)" }}
+                    >
+                      <span
+                        className="font-['DM_Sans'] font-bold text-white/20 select-none"
+                        style={{ fontSize: "clamp(80px, 15vw, 140px)", letterSpacing: "-4px" }}
+                        aria-hidden="true"
                       >
-                        {member.name}
-                      </h3>
-                      <p
-                        className="font-['DM_Sans'] font-normal text-[#00A4A4]"
-                        style={{ fontSize: "13px" }}
-                      >
-                        {member.title}
-                      </p>
+                        {member.initials}
+                      </span>
                     </div>
+                  )}
+
+                  {/* Bottom frosted overlay */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 p-[28px] lg:p-[32px]"
+                    style={{
+                      background: "linear-gradient(transparent 0%, rgba(15,23,42,0.85) 35%, rgba(15,23,42,0.97) 100%)",
+                    }}
+                  >
+                    <h3
+                      className="font-['DM_Sans'] font-bold text-white leading-[1.2] mb-[4px]"
+                      style={{ fontSize: "clamp(18px, 2.5vw, 22px)", letterSpacing: "-0.5px" }}
+                    >
+                      {member.name}
+                    </h3>
                     <p
-                      className="font-['DM_Sans'] font-normal text-white/60 leading-[1.65]"
+                      className="font-['DM_Sans'] font-medium text-[#00A4A4] mb-[10px]"
+                      style={{ fontSize: "14px" }}
+                    >
+                      {member.title}
+                    </p>
+                    <p
+                      className="font-['DM_Sans'] font-normal text-white/65 leading-[1.6]"
                       style={{ fontSize: "14px", letterSpacing: "-0.1px" }}
                     >
                       {member.bio}
                     </p>
-                    <div
-                      className="inline-flex items-center gap-[6px] px-[12px] py-[5px] rounded-full mt-[4px] w-fit"
-                      style={{ backgroundColor: "rgba(0,164,164,0.15)", border: "1px solid rgba(0,164,164,0.25)" }}
-                    >
-                      <Shield className="w-[12px] h-[12px] text-[#00A4A4]" aria-hidden="true" />
-                      <span className="font-['DM_Sans'] font-medium text-[#00A4A4]" style={{ fontSize: "11px" }}>
-                        {member.credential}
-                      </span>
-                    </div>
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Credentials callout */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="rounded-[20px] p-[28px] lg:p-[40px] flex flex-col lg:flex-row lg:items-center gap-[24px] lg:gap-[48px]"
-              style={{ backgroundColor: "rgba(0,164,164,0.08)", border: "1px solid rgba(0,164,164,0.2)" }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-[48px] text-center"
             >
-              <p
-                className="font-['DM_Sans'] font-normal text-white/70 leading-[1.6] flex-1"
-                style={{ fontSize: "14px" }}
-              >
-                <strong className="text-white">Note:</strong> All SympleTax professionals are licensed CPAs or tax resolution specialists. We do not use salespeople for case management. Team profiles are updated regularly — contact us for current credentials.
-              </p>
               <Link
                 to="/contact"
-                className="shrink-0 inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02]"
-                style={{ fontSize: "14px", padding: "13px 28px", whiteSpace: "nowrap" }}
-                aria-label="Contact SympleTax"
+                className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
+                style={{ fontSize: "15px", padding: "15px 36px" }}
+                aria-label="Work with the SympleTax team"
               >
-                Meet Our Team
+                Work With Our Team
               </Link>
             </motion.div>
 
           </div>
         </section>
 
-        {/* ── 06. Testimonials Strip ────────────────────────────────────────── */}
-        <section className="py-[64px] lg:py-[120px]" style={{ backgroundColor: "#f5f1e8" }} aria-label="Client testimonials">
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-[48px] lg:mb-[64px]"
-            >
-              <div className="flex items-center justify-center gap-[10px] mb-[20px]">
-                <div className="bg-[#00A4A4] h-px w-[35px]" />
-                <span
-                  className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                  style={{ fontSize: "13px", letterSpacing: "0.08em" }}
-                >
-                  Client Stories
-                </span>
-                <div className="bg-[#00A4A4] h-px w-[35px]" />
-              </div>
-              <h2
-                className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
-                style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-1.5px" }}
-              >
-                People Who Trusted Us With Their Worst Fear
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
-              {TESTIMONIALS.map((t, idx) => (
-                <motion.div
-                  key={t.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="bg-white rounded-[20px] p-[32px] flex flex-col gap-[20px]"
-                  style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
-                >
-                  {/* Stars */}
-                  <div className="flex gap-[4px]" aria-label="5 stars">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <svg key={i} width="16" height="16" viewBox="0 0 20 20" fill="#FFB800" aria-hidden="true">
-                        <path d="M10 1l2.39 4.84 5.34.78-3.86 3.77.91 5.31L10 13.27l-4.78 2.51.91-5.31L2.27 6.62l5.34-.78L10 1z" />
-                      </svg>
-                    ))}
-                  </div>
-
-                  <p
-                    className="font-['DM_Sans'] font-normal text-[#1e293b] leading-[1.7] flex-1"
-                    style={{ fontSize: "15px", letterSpacing: "-0.2px" }}
-                  >
-                    "{t.quote}"
-                  </p>
-
-                  {/* Result tag */}
-                  <div
-                    className="inline-flex items-center gap-[6px] px-[12px] py-[5px] rounded-full w-fit"
-                    style={{ backgroundColor: "rgba(0,164,164,0.1)", border: "1px solid rgba(0,164,164,0.2)" }}
-                  >
-                    <CheckCircle className="w-[12px] h-[12px] text-[#00A4A4]" aria-hidden="true" />
-                    <span className="font-['DM_Sans'] font-medium text-[#00A4A4]" style={{ fontSize: "11px" }}>
-                      {t.tag}
-                    </span>
-                  </div>
-
-                  <div>
-                    <p className="font-['DM_Sans'] font-bold text-[#0f172a]" style={{ fontSize: "14px" }}>{t.name}</p>
-                    <p className="font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "12px" }}>{t.location}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-          </div>
-        </section>
+        {/* ── 06. Client Testimonials ───────────────────────────────────────── */}
+        <Testimonials />
 
         {/* ── 06b. Our Guarantee ────────────────────────────────────────────── */}
         <section className="py-[64px] lg:py-[120px] bg-white" aria-label="The SympleTax Guarantee">
@@ -696,7 +883,7 @@ export default function AboutPage() {
                     <div className="bg-[#00A4A4] h-px w-[35px]" />
                     <span
                       className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                      style={{ fontSize: "13px", letterSpacing: "0.08em" }}
+                      style={{ fontSize: "14px", letterSpacing: "0.05em" }}
                     >
                       Our Guarantee
                     </span>
@@ -716,17 +903,20 @@ export default function AboutPage() {
                   We stand behind our work. If we take your case, we commit to seeing it through. Here's exactly what you can expect from us.
                 </p>
 
-                <ul className="flex flex-col gap-[16px]">
-                  {GUARANTEE_POINTS.map((point) => (
-                    <li key={point} className="flex items-start gap-[14px]">
-                      <div
-                        className="w-[24px] h-[24px] rounded-full bg-[#00A4A4] flex items-center justify-center shrink-0 mt-[1px]"
+                <ul className="flex flex-col">
+                  {GUARANTEE_POINTS.map((point, idx) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-[20px] py-[18px]"
+                      style={{ borderBottom: idx < GUARANTEE_POINTS.length - 1 ? "1px solid #e8edf2" : "none" }}
+                    >
+                      <span
+                        className="font-['DM_Sans'] font-bold text-[#00A4A4] shrink-0 leading-none"
+                        style={{ fontSize: "13px", letterSpacing: "0.04em", paddingTop: "3px", minWidth: "24px" }}
                         aria-hidden="true"
                       >
-                        <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
-                          <path d="M1 4.5l3 3L10 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
+                        0{idx + 1}
+                      </span>
                       <span
                         className="font-['DM_Sans'] font-normal text-[#0f172a] leading-[1.6]"
                         style={{ fontSize: "15px", letterSpacing: "-0.2px" }}
@@ -759,56 +949,63 @@ export default function AboutPage() {
                 </div>
               </motion.div>
 
-              {/* Right: visual guarantee card */}
+              {/* Right: image + CTA card */}
               <motion.div
                 initial={{ opacity: 0, x: 24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.15 }}
-                className="w-full lg:w-[400px] lg:shrink-0"
+                className="w-full lg:w-[420px] lg:shrink-0"
               >
                 <div
-                  className="rounded-[24px] p-[40px] flex flex-col gap-[24px] text-center"
-                  style={{
-                    background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
-                    boxShadow: "0 24px 64px rgba(0,0,0,0.2)",
-                  }}
+                  className="rounded-[24px] overflow-hidden relative flex flex-col justify-between"
+                  style={{ minHeight: "420px", boxShadow: "0 12px 48px rgba(0,0,0,0.12)" }}
                 >
+                  {/* Background image */}
+                  <ImageWithFallback
+                    src={seniorsPhoto}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                    aria-hidden="true"
+                  />
+
+                  {/* Teal overlay — reduced opacity so image shows through */}
                   <div
-                    className="w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto"
-                    style={{ backgroundColor: "rgba(0,164,164,0.2)", border: "2px solid rgba(0,164,164,0.4)" }}
-                  >
-                    <Shield className="w-[32px] h-[32px] text-[#00A4A4]" />
-                  </div>
-                  <div>
-                    <p
-                      className="font-['DM_Sans'] font-bold text-white mb-[8px]"
-                      style={{ fontSize: "22px", letterSpacing: "-0.5px" }}
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(160deg, rgba(0,164,164,0.52) 0%, rgba(0,80,80,0.72) 100%)" }}
+                    aria-hidden="true"
+                  />
+
+                  {/* Content */}
+                  <div className="relative z-10 flex flex-col justify-between h-full p-[36px] gap-[32px]" style={{ minHeight: "420px" }}>
+                    <div className="flex flex-col gap-[16px]">
+                      <span
+                        className="font-['DM_Sans'] font-medium uppercase text-white/70"
+                        style={{ fontSize: "12px", letterSpacing: "0.1em" }}
+                      >
+                        The SympleTax Promise
+                      </span>
+                      <h3
+                        className="font-['DM_Sans'] font-bold text-white leading-[1.1]"
+                        style={{ fontSize: "clamp(26px, 3vw, 36px)", letterSpacing: "-1px" }}
+                      >
+                        Your Resolution.<br />Our Responsibility.
+                      </h3>
+                      <p
+                        className="font-['DM_Sans'] font-normal text-white/75 leading-[1.6]"
+                        style={{ fontSize: "14px" }}
+                      >
+                        We don't just file paperwork — we stay in your corner until your case is closed and your life moves forward.
+                      </p>
+                    </div>
+
+                    <Link
+                      to="https://ti.sympletax.com/free-consultation"
+                      className="inline-flex items-center justify-center bg-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-200 self-start"
+                      style={{ fontSize: "14px", padding: "13px 26px", color: "#00A4A4" }}
                     >
-                      Results-Backed Promise
-                    </p>
-                    <p
-                      className="font-['DM_Sans'] font-normal text-white/60 leading-[1.6]"
-                      style={{ fontSize: "14px" }}
-                    >
-                      If we enroll you in a resolution program and don't deliver results, we make it right. Period.
-                    </p>
-                  </div>
-                  <div
-                    className="rounded-[14px] p-[20px] text-left"
-                    style={{ backgroundColor: "rgba(0,164,164,0.12)", border: "1px solid rgba(0,164,164,0.25)" }}
-                  >
-                    <p className="font-['DM_Sans'] font-bold text-[#00A4A4] mb-[8px]" style={{ fontSize: "13px" }}>
-                      COVERS
-                    </p>
-                    <ul className="flex flex-col gap-[8px]">
-                      {["Resolution program enrollment", "Error-free return preparation", "All IRS correspondence"].map((item) => (
-                        <li key={item} className="flex items-center gap-[8px]">
-                          <div className="w-[6px] h-[6px] rounded-full bg-[#00A4A4]" aria-hidden="true" />
-                          <span className="font-['DM_Sans'] font-normal text-white/70" style={{ fontSize: "13px" }}>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                      Start Free Consultation
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -817,52 +1014,71 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── 07. Final CTA ─────────────────────────────────────────────────── */}
-        <section className="py-[64px] lg:py-[120px] bg-[#00A4A4] relative overflow-hidden" aria-label="Get started">
-          {/* Subtle radial overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.08) 0%, transparent 60%)" }}
-            aria-hidden="true"
-          />
-
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] text-center relative z-10">
+        {/* ── 07. Social Feed ───────────────────────────────────────────────── */}
+        <section className="py-[64px] lg:py-[120px] bg-white" aria-label="SympleTax social feed">
+          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="max-w-[640px] mx-auto flex flex-col gap-[28px] items-center"
+              transition={{ duration: 0.6 }}
+              className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[24px] mb-[40px]"
             >
-              <h2
-                className="font-['DM_Sans'] font-bold text-white leading-[1.08]"
-                style={{ fontSize: "clamp(28px, 4vw, 52px)", letterSpacing: "-1.5px" }}
+              <div>
+                <div className="flex items-center gap-[10px] mb-[16px]">
+                  <div className="bg-[#00A4A4] h-px w-[35px]" />
+                  <span className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]" style={{ fontSize: "14px", letterSpacing: "0.05em" }}>
+                    From Our Feed
+                  </span>
+                </div>
+                <h2
+                  className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
+                  style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-1.5px" }}
+                >
+                  Tax Help, Plain And Simple
+                </h2>
+              </div>
+              <a
+                href="https://www.instagram.com/sympletax"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-medium text-[#00A4A4] hover:text-[#007a7a] transition-colors shrink-0"
+                style={{ fontSize: "15px" }}
               >
-                Ready to Talk to Someone Who Actually Listens?
-              </h2>
-              <p
-                className="font-['DM_Sans'] font-normal text-white/75 leading-[1.65]"
-                style={{ fontSize: "17px", letterSpacing: "-0.3px" }}
-              >
-                Schedule your free consultation. A licensed professional will review your case — no sales pressure, no obligation. Just honest answers.
-              </p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-[12px] bg-white text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] hover:shadow-[0_20px_48px_rgba(0,0,0,0.2)] transition-all duration-300 shadow-[0_8px_28px_rgba(0,0,0,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00A4A4]"
-                style={{ fontSize: "16px", padding: "18px 48px" }}
-                aria-label="Schedule your free consultation"
-              >
-                Schedule Your Free Consultation
-                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="#00A4A4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-              <p className="font-['DM_Sans'] font-normal text-white/55" style={{ fontSize: "13px" }}>
-                No credit card required · Results may vary · Licensed professionals only
-              </p>
+                <Instagram className="w-[18px] h-[18px]" />
+                Follow @sympletax
+              </a>
             </motion.div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-[16px]">
+              {[feedImg1, feedImg2, feedImg3, feedImg4, feedImg5, feedImg6, feedImg7].slice(0, 4).map((src, idx) => (
+                <motion.a
+                  key={idx}
+                  href="https://www.instagram.com/sympletax"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  className="group relative rounded-[16px] overflow-hidden block aspect-square"
+                  style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
+                  aria-label="View on Instagram"
+                >
+                  <ImageWithFallback
+                    src={src}
+                    alt="SympleTax social media post"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-[#0f172a]/0 group-hover:bg-[#0f172a]/30 transition-all duration-300 flex items-center justify-center">
+                    <Instagram className="w-[28px] h-[28px] text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </motion.a>
+              ))}
+            </div>
           </div>
         </section>
+
 
       </main>
       <Footer />

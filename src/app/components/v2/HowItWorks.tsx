@@ -84,35 +84,37 @@ export function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="rounded-[24px] overflow-hidden flex flex-col"
+              className="relative rounded-[24px] overflow-hidden flex flex-col"
               style={{ backgroundColor: "#00A4A4" }}
             >
               {/* Subtle white top accent bar */}
               <div style={{ height: "4px", backgroundColor: "rgba(255,255,255,0.3)" }} />
 
+              {/* Number — absolute extreme right corner, vertically aligned with icon */}
+              <span
+                className="absolute font-['DM_Sans'] font-bold text-white/20 leading-none pointer-events-none top-[32px] right-[8px] lg:top-[56px] lg:right-[12px]"
+                style={{ fontSize: "clamp(52px, 12vw, 80px)", letterSpacing: "-4px", lineHeight: "0.85" }}
+                aria-hidden="true"
+              >
+                {phase.number}
+              </span>
+
               <div className="flex flex-col gap-[24px] p-[28px] lg:p-[52px] lg:gap-[32px] flex-1">
 
-                {/* Step number on top */}
-                <span
-                  className="font-['DM_Sans'] font-bold text-white/20 leading-none"
-                  style={{ fontSize: "clamp(52px, 12vw, 80px)", letterSpacing: "-4px", lineHeight: "0.85" }}
-                  aria-hidden="true"
-                >
-                  {phase.number}
-                </span>
-
-                {/* Phase badge */}
-                <span
-                  className="font-['DM_Sans'] font-bold rounded-full px-[14px] py-[6px] w-fit"
-                  style={{
-                    fontSize: "12px",
-                    letterSpacing: "0.08em",
-                    backgroundColor: "rgba(255,255,255,0.12)",
-                    color: "rgba(255,255,255,0.75)",
-                  }}
-                >
-                  {phase.label.toUpperCase()}
-                </span>
+                {/* Icon row */}
+                <div className="flex items-center">
+                  <div
+                    className="flex items-center justify-center rounded-[16px]"
+                    style={{
+                      width: "56px",
+                      height: "56px",
+                      backgroundColor: "rgba(255,255,255,0.18)",
+                    }}
+                    aria-hidden="true"
+                  >
+                    <phase.Icon className="w-[28px] h-[28px] text-white" strokeWidth={1.5} />
+                  </div>
+                </div>
 
                 {/* Title */}
                 <h3
@@ -153,18 +155,6 @@ export function HowItWorks() {
                   ))}
                 </ul>
 
-                {/* Icon at bottom */}
-                <div
-                  className="flex items-center justify-center rounded-[16px] mt-auto"
-                  style={{
-                    width: "56px",
-                    height: "56px",
-                    backgroundColor: "rgba(255,255,255,0.18)",
-                  }}
-                  aria-hidden="true"
-                >
-                  <phase.Icon className="w-[28px] h-[28px] text-white" strokeWidth={1.5} />
-                </div>
               </div>
             </motion.div>
           ))}
