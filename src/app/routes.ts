@@ -1,6 +1,7 @@
 import { createElement } from "react";
 import { createBrowserRouter, Navigate } from "react-router";
 import { SITE_ONLY_HOME_LIVE } from "../config/site";
+import RootLayout from "./RootLayout";
 import HomePage from "./HomePage";
 import HomePageV2 from "./HomePageV2";
 import AboutPage from "./AboutPage";
@@ -12,6 +13,7 @@ import BlogArticlePage from "./BlogArticlePage";
 import LegalPage from "./LegalPage";
 import SolutionsPage from "./SolutionsPage";
 import ServiceDetailPage from "./ServiceDetailPage";
+import SitemapPage from "./SitemapPage";
 
 const redirectHome = {
   element: createElement(Navigate, { to: "/", replace: true }),
@@ -27,6 +29,7 @@ const draftRoutes = [
   { path: "/contact", ...redirectHome },
   { path: "/resources", ...redirectHome },
   { path: "/resources/:slug", ...redirectHome },
+  { path: "/sitemap", ...redirectHome },
 ];
 
 const liveRoutes = [
@@ -39,25 +42,31 @@ const liveRoutes = [
   { path: "/contact", Component: ContactPage },
   { path: "/resources", Component: ResourcesPage },
   { path: "/resources/:slug", Component: BlogArticlePage },
+  { path: "/sitemap", Component: SitemapPage },
 ];
 
 export const router = createBrowserRouter([
-  ...(SITE_ONLY_HOME_LIVE ? draftRoutes : liveRoutes),
   {
-    path: "/",
-    Component: HomePageV2,
+    Component: RootLayout,
+    children: [
+      ...(SITE_ONLY_HOME_LIVE ? draftRoutes : liveRoutes),
+      {
+        path: "/",
+        Component: HomePageV2,
+      },
+      {
+        path: "/home",
+        Component: HomePageV2,
+      },
+      {
+        path: "/legal/:tab",
+        Component: LegalPage,
+      },
+      {
+        path: "/legal",
+        Component: LegalPage,
+      },
+      ...(SITE_ONLY_HOME_LIVE ? [{ path: "*", ...redirectHome }] : []),
+    ],
   },
-  {
-    path: "/home",
-    Component: HomePageV2,
-  },
-  {
-    path: "/legal/:tab",
-    Component: LegalPage,
-  },
-  {
-    path: "/legal",
-    Component: LegalPage,
-  },
-  ...(SITE_ONLY_HOME_LIVE ? [{ path: "*", ...redirectHome }] : []),
 ]);

@@ -23,6 +23,14 @@ export interface Article {
   relatedSlugs: string[];
   metaTitle: string;
   metaDescription: string;
+  /** When true, omit from /resources, block direct URL, and exclude from sitemap (bulk library posts). */
+  hiddenFromPublic?: boolean;
+  /** When true, add robots noindex,nofollow on the article page. */
+  noIndex?: boolean;
+  /** Hero / card image (e.g. Unsplash) for library posts. */
+  coverImage?: string;
+  libraryVolume?: 1 | 2;
+  libraryKind?: "blog" | "case-study";
 }
 
 // ─── Categories ───────────────────────────────────────────────────────────────

@@ -92,7 +92,7 @@ export function HowItWorks() {
 
               {/* Number — absolute extreme right corner, vertically aligned with icon */}
               <span
-                className="absolute font-['DM_Sans'] font-bold text-white/20 leading-none pointer-events-none top-[32px] right-[8px] lg:top-[56px] lg:right-[12px]"
+                className="absolute font-['DM_Sans'] font-bold text-white/20 leading-none pointer-events-none top-[32px] right-[20px] lg:top-[56px] lg:right-[12px]"
                 style={{ fontSize: "clamp(52px, 12vw, 80px)", letterSpacing: "-4px", lineHeight: "0.85" }}
                 aria-hidden="true"
               >

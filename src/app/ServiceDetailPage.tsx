@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
+import { FloatingGradientCTA } from "./components/v2/FloatingGradientCTA";
 import { getServiceBySlug, getRelatedServices } from "./serviceContent";
 import { ARTICLES, CATEGORY_GRADIENT } from "./data/articles";
 
@@ -309,8 +310,8 @@ export default function ServiceDetailPage() {
                 >
                   <div className="p-[40px]">
                     <p
-                      className="font-['DM_Sans'] font-bold text-[#00A4A4] leading-[1]"
-                      style={{ fontSize: "clamp(52px, 6vw, 80px)", letterSpacing: "-3px" }}
+                      className="font-['DM_Sans'] font-bold text-[#00A4A4] leading-[1.05]"
+                      style={{ fontSize: "clamp(28px, 3.6vw, 44px)", letterSpacing: "-1.5px" }}
                     >
                       {service.whatItIs.callout.big}
                     </p>
@@ -909,82 +910,12 @@ export default function ServiceDetailPage() {
           </section>
         )}
 
-        {/* ── 08 BOTTOM CTA — Floating Card ────────────────────────────────────── */}
-        <section className="py-[60px] lg:py-[80px]" style={{ background: "#f1f5f9" }}>
-          <div className="max-w-[1330px] mx-auto px-[24px] lg:px-[70px]">
-            <div
-              className="rounded-[32px] py-[72px] px-[40px] lg:px-[80px] text-center relative overflow-hidden"
-              style={{ background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)" }}
-            >
-              {/* Background grid lines for texture */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  backgroundImage: "linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)",
-                  backgroundSize: "60px 60px",
-                }}
-                aria-hidden="true"
-              />
-              {/* Diagonal lines */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(255,255,255,0.03) 60px, rgba(255,255,255,0.03) 61px)",
-                }}
-                aria-hidden="true"
-              />
-              {/* Glow center */}
-              <div
-                className="absolute top-1/2 left-1/2 pointer-events-none"
-                style={{
-                  transform: "translate(-50%, -50%)",
-                  width: "600px",
-                  height: "300px",
-                  background: "radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 65%)",
-                }}
-                aria-hidden="true"
-              />
-              <div className="relative z-10">
-                <h2
-                  className="font-['DM_Sans'] font-bold text-white leading-[1.08] mb-[20px]"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1.5px" }}
-                >
-                  Ready to Resolve Your Tax Problem?
-                </h2>
-                <p
-                  className="font-['DM_Sans'] text-white/80 leading-[1.65] mb-[40px] mx-auto"
-                  style={{ fontSize: "17px", maxWidth: "520px" }}
-                >
-                  Our licensed professionals will review your case for free and tell you exactly what your options are.
-                </p>
-                <div className="flex flex-wrap gap-[14px] justify-center">
-                  <a
-                    href="https://ti.sympletax.com/free-consultation"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-[10px] font-['DM_Sans'] font-bold text-[#00A4A4] bg-white rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_10px_36px_rgba(0,0,0,0.2)]"
-                    style={{ fontSize: "15px", padding: "14px 30px" }}
-                  >
-                    Get a Free Consultation
-                    <ArrowRight className="w-[16px] h-[16px]" />
-                  </a>
-                  <Link
-                    to="/solutions"
-                    className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-semibold text-white rounded-full transition-all duration-300 hover:bg-white/15"
-                    style={{
-                      fontSize: "15px",
-                      padding: "14px 28px",
-                      background: "rgba(255,255,255,0.15)",
-                      border: "1px solid rgba(255,255,255,0.3)",
-                    }}
-                  >
-                    View All Solutions
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FloatingGradientCTA
+          title="Ready to Resolve Your Tax Problem?"
+          description="Our licensed professionals will review your case for free and tell you exactly what your options are."
+          secondaryLabel="View All Solutions"
+          secondaryTo="/solutions"
+        />
 
       </main>
 

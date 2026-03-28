@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { Link, useParams, useNavigate } from "react-router";
 import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -13,12 +13,17 @@ import {
   Calendar,
 } from "lucide-react";
 import {
-  ARTICLES,
   CATEGORY_GRADIENT,
   type Article,
   type ContentBlock,
 } from "./data/articles";
+import {
+  getArticleBySlug,
+  canAccessArticleSlug,
+  getAccessibleRelated,
+} from "./data/articleAccess";
 import { SITE_ORIGIN } from "../config/site";
+import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 
 // ─── Background Decoration ────────────────────────────────────────────────────
 
@@ -44,8 +49,35 @@ function DiagPattern({ dark = true }: { dark?: boolean }) {
 
 // ─── Article Thumbnail ────────────────────────────────────────────────────────
 
-function ArticleThumbnail({ category }: { category: string }) {
+function ArticleThumbnail({
+  category,
+  coverImage,
+  imageAlt = "",
+}: {
+  category: string;
+  coverImage?: string;
+  imageAlt?: string;
+}) {
   const [from, to] = CATEGORY_GRADIENT[category] ?? ["#0f172a", "#1e293b"];
+  if (coverImage) {
+    return (
+      <div className="absolute inset-0">
+        <ImageWithFallback
+          src={coverImage}
+          alt={imageAlt || "Article cover image"}
+          className="w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(15,23,42,0.2) 0%, rgba(15,23,42,0.55) 100%)",
+          }}
+          aria-hidden="true"
+        />
+      </div>
+    );
+  }
   return (
     <div
       className="absolute inset-0"
@@ -438,17 +470,40 @@ export default function BlogArticlePage() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
-  const article = ARTICLES.find((a) => a.slug === slug);
-  const tocItems = article ? extractToc(article.content) : [];
+  /** Memoized: getArticleBySlug returns a new object each call (showcase overrides), which was retriggering effects every render and resetting scroll. */
+  const article = useMemo(() => getArticleBySlug(slug), [slug]);
+  const tocItems = useMemo(
+    () => (article ? extractToc(article.content) : []),
+    [article]
+  );
   const [activeSection, setActiveSection] = useState<string>(tocItems[0]?.id ?? "");
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // Redirect if article not found
   useEffect(() => {
-    if (!article) {
+    if (!slug) {
+      navigate("/resources", { replace: true });
+      return;
+    }
+    if (!getArticleBySlug(slug) || !canAccessArticleSlug(slug)) {
       navigate("/resources", { replace: true });
     }
-  }, [article, navigate]);
+  }, [slug, navigate]);
+
+  useEffect(() => {
+    if (!article?.noIndex) return;
+    const id = "sympletax-meta-robots-noindex";
+    let el = document.getElementById(id) as HTMLMetaElement | null;
+    if (!el) {
+      el = document.createElement("meta");
+      el.id = id;
+      el.setAttribute("name", "robots");
+      document.head.appendChild(el);
+    }
+    el.setAttribute("content", "noindex, nofollow");
+    return () => {
+      document.getElementById(id)?.remove();
+    };
+  }, [article?.noIndex, article?.slug]);
 
   // Set meta tags and structured data
   useEffect(() => {
@@ -459,31 +514,33 @@ export default function BlogArticlePage() {
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute("href", `${SITE_ORIGIN}/resources/${article.slug}`);
 
-    // Article structured data
     const jsonLdId = "sympletax-jsonld-article";
     let script = document.getElementById(jsonLdId) as HTMLScriptElement | null;
-    if (!script) {
-      script = document.createElement("script");
-      script.id = jsonLdId;
-      script.type = "application/ld+json";
-      document.head.appendChild(script);
+    if (!article.noIndex) {
+      if (!script) {
+        script = document.createElement("script");
+        script.id = jsonLdId;
+        script.type = "application/ld+json";
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: article.title,
+        description: article.metaDescription,
+        datePublished: article.dateISO,
+        author: { "@type": "Organization", name: "SympleTax" },
+        publisher: {
+          "@type": "Organization",
+          name: "SympleTax",
+          url: SITE_ORIGIN,
+        },
+        url: `${SITE_ORIGIN}/resources/${article.slug}`,
+      });
+    } else if (script) {
+      script.remove();
     }
-    script.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: article.title,
-      description: article.metaDescription,
-      datePublished: article.dateISO,
-      author: { "@type": "Organization", name: "SympleTax" },
-      publisher: {
-        "@type": "Organization",
-        name: "SympleTax",
-        url: SITE_ORIGIN,
-      },
-      url: `${SITE_ORIGIN}/resources/${article.slug}`,
-    });
 
-    window.scrollTo({ top: 0 });
     return () => {
       document.getElementById(jsonLdId)?.remove();
     };
@@ -521,9 +578,7 @@ export default function BlogArticlePage() {
 
   if (!article) return null;
 
-  const relatedArticles = article.relatedSlugs
-    .map((s) => ARTICLES.find((a) => a.slug === s))
-    .filter(Boolean) as Article[];
+  const relatedArticles = getAccessibleRelated(article);
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -538,7 +593,6 @@ export default function BlogArticlePage() {
       <Navbar />
 
       <main id="main-content">
-
         {/* ── 02. Article Header ────────────────────────────────────────────── */}
         <section
           className="relative overflow-hidden pt-[120px] lg:pt-[160px] pb-[0px]"
@@ -660,17 +714,11 @@ export default function BlogArticlePage() {
               className="relative rounded-t-[24px] overflow-hidden"
               style={{ height: "clamp(200px, 35vw, 400px)" }}
             >
-              <ArticleThumbnail category={article.category} />
-              {/* Decorative label */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span
-                  className="font-['DM_Sans'] font-bold text-white/10 text-center leading-none select-none"
-                  style={{ fontSize: "clamp(60px, 10vw, 140px)", letterSpacing: "-4px" }}
-                  aria-hidden="true"
-                >
-                  {article.category.split(" ")[0]}
-                </span>
-              </div>
+              <ArticleThumbnail
+                category={article.category}
+                coverImage={article.coverImage}
+                imageAlt={article.title}
+              />
             </motion.div>
           </div>
         </section>

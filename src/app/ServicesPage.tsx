@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router";
 import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
+import { FloatingGradientCTA } from "./components/v2/FloatingGradientCTA";
 import { useEffect } from "react";
 import { ArrowRight, CheckCircle, AlertTriangle, Scale, FileText, DollarSign, Shield, RefreshCw } from "lucide-react";
 
@@ -56,54 +57,37 @@ const FRESH_START_PROGRAMS = [
     color: "#00A4A4",
     title: "Offer in Compromise",
     description: "Settle your full IRS debt for less than you owe. Based on your ability to pay, income, expenses, and asset equity — we analyze your case and build the strongest possible offer.",
-    qualifier: "Best for: Taxpayers who genuinely cannot pay their full balance",
   },
   {
     icon: RefreshCw,
     color: "#8b5cf6",
     title: "Penalty Abatement",
     description: "The IRS charges steep penalties for late filing and payment — but they can often be waived. We identify your eligibility for First Time Abatement or Reasonable Cause relief and submit the request.",
-    qualifier: "Best for: First-time offenders or those with documented hardship",
   },
   {
     icon: Shield,
     color: "#10b981",
     title: "Currently Not Collectible",
     description: "If you cannot pay without causing genuine financial hardship, the IRS will put your account in CNC status — halting all collection actions. We establish this status and monitor your case.",
-    qualifier: "Best for: Taxpayers with income barely covering living expenses",
   },
   {
     icon: Scale,
     color: "#f59e0b",
     title: "Innocent Spouse Relief",
     description: "If your spouse or former spouse created the tax liability without your knowledge, you may qualify for full relief from that debt. We evaluate your eligibility and file all required forms.",
-    qualifier: "Best for: Spouses who were unaware of their partner's tax issues",
   },
   {
     icon: FileText,
     color: "#ef4444",
     title: "Unfiled Tax Returns",
     description: "Unfiled returns must be resolved before any IRS program can proceed. We prepare and file missing returns as part of your case — often at no additional charge — which frequently reduces your total balance.",
-    qualifier: "Best for: Anyone with multiple years of unfiled returns",
   },
   {
     icon: AlertTriangle,
     color: "#06b6d4",
     title: "Installment Agreement",
     description: "A structured monthly payment plan can stop IRS collections while you pay over time. We negotiate the terms to ensure the payment amount works for your budget — not just the IRS.",
-    qualifier: "Best for: Taxpayers who can pay over time but not in a lump sum",
   },
-];
-
-const GET_HELP_WITH = [
-  { issue: "IRS Back Taxes", href: "/contact", description: "Years of unpaid taxes stacking up with penalties and interest." },
-  { issue: "Wage Garnishment", href: "/contact", description: "IRS taking a portion of every paycheck — often up to 70%." },
-  { issue: "Tax Liens & Levies", href: "/contact", description: "Legal claim on your property or seizure of your assets." },
-  { issue: "IRS Bank Levy", href: "/contact", description: "IRS freezing and seizing funds from your bank account." },
-  { issue: "Unfiled Tax Returns", href: "/contact", description: "Missing return filings creating growing liability over time." },
-  { issue: "IRS Audit", href: "/contact", description: "IRS examining your returns and questioning your reported income." },
-  { issue: "Payroll Tax Issues", href: "/contact", description: "Business owners facing trust fund penalties and employment tax debt." },
-  { issue: "Tax Lien on Home", href: "/contact", description: "Federal lien blocking your ability to sell or refinance property." },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -403,21 +387,9 @@ export default function ServicesPage() {
                       </p>
                     </div>
 
-                    <div
-                      className="rounded-[10px] px-[14px] py-[10px] mt-auto"
-                      style={{ backgroundColor: program.color + "10", border: `1px solid ${program.color}20` }}
-                    >
-                      <p
-                        className="font-['DM_Sans'] font-medium leading-[1.4]"
-                        style={{ fontSize: "12px", color: program.color }}
-                      >
-                        {program.qualifier}
-                      </p>
-                    </div>
-
                     <Link
                       to="/contact"
-                      className="inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold hover:gap-[10px] transition-all duration-200 focus:outline-none focus-visible:underline"
+                      className="inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold hover:gap-[10px] transition-all duration-200 focus:outline-none focus-visible:underline mt-auto"
                       style={{ fontSize: "13px", color: program.color }}
                       aria-label={`Learn more about ${program.title}`}
                     >
@@ -432,120 +404,14 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* ── Get Help With ─────────────────────────────────────────────────── */}
-        <section className="py-[64px] lg:py-[120px] bg-[#0f172a]" aria-label="Common IRS problems we solve">
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-[48px] lg:mb-[64px]"
-            >
-              <div className="flex items-center gap-[10px] mb-[20px]">
-                <div className="bg-[#00A4A4] h-px w-[35px]" />
-                <span
-                  className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                  style={{ fontSize: "13px", letterSpacing: "0.08em" }}
-                >
-                  Get Help With
-                </span>
-              </div>
-              <h2
-                className="font-['DM_Sans'] font-bold text-white leading-[1.08]"
-                style={{ fontSize: "clamp(28px, 4vw, 52px)", letterSpacing: "-1.5px" }}
-              >
-                Common IRS Problems We Solve
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[0px]">
-              {GET_HELP_WITH.map((item, idx) => (
-                <motion.div
-                  key={item.issue}
-                  initial={{ opacity: 0, x: idx % 2 === 0 ? -16 : 16 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: (idx % 4) * 0.06 }}
-                >
-                  <Link
-                    to={item.href}
-                    className="flex items-center gap-[20px] py-[22px] border-b group hover:pl-[8px] transition-all duration-200 focus:outline-none focus-visible:bg-white/5"
-                    style={{ borderColor: "rgba(255,255,255,0.08)" }}
-                    aria-label={`Get help with ${item.issue}`}
-                  >
-                    <div className="flex-1">
-                      <p
-                        className="font-['DM_Sans'] font-bold text-white group-hover:text-[#00A4A4] transition-colors duration-200 mb-[4px]"
-                        style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
-                      >
-                        {item.issue}
-                      </p>
-                      <p
-                        className="font-['DM_Sans'] font-normal text-white/45"
-                        style={{ fontSize: "13px" }}
-                      >
-                        {item.description}
-                      </p>
-                    </div>
-                    <div
-                      className="w-[40px] h-[40px] rounded-full flex items-center justify-center shrink-0 transition-all duration-200"
-                      style={{ backgroundColor: "rgba(0,164,164,0.15)", border: "1px solid rgba(0,164,164,0.25)" }}
-                      aria-hidden="true"
-                    >
-                      <ArrowRight className="w-[15px] h-[15px] text-[#00A4A4] group-hover:translate-x-[2px] transition-transform" />
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-
-          </div>
-        </section>
-
-        {/* ── Bottom CTA ────────────────────────────────────────────────────── */}
-        <section className="py-[64px] lg:py-[100px] bg-[#00A4A4] relative overflow-hidden" aria-label="Not sure which service">
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 60%)" }}
-            aria-hidden="true"
-          />
-
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] relative z-10">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-[32px]">
-              <div className="max-w-[560px]">
-                <h2
-                  className="font-['DM_Sans'] font-bold text-white leading-[1.08] mb-[16px]"
-                  style={{ fontSize: "clamp(26px, 3.5vw, 48px)", letterSpacing: "-1.5px" }}
-                >
-                  Not Sure Which Service You Need?
-                </h2>
-                <p
-                  className="font-['DM_Sans'] font-normal text-white/80 leading-[1.65]"
-                  style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
-                >
-                  Start with a free consultation. We'll review your IRS situation and tell you exactly which program gives you the best possible outcome — no guessing, no upselling.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-[12px]">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-[12px] bg-white text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.15)] transition-all duration-300 shadow-[0_8px_24px_rgba(0,0,0,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00A4A4]"
-                  style={{ fontSize: "16px", padding: "18px 48px" }}
-                  aria-label="Get a free tax consultation"
-                >
-                  Get a Free Consultation
-                  <ArrowRight className="w-[15px] h-[15px]" aria-hidden="true" />
-                </Link>
-                <p className="text-center font-['DM_Sans'] text-white/60" style={{ fontSize: "12px" }}>
-                  No credit card · No obligation · Licensed professionals
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FloatingGradientCTA
+          ariaLabel="Not sure which service"
+          title="Not Sure Which Service You Need?"
+          description="Start with a free consultation. We'll review your IRS situation and tell you exactly which program gives you the best possible outcome — no guessing, no upselling."
+          secondaryLabel="View All Solutions"
+          secondaryTo="/solutions"
+          footnote="No credit card · No obligation · Licensed professionals"
+        />
 
       </main>
       <Footer />

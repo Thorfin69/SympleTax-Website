@@ -555,7 +555,7 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 28, stiffness: 260 }}
-              className="fixed top-0 right-0 bottom-0 w-full bg-white z-[120] lg:hidden flex flex-col"
+              className="fixed top-0 right-0 bottom-0 w-full bg-white z-[120] lg:hidden flex flex-col font-['DM_Sans']"
               role="dialog"
               aria-modal="true"
               aria-label="Navigation menu"

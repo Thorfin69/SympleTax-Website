@@ -4,8 +4,10 @@ import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
 import { useState, useEffect } from "react";
 import { ArrowRight, Search, X, Clock, BookOpen, ChevronDown } from "lucide-react";
-import { ARTICLES, CATEGORIES, CATEGORY_GRADIENT, type Article } from "./data/articles";
+import { CATEGORIES, CATEGORY_GRADIENT, type Article } from "./data/articles";
+import { getArticlesForResourcesListing } from "./data/articleAccess";
 import { SITE_ORIGIN } from "../config/site";
+import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 
 // ─── FAQ Data ─────────────────────────────────────────────────────────────────
 
@@ -76,14 +78,43 @@ function DiagPattern({ dark = true }: { dark?: boolean }) {
 
 // ─── Article Thumbnail ────────────────────────────────────────────────────────
 
-function ArticleThumbnail({ category, size = "sm" }: { category: string; size?: "sm" | "lg" }) {
+function ArticleThumbnail({
+  category,
+  size = "sm",
+  coverImage,
+  imageAlt = "",
+}: {
+  category: string;
+  size?: "sm" | "lg";
+  coverImage?: string;
+  imageAlt?: string;
+}) {
   const [from, to] = CATEGORY_GRADIENT[category] ?? ["#0f172a", "#1e293b"];
+  const iconSize = size === "lg" ? "64px" : "40px";
+  if (coverImage) {
+    return (
+      <div className="absolute inset-0">
+        <ImageWithFallback
+          src={coverImage}
+          alt={imageAlt || "Article cover"}
+          className="w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(15,23,42,0.15) 0%, rgba(15,23,42,0.55) 100%)",
+          }}
+          aria-hidden="true"
+        />
+      </div>
+    );
+  }
   return (
     <div
       className="absolute inset-0"
       style={{ background: `linear-gradient(135deg, ${from} 0%, ${to} 100%)` }}
     >
-      {/* Dot grid */}
       <div
         className="absolute inset-0 opacity-15"
         style={{
@@ -95,8 +126,8 @@ function ArticleThumbnail({ category, size = "sm" }: { category: string; size?: 
       <BookOpen
         className="absolute text-white/10"
         style={{
-          width: size === "lg" ? "64px" : "40px",
-          height: size === "lg" ? "64px" : "40px",
+          width: iconSize,
+          height: iconSize,
           bottom: "20px",
           right: "20px",
         }}
@@ -121,162 +152,80 @@ function ArticleCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: (idx % 3) * 0.08 }}
-      className="group bg-white rounded-[20px] overflow-hidden flex flex-col transition-all duration-300 hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-[3px]"
-      style={{ border: "1px solid #e8ecf2" }}
+      className="h-full flex flex-col"
     >
-      {/* Thumbnail */}
-      <div className="relative overflow-hidden shrink-0" style={{ height: "200px" }}>
-        <ArticleThumbnail category={article.category} />
-        {/* Category badge */}
-        <div className="absolute top-[14px] left-[14px] z-10">
-          <span
-            className="font-['DM_Sans'] font-medium px-[12px] py-[5px] rounded-full bg-white/20 text-white backdrop-blur-sm"
-            style={{ fontSize: "11px", letterSpacing: "0.04em" }}
-          >
-            {article.category}
-          </span>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="flex flex-col gap-[14px] p-[28px] flex-1">
-        <div className="flex items-center gap-[10px]">
-          <span
-            className="font-['DM_Sans'] font-medium text-[#00A4A4] uppercase"
-            style={{ fontSize: "11px", letterSpacing: "0.06em" }}
-          >
-            {article.category}
-          </span>
-          <span className="w-[3px] h-[3px] rounded-full bg-[#cbd5e1]" aria-hidden="true" />
-          <span
-            className="flex items-center gap-[4px] font-['DM_Sans'] font-normal text-[#94a3b8]"
-            style={{ fontSize: "12px" }}
-          >
-            <Clock className="w-[11px] h-[11px]" aria-hidden="true" />
-            {article.readTime}
-          </span>
+      <Link
+        to={`/resources/${article.slug}`}
+        className="group bg-white rounded-[20px] overflow-hidden flex flex-col flex-1 min-h-0 transition-all duration-300 hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-[3px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] focus-visible:ring-offset-[3px]"
+        style={{ border: "1px solid #e8ecf2" }}
+        aria-label={`Read article: ${article.title}`}
+      >
+        <div className="relative overflow-hidden shrink-0" style={{ height: "200px" }}>
+          <ArticleThumbnail
+            category={article.category}
+            coverImage={article.coverImage}
+            imageAlt={article.title}
+          />
+          <div className="absolute top-[14px] left-[14px] z-10">
+            <span
+              className="font-['DM_Sans'] font-medium px-[12px] py-[5px] rounded-full bg-white/20 text-white backdrop-blur-sm"
+              style={{ fontSize: "11px", letterSpacing: "0.04em" }}
+            >
+              {article.category}
+            </span>
+          </div>
         </div>
 
-        <h3
-          className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.3] group-hover:text-[#00A4A4] transition-colors duration-200"
-          style={{ fontSize: "18px", letterSpacing: "-0.4px" }}
-        >
-          {article.title}
-        </h3>
+        <div className="flex flex-col gap-[14px] p-[28px] flex-1">
+          <div className="flex items-center gap-[10px]">
+            <span
+              className="font-['DM_Sans'] font-medium text-[#00A4A4] uppercase"
+              style={{ fontSize: "11px", letterSpacing: "0.06em" }}
+            >
+              {article.category}
+            </span>
+            <span className="w-[3px] h-[3px] rounded-full bg-[#cbd5e1]" aria-hidden="true" />
+            <span
+              className="flex items-center gap-[4px] font-['DM_Sans'] font-normal text-[#94a3b8]"
+              style={{ fontSize: "12px" }}
+            >
+              <Clock className="w-[11px] h-[11px]" aria-hidden="true" />
+              {article.readTime}
+            </span>
+          </div>
 
-        <p
-          className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65] flex-1"
-          style={{ fontSize: "14px", letterSpacing: "-0.1px" }}
-        >
-          {article.excerpt}
-        </p>
+          <h3
+            className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.3] group-hover:text-[#00A4A4] transition-colors duration-200"
+            style={{ fontSize: "18px", letterSpacing: "-0.4px" }}
+          >
+            {article.title}
+          </h3>
 
-        <div className="flex items-center justify-between pt-[8px] border-t border-[#f1f5f9]">
-          <span
-            className="font-['DM_Sans'] font-normal text-[#94a3b8]"
-            style={{ fontSize: "12px" }}
+          <p
+            className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65] flex-1"
+            style={{ fontSize: "14px", letterSpacing: "-0.1px" }}
           >
-            {article.date}
-          </span>
-          <Link
-            to={`/resources/${article.slug}`}
-            className="inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold text-[#00A4A4] hover:gap-[10px] transition-all duration-200 focus:outline-none focus-visible:underline"
-            style={{ fontSize: "13px" }}
-            aria-label={`Read article: ${article.title}`}
-          >
-            Read Article
-            <ArrowRight className="w-[13px] h-[13px]" aria-hidden="true" />
-          </Link>
+            {article.excerpt}
+          </p>
+
+          <div className="flex items-center justify-between pt-[8px] border-t border-[#f1f5f9]">
+            <span
+              className="font-['DM_Sans'] font-normal text-[#94a3b8]"
+              style={{ fontSize: "12px" }}
+            >
+              {article.date}
+            </span>
+            <span
+              className="inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold text-[#00A4A4] group-hover:gap-[10px] transition-all duration-200"
+              style={{ fontSize: "13px" }}
+              aria-hidden="true"
+            >
+              Read Article
+              <ArrowRight className="w-[13px] h-[13px]" />
+            </span>
+          </div>
         </div>
-      </div>
-    </motion.article>
-  );
-}
-
-// ─── Spotlight Card ───────────────────────────────────────────────────────────
-
-function SpotlightCard({ article }: { article: Article }) {
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="group flex flex-col lg:flex-row bg-white rounded-[24px] overflow-hidden transition-all duration-300 hover:shadow-[0_20px_64px_rgba(0,0,0,0.12)] hover:-translate-y-[2px]"
-      style={{ border: "1px solid #e8ecf2" }}
-    >
-      {/* Thumbnail */}
-      <div className="relative overflow-hidden shrink-0 lg:w-[480px]" style={{ minHeight: "300px" }}>
-        <ArticleThumbnail category={article.category} size="lg" />
-        {/* Featured badge */}
-        <div className="absolute top-[20px] left-[20px] z-10">
-          <span
-            className="font-['DM_Sans'] font-bold uppercase bg-[#00A4A4] text-white px-[14px] py-[6px] rounded-full"
-            style={{ fontSize: "10px", letterSpacing: "0.1em" }}
-          >
-            Featured Article
-          </span>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="flex flex-col justify-center gap-[20px] p-[40px] lg:p-[52px] flex-1">
-        <div className="flex items-center gap-[10px]">
-          <span
-            className="font-['DM_Sans'] font-medium text-[#00A4A4] uppercase"
-            style={{ fontSize: "12px", letterSpacing: "0.06em" }}
-          >
-            {article.category}
-          </span>
-          <span className="w-[3px] h-[3px] rounded-full bg-[#cbd5e1]" aria-hidden="true" />
-          <span
-            className="flex items-center gap-[5px] font-['DM_Sans'] font-normal text-[#94a3b8]"
-            style={{ fontSize: "12px" }}
-          >
-            <Clock className="w-[12px] h-[12px]" aria-hidden="true" />
-            {article.readTime}
-          </span>
-          <span className="w-[3px] h-[3px] rounded-full bg-[#cbd5e1]" aria-hidden="true" />
-          <span className="font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "12px" }}>
-            {article.date}
-          </span>
-        </div>
-
-        <h2
-          className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.15] group-hover:text-[#00A4A4] transition-colors duration-300"
-          style={{ fontSize: "clamp(22px, 2.5vw, 32px)", letterSpacing: "-1px" }}
-        >
-          {article.title}
-        </h2>
-
-        <p
-          className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.7]"
-          style={{ fontSize: "16px", letterSpacing: "-0.2px", maxWidth: "560px" }}
-        >
-          {article.excerpt}
-        </p>
-
-        <div className="flex items-center gap-[20px] pt-[4px]">
-          <Link
-            to={`/resources/${article.slug}`}
-            className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
-            style={{
-              fontSize: "14px",
-              padding: "14px 28px",
-              background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-              boxShadow: "0 8px 24px rgba(0,164,164,0.3)",
-              whiteSpace: "nowrap",
-            }}
-            aria-label={`Read featured article: ${article.title}`}
-          >
-            Read Article
-            <ArrowRight className="w-[14px] h-[14px]" aria-hidden="true" />
-          </Link>
-          <span className="font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "13px" }}>
-            {article.author}
-          </span>
-        </div>
-      </div>
+      </Link>
     </motion.article>
   );
 }
@@ -389,11 +338,9 @@ export default function ResourcesPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeFaq, setActiveFaq] = useState<string>("01");
 
-  const featured = ARTICLES.find((a) => a.featured)!;
-  const showSpotlight = !query && activeCategory === "All";
+  const listingArticles = getArticlesForResourcesListing();
 
-  const gridArticles = ARTICLES.filter((a) => {
-    if (a.featured && showSpotlight) return false;
+  const gridArticles = listingArticles.filter((a) => {
     const matchCat = activeCategory === "All" || a.category === activeCategory;
     const matchQuery =
       !query ||
@@ -544,35 +491,7 @@ export default function ResourcesPage() {
           </div>
         </section>
 
-        {/* ── 03. Spotlight Article ─────────────────────────────────────────── */}
-        <AnimatePresence>
-          {showSpotlight && (
-            <motion.section
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="py-[60px] lg:py-[80px] relative overflow-hidden"
-              style={{ backgroundColor: "#f8fafc" }}
-              aria-label="Featured article"
-            >
-              <DiagPattern dark={false} />
-              <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] relative z-10">
-                <div className="flex items-center gap-[10px] mb-[32px]">
-                  <div className="bg-[#00A4A4] h-px w-[35px]" />
-                  <span
-                    className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                    style={{ fontSize: "14px", letterSpacing: "0.05em" }}
-                  >
-                    Spotlight Article
-                  </span>
-                </div>
-                <SpotlightCard article={featured} />
-              </div>
-            </motion.section>
-          )}
-        </AnimatePresence>
-
-        {/* ── 04. Article Grid ──────────────────────────────────────────────── */}
+        {/* ── 03. Article Grid ──────────────────────────────────────────────── */}
         <section
           className="py-[64px] lg:py-[100px] bg-white relative overflow-hidden"
           aria-label="All articles"
@@ -676,25 +595,15 @@ export default function ResourcesPage() {
               </motion.div>
             )}
 
-            {/* Load more */}
-            {gridArticles.length > 0 && (
-              <div className="text-center mt-[60px]">
-                <p
-                  className="font-['DM_Sans'] font-normal text-[#94a3b8] mb-[20px]"
-                  style={{ fontSize: "14px" }}
-                >
-                  Showing {gridArticles.length} article{gridArticles.length !== 1 ? "s" : ""} — 50+
-                  total coming soon
-                </p>
-                <button
-                  className="inline-flex items-center gap-[10px] border-[1.5px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:bg-[#00A4A4] hover:text-white transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
-                  style={{ fontSize: "14px", padding: "14px 36px" }}
-                >
-                  Load More Articles
-                  <ArrowRight style={{ width: "14px", height: "14px" }} aria-hidden="true" />
-                </button>
-              </div>
-            )}
+            {gridArticles.length > 0 ? (
+              <p
+                className="text-center mt-[48px] font-['DM_Sans'] font-normal text-[#94a3b8]"
+                style={{ fontSize: "14px" }}
+              >
+                Showing {gridArticles.length} of {listingArticles.length} article
+                {listingArticles.length !== 1 ? "s" : ""}
+              </p>
+            ) : null}
           </div>
         </section>
 

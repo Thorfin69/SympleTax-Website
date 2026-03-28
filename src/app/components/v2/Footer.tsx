@@ -16,6 +16,7 @@ const COMPANY_LINKS = [
   { name: "Our Services", href: "/services" },
   { name: "Contact Us", href: "/contact" },
   { name: "Free Consultation", href: "/contact" },
+  { name: "Sitemap", href: "/sitemap" },
 ];
 
 const TAX_SERVICES = [
@@ -204,8 +205,8 @@ export function Footer() {
             Testimonials &amp; Reviews
           </p>
           <p
-            className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7]"
-            style={{ fontSize: "15px" }}
+            className="font-['DM_Sans'] font-normal text-white/35 leading-[1.7] lg:leading-[1.4]"
+            style={{ fontSize: "14px" }}
           >
             Testimonials were provided by actual SympleTax clients and are the clients' sole opinions and experiences. Clients were not compensated. These are individual results which will vary based on circumstances. We do not claim that they are typical results that consumers will generally achieve. Nothing included here should be taken as a guarantee, warranty, prediction, or representation about the results of your situation.
           </p>
@@ -215,7 +216,7 @@ export function Footer() {
         <div className="border-t border-white/[0.07] py-[24px] flex flex-col md:flex-row items-center justify-between gap-[16px]">
           <p
             className="font-['DM_Sans'] text-white/35"
-            style={{ fontSize: "12px" }}
+            style={{ fontSize: "14px" }}
           >
             © {new Date().getFullYear()} SympleTax. All Rights Reserved. Powered by{" "}
             <a
@@ -229,7 +230,7 @@ export function Footer() {
             </a>
           </p>
           <nav aria-label="Legal links">
-            <div className="flex items-center gap-[24px]">
+            <div className="flex flex-wrap items-center gap-x-[24px] gap-y-[12px] text-center lg:text-left">
               {[
                 { label: "Privacy Policy", to: "/legal/privacy-policy" },
                 { label: "Terms of Service", to: "/legal/terms-of-service" },
@@ -240,7 +241,7 @@ export function Footer() {
                   key={label}
                   to={to}
                   className="group relative inline-block font-['DM_Sans'] text-white/35 hover:text-[#00A4A4] transition-colors focus:outline-none focus-visible:underline"
-                  style={{ fontSize: "12px" }}
+                  style={{ fontSize: "14px" }}
                 >
                   {label}
                   <span className="absolute -bottom-[2px] left-0 w-0 h-[1px] bg-[#00A4A4] transition-all duration-300 group-hover:w-full" />

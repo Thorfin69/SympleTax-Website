@@ -462,19 +462,21 @@ export default function SolutionsPage() {
               >
                 {/* Column header */}
                 <div
-                  className="px-[28px] py-[22px] flex items-center gap-[12px]"
+                  className="px-[16px] sm:px-[28px] py-[22px] flex flex-nowrap items-center justify-between gap-[8px] lg:gap-[12px]"
                   style={{ background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)" }}
                 >
-                  <div className="w-[8px] h-[8px] rounded-full bg-white/60" aria-hidden="true" />
+                  <div className="flex min-w-0 flex-nowrap items-center gap-[12px]">
+                    <div className="w-[8px] h-[8px] shrink-0 rounded-full bg-white/60" aria-hidden="true" />
+                    <span
+                      className="font-['DM_Sans'] font-bold text-white whitespace-nowrap"
+                      style={{ fontSize: "15px", letterSpacing: "-0.3px" }}
+                    >
+                      I Know What I Need
+                    </span>
+                  </div>
                   <span
-                    className="font-['DM_Sans'] font-bold text-white"
-                    style={{ fontSize: "15px", letterSpacing: "-0.3px" }}
-                  >
-                    I Know What I Need
-                  </span>
-                  <span
-                    className="font-['DM_Sans'] font-normal text-white/60 ml-auto"
-                    style={{ fontSize: "13px" }}
+                    className="font-['DM_Sans'] font-normal text-white/60 shrink-0 whitespace-nowrap text-[12px] lg:text-[13px]"
+                    style={{ letterSpacing: "-0.2px" }}
                   >
                     Resolution Programs
                   </span>
@@ -541,19 +543,21 @@ export default function SolutionsPage() {
               >
                 {/* Column header */}
                 <div
-                  className="px-[28px] py-[22px] flex items-center gap-[12px]"
+                  className="px-[16px] sm:px-[28px] py-[22px] flex flex-nowrap items-center justify-between gap-[8px] lg:gap-[12px]"
                   style={{ backgroundColor: "#0f172a" }}
                 >
-                  <div className="w-[8px] h-[8px] rounded-full bg-[#00A4A4]/60" aria-hidden="true" />
+                  <div className="flex min-w-0 flex-nowrap items-center gap-[12px]">
+                    <div className="w-[8px] h-[8px] shrink-0 rounded-full bg-[#00A4A4]/60" aria-hidden="true" />
+                    <span
+                      className="font-['DM_Sans'] font-bold text-white whitespace-nowrap"
+                      style={{ fontSize: "15px", letterSpacing: "-0.3px" }}
+                    >
+                      I Have a Tax Problem
+                    </span>
+                  </div>
                   <span
-                    className="font-['DM_Sans'] font-bold text-white"
-                    style={{ fontSize: "15px", letterSpacing: "-0.3px" }}
-                  >
-                    I Have a Tax Problem
-                  </span>
-                  <span
-                    className="font-['DM_Sans'] font-normal text-white/40 ml-auto"
-                    style={{ fontSize: "13px" }}
+                    className="font-['DM_Sans'] font-normal text-white/40 shrink-0 whitespace-nowrap text-[12px] lg:text-[13px]"
+                    style={{ letterSpacing: "-0.2px" }}
                   >
                     Find Your Solution
                   </span>

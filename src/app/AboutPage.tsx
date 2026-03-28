@@ -683,13 +683,13 @@ export default function AboutPage() {
                   {/* Step number */}
                   <div className="flex items-start gap-[20px] lg:w-[200px] lg:shrink-0">
                     <span
-                      className="font-['DM_Sans'] font-bold text-[#00A4A4] leading-none shrink-0"
-                      style={{ fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "-3px", lineHeight: "0.9" }}
+                      className="font-['DM_Sans'] font-bold text-[#00A4A4] shrink-0"
+                      style={{ fontSize: "clamp(40px, 6vw, 64px)", letterSpacing: "-3px", lineHeight: 1 }}
                       aria-hidden="true"
                     >
                       {step.number}
                     </span>
-                    <div className="flex flex-col pt-[4px] lg:hidden">
+                    <div className="flex flex-col lg:hidden">
                       <span
                         className="font-['DM_Sans'] font-bold text-[#0f172a]"
                         style={{ fontSize: "18px", letterSpacing: "-0.4px" }}
@@ -812,12 +812,9 @@ export default function AboutPage() {
                     </div>
                   )}
 
-                  {/* Bottom frosted overlay */}
+                  {/* Bottom frosted overlay — shorter fade on mobile */}
                   <div
-                    className="absolute bottom-0 left-0 right-0 p-[28px] lg:p-[32px]"
-                    style={{
-                      background: "linear-gradient(transparent 0%, rgba(15,23,42,0.85) 35%, rgba(15,23,42,0.97) 100%)",
-                    }}
+                    className="absolute bottom-0 left-0 right-0 p-[28px] lg:p-[32px] max-lg:[background:linear-gradient(transparent_0%,transparent_50%,rgba(15,23,42,0.85)_82%,rgba(15,23,42,0.97)_100%)] lg:[background:linear-gradient(transparent_0%,rgba(15,23,42,0.85)_35%,rgba(15,23,42,0.97)_100%)]"
                   >
                     <h3
                       className="font-['DM_Sans'] font-bold text-white leading-[1.2] mb-[4px]"
@@ -912,7 +909,12 @@ export default function AboutPage() {
                     >
                       <span
                         className="font-['DM_Sans'] font-bold text-[#00A4A4] shrink-0 leading-none"
-                        style={{ fontSize: "13px", letterSpacing: "0.04em", paddingTop: "3px", minWidth: "24px" }}
+                        style={{
+                          fontSize: "clamp(17px, 3vw, 20px)",
+                          letterSpacing: "0.04em",
+                          paddingTop: "2px",
+                          minWidth: "32px",
+                        }}
                         aria-hidden="true"
                       >
                         0{idx + 1}

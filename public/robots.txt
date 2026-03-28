@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.sympletax.com/sitemap.xml
+Sitemap: https://www.sympletax.com/sympletax.xml

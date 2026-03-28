@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
+import { Clock } from "lucide-react";
 import heroBannerImg from "../../../assets/hero-banner-img.png";
 
 // 3 circles — centers at the bottom-center of the section, top halves visible
@@ -16,7 +17,7 @@ export function Hero() {
   return (
     <section
       className="relative overflow-hidden flex flex-col"
-      style={{ minHeight: "100vh", backgroundColor: "#00A4A4" }}
+      style={{ minHeight: "90vh", backgroundColor: "#00A4A4" }}
     >
       {/* ── Concentric circles ─────────────────────────────────────────────────
           Center point = bottom-center of section.
@@ -66,7 +67,7 @@ export function Hero() {
       ))}
 
       {/* TOP: Centered large headline */}
-      <div className="relative z-10 flex flex-col items-center text-center pt-[110px] lg:pt-[160px] px-[25px] lg:px-[40px]">
+      <div className="relative z-10 flex flex-col items-center text-center pt-[180px] lg:pt-[180px] px-[25px] lg:px-[40px]">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -89,7 +90,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-['DM_Sans'] font-bold text-white leading-[1.08]"
           style={{
-            fontSize: "clamp(30px, 8vw, 88px)",
+            fontSize: "clamp(33px, 8.8vw, 88px)",
             letterSpacing: "-2px",
             maxWidth: "900px",
           }}
@@ -107,13 +108,14 @@ export function Hero() {
           <Link
             to="https://ti.sympletax.com/free-consultation"
             className="inline-flex items-center justify-center bg-white text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)] transition-all duration-300 shadow-[0_8px_28px_rgba(0,0,0,0.15)] w-full"
-            style={{ fontSize: "16px", padding: "16px 40px", letterSpacing: "-0.3px" }}
+            style={{ fontSize: "15px", padding: "15px 37px", letterSpacing: "-0.3px" }}
             aria-label="Get started with a free tax consultation"
           >
             Get Started
           </Link>
-          <p className="font-['DM_Sans'] font-normal text-white/60 text-center" style={{ fontSize: "12px" }}>
-            &#9201; Free consultation · No credit card required
+          <p className="flex items-center justify-center gap-[6px] font-['DM_Sans'] font-normal text-white/60 text-center" style={{ fontSize: "12px" }}>
+            <Clock size={12} className="text-white/60" aria-hidden="true" />
+            Free consultation · No credit card required
           </p>
         </motion.div>
       </div>
@@ -161,7 +163,7 @@ export function Hero() {
             decoding="async"
             fetchPriority="high"
             className="w-full object-contain object-bottom"
-            style={{ maxHeight: "217px" }}
+            style={{ maxHeight: "260px" }}
           />
         </motion.div>
       </div>

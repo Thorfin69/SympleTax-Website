@@ -51,7 +51,7 @@ export function MidCTA() {
             </p>
 
             {/* CTAs */}
-            <div className="flex items-center gap-[20px]">
+            <div className="flex flex-col sm:flex-row items-center gap-[16px]">
               <Link
                 to="https://ti.sympletax.com/free-consultation"
                 className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white rounded-full hover:scale-[1.02] transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.25)] hover:shadow-[0_12px_32px_rgba(0,164,164,0.35)]"
