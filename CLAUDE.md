@@ -9,13 +9,14 @@ SympleTax is a tax resolution / IRS relief website serving Americans with IRS ta
 - **Animations**: Framer Motion via `motion/react` — use `AnimatePresence`, `motion.div`, `whileInView`
 - **Icons**: Lucide React
 - **Router**: React Router v7 — import `Link` from `"react-router"` (not `react-router-dom`)
-- **Font**: **Inter only** — `font-['Inter']`. No Manrope, no Work Sans anywhere.
+- **Font**: **DM Sans for v2/active site** — `font-['DM_Sans']`. v1/stax legacy components use `font-['Inter']` but DO NOT use Inter in v2 or any new work.
 - **Images**: Always use `ImageWithFallback` from `./figma/ImageWithFallback` for all `<img>` tags
 
 ## Two-Version Architecture
 The site runs two parallel homepage variants:
-- **`/`** — Production homepage (`HomePage.tsx`) → imports from `src/app/components/*.tsx`
-- **`/home`** — Vibrant v2 homepage (`HomePageV2.tsx`) → imports from `src/app/components/v2/*.tsx`
+- **`/`** — NOW serves `HomePageV2.tsx` (v2 is live at root) → imports from `src/app/components/v2/*.tsx`
+- **`/home`** — Also `HomePageV2.tsx` (same page, both routes)
+- **`components/*.tsx`** — Legacy v1 components (use Inter font). Not served at any active route — do not touch.
 
 **Rule**: Never modify `components/*.tsx` when working on v2 changes. All v2 work goes into `components/v2/`. The two sets of components are completely independent.
 
@@ -33,11 +34,11 @@ The site runs two parallel homepage variants:
 ## Critical Constraints
 
 ### Typography
-- **Single font**: `font-['Inter']` everywhere — no exceptions
-- **H2 standard**: `font-['Inter'] font-bold leading-[1.08]` + `style={{ letterSpacing: "-1.5px" }}`
+- **Active site font**: `font-['DM_Sans']` — used in ALL v2 components and any new pages/components
+- **H2 standard**: `font-['DM_Sans'] font-bold leading-[1.08]` + `style={{ letterSpacing: "-1.5px" }}`
 - **H3**: `style={{ fontSize: "clamp(24px, 2.5vw, 36px)", letterSpacing: "-1px" }}`
-- **Body paragraph**: `font-['Inter'] font-normal leading-[1.65]` + `style={{ fontSize: "16px", letterSpacing: "-0.3px" }}`
-- **Eyebrow label**: `font-['Inter'] font-medium uppercase` + `style={{ fontSize: "14px", letterSpacing: "0.05em" }}`
+- **Body paragraph**: `font-['DM_Sans'] font-normal leading-[1.65]` + `style={{ fontSize: "16px", letterSpacing: "-0.3px" }}`
+- **Eyebrow label**: `font-['DM_Sans'] font-medium uppercase` + `style={{ fontSize: "14px", letterSpacing: "0.05em" }}`
 - **ALL H2 headings must be Title Case** (first letter of every word capitalized)
 - Never use `text-2xl`, `text-4xl`, or any named Tailwind type scale
 
@@ -56,7 +57,7 @@ Every section starts with:
 ```tsx
 <div className="flex items-center gap-[10px]">
   <div className="bg-[COLOR] h-px w-[35px]" />
-  <span className="font-['Inter'] font-medium uppercase text-[COLOR]"
+  <span className="font-['DM_Sans'] font-medium uppercase text-[COLOR]"
         style={{ fontSize: "14px", letterSpacing: "0.05em" }}>
     Section Label
   </span>

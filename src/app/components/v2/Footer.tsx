@@ -19,24 +19,24 @@ const COMPANY_LINKS = [
 ];
 
 const TAX_SERVICES = [
-  { name: "Tax Negotiation", href: "/contact" },
-  { name: "Tax Relief", href: "/contact" },
-  { name: "Tax Settlement", href: "/contact" },
-  { name: "Tax Resolution", href: "/contact" },
-  { name: "Offer in Compromise", href: "/contact" },
-  { name: "Penalty Abatement", href: "/contact" },
-  { name: "Currently Not Collectible", href: "/contact" },
-  { name: "Innocent Spouse Relief", href: "/contact" },
-  { name: "Tax Knowledge Center", href: "/contact" },
+  { name: "Tax Negotiation", href: "/solutions" },
+  { name: "Tax Relief", href: "/solutions" },
+  { name: "Tax Settlement", href: "/solutions/offer-in-compromise" },
+  { name: "Tax Resolution", href: "/solutions" },
+  { name: "Offer in Compromise", href: "/solutions/offer-in-compromise" },
+  { name: "Penalty Abatement", href: "/solutions/penalty-abatement" },
+  { name: "Currently Not Collectible", href: "/solutions/currently-not-collectible" },
+  { name: "Innocent Spouse Relief", href: "/solutions/innocent-spouse-relief" },
+  { name: "Tax Knowledge Center", href: "/resources" },
 ];
 
 const RESOURCES = [
-  { name: "IRS Notice Center", href: "/resources" },
-  { name: "Frequently Asked Questions", href: "/#faq" },
-  { name: "Common IRS Notices", href: "/resources" },
-  { name: "IRS Fresh Start Program", href: "/resources" },
-  { name: "Case Results", href: "/resources" },
-  { name: "Tax Glossary", href: "/resources" },
+  { name: "IRS Notice Center", href: "/resources/irs-cp90-notice" },
+  { name: "Frequently Asked Questions", href: "/resources" },
+  { name: "Common IRS Notices", href: "/resources/irs-cp90-notice" },
+  { name: "IRS Fresh Start Program", href: "/solutions/fresh-start-program" },
+  { name: "Wage Garnishment Guide", href: "/resources/wage-garnishment" },
+  { name: "Offer in Compromise Guide", href: "/resources/offer-in-compromise" },
 ];
 
 const SOCIALS = [
@@ -44,7 +44,7 @@ const SOCIALS = [
   { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61583684011496", label: "SympleTax on Facebook" },
   { icon: Linkedin, href: "https://www.linkedin.com/company/sympletax/", label: "SympleTax on LinkedIn" },
   { icon: TikTokIcon, href: "https://tiktok.com/sympletax", label: "SympleTax on TikTok" },
-  { icon: Youtube, href: "#", label: "SympleTax on YouTube" },
+  { icon: Youtube, href: "https://www.youtube.com/@sympletax", label: "SympleTax on YouTube" },
 ];
 
 function FooterCol({ heading, links }: { heading: string; links: { name: string; href: string }[] }) {
@@ -231,20 +231,20 @@ export function Footer() {
           <nav aria-label="Legal links">
             <div className="flex items-center gap-[24px]">
               {[
-                { label: "Privacy Policy", href: "#" },
-                { label: "Terms of Service", href: "#" },
-                { label: "Disclaimer", href: "#" },
-                { label: "California Privacy Rights", href: "#" },
-              ].map(({ label, href }) => (
-                <a
+                { label: "Privacy Policy", to: "/legal/privacy-policy" },
+                { label: "Terms of Service", to: "/legal/terms-of-service" },
+                { label: "Disclaimer", to: "/legal/disclaimer" },
+                { label: "California Privacy Rights", to: "/legal/california-privacy" },
+              ].map(({ label, to }) => (
+                <Link
                   key={label}
-                  href={href}
+                  to={to}
                   className="group relative inline-block font-['DM_Sans'] text-white/35 hover:text-[#00A4A4] transition-colors focus:outline-none focus-visible:underline"
                   style={{ fontSize: "12px" }}
                 >
                   {label}
                   <span className="absolute -bottom-[2px] left-0 w-0 h-[1px] bg-[#00A4A4] transition-all duration-300 group-hover:w-full" />
-                </a>
+                </Link>
               ))}
             </div>
           </nav>

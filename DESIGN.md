@@ -43,7 +43,7 @@
 ## 3. Typography
 
 ### Font Family
-**Inter ONLY.** No Manrope, no Work Sans, no other fonts anywhere in this project.
+**DM Sans for all v2/active components.** `font-['DM_Sans']` everywhere in `components/v2/`, `AboutPage.tsx`, `LegalPage.tsx`, and all new work. Legacy v1 `components/*.tsx` and `components/stax/` use Inter but are not actively served.
 
 ### Type Scale
 | Element | Size | Weight | Line Height | Letter Spacing |
@@ -57,13 +57,13 @@
 
 ### H2 Standard Class Pattern
 ```tsx
-<h2 className="font-['Inter'] font-bold text-[#0f172a] leading-[1.08]"
+<h2 className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
     style={{ fontSize: "clamp(28px, 3vw, 48px)", letterSpacing: "-1.5px" }}>
 ```
 
 ### Body Paragraph Standard
 ```tsx
-<p className="font-['Inter'] font-normal text-[#475569] leading-[1.65]"
+<p className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65]"
    style={{ fontSize: "16px", letterSpacing: "-0.3px" }}>
 ```
 

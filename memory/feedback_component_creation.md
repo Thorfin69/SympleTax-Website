@@ -49,7 +49,12 @@ The plus/minus circle button pattern looks cheap. Use:
 - Subtle teal tint on active row
 **Why:** User said "this tabs design currently looks a lot cheap."
 
-### 9. Color — Exact Teal Value
+### 9. Font is DM_Sans NOT Inter
+The active v2 site uses `font-['DM_Sans']` everywhere. CLAUDE.md previously said "Inter only" — that was WRONG. Inter is only in the legacy v1 `components/*.tsx` which are not active routes.
+**Why:** User explicitly corrected this. All 187 font usages in `components/v2/` are DM_Sans.
+**How to apply:** Always use `font-['DM_Sans']` in v2 components, AboutPage, LegalPage, and any new pages. Never write `font-['Inter']` in new code.
+
+### 10. Color — Exact Teal Value
 v2 accent teal is `#00A4A4` exactly. Not `cyan-500`, not `#06b6d4`.
 **Why:** User specified `00A4A4` as the project teal after rejecting the initial cyan-500 choice.
 **How to apply:** Use `[#00A4A4]` arbitrary Tailwind values everywhere. Run `perl` replace after any agent work.

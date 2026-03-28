@@ -1,189 +1,165 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router";
 import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
-import { useEffect, useState } from "react";
-import { ArrowRight, BookOpen, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowRight, Search, X, Clock, BookOpen, ChevronDown } from "lucide-react";
+import { ARTICLES, CATEGORIES, CATEGORY_GRADIENT, type Article } from "./data/articles";
+import { SITE_ORIGIN } from "../config/site";
 
-// ─── Blog Data ────────────────────────────────────────────────────────────────
+// ─── FAQ Data ─────────────────────────────────────────────────────────────────
 
-const CATEGORIES = ["All", "IRS Notices", "Tax Relief Programs", "Tax Resolution", "Tax Debt", "Tax Tips"];
-
-const ARTICLES = [
+const FAQS = [
   {
-    id: 1,
-    title: "What Is an Offer in Compromise — And Do You Qualify?",
-    excerpt: "An Offer in Compromise lets you settle your IRS debt for less than you owe. Here's exactly how it works, who qualifies, and what the process looks like from start to finish.",
-    category: "Tax Relief Programs",
-    readTime: "7 min read",
-    date: "March 2026",
-    featured: true,
+    id: "01",
+    q: "How long does IRS tax resolution typically take?",
+    a: "It depends on the resolution path. Installment agreements can be set up in days. An Offer in Compromise typically takes 6 to 24 months. Getting into Currently Not Collectible status can happen in weeks. We'll give you a realistic timeline for your specific situation during your free consultation.",
   },
   {
-    id: 2,
-    title: "IRS CP90 Notice: What It Means and How to Respond",
-    excerpt: "A CP90 is one of the IRS's most serious notices — it's a Final Notice of Intent to Levy. If you received one, you have 30 days to respond before the IRS can seize your assets.",
-    category: "IRS Notices",
-    readTime: "5 min read",
-    date: "March 2026",
-    featured: false,
+    id: "02",
+    q: "Will I still owe money after an Offer in Compromise is accepted?",
+    a: "No — once an OIC is accepted and all required payments are made, the remaining balance is permanently forgiven. That includes penalties and interest that accumulated over time. The one condition: you must stay compliant with all tax obligations for 5 years after acceptance.",
   },
   {
-    id: 3,
-    title: "Wage Garnishment: How to Stop the IRS from Taking Your Paycheck",
-    excerpt: "The IRS can garnish a significant portion of your paycheck with very little warning. Learn how wage garnishments work, your rights, and the fastest ways to get a release.",
-    category: "Tax Resolution",
-    readTime: "6 min read",
-    date: "February 2026",
-    featured: false,
+    id: "03",
+    q: "Does SympleTax work directly with the IRS on my behalf?",
+    a: "Yes. We file a Power of Attorney (Form 2848) which gives us legal authority to speak with the IRS on your behalf. Once filed, you no longer need to speak with the IRS directly — all communication runs through us. This also stops many active collection actions while we negotiate.",
   },
   {
-    id: 4,
-    title: "Currently Not Collectible Status: A Lifeline When You Can't Pay",
-    excerpt: "If you genuinely cannot pay your tax debt, the IRS can put your account in Currently Not Collectible status — temporarily halting all collection actions. Here's how to qualify.",
-    category: "Tax Relief Programs",
-    readTime: "5 min read",
-    date: "February 2026",
-    featured: false,
+    id: "04",
+    q: "What if I genuinely cannot afford to pay anything right now?",
+    a: "That's exactly the scenario that Currently Not Collectible (CNC) status was designed for. If your income minus allowable living expenses leaves nothing for IRS payments, the IRS will pause all collection activity. Interest still accrues, but no garnishments, levies, or new collection actions — giving you time to stabilize.",
   },
   {
-    id: 5,
-    title: "How Many Years of Unfiled Tax Returns Is Too Many?",
-    excerpt: "Missing one year of tax returns is common. Missing several is a serious IRS problem. We explain the consequences, the statute of limitations, and how to come back into compliance.",
-    category: "Tax Debt",
-    readTime: "8 min read",
-    date: "February 2026",
-    featured: false,
+    id: "05",
+    q: "What IRS notices should I be most concerned about?",
+    a: "The CP90 and LT11 are the most urgent — they're Final Notices of Intent to Levy with 30-day response deadlines. CP14 (first balance due notice) and CP503 (second notice) are earlier warning signs. Any notice with a deadline or the word 'levy' or 'seizure' should be treated as urgent.",
   },
   {
-    id: 6,
-    title: "Penalty Abatement: How to Get the IRS to Waive Your Penalties",
-    excerpt: "The IRS charges substantial penalties for late filing and late payment — but they can be waived under the right circumstances. Here's how First Time Abatement works and how to apply.",
-    category: "Tax Relief Programs",
-    readTime: "6 min read",
-    date: "January 2026",
-    featured: false,
+    id: "06",
+    q: "Can the IRS come after my retirement accounts or my home?",
+    a: "Yes — a levy can reach retirement accounts (subject to some protections), and a federal tax lien can attach to your home's equity. However, seizing a primary residence requires IRS management approval and court involvement, making it rare. Retirement account levies are more common. Either scenario underscores why acting before the IRS escalates is critical.",
   },
   {
-    id: 7,
-    title: "IRS Tax Lien vs. Tax Levy: What's the Difference?",
-    excerpt: "Most people confuse these two, but they're very different IRS actions. A lien is a legal claim on your property. A levy is the actual seizure of it. Here's what each means for you.",
-    category: "Tax Debt",
-    readTime: "5 min read",
-    date: "January 2026",
-    featured: false,
+    id: "07",
+    q: "What's the real difference between an OIC and a payment plan?",
+    a: "A payment plan (Installment Agreement) lets you pay your full balance over time — interest and penalties keep accruing throughout. An OIC settles the debt for less than you owe, permanently forgiving the remainder once paid. OICs are harder to qualify for but can result in a dramatically lower total payment. We'll tell you honestly which makes more financial sense for your situation.",
   },
   {
-    id: 8,
-    title: "5 Red Flags That Signal You Need a Tax Professional — Not a DIY Solution",
-    excerpt: "Plenty of minor tax issues are solvable on your own. But some situations demand a licensed professional. Here are the five scenarios where going solo is a costly mistake.",
-    category: "Tax Tips",
-    readTime: "4 min read",
-    date: "January 2026",
-    featured: false,
-  },
-  {
-    id: 9,
-    title: "What Is an Installment Agreement and Is It Right for You?",
-    excerpt: "An IRS Installment Agreement lets you pay your tax debt in monthly payments. It's not always the best option — but sometimes it's exactly right. Here's how to evaluate it.",
-    category: "Tax Resolution",
-    readTime: "5 min read",
-    date: "December 2025",
-    featured: false,
+    id: "08",
+    q: "Will getting tax help affect my credit score?",
+    a: "Hiring a tax professional doesn't affect your credit. An IRS installment agreement doesn't appear on your credit report either. The thing that does affect credit is an IRS federal tax lien, which is a public record. Resolving your tax debt — especially before a lien is filed — protects your credit long-term.",
   },
 ];
 
-// ─── Sub-Components ───────────────────────────────────────────────────────────
+// ─── Background Elements ──────────────────────────────────────────────────────
 
-function CategoryPill({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
+function DiagPattern({ dark = true }: { dark?: boolean }) {
+  const color = dark ? "rgba(255,255,255,0.025)" : "rgba(0,164,164,0.025)";
   return (
-    <button
-      onClick={onClick}
-      className="font-['DM_Sans'] font-medium rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
+    <div
+      className="absolute inset-0 pointer-events-none"
+      aria-hidden="true"
       style={{
-        fontSize: "13px",
-        padding: "8px 18px",
-        backgroundColor: active ? "#00A4A4" : "white",
-        color: active ? "white" : "#475569",
-        border: active ? "1.5px solid #00A4A4" : "1.5px solid #e2e8f0",
-        whiteSpace: "nowrap",
+        backgroundImage: `repeating-linear-gradient(
+          45deg,
+          ${color} 0px,
+          ${color} 1px,
+          transparent 1px,
+          transparent 60px
+        )`,
+        backgroundSize: "60px 60px",
       }}
-      aria-pressed={active}
-    >
-      {label}
-    </button>
+    />
   );
 }
+
+// ─── Article Thumbnail ────────────────────────────────────────────────────────
+
+function ArticleThumbnail({ category, size = "sm" }: { category: string; size?: "sm" | "lg" }) {
+  const [from, to] = CATEGORY_GRADIENT[category] ?? ["#0f172a", "#1e293b"];
+  return (
+    <div
+      className="absolute inset-0"
+      style={{ background: `linear-gradient(135deg, ${from} 0%, ${to} 100%)` }}
+    >
+      {/* Dot grid */}
+      <div
+        className="absolute inset-0 opacity-15"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+      <BookOpen
+        className="absolute text-white/10"
+        style={{
+          width: size === "lg" ? "64px" : "40px",
+          height: size === "lg" ? "64px" : "40px",
+          bottom: "20px",
+          right: "20px",
+        }}
+        aria-hidden="true"
+      />
+    </div>
+  );
+}
+
+// ─── Article Card ─────────────────────────────────────────────────────────────
 
 function ArticleCard({
   article,
   idx,
-  featured = false,
 }: {
-  article: typeof ARTICLES[0];
+  article: Article;
   idx: number;
-  featured?: boolean;
 }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: (idx % 3) * 0.08 }}
-      className={`group bg-white rounded-[20px] overflow-hidden flex flex-col transition-all duration-300 hover:shadow-[0_12px_40px_rgba(0,0,0,0.1)] hover:-translate-y-[2px] ${featured ? "lg:flex-row" : ""}`}
-      style={{ border: "1px solid #e8e4da" }}
+      className="group bg-white rounded-[20px] overflow-hidden flex flex-col transition-all duration-300 hover:shadow-[0_16px_48px_rgba(0,0,0,0.12)] hover:-translate-y-[3px]"
+      style={{ border: "1px solid #e8ecf2" }}
     >
-      {/* Image placeholder */}
-      <div
-        className={`relative overflow-hidden shrink-0 ${featured ? "lg:w-[420px]" : "h-[200px]"}`}
-        style={{
-          height: featured ? undefined : "200px",
-          minHeight: featured ? "260px" : undefined,
-          background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 60%, #0f172a 100%)",
-        }}
-        aria-hidden="true"
-      >
-        {/* Decorative pattern */}
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: "radial-gradient(circle at 30% 40%, white 1px, transparent 1px), radial-gradient(circle at 70% 60%, white 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
+      {/* Thumbnail */}
+      <div className="relative overflow-hidden shrink-0" style={{ height: "200px" }}>
+        <ArticleThumbnail category={article.category} />
         {/* Category badge */}
-        <div className="absolute top-[14px] left-[14px]">
+        <div className="absolute top-[14px] left-[14px] z-10">
           <span
             className="font-['DM_Sans'] font-medium px-[12px] py-[5px] rounded-full bg-white/20 text-white backdrop-blur-sm"
-            style={{ fontSize: "11px", letterSpacing: "0.02em" }}
+            style={{ fontSize: "11px", letterSpacing: "0.04em" }}
           >
             {article.category}
           </span>
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <BookOpen className="w-[40px] h-[40px] text-white/20" aria-hidden="true" />
         </div>
       </div>
 
       {/* Content */}
-      <div className={`flex flex-col gap-[16px] p-[28px] ${featured ? "flex-1" : ""}`}>
+      <div className="flex flex-col gap-[14px] p-[28px] flex-1">
         <div className="flex items-center gap-[10px]">
           <span
             className="font-['DM_Sans'] font-medium text-[#00A4A4] uppercase"
-            style={{ fontSize: "11px", letterSpacing: "0.05em" }}
+            style={{ fontSize: "11px", letterSpacing: "0.06em" }}
           >
             {article.category}
           </span>
-          <span className="text-[#e2e8f0]">·</span>
-          <span className="flex items-center gap-[4px] font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "11px" }}>
+          <span className="w-[3px] h-[3px] rounded-full bg-[#cbd5e1]" aria-hidden="true" />
+          <span
+            className="flex items-center gap-[4px] font-['DM_Sans'] font-normal text-[#94a3b8]"
+            style={{ fontSize: "12px" }}
+          >
             <Clock className="w-[11px] h-[11px]" aria-hidden="true" />
             {article.readTime}
           </span>
         </div>
 
         <h3
-          className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.25] group-hover:text-[#00A4A4] transition-colors duration-200"
-          style={{ fontSize: featured ? "clamp(20px, 2vw, 26px)" : "18px", letterSpacing: "-0.4px" }}
+          className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.3] group-hover:text-[#00A4A4] transition-colors duration-200"
+          style={{ fontSize: "18px", letterSpacing: "-0.4px" }}
         >
           {article.title}
         </h3>
@@ -195,18 +171,21 @@ function ArticleCard({
           {article.excerpt}
         </p>
 
-        <div className="flex items-center justify-between pt-[4px]">
-          <span className="font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "12px" }}>
+        <div className="flex items-center justify-between pt-[8px] border-t border-[#f1f5f9]">
+          <span
+            className="font-['DM_Sans'] font-normal text-[#94a3b8]"
+            style={{ fontSize: "12px" }}
+          >
             {article.date}
           </span>
           <Link
-            to={`/resources/${article.id}`}
+            to={`/resources/${article.slug}`}
             className="inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold text-[#00A4A4] hover:gap-[10px] transition-all duration-200 focus:outline-none focus-visible:underline"
             style={{ fontSize: "13px" }}
-            aria-label={`Read: ${article.title}`}
+            aria-label={`Read article: ${article.title}`}
           >
             Read Article
-            <ArrowRight className="w-[14px] h-[14px]" aria-hidden="true" />
+            <ArrowRight className="w-[13px] h-[13px]" aria-hidden="true" />
           </Link>
         </div>
       </div>
@@ -214,23 +193,248 @@ function ArticleCard({
   );
 }
 
+// ─── Spotlight Card ───────────────────────────────────────────────────────────
+
+function SpotlightCard({ article }: { article: Article }) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="group flex flex-col lg:flex-row bg-white rounded-[24px] overflow-hidden transition-all duration-300 hover:shadow-[0_20px_64px_rgba(0,0,0,0.12)] hover:-translate-y-[2px]"
+      style={{ border: "1px solid #e8ecf2" }}
+    >
+      {/* Thumbnail */}
+      <div className="relative overflow-hidden shrink-0 lg:w-[480px]" style={{ minHeight: "300px" }}>
+        <ArticleThumbnail category={article.category} size="lg" />
+        {/* Featured badge */}
+        <div className="absolute top-[20px] left-[20px] z-10">
+          <span
+            className="font-['DM_Sans'] font-bold uppercase bg-[#00A4A4] text-white px-[14px] py-[6px] rounded-full"
+            style={{ fontSize: "10px", letterSpacing: "0.1em" }}
+          >
+            Featured Article
+          </span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col justify-center gap-[20px] p-[40px] lg:p-[52px] flex-1">
+        <div className="flex items-center gap-[10px]">
+          <span
+            className="font-['DM_Sans'] font-medium text-[#00A4A4] uppercase"
+            style={{ fontSize: "12px", letterSpacing: "0.06em" }}
+          >
+            {article.category}
+          </span>
+          <span className="w-[3px] h-[3px] rounded-full bg-[#cbd5e1]" aria-hidden="true" />
+          <span
+            className="flex items-center gap-[5px] font-['DM_Sans'] font-normal text-[#94a3b8]"
+            style={{ fontSize: "12px" }}
+          >
+            <Clock className="w-[12px] h-[12px]" aria-hidden="true" />
+            {article.readTime}
+          </span>
+          <span className="w-[3px] h-[3px] rounded-full bg-[#cbd5e1]" aria-hidden="true" />
+          <span className="font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "12px" }}>
+            {article.date}
+          </span>
+        </div>
+
+        <h2
+          className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.15] group-hover:text-[#00A4A4] transition-colors duration-300"
+          style={{ fontSize: "clamp(22px, 2.5vw, 32px)", letterSpacing: "-1px" }}
+        >
+          {article.title}
+        </h2>
+
+        <p
+          className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.7]"
+          style={{ fontSize: "16px", letterSpacing: "-0.2px", maxWidth: "560px" }}
+        >
+          {article.excerpt}
+        </p>
+
+        <div className="flex items-center gap-[20px] pt-[4px]">
+          <Link
+            to={`/resources/${article.slug}`}
+            className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
+            style={{
+              fontSize: "14px",
+              padding: "14px 28px",
+              background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
+              boxShadow: "0 8px 24px rgba(0,164,164,0.3)",
+              whiteSpace: "nowrap",
+            }}
+            aria-label={`Read featured article: ${article.title}`}
+          >
+            Read Article
+            <ArrowRight className="w-[14px] h-[14px]" aria-hidden="true" />
+          </Link>
+          <span className="font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "13px" }}>
+            {article.author}
+          </span>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+// ─── Category Pill ────────────────────────────────────────────────────────────
+
+function CategoryPill({
+  label,
+  active,
+  onClick,
+}: {
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className="font-['DM_Sans'] font-medium rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] shrink-0"
+      style={{
+        fontSize: "13px",
+        padding: "9px 20px",
+        backgroundColor: active ? "#00A4A4" : "white",
+        color: active ? "white" : "#475569",
+        border: active ? "1.5px solid #00A4A4" : "1.5px solid #e2e8f0",
+        whiteSpace: "nowrap",
+        boxShadow: active ? "0 4px 12px rgba(0,164,164,0.25)" : "none",
+      }}
+      aria-pressed={active}
+    >
+      {label}
+    </button>
+  );
+}
+
+// ─── FAQ Accordion Item ───────────────────────────────────────────────────────
+
+function FaqItem({
+  item,
+  active,
+  onClick,
+}: {
+  item: typeof FAQS[0];
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <div
+      className="border-b transition-colors duration-200"
+      style={{ borderColor: active ? "rgba(0,164,164,0.2)" : "#e8ecf2" }}
+    >
+      <button
+        onClick={onClick}
+        className="w-full flex items-start justify-between gap-[20px] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] rounded-[4px]"
+        style={{ padding: "24px 0" }}
+        aria-expanded={active}
+      >
+        <span
+          className="font-['DM_Sans'] font-semibold text-[#0f172a] leading-[1.4] flex-1"
+          style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
+        >
+          {item.q}
+        </span>
+        <div
+          className="w-[28px] h-[28px] rounded-full flex items-center justify-center shrink-0 transition-all duration-300 mt-[1px]"
+          style={{
+            backgroundColor: active ? "#00A4A4" : "#f1f5f9",
+            transform: active ? "rotate(180deg)" : "rotate(0deg)",
+          }}
+        >
+          <ChevronDown
+            className="transition-colors duration-200"
+            style={{
+              width: "14px",
+              height: "14px",
+              color: active ? "white" : "#64748b",
+            }}
+            aria-hidden="true"
+          />
+        </div>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {active && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{ overflow: "hidden" }}
+          >
+            <p
+              className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.7] pb-[24px]"
+              style={{ fontSize: "15px", letterSpacing: "-0.2px" }}
+            >
+              {item.a}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function ResourcesPage() {
-  useEffect(() => {
-    document.title = "Tax Resources & Blog | SympleTax";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Free expert guides on IRS notices, tax relief programs, and tax resolution. Written by licensed professionals.");
-  }, []);
-
+  const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
-
-  const filtered = activeCategory === "All"
-    ? ARTICLES
-    : ARTICLES.filter((a) => a.category === activeCategory);
+  const [activeFaq, setActiveFaq] = useState<string>("01");
 
   const featured = ARTICLES.find((a) => a.featured)!;
-  const rest = filtered.filter((a) => !a.featured || activeCategory !== "All");
+  const showSpotlight = !query && activeCategory === "All";
+
+  const gridArticles = ARTICLES.filter((a) => {
+    if (a.featured && showSpotlight) return false;
+    const matchCat = activeCategory === "All" || a.category === activeCategory;
+    const matchQuery =
+      !query ||
+      a.title.toLowerCase().includes(query.toLowerCase()) ||
+      a.excerpt.toLowerCase().includes(query.toLowerCase());
+    return matchCat && matchQuery;
+  });
+
+  useEffect(() => {
+    document.title = "Tax Help & Resources | SympleTax";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta)
+      meta.setAttribute(
+        "content",
+        "Tax guides, IRS insights, and practical advice — written for real people, not accountants."
+      );
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute("href", `${SITE_ORIGIN}/resources`);
+
+    // FAQPage structured data
+    const jsonLdId = "sympletax-jsonld-resources";
+    let script = document.getElementById(jsonLdId) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement("script");
+      script.id = jsonLdId;
+      script.type = "application/ld+json";
+      document.head.appendChild(script);
+    }
+    script.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: FAQS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    });
+    return () => {
+      document.getElementById(jsonLdId)?.remove();
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -241,227 +445,446 @@ export default function ResourcesPage() {
       >
         Skip to main content
       </a>
+
       <Navbar />
+
       <main id="main-content">
 
-        {/* ── Hero ──────────────────────────────────────────────────────────── */}
+        {/* ── 02. Blog Header ───────────────────────────────────────────────── */}
         <section
-          className="pt-[120px] lg:pt-[160px] pb-[64px] lg:pb-[80px] relative overflow-hidden"
-          style={{ backgroundColor: "#0f172a" }}
-          aria-label="Tax Resources"
+          className="relative overflow-hidden pt-[120px] lg:pt-[160px] pb-[80px] lg:pb-[100px]"
+          style={{ backgroundColor: "#faf8f5" }}
+          aria-label="Resources hub"
         >
+          {/* Decorative background */}
+          <DiagPattern dark={false} />
           <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse at 80% 50%, rgba(0,164,164,0.12) 0%, transparent 60%)" }}
+            className="absolute pointer-events-none"
             aria-hidden="true"
+            style={{
+              top: 0,
+              right: 0,
+              width: "720px",
+              height: "720px",
+              background:
+                "radial-gradient(circle at 85% 20%, rgba(0,164,164,0.08) 0%, transparent 60%)",
+            }}
           />
 
           <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] relative z-10">
-            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between lg:gap-[60px]">
+            <div className="flex flex-col gap-[0px]">
+
+              {/* Heading block */}
               <motion.div
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
+                className="max-w-[760px]"
               >
                 <div className="flex items-center gap-[10px] mb-[24px]">
                   <div className="bg-[#00A4A4] h-px w-[35px]" />
                   <span
                     className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                    style={{ fontSize: "13px", letterSpacing: "0.08em" }}
+                    style={{ fontSize: "14px", letterSpacing: "0.05em" }}
                   >
                     Tax Knowledge Center
                   </span>
                 </div>
+
                 <h1
-                  className="font-['DM_Sans'] font-bold text-white leading-[1.06] mb-[20px]"
-                  style={{ fontSize: "clamp(34px, 5vw, 64px)", letterSpacing: "-2.5px" }}
+                  className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.06] mb-[20px]"
+                  style={{ fontSize: "clamp(36px, 5.5vw, 72px)", letterSpacing: "-2.5px" }}
                 >
-                  Free Guides From<br />
-                  <span className="text-[#00A4A4]">Our Tax Experts</span>
+                  Know Your Options.{" "}
+                  <span className="text-[#00A4A4]">Know Your Rights.</span>
                 </h1>
+
                 <p
-                  className="font-['DM_Sans'] font-normal text-white/65 leading-[1.65]"
-                  style={{ fontSize: "clamp(15px, 1.5vw, 18px)", letterSpacing: "-0.3px", maxWidth: "520px" }}
+                  className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.7] mb-[40px]"
+                  style={{
+                    fontSize: "clamp(15px, 1.5vw, 18px)",
+                    letterSpacing: "-0.3px",
+                    maxWidth: "560px",
+                  }}
                 >
-                  Plain-English guides on IRS notices, tax relief programs, and resolution strategies — written by licensed professionals who handle these cases every day.
+                  Tax guides, IRS insights, and practical advice — written for real people, not
+                  accountants.
                 </p>
+
+                {/* Search bar */}
+                <div className="relative" style={{ maxWidth: "540px" }}>
+                  <Search
+                    className="absolute text-[#94a3b8] pointer-events-none"
+                    style={{ width: "18px", height: "18px", left: "20px", top: "50%", transform: "translateY(-50%)" }}
+                    aria-hidden="true"
+                  />
+                  <input
+                    type="search"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search articles — OIC, CP90, wage garnishment…"
+                    className="w-full bg-white border border-[#e2e8f0] text-[#0f172a] placeholder-[#94a3b8] rounded-full font-['DM_Sans'] focus:outline-none focus:border-[#00A4A4] focus:ring-2 focus:ring-[#00A4A4]/20 transition-all shadow-[0_2px_8px_rgba(0,0,0,0.06)]"
+                    style={{ fontSize: "15px", padding: "16px 48px 16px 52px" }}
+                    aria-label="Search tax articles"
+                  />
+                  {query && (
+                    <button
+                      onClick={() => setQuery("")}
+                      className="absolute text-[#94a3b8] hover:text-[#475569] transition-colors focus:outline-none"
+                      style={{ right: "18px", top: "50%", transform: "translateY(-50%)" }}
+                      aria-label="Clear search"
+                    >
+                      <X style={{ width: "16px", height: "16px" }} />
+                    </button>
+                  )}
+                </div>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="hidden lg:flex flex-col gap-[12px] shrink-0"
-              >
-                <div className="text-right">
-                  <p className="font-['DM_Sans'] font-bold text-white" style={{ fontSize: "36px", letterSpacing: "-1.5px" }}>50+</p>
-                  <p className="font-['DM_Sans'] font-normal text-white/50" style={{ fontSize: "14px" }}>Expert Articles</p>
-                </div>
-                <div className="text-right">
-                  <p className="font-['DM_Sans'] font-bold text-[#00A4A4]" style={{ fontSize: "36px", letterSpacing: "-1.5px" }}>Free</p>
-                  <p className="font-['DM_Sans'] font-normal text-white/50" style={{ fontSize: "14px" }}>Always</p>
-                </div>
-              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* ── Featured Article ──────────────────────────────────────────────── */}
-        {activeCategory === "All" && (
-          <section className="py-[48px] lg:py-[64px]" style={{ backgroundColor: "#f5f1e8" }} aria-label="Featured article">
-            <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-              <div className="flex items-center gap-[10px] mb-[24px]">
-                <div className="bg-[#00A4A4] h-px w-[35px]" />
-                <span
-                  className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                  style={{ fontSize: "13px", letterSpacing: "0.08em" }}
+        {/* ── 03. Spotlight Article ─────────────────────────────────────────── */}
+        <AnimatePresence>
+          {showSpotlight && (
+            <motion.section
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-[60px] lg:py-[80px] relative overflow-hidden"
+              style={{ backgroundColor: "#f8fafc" }}
+              aria-label="Featured article"
+            >
+              <DiagPattern dark={false} />
+              <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] relative z-10">
+                <div className="flex items-center gap-[10px] mb-[32px]">
+                  <div className="bg-[#00A4A4] h-px w-[35px]" />
+                  <span
+                    className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+                    style={{ fontSize: "14px", letterSpacing: "0.05em" }}
+                  >
+                    Spotlight Article
+                  </span>
+                </div>
+                <SpotlightCard article={featured} />
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
+
+        {/* ── 04. Article Grid ──────────────────────────────────────────────── */}
+        <section
+          className="py-[64px] lg:py-[100px] bg-white relative overflow-hidden"
+          aria-label="All articles"
+        >
+          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] relative z-10">
+
+            {/* Section header */}
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-[24px] mb-[40px]">
+              <div>
+                <div className="flex items-center gap-[10px] mb-[16px]">
+                  <div className="bg-[#00A4A4] h-px w-[35px]" />
+                  <span
+                    className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+                    style={{ fontSize: "14px", letterSpacing: "0.05em" }}
+                  >
+                    Browse By Topic
+                  </span>
+                </div>
+                <h2
+                  className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
+                  style={{ fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1.5px" }}
                 >
-                  Featured Article
-                </span>
+                  {query
+                    ? `Results for "${query}"`
+                    : activeCategory !== "All"
+                    ? activeCategory
+                    : "All Articles"}
+                </h2>
               </div>
-              <ArticleCard article={featured} idx={0} featured />
-            </div>
-          </section>
-        )}
-
-        {/* ── Category Filter + Article Grid ───────────────────────────────── */}
-        <section className="py-[64px] lg:py-[100px] bg-white" aria-label="All articles">
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-
-            {/* Category filter */}
-            <div className="mb-[40px] lg:mb-[56px]">
-              <div className="flex items-center gap-[10px] mb-[24px]">
-                <div className="bg-[#00A4A4] h-px w-[35px]" />
-                <span
-                  className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                  style={{ fontSize: "13px", letterSpacing: "0.08em" }}
+              {query && (
+                <button
+                  onClick={() => setQuery("")}
+                  className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-medium text-[#475569] hover:text-[#0f172a] transition-colors"
+                  style={{ fontSize: "14px" }}
                 >
-                  Browse By Topic
-                </span>
-              </div>
-              <div
-                className="flex gap-[10px] overflow-x-auto pb-[8px]"
-                style={{ scrollbarWidth: "none" }}
-                role="group"
-                aria-label="Filter articles by category"
-              >
-                {CATEGORIES.map((cat) => (
-                  <CategoryPill
-                    key={cat}
-                    label={cat}
-                    active={activeCategory === cat}
-                    onClick={() => setActiveCategory(cat)}
-                  />
-                ))}
-              </div>
+                  <X style={{ width: "14px", height: "14px" }} />
+                  Clear search
+                </button>
+              )}
             </div>
 
-            {/* Article grid */}
-            {rest.length > 0 ? (
+            {/* Category filter pills */}
+            <div
+              className="flex gap-[10px] overflow-x-auto pb-[16px] mb-[48px]"
+              style={{ scrollbarWidth: "none" }}
+              role="group"
+              aria-label="Filter articles by topic"
+            >
+              {CATEGORIES.map((cat) => (
+                <CategoryPill
+                  key={cat}
+                  label={cat}
+                  active={activeCategory === cat}
+                  onClick={() => setActiveCategory(cat)}
+                />
+              ))}
+            </div>
+
+            {/* Grid or empty state */}
+            {gridArticles.length > 0 ? (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
-                {rest.map((article, idx) => (
-                  <ArticleCard key={article.id} article={article} idx={idx} />
+                {gridArticles.map((article, idx) => (
+                  <ArticleCard key={article.slug} article={article} idx={idx} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-[64px]">
-                <BookOpen className="w-[48px] h-[48px] text-[#e2e8f0] mx-auto mb-[16px]" aria-hidden="true" />
-                <p className="font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "16px" }}>
-                  No articles found in this category yet — more coming soon.
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center py-[80px] flex flex-col items-center gap-[16px]"
+              >
+                <div
+                  className="w-[72px] h-[72px] rounded-full flex items-center justify-center mb-[8px]"
+                  style={{ backgroundColor: "#f1f5f9" }}
+                >
+                  <BookOpen
+                    style={{ width: "30px", height: "30px", color: "#cbd5e1" }}
+                    aria-hidden="true"
+                  />
+                </div>
+                <p
+                  className="font-['DM_Sans'] font-semibold text-[#0f172a]"
+                  style={{ fontSize: "18px" }}
+                >
+                  No articles found
                 </p>
-              </div>
+                <p
+                  className="font-['DM_Sans'] font-normal text-[#94a3b8]"
+                  style={{ fontSize: "15px" }}
+                >
+                  Try a different search term or browse all categories.
+                </p>
+                <button
+                  onClick={() => { setQuery(""); setActiveCategory("All"); }}
+                  className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-semibold text-[#00A4A4] hover:text-[#007a7a] transition-colors"
+                  style={{ fontSize: "14px" }}
+                >
+                  View all articles
+                  <ArrowRight style={{ width: "14px", height: "14px" }} />
+                </button>
+              </motion.div>
             )}
 
-            {/* Load more placeholder */}
-            {rest.length > 0 && (
-              <div className="text-center mt-[56px]">
-                <p className="font-['DM_Sans'] font-normal text-[#94a3b8] mb-[20px]" style={{ fontSize: "14px" }}>
-                  Showing {rest.length} of 50+ articles
+            {/* Load more */}
+            {gridArticles.length > 0 && (
+              <div className="text-center mt-[60px]">
+                <p
+                  className="font-['DM_Sans'] font-normal text-[#94a3b8] mb-[20px]"
+                  style={{ fontSize: "14px" }}
+                >
+                  Showing {gridArticles.length} article{gridArticles.length !== 1 ? "s" : ""} — 50+
+                  total coming soon
                 </p>
                 <button
                   className="inline-flex items-center gap-[10px] border-[1.5px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:bg-[#00A4A4] hover:text-white transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
-                  style={{ fontSize: "14px", padding: "13px 32px" }}
+                  style={{ fontSize: "14px", padding: "14px 36px" }}
                 >
                   Load More Articles
-                  <ArrowRight className="w-[14px] h-[14px]" aria-hidden="true" />
+                  <ArrowRight style={{ width: "14px", height: "14px" }} aria-hidden="true" />
                 </button>
               </div>
             )}
-
           </div>
         </section>
 
-        {/* ── Newsletter CTA ────────────────────────────────────────────────── */}
-        <section className="py-[64px] lg:py-[100px] bg-[#0f172a]" aria-label="Newsletter signup">
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-[32px]">
+        {/* ── 04b. FAQ Section ──────────────────────────────────────────────── */}
+        <section
+          className="py-[64px] lg:py-[120px] relative overflow-hidden"
+          style={{ backgroundColor: "#f8fafc" }}
+          aria-label="Common questions"
+        >
+          <DiagPattern dark={false} />
+          <div
+            className="absolute pointer-events-none"
+            aria-hidden="true"
+            style={{
+              top: "-100px",
+              right: "-100px",
+              width: "600px",
+              height: "600px",
+              background: "radial-gradient(circle at 70% 30%, rgba(0,164,164,0.07) 0%, transparent 65%)",
+            }}
+          />
 
-              <div>
-                <h2
-                  className="font-['DM_Sans'] font-bold text-white leading-[1.08] mb-[12px]"
-                  style={{ fontSize: "clamp(24px, 3vw, 40px)", letterSpacing: "-1.5px" }}
-                >
-                  Get Tax Tips Straight to Your Inbox
-                </h2>
-                <p className="font-['DM_Sans'] font-normal text-white/55 leading-[1.6]" style={{ fontSize: "15px" }}>
-                  Plain-English IRS updates and resolution strategies. No spam — ever.
-                </p>
-              </div>
+          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] relative z-10">
+            <div className="flex flex-col lg:flex-row gap-[64px] lg:gap-[100px]">
 
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="flex flex-col sm:flex-row gap-[12px] lg:shrink-0 w-full lg:w-auto lg:min-w-[400px]"
-                aria-label="Newsletter signup"
+              {/* Left: sticky heading + CTA */}
+              <motion.div
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="lg:w-[360px] lg:shrink-0 flex flex-col gap-[28px]"
               >
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 border border-white/10 bg-white/8 rounded-full font-['DM_Sans'] text-white placeholder-white/35 focus:outline-none focus:border-[#00A4A4] focus:ring-2 focus:ring-[#00A4A4]/30 transition-all"
-                  style={{ fontSize: "15px", padding: "14px 20px", backgroundColor: "rgba(255,255,255,0.06)" }}
-                  aria-label="Email address for newsletter"
-                />
-                <button
-                  type="submit"
-                  className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-200 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] shrink-0"
-                  style={{ fontSize: "14px", padding: "14px 28px", whiteSpace: "nowrap" }}
+                <div>
+                  <div className="flex items-center gap-[10px] mb-[20px]">
+                    <div className="bg-[#00A4A4] h-px w-[35px]" />
+                    <span
+                      className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+                      style={{ fontSize: "14px", letterSpacing: "0.05em" }}
+                    >
+                      Common Questions
+                    </span>
+                  </div>
+                  <h2
+                    className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
+                    style={{ fontSize: "clamp(28px, 3.5vw, 44px)", letterSpacing: "-1.5px" }}
+                  >
+                    Questions From Real Taxpayers
+                  </h2>
+                </div>
+
+                <p
+                  className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.7]"
+                  style={{ fontSize: "16px", letterSpacing: "-0.3px" }}
                 >
-                  Subscribe
-                </button>
-              </form>
+                  These are the questions we hear most often from people dealing with IRS debt for
+                  the first time. Plain answers, no jargon.
+                </p>
+
+                <div>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
+                    style={{
+                      fontSize: "14px",
+                      padding: "15px 28px",
+                      background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
+                      boxShadow: "0 8px 24px rgba(0,164,164,0.3)",
+                    }}
+                    aria-label="Get a free tax consultation"
+                  >
+                    Ask a Real Expert
+                    <ArrowRight style={{ width: "14px", height: "14px" }} aria-hidden="true" />
+                  </Link>
+                  <p
+                    className="font-['DM_Sans'] font-normal text-[#94a3b8] mt-[10px]"
+                    style={{ fontSize: "12px" }}
+                  >
+                    Free · No commitment
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Right: accordion */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="flex-1"
+              >
+                {FAQS.map((item) => (
+                  <FaqItem
+                    key={item.id}
+                    item={item}
+                    active={activeFaq === item.id}
+                    onClick={() => {
+                      if (activeFaq !== item.id) setActiveFaq(item.id);
+                    }}
+                  />
+                ))}
+              </motion.div>
 
             </div>
           </div>
         </section>
 
-        {/* ── CTA Banner ────────────────────────────────────────────────────── */}
-        <section className="py-[48px] lg:py-[64px] bg-[#00A4A4]" aria-label="Get help now">
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-[24px]">
-              <div>
-                <h2
-                  className="font-['DM_Sans'] font-bold text-white leading-[1.08] mb-[8px]"
-                  style={{ fontSize: "clamp(22px, 2.5vw, 34px)", letterSpacing: "-1px" }}
+        {/* ── 05. Lead Capture ──────────────────────────────────────────────── */}
+        <section
+          className="py-[80px] lg:py-[120px] relative overflow-hidden"
+          style={{ backgroundColor: "#faf8f5" }}
+          aria-label="Get your free case review"
+        >
+          <DiagPattern dark={false} />
+          <div
+            className="absolute pointer-events-none"
+            aria-hidden="true"
+            style={{
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "800px",
+              height: "800px",
+              background:
+                "radial-gradient(circle, rgba(0,164,164,0.06) 0%, transparent 65%)",
+            }}
+          />
+
+          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px] relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="text-center flex flex-col items-center gap-[28px]"
+            >
+              <div className="flex items-center gap-[10px]">
+                <div className="bg-[#00A4A4] h-px w-[35px]" />
+                <span
+                  className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+                  style={{ fontSize: "14px", letterSpacing: "0.05em" }}
                 >
-                  Ready to Resolve Your Tax Debt?
-                </h2>
-                <p className="font-['DM_Sans'] font-normal text-white/75" style={{ fontSize: "15px" }}>
-                  Reading is a great start — but a licensed professional can review your specific case for free.
+                  Get Your Free Review
+                </span>
+                <div className="bg-[#00A4A4] h-px w-[35px]" />
+              </div>
+
+              <h2
+                className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
+                style={{ fontSize: "clamp(30px, 4.5vw, 58px)", letterSpacing: "-1.5px", maxWidth: "760px" }}
+              >
+                Still Not Sure Where To Start?
+              </h2>
+
+              <p
+                className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.7]"
+                style={{ fontSize: "clamp(15px, 1.5vw, 18px)", maxWidth: "500px" }}
+              >
+                Every SympleTax consultation starts with an honest review of your IRS account — what you actually owe, what actions are pending, and what your real options are.
+              </p>
+
+              <div className="flex flex-col items-center gap-[14px]">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-[12px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
+                  style={{
+                    fontSize: "16px",
+                    padding: "18px 44px",
+                    background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
+                    boxShadow: "0 12px 32px rgba(0,164,164,0.3)",
+                  }}
+                  aria-label="Get a free tax consultation with SympleTax"
+                >
+                  Get a Free Consultation
+                  <ArrowRight style={{ width: "16px", height: "16px" }} aria-hidden="true" />
+                </Link>
+                <p
+                  className="font-['DM_Sans'] font-normal text-[#94a3b8]"
+                  style={{ fontSize: "13px", letterSpacing: "-0.1px" }}
+                >
+                  No cost. No commitment. Just clarity.
                 </p>
               </div>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-[10px] bg-white text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] transition-all duration-300 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00A4A4]"
-                style={{ fontSize: "15px", padding: "15px 36px", whiteSpace: "nowrap" }}
-                aria-label="Get a free tax consultation"
-              >
-                Get a Free Consultation
-                <ArrowRight className="w-[14px] h-[14px]" aria-hidden="true" />
-              </Link>
-            </div>
+
+            </motion.div>
           </div>
         </section>
 
       </main>
+
       <Footer />
     </div>
   );
