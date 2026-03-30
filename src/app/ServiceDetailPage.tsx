@@ -96,7 +96,6 @@ export default function ServiceDetailPage() {
 
   useEffect(() => {
     if (!service) return;
-    const isResolution = service.type === "resolution";
     const schema = {
       "@context": "https://schema.org",
       "@type": "Service",
@@ -107,7 +106,7 @@ export default function ServiceDetailPage() {
         name: "SympleTax",
         url: SITE_ORIGIN,
       },
-      serviceType: isResolution ? "Tax Resolution" : "Tax Problem Resolution",
+      serviceType: service.type === "resolution" ? "Tax Resolution" : "Tax Problem Resolution",
       areaServed: "United States",
       url: `${SITE_ORIGIN}/solutions/${service.slug}`,
     };
@@ -125,6 +124,7 @@ export default function ServiceDetailPage() {
     return <Navigate to="/solutions" replace />;
   }
 
+  const isResolution = service.type === "resolution";
   const related = getRelatedServices(service.relatedSlugs);
 
   // Related articles from blog data
