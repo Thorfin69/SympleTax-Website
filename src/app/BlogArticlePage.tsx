@@ -23,6 +23,7 @@ import {
   getAccessibleRelated,
 } from "./data/articleAccess";
 import { SITE_ORIGIN } from "../config/site";
+import { applyPageMeta } from "./hooks/usePageSEO";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 
 // ─── Background Decoration ────────────────────────────────────────────────────
@@ -508,11 +509,13 @@ export default function BlogArticlePage() {
   // Set meta tags and structured data
   useEffect(() => {
     if (!article) return;
-    document.title = article.metaTitle;
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", article.metaDescription);
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute("href", `${SITE_ORIGIN}/resources/${article.slug}`);
+    applyPageMeta({
+      title: article.metaTitle,
+      description: article.metaDescription,
+      path: `/resources/${article.slug}`,
+      ogType: "article",
+      ogImageAbsolute: article.coverImage ?? undefined,
+    });
 
     const jsonLdId = "sympletax-jsonld-article";
     let script = document.getElementById(jsonLdId) as HTMLScriptElement | null;
@@ -523,7 +526,7 @@ export default function BlogArticlePage() {
         script.type = "application/ld+json";
         document.head.appendChild(script);
       }
-      script.textContent = JSON.stringify({
+      const jsonLd: Record<string, unknown> = {
         "@context": "https://schema.org",
         "@type": "Article",
         headline: article.title,
@@ -536,7 +539,11 @@ export default function BlogArticlePage() {
           url: SITE_ORIGIN,
         },
         url: `${SITE_ORIGIN}/resources/${article.slug}`,
-      });
+      };
+      if (article.coverImage) {
+        jsonLd.image = [article.coverImage];
+      }
+      script.textContent = JSON.stringify(jsonLd);
     } else if (script) {
       script.remove();
     }

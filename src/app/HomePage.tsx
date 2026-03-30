@@ -16,17 +16,17 @@ import { BlogPreview } from "./components/BlogPreview";
 import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
 import { useEffect } from "react";
+import { usePageSEO } from "./hooks/usePageSEO";
+import { HOME_PAGE_DESCRIPTION, HOME_PAGE_TITLE } from "./seo/homePageSeo";
 
 export default function HomePage() {
+  usePageSEO({
+    title: HOME_PAGE_TITLE,
+    description: HOME_PAGE_DESCRIPTION,
+    path: "/",
+  });
+
   useEffect(() => {
-    // Set meta tags for SEO
-    document.title = "IRS Tax Relief Experts | SympleTax";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Resolve IRS and state tax debt with licensed professionals. Free consultation — no obligation.");
-    }
-    
-    // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = "smooth";
     return () => {
       document.documentElement.style.scrollBehavior = "auto";

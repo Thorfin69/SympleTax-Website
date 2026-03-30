@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router";
 import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
-import { useEffect } from "react";
+import { usePageSEO } from "./hooks/usePageSEO";
 
 const PHASE_ONE_STEPS = [
   { step: "01", title: "Pull Your IRS Transcripts", body: "We request and analyze your full IRS account transcripts to understand exactly what is owed, why, and for how long. No guessing — we work from real IRS data." },
@@ -21,9 +21,12 @@ const PHASE_TWO_STEPS = [
 ];
 
 export default function ProcessPage() {
-  useEffect(() => {
-    document.title = "How It Works | SympleTax";
-  }, []);
+  usePageSEO({
+    title: "How IRS Tax Resolution Works | SympleTax",
+    description:
+      "Our two-phase process: strategic discovery (transcripts, POA, options) and resolution (negotiation, filings, case closure). Transparent steps from licensed SympleTax professionals.",
+    path: "/process",
+  });
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { usePageSEO } from "./hooks/usePageSEO";
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import { Navbar } from "./components/v2/Navbar";
@@ -66,16 +66,12 @@ function SitemapSection({
 }
 
 export default function SitemapPage() {
-  useEffect(() => {
-    document.title = "Sitemap | SympleTax";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute(
-        "content",
-        "Browse all SympleTax pages — main site, tax solutions, resources, and legal policies."
-      );
-    }
-  }, []);
+  usePageSEO({
+    title: "HTML Sitemap | SympleTax",
+    description:
+      "Browse every SympleTax page — home, about, process, services, tax solutions, resources, articles, and legal policies — in one place for easy navigation.",
+    path: "/sitemap",
+  });
 
   const solutionLinks = ALL_SLUGS.map((slug) => {
     const s = getServiceBySlug(slug);

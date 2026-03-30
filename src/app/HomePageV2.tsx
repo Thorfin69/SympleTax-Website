@@ -9,27 +9,20 @@ import { IRSNoticeCallout } from "./components/v2/IRSNoticeCallout";
 import { Footer } from "./components/v2/Footer";
 import { useEffect } from "react";
 import { SITE_ORIGIN } from "../config/site";
-
-const HOME_DESCRIPTION =
-  "Resolve IRS and state tax debt with licensed professionals. Free consultation — no obligation.";
+import { usePageSEO, DEFAULT_OG_IMAGE_PATH } from "./hooks/usePageSEO";
+import { HOME_PAGE_DESCRIPTION, HOME_PAGE_TITLE } from "./seo/homePageSeo";
 
 export default function HomePageV2() {
-  useEffect(() => {
-    document.title = "IRS Tax Relief Experts | SympleTax";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", HOME_DESCRIPTION);
-    }
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute("href", `${SITE_ORIGIN}/`);
-    }
-    const ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl) {
-      ogUrl.setAttribute("content", `${SITE_ORIGIN}/`);
-    }
+  usePageSEO({
+    title: HOME_PAGE_TITLE,
+    description: HOME_PAGE_DESCRIPTION,
+    path: "/",
+  });
 
+  useEffect(() => {
     const jsonLdId = "sympletax-jsonld-home";
+    const orgId = `${SITE_ORIGIN}/#organization`;
+    const webId = `${SITE_ORIGIN}/#website`;
     let script = document.getElementById(jsonLdId) as HTMLScriptElement | null;
     if (!script) {
       script = document.createElement("script");
@@ -39,13 +32,40 @@ export default function HomePageV2() {
     }
     script.textContent = JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      name: "SympleTax",
-      description: HOME_DESCRIPTION,
-      url: `${SITE_ORIGIN}/`,
-      telephone: "+1-949-287-3015",
-      areaServed: { "@type": "Country", name: "United States" },
-      serviceType: "IRS tax resolution and tax debt relief",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": orgId,
+          name: "SympleTax",
+          url: SITE_ORIGIN,
+          logo: {
+            "@type": "ImageObject",
+            url: `${SITE_ORIGIN}${DEFAULT_OG_IMAGE_PATH}`,
+          },
+          telephone: "+1-949-287-3015",
+          description: HOME_PAGE_DESCRIPTION,
+          areaServed: { "@type": "Country", name: "United States" },
+        },
+        {
+          "@type": "WebSite",
+          "@id": webId,
+          name: "SympleTax",
+          url: `${SITE_ORIGIN}/`,
+          description: HOME_PAGE_DESCRIPTION,
+          publisher: { "@id": orgId },
+          inLanguage: "en-US",
+        },
+        {
+          "@type": "ProfessionalService",
+          name: "SympleTax",
+          description: HOME_PAGE_DESCRIPTION,
+          url: `${SITE_ORIGIN}/`,
+          telephone: "+1-949-287-3015",
+          parentOrganization: { "@id": orgId },
+          areaServed: { "@type": "Country", name: "United States" },
+          serviceType: "IRS tax resolution and tax debt relief",
+        },
+      ],
     });
 
     document.documentElement.style.scrollBehavior = "smooth";

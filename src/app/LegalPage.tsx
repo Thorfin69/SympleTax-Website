@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { usePageSEO } from "./hooks/usePageSEO";
 import { useParams, useNavigate, Link } from "react-router";
 import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
@@ -496,6 +497,17 @@ const TITLE_MAP: Record<TabKey, string> = {
   "california-privacy": "California Privacy Rights",
 };
 
+const LEGAL_DESCRIPTIONS: Record<TabKey, string> = {
+  "privacy-policy":
+    "How SympleTax collects, uses, stores, and protects your personal and financial information when you use our website, tax resolution services, and Tax Intelligence platform.",
+  "terms-of-service":
+    "Terms and conditions for using the SympleTax website and services, including eligibility, disclaimers, limitation of liability, and governing law.",
+  "disclaimer":
+    "Important disclaimers about SympleTax tax resolution services, IRS outcomes, professional representation, and what you can expect from our firm.",
+  "california-privacy":
+    "California residents’ privacy rights under the CCPA/CPRA: categories of data collected, sale/sharing, and how to exercise access, deletion, and opt-out rights.",
+};
+
 export default function LegalPage() {
   const { tab } = useParams<{ tab: string }>();
   const navigate = useNavigate();
@@ -508,8 +520,13 @@ export default function LegalPage() {
     }
   }, [tab, navigate]);
 
+  usePageSEO({
+    title: `${TITLE_MAP[activeTab]} | SympleTax`,
+    description: LEGAL_DESCRIPTIONS[activeTab],
+    path: `/legal/${activeTab}`,
+  });
+
   useEffect(() => {
-    document.title = `${TITLE_MAP[activeTab]} | SympleTax`;
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [activeTab]);
 

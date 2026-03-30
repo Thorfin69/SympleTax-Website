@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { usePageSEO } from "./hooks/usePageSEO";
 import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
 import { CaseResultSpotlight } from "./components/v2/CaseResultSpotlight";
@@ -315,15 +316,12 @@ function FAQItem({
 export default function SolutionsPage() {
   const [faqActive, setFaqActive] = useState<string | null>("01");
 
-  useEffect(() => {
-    document.title = "Tax Resolution Services | SympleTax";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta)
-      meta.setAttribute(
-        "content",
-        "Find the right solution for your tax problem — from Offer in Compromise to installment agreements."
-      );
-  }, []);
+  usePageSEO({
+    title: "IRS Tax Solutions & Programs | SympleTax",
+    description:
+      "Browse tax problems and resolution paths — wage garnishment, bank levies, liens, back taxes, unfiled returns, OIC, installment agreements, CNC, and more. Find the right program for your case.",
+    path: "/solutions",
+  });
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">

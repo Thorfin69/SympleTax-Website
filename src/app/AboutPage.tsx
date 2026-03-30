@@ -5,6 +5,7 @@ import { Footer } from "./components/v2/Footer";
 import { Testimonials } from "./components/v2/Testimonials";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { useEffect, useRef } from "react";
+import { usePageSEO } from "./hooks/usePageSEO";
 import { Shield, TrendingDown, Users, Eye, CheckCircle, Star, Instagram } from "lucide-react";
 
 import ariFounderPhoto from "../assets/ari-founder.jpg";
@@ -255,11 +256,12 @@ function ProcessStack() {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function AboutPage() {
-  useEffect(() => {
-    document.title = "About SympleTax | Tax Relief Experts";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Meet the team behind SympleTax — licensed tax professionals helping everyday people resolve IRS debt.");
-  }, []);
+  usePageSEO({
+    title: "About SympleTax | Licensed Tax Relief Team",
+    description:
+      "Meet the SympleTax team — licensed tax professionals who help everyday people resolve IRS debt, stop collections, and negotiate settlements nationwide.",
+    path: "/about",
+  });
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">

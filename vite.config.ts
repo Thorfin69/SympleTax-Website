@@ -25,12 +25,26 @@ function sympletaxSitemapPlugin(): Plugin {
   }
 }
 
+function injectSiteOriginInHtml(): Plugin {
+  return {
+    name: 'sympletax-html-site-origin',
+    transformIndexHtml(html) {
+      const origin = String(process.env.VITE_SITE_ORIGIN ?? 'https://www.sympletax.com').replace(
+        /\/$/,
+        ''
+      )
+      return html.replace(/__SITE_ORIGIN__/g, origin)
+    },
+  }
+}
+
 export default defineConfig({
   plugins: [
     // The React and Tailwind plugins are both required for Make, even if
     // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
+    injectSiteOriginInHtml(),
     sympletaxSitemapPlugin(),
   ],
   resolve: {

@@ -10,6 +10,8 @@ import { Footer } from "./components/v2/Footer";
 import { FloatingGradientCTA } from "./components/v2/FloatingGradientCTA";
 import { getServiceBySlug, getRelatedServices } from "./serviceContent";
 import { ARTICLES, CATEGORY_GRADIENT } from "./data/articles";
+import { SITE_ORIGIN } from "../config/site";
+import { applyPageMeta } from "./hooks/usePageSEO";
 
 // ─── Service → related article slugs map ──────────────────────────────────────
 
@@ -83,12 +85,47 @@ export default function ServiceDetailPage() {
   const service = getServiceBySlug(slug ?? "");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  useEffect(() => {
+    if (!service) return;
+    applyPageMeta({
+      title: service.seoTitle,
+      description: service.seoDesc,
+      path: `/solutions/${service.slug}`,
+    });
+  }, [service]);
+
+  useEffect(() => {
+    if (!service) return;
+    const isResolution = service.type === "resolution";
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: service.eyebrow,
+      description: service.seoDesc,
+      provider: {
+        "@type": "ProfessionalService",
+        name: "SympleTax",
+        url: SITE_ORIGIN,
+      },
+      serviceType: isResolution ? "Tax Resolution" : "Tax Problem Resolution",
+      areaServed: "United States",
+      url: `${SITE_ORIGIN}/solutions/${service.slug}`,
+    };
+    const el = document.createElement("script");
+    el.type = "application/ld+json";
+    el.id = `schema-service-${service.slug}`;
+    el.textContent = JSON.stringify(schema);
+    document.head.appendChild(el);
+    return () => {
+      el.remove();
+    };
+  }, [service]);
+
   if (!service) {
     return <Navigate to="/solutions" replace />;
   }
 
   const related = getRelatedServices(service.relatedSlugs);
-  const isResolution = service.type === "resolution";
 
   // Related articles from blog data
   const articleSlugsForService = SERVICE_ARTICLES[service.slug] ?? [];
@@ -101,33 +138,6 @@ export default function ServiceDetailPage() {
   const relatedProblems = related.filter((r) => r.type === "problem").slice(0, 3);
   const relatedResolutions = related.filter((r) => r.type === "resolution").slice(0, 3);
   const problemCards = relatedProblems.length >= 2 ? relatedProblems : related.slice(0, 3);
-
-  // Service JSON-LD schema
-  useEffect(() => {
-    const schema = {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": service.eyebrow,
-      "description": service.seoDesc,
-      "provider": {
-        "@type": "ProfessionalService",
-        "name": "SympleTax",
-        "url": "https://sympletax.com",
-      },
-      "serviceType": isResolution ? "Tax Resolution" : "Tax Problem Resolution",
-      "areaServed": "United States",
-      "url": `https://sympletax.com/solutions/${service.slug}`,
-    };
-    const el = document.createElement("script");
-    el.type = "application/ld+json";
-    el.id = `schema-service-${service.slug}`;
-    el.textContent = JSON.stringify(schema);
-    document.head.appendChild(el);
-    document.title = service.seoTitle;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute("content", service.seoDesc);
-    return () => { el.remove(); };
-  }, [service.slug]);
 
   void relatedResolutions;
 

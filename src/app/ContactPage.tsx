@@ -4,7 +4,8 @@ import { Footer } from "./components/v2/Footer";
 import { Testimonials } from "./components/v2/Testimonials";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { Phone, Mail, MapPin, Clock, Shield, ExternalLink, Instagram } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { usePageSEO } from "./hooks/usePageSEO";
 
 import feedImg1 from "../../650321405_122097914025122800_4577503060609393561_n.jpg";
 import feedImg2 from "../../651173716_122102903487122800_4091566060201860687_n.jpg";
@@ -62,11 +63,12 @@ const CONTACT_DETAILS = [
 
 
 export default function ContactPage() {
-  useEffect(() => {
-    document.title = "Free Tax Consultation | SympleTax";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Talk to a tax expert for free. No sales pressure. No obligation. Just honest advice about your options.");
-  }, []);
+  usePageSEO({
+    title: "Free IRS Tax Consultation | SympleTax",
+    description:
+      "Talk to a licensed tax resolution specialist for free — no sales pressure, no obligation. Honest guidance on offers in compromise, payment plans, and stopping IRS collections.",
+    path: "/contact",
+  });
 
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({

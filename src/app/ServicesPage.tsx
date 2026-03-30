@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
 import { FloatingGradientCTA } from "./components/v2/FloatingGradientCTA";
-import { useEffect } from "react";
+import { usePageSEO } from "./hooks/usePageSEO";
 import { ArrowRight, CheckCircle, AlertTriangle, Scale, FileText, DollarSign, Shield, RefreshCw } from "lucide-react";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -93,11 +93,12 @@ const FRESH_START_PROGRAMS = [
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function ServicesPage() {
-  useEffect(() => {
-    document.title = "Tax Resolution Services | SympleTax";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Comprehensive tax resolution services — Offer in Compromise, Penalty Abatement, Wage Garnishment Release, and more. Licensed professionals. Flat-fee pricing.");
-  }, []);
+  usePageSEO({
+    title: "Tax Resolution Services | SympleTax",
+    description:
+      "Comprehensive IRS tax resolution — negotiation, relief, settlements, and full case management. Offer in Compromise, penalty abatement, garnishment release, and more. Licensed specialists, flat-fee pricing.",
+    path: "/services",
+  });
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">

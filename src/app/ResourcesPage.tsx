@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { ArrowRight, Search, X, Clock, BookOpen, ChevronDown } from "lucide-react";
 import { CATEGORIES, CATEGORY_GRADIENT, type Article } from "./data/articles";
 import { getArticlesForResourcesListing } from "./data/articleAccess";
-import { SITE_ORIGIN } from "../config/site";
+import { usePageSEO } from "./hooks/usePageSEO";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 
 // ─── FAQ Data ─────────────────────────────────────────────────────────────────
@@ -349,17 +349,14 @@ export default function ResourcesPage() {
     return matchCat && matchQuery;
   });
 
-  useEffect(() => {
-    document.title = "Tax Help & Resources | SympleTax";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta)
-      meta.setAttribute(
-        "content",
-        "Tax guides, IRS insights, and practical advice — written for real people, not accountants."
-      );
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute("href", `${SITE_ORIGIN}/resources`);
+  usePageSEO({
+    title: "Tax Help & Resources | SympleTax Knowledge Center",
+    description:
+      "Tax guides, IRS notices explained, and practical debt-relief advice — written in plain English for taxpayers, not accountants. Articles from SympleTax licensed professionals.",
+    path: "/resources",
+  });
 
+  useEffect(() => {
     // FAQPage structured data
     const jsonLdId = "sympletax-jsonld-resources";
     let script = document.getElementById(jsonLdId) as HTMLScriptElement | null;
