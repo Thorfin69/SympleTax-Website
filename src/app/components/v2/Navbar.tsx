@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Phone, ChevronDown, ExternalLink } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router";
-import sympletaxLogo from "../../../assets/SympleTax.png";
+import { NavbarSympleTaxLogo } from "./BrandWordmarks";
 
 // ─── Dropdown Data ────────────────────────────────────────────────────────────
 
@@ -203,9 +203,7 @@ export function Navbar() {
             className="flex items-center shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
             aria-label="SympleTax home"
           >
-            <img
-              src={sympletaxLogo}
-              alt="SympleTax"
+            <NavbarSympleTaxLogo
               className="h-[28px] lg:h-[34px] w-auto object-contain"
               style={{ filter: isScrolled ? "none" : "brightness(0) invert(1)" }}
             />
@@ -562,7 +560,7 @@ export function Navbar() {
             >
               <div className="flex items-center justify-between px-[20px] py-[18px] shrink-0" style={{ borderBottom: "1px solid #f0ece4" }}>
                 <Link to="/" onClick={closeMobileMenu} aria-label="SympleTax home">
-                  <img src={sympletaxLogo} alt="SympleTax" className="h-[28px] w-auto object-contain" />
+                  <NavbarSympleTaxLogo className="h-[28px] w-auto object-contain" />
                 </Link>
                 <button
                   onClick={closeMobileMenu}

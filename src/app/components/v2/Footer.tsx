@@ -1,5 +1,5 @@
 import { Linkedin, Instagram, Facebook, Youtube } from "lucide-react";
-import sympletaxFooterLogo from "../../../assets/sympletax-footer.png";
+import { FooterSympleTaxLogo } from "./BrandWordmarks";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -87,11 +87,7 @@ export function Footer() {
           <div className="flex flex-col gap-[32px]">
             <div>
               <Link to="/" className="inline-block mb-[24px]" aria-label="SympleTax home">
-                <img
-                  src={sympletaxFooterLogo}
-                  alt="SympleTax"
-                  className="h-[36px] w-auto object-contain brightness-0 invert"
-                />
+                <FooterSympleTaxLogo className="h-[36px] w-auto object-contain brightness-0 invert" />
               </Link>
               <p
                 className="font-['DM_Sans'] font-normal text-white/55 leading-[1.7]"

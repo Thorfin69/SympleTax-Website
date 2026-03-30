@@ -2,7 +2,11 @@ import { motion } from "motion/react";
 import { Link } from "react-router";
 import { Clock } from "lucide-react";
 import heroBannerImg from "../../../assets/hero-banner-img.png";
-import heroBannerWebp from "../../../assets/hero-banner-img.webp";
+
+/** Mobile LCP image: resized WebP in `public/` (preloaded from index.html). */
+const MOBILE_HERO_SRC = "/hero-mobile.webp";
+const MOBILE_HERO_WIDTH = 750;
+const MOBILE_HERO_HEIGHT = 452;
 
 // 3 circles — centers at the bottom-center of the section, top halves visible
 // Inner appears first, then middle, then outer
@@ -151,17 +155,18 @@ export function Hero() {
 
         {/* Family image - positioned at bottom center (20% larger on mobile) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, ease: "easeOut", delay: 0.25 }}
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[84%] max-w-[480px] z-10"
         >
-          {/* Mobile: lightweight WebP; Desktop: full PNG */}
+          {/* Mobile: preloaded WebP (~750w); tablet in this column: PNG */}
           <img
-            src={heroBannerWebp}
+            src={MOBILE_HERO_SRC}
             alt="Happy family relieved from IRS tax debt"
-            width={1426}
-            height={858}
+            width={MOBILE_HERO_WIDTH}
+            height={MOBILE_HERO_HEIGHT}
+            sizes="(max-width: 639px) 84vw, 0px"
             decoding="async"
             fetchPriority="high"
             className="w-full object-contain object-bottom max-[639px]:block hidden"
@@ -209,22 +214,12 @@ export function Hero() {
 
         {/* Center: Family image — sits in front of circles (z-10 inherited) */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, ease: "easeOut", delay: 0.2 }}
           className="relative flex items-end justify-center"
           style={{ flex: "0 0 auto", maxWidth: "820px", width: "56vw" }}
         >
-          <img
-            src={heroBannerWebp}
-            alt="Happy family relieved from IRS tax debt"
-            width={1426}
-            height={858}
-            decoding="async"
-            fetchPriority="high"
-            className="w-full object-contain object-bottom max-[639px]:block hidden"
-            style={{ maxHeight: "88vh" }}
-          />
           <img
             src={heroBannerImg}
             alt="Happy family relieved from IRS tax debt"
@@ -232,7 +227,7 @@ export function Hero() {
             height={858}
             decoding="async"
             fetchPriority="high"
-            className="w-full object-contain object-bottom min-[640px]:block hidden"
+            className="w-full object-contain object-bottom"
             style={{ maxHeight: "88vh" }}
           />
         </motion.div>
