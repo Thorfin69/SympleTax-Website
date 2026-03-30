@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router";
 import { Clock } from "lucide-react";
 import heroBannerImg from "../../../assets/hero-banner-img.png";
+import heroBannerWebp from "../../../assets/hero-banner-img.webp";
 
 // 3 circles — centers at the bottom-center of the section, top halves visible
 // Inner appears first, then middle, then outer
@@ -155,6 +156,17 @@ export function Hero() {
           transition={{ duration: 1.0, ease: "easeOut", delay: 0.25 }}
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[84%] max-w-[480px] z-10"
         >
+          {/* Mobile: lightweight WebP; Desktop: full PNG */}
+          <img
+            src={heroBannerWebp}
+            alt="Happy family relieved from IRS tax debt"
+            width={1426}
+            height={858}
+            decoding="async"
+            fetchPriority="high"
+            className="w-full object-contain object-bottom max-[639px]:block hidden"
+            style={{ maxHeight: "260px" }}
+          />
           <img
             src={heroBannerImg}
             alt="Happy family relieved from IRS tax debt"
@@ -162,7 +174,7 @@ export function Hero() {
             height={858}
             decoding="async"
             fetchPriority="high"
-            className="w-full object-contain object-bottom"
+            className="w-full object-contain object-bottom min-[640px]:block hidden"
             style={{ maxHeight: "260px" }}
           />
         </motion.div>
@@ -204,13 +216,23 @@ export function Hero() {
           style={{ flex: "0 0 auto", maxWidth: "820px", width: "56vw" }}
         >
           <img
+            src={heroBannerWebp}
+            alt="Happy family relieved from IRS tax debt"
+            width={1426}
+            height={858}
+            decoding="async"
+            fetchPriority="high"
+            className="w-full object-contain object-bottom max-[639px]:block hidden"
+            style={{ maxHeight: "88vh" }}
+          />
+          <img
             src={heroBannerImg}
             alt="Happy family relieved from IRS tax debt"
             width={1426}
             height={858}
             decoding="async"
             fetchPriority="high"
-            className="w-full object-contain object-bottom"
+            className="w-full object-contain object-bottom min-[640px]:block hidden"
             style={{ maxHeight: "88vh" }}
           />
         </motion.div>
