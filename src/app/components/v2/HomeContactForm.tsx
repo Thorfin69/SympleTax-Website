@@ -10,13 +10,59 @@ const CONTACT_ITEMS = [
   { icon: MapPin, label: "Irvine, CA", sub: "Serving clients nationwide", href: null },
 ];
 
+const WEBHOOK_URL = "https://sympletax-close.onrender.com/webhook/intake";
+
+function getUTMParams(): Record<string, string> {
+  const params = new URLSearchParams(window.location.search);
+  const result: Record<string, string> = {};
+  ["utm_source", "utm_medium", "utm_campaign", "fbclid", "gclid"].forEach((key) => {
+    const val = params.get(key);
+    if (val) result[key] = val;
+  });
+  return result;
+}
 
 export function HomeContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    taxProblem: "Back Taxes",
+    details: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError(false);
+
+    const payload: Record<string, string> = {
+      first_name: form.firstName,
+      last_name: form.lastName,
+      phone: form.phone,
+      email: form.email,
+      tax_problem: form.taxProblem,
+      page_url: window.location.href,
+      ...getUTMParams(),
+    };
+    if (form.details) payload.message = form.details;
+
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -176,13 +222,37 @@ export function HomeContactForm() {
                   </div>
 
                   <div className="grid grid-cols-2" style={{ gap: "16px" }}>
-                    <FormField label="First Name" placeholder="Your first name" required />
-                    <FormField label="Last Name" placeholder="Your last name" />
+                    <FormField
+                      label="First Name"
+                      placeholder="Your first name"
+                      required
+                      value={form.firstName}
+                      onChange={(v) => setForm({ ...form, firstName: v })}
+                    />
+                    <FormField
+                      label="Last Name"
+                      placeholder="Your last name"
+                      value={form.lastName}
+                      onChange={(v) => setForm({ ...form, lastName: v })}
+                    />
                   </div>
 
                   <div className="grid grid-cols-2" style={{ gap: "16px" }}>
-                    <FormField label="Phone Number" placeholder="+1 (555) 000-0000" required />
-                    <FormField label="Email Address" placeholder="you@email.com" required type="email" />
+                    <FormField
+                      label="Phone Number"
+                      placeholder="+1 (555) 000-0000"
+                      required
+                      value={form.phone}
+                      onChange={(v) => setForm({ ...form, phone: v })}
+                    />
+                    <FormField
+                      label="Email Address"
+                      placeholder="you@email.com"
+                      required
+                      type="email"
+                      value={form.email}
+                      onChange={(v) => setForm({ ...form, email: v })}
+                    />
                   </div>
 
                   <div className="flex flex-col" style={{ gap: "8px" }}>
@@ -193,6 +263,8 @@ export function HomeContactForm() {
                       Select Tax Problem
                     </label>
                     <select
+                      value={form.taxProblem}
+                      onChange={(e) => setForm({ ...form, taxProblem: e.target.value })}
                       className="font-['DM_Sans'] text-[#0f172a] focus:outline-none transition-colors appearance-none"
                       style={{
                         fontSize: "16px",
@@ -222,6 +294,8 @@ export function HomeContactForm() {
                     <textarea
                       rows={4}
                       placeholder="Please describe your situation..."
+                      value={form.details}
+                      onChange={(e) => setForm({ ...form, details: e.target.value })}
                       className="font-['DM_Sans'] text-[#0f172a] focus:outline-none transition-colors resize-none"
                       style={{
                         fontSize: "16px",
@@ -237,7 +311,8 @@ export function HomeContactForm() {
 
                   <button
                     type="submit"
-                    className="w-full text-white rounded-full flex items-center justify-center gap-[10px] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                    disabled={submitting}
+                    className="w-full text-white rounded-full flex items-center justify-center gap-[10px] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                     style={{
                       background: "#00A4A4",
                       paddingTop: "17px",
@@ -249,12 +324,23 @@ export function HomeContactForm() {
                       className="font-['DM_Sans'] font-bold text-white"
                       style={{ fontSize: "16px", letterSpacing: "-0.2px" }}
                     >
-                      Analyze My Case
+                      {submitting ? "Sending…" : "Analyze My Case"}
                     </span>
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M3 13L13 3M13 3H5M13 3V11" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                    {!submitting && (
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 13L13 3M13 3H5M13 3V11" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
                   </button>
+
+                  {error && (
+                    <p
+                      className="text-center font-['DM_Sans'] font-normal text-red-500"
+                      style={{ fontSize: "13px" }}
+                    >
+                      Something went wrong. Please try again.
+                    </p>
+                  )}
 
                   <p
                     className="text-center font-['DM_Sans'] font-normal text-[#94a3b8]"
@@ -278,11 +364,15 @@ function FormField({
   placeholder,
   required = false,
   type = "text",
+  value,
+  onChange,
 }: {
   label: string;
   placeholder: string;
   required?: boolean;
   type?: string;
+  value: string;
+  onChange: (v: string) => void;
 }) {
   return (
     <div className="flex flex-col" style={{ gap: "8px" }}>
@@ -296,6 +386,8 @@ function FormField({
         type={type}
         placeholder={placeholder}
         required={required}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className="font-['DM_Sans'] text-[#0f172a] focus:outline-none transition-colors"
         style={{
           fontSize: "16px",

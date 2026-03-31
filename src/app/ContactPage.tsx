@@ -71,6 +71,8 @@ export default function ContactPage() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -80,9 +82,41 @@ export default function ContactPage() {
     message: "",
   });
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError(false);
+
+    const params = new URLSearchParams(window.location.search);
+    const utmFields: Record<string, string> = {};
+    ["utm_source", "utm_medium", "utm_campaign", "fbclid", "gclid"].forEach((key) => {
+      const val = params.get(key);
+      if (val) utmFields[key] = val;
+    });
+
+    const payload: Record<string, string> = {
+      first_name: form.firstName,
+      last_name: form.lastName,
+      phone: form.phone,
+      email: form.email,
+      page_url: window.location.href,
+      ...utmFields,
+    };
+    if (form.debt) payload.irs_balance = form.debt;
+    if (form.message) payload.message = form.message;
+
+    try {
+      await fetch("https://sympletax-close.onrender.com/webhook/free-consultation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -458,12 +492,22 @@ export default function ContactPage() {
                       {/* Submit */}
                       <button
                         type="submit"
-                        className="w-full bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.01] shadow-[0_8px_24px_rgba(0,164,164,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] focus-visible:ring-offset-2 mt-[4px]"
+                        disabled={submitting}
+                        className="w-full bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.01] shadow-[0_8px_24px_rgba(0,164,164,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] focus-visible:ring-offset-2 mt-[4px] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                         style={{ fontSize: "16px", padding: "17px" }}
                         aria-label="Submit free consultation request"
                       >
-                        Request My Free Consultation
+                        {submitting ? "Sending…" : "Request My Free Consultation"}
                       </button>
+
+                      {error && (
+                        <p
+                          className="text-center font-['DM_Sans'] font-normal text-red-500"
+                          style={{ fontSize: "13px" }}
+                        >
+                          Something went wrong. Please try again.
+                        </p>
+                      )}
 
                       {/* Privacy assurance */}
                       <div className="flex items-center justify-center gap-[8px]">
