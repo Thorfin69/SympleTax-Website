@@ -198,11 +198,13 @@ const DATA: ServiceData[] = [
       ],
     },
     approach: {
-      heading: "How SympleTax Gets Your Penalties Removed",
+      heading: "How to Apply for Penalty Abatement",
       steps: [
-        { number: "01", title: "Penalty Audit", body: "We pull your IRS account transcript and identify every penalty that has been assessed — and which abatement program each one qualifies for." },
-        { number: "02", title: "Abatement Application", body: "We draft and submit penalty abatement requests, including supporting documentation and a written argument for each applicable program. The IRS receives thousands of poorly prepared requests — ours are built to succeed." },
-        { number: "03", title: "Appeal If Needed", body: "If the initial request is denied, we file an appeal with the IRS Office of Appeals. Denials are often overturned with proper representation." },
+        { number: "01", title: "Contact SympleTax", body: "Speak with one of our licensed representatives who will review your account, identify which penalties you qualify to have removed, and determine the strongest path forward." },
+        { number: "02", title: "We Review Your Full Tax History", body: "We pull your IRS transcripts, assess your compliance status, and identify any missing returns or outstanding balances that need to be addressed before filing." },
+        { number: "03", title: "We Build Your Case", body: "Whether you qualify for First Time Penalty Abatement or Reasonable Cause, we prepare the written request, gather supporting documentation, and handle every detail on your behalf." },
+        { number: "04", title: "We Submit Directly to the IRS", body: "As your authorized representative, we communicate with the IRS for you. You never have to make a single call or write a single letter." },
+        { number: "05", title: "We Fight If They Push Back", body: "If the IRS denies the request, we file a formal appeal with the IRS Office of Appeals and continue advocating until we've exhausted every available option." },
       ],
     },
     faqs: [
@@ -677,11 +679,13 @@ const DATA: ServiceData[] = [
       ],
     },
     approach: {
-      heading: "How SympleTax Handles Federal Tax Liens",
+      heading: "How to Resolve Your Federal Tax Lien",
       steps: [
-        { number: "01", title: "Lien Analysis", body: "We review the lien filing, your assets, and outstanding balance to determine which lien relief option applies and what path resolves both the lien and the underlying debt most effectively." },
-        { number: "02", title: "Resolution or Relief Application", body: "We pursue the appropriate relief — withdrawal, discharge, subordination, or lien release through OIC or installment agreement — handling all IRS correspondence." },
-        { number: "03", title: "Debt Resolution", body: "With the lien addressed, we finalize resolution of the underlying tax balance through the most favorable available program." },
+        { number: "01", title: "Contact SympleTax", body: "Speak with one of our licensed representatives who will analyze your lien situation, review your account balance and filing status, and identify which resolution strategy—withdrawal, discharge, subordination, or full resolution—is right for you." },
+        { number: "02", title: "We Review Your Full Tax History", body: "We pull your IRS transcripts and determine what's required to satisfy the lien. If you qualify for Fresh Start or a direct debit installment agreement, we'll unlock withdrawal eligibility. If an OIC makes sense, we calculate the settlement amount." },
+        { number: "03", title: "We Build Your Case", body: "Whether you need to discharge a property, subordinate to a refinancing lender, or prepare for withdrawal, we gather all documentation, prepare the formal request, and build the strongest possible case for lien resolution or removal." },
+        { number: "04", title: "We Submit Directly to the IRS", body: "As your authorized representative, we file the lien withdrawal, discharge, or subordination request with the appropriate IRS office. You never contact the IRS directly—we handle every communication on your behalf." },
+        { number: "05", title: "We Fight If They Push Back", body: "If the IRS denies the request or requires additional information, we file a formal appeal and escalate within the IRS system to resolve the lien. We don't stop until we've exhausted every option available." },
       ],
     },
     faqs: [
