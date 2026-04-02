@@ -281,10 +281,26 @@ export default function AboutPage() {
 
         {/* ── 01. Page Hero ─────────────────────────────────────────────────── */}
         <section
-          className="relative overflow-hidden bg-white flex flex-col"
-          style={{ minHeight: "100svh" }}
+          className="relative overflow-hidden flex flex-col"
+          style={{ minHeight: "100svh", background: "#faf8f4" }}
           aria-label="About SympleTax"
         >
+          {/* Cream depth panel — right-side layered background card */}
+          <div
+            className="absolute pointer-events-none hidden lg:block"
+            style={{
+              top: "80px",
+              right: "-40px",
+              width: "52%",
+              bottom: "80px",
+              background: "linear-gradient(135deg, #ffffff 0%, #f3ede4 100%)",
+              borderRadius: "32px 0 0 32px",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.8), 0 4px 40px rgba(180,160,130,0.10)",
+              opacity: 0.75,
+            }}
+            aria-hidden="true"
+          />
+
           {/* Animated floating circles background */}
           <motion.div
             className="absolute pointer-events-none rounded-full"
@@ -553,7 +569,7 @@ export default function AboutPage() {
             >
               <Link
                 to="/free-consultation"
-                className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
+                className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] "
                 style={{ fontSize: "15px", padding: "15px 36px" }}
                 aria-label="Work with the SympleTax team"
               >
@@ -903,7 +919,7 @@ export default function AboutPage() {
                 <div>
                   <Link
                     to="/free-consultation"
-                    className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
+                    className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 "
                     style={{ fontSize: "15px", padding: "15px 36px" }}
                     aria-label="See if you qualify for SympleTax"
                   >
@@ -1003,7 +1019,7 @@ export default function AboutPage() {
                   className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
                   style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-1.5px" }}
                 >
-                  Tax Help, Plain And Simple
+                  IRS Notice Center
                 </h2>
               </div>
               <a

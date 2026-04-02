@@ -103,6 +103,16 @@ export function Hero() {
           Every Tax Issue Has a Solution.
         </motion.h1>
 
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="font-['DM_Sans'] font-normal text-white/80 leading-[1.65] mt-[20px] lg:mt-[24px]"
+          style={{ fontSize: "clamp(15px, 1.5vw, 18px)", letterSpacing: "-0.3px", maxWidth: "600px" }}
+        >
+          Don't panic — but don't wait. Whether it's an audit, levy notice, or balance due, our licensed experts will help.
+        </motion.p>
+
         {/* Mobile CTA — visible only on mobile, below headline */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}

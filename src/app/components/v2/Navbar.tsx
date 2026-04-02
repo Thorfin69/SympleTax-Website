@@ -566,7 +566,7 @@ export function Navbar() {
                 rel="noopener noreferrer"
                 className={`font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none whitespace-nowrap ${
                   isScrolled
-                    ? "bg-[#00A4A4] hover:bg-[#007a7a] text-white shadow-[0_4px_16px_rgba(0,164,164,0.28)]"
+                    ? "bg-[#00A4A4] hover:bg-[#007a7a] text-white"
                     : "bg-white/20 hover:bg-white/30 border border-white/40 text-white"
                 }`}
                 style={{ fontSize: "13px", padding: "10px 20px" }}
@@ -729,7 +729,7 @@ export function Navbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeMobileMenu}
-                    className="w-full py-[15px] rounded-full bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold text-center transition-all shadow-[0_6px_20px_rgba(0,164,164,0.3)] focus:outline-none"
+                    className="w-full py-[15px] rounded-full bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold text-center transition-all focus:outline-none"
                     style={{ fontSize: "15px" }}
                   >
                     Free Consultation

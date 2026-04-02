@@ -66,7 +66,7 @@ export default function ContactPage() {
   usePageSEO({
     title: "Free IRS Tax Consultation | SympleTax",
     description:
-      "Talk to a licensed tax resolution specialist for free — no sales pressure, no obligation. Honest guidance on offers in compromise, payment plans, and stopping IRS collections.",
+      "Talk to a licensed tax resolution specialist for free. Honest guidance on offers in compromise, payment plans, and stopping IRS collections.",
     path: "/contact",
   });
 
@@ -398,7 +398,7 @@ export default function ContactPage() {
                           className="font-['DM_Sans'] font-bold text-[#0f172a] mb-[6px]"
                           style={{ fontSize: "22px", letterSpacing: "-0.5px" }}
                         >
-                          Request My Free Consultation
+                          Talk To A Tax Expert
                         </h2>
                         <p className="font-['DM_Sans'] font-normal text-[#94a3b8]" style={{ fontSize: "13px" }}>
                           We never share your information. Ever.
@@ -493,7 +493,7 @@ export default function ContactPage() {
                       <button
                         type="submit"
                         disabled={submitting}
-                        className="w-full bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.01] shadow-[0_8px_24px_rgba(0,164,164,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] focus-visible:ring-offset-2 mt-[4px] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        className="w-full bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] focus-visible:ring-offset-2 mt-[4px] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                         style={{ fontSize: "16px", padding: "17px" }}
                         aria-label="Submit free consultation request"
                       >
@@ -555,7 +555,7 @@ export default function ContactPage() {
                   className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
                   style={{ fontSize: "clamp(28px, 4vw, 48px)", letterSpacing: "-1.5px" }}
                 >
-                  Tax Help, Plain And Simple
+                  IRS Notice Center
                 </h2>
               </div>
               <a
