@@ -1,5 +1,4 @@
 import { Navbar } from "./components/v2/Navbar";
-import { Footer } from "./components/v2/Footer";
 import { usePageSEO } from "./hooks/usePageSEO";
 
 export default function FreeConsultationPage() {
@@ -14,14 +13,13 @@ export default function FreeConsultationPage() {
       <Navbar />
       <main className="flex-1 flex flex-col">
         <iframe
-          src="/free-consultation"
+          src="https://ti.sympletax.com/free-consultation"
           title="Free Consultation"
           className="w-full flex-1 border-0"
           style={{ minHeight: "calc(100vh - 80px)" }}
           allow="fullscreen"
         />
       </main>
-      <Footer />
     </div>
   );
 }
