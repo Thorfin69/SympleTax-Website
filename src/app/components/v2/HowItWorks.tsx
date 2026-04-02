@@ -201,7 +201,7 @@ export function HowItWorks() {
           {/* Right: buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-[16px] shrink-0">
             <Link
-              to="https://ti.sympletax.com/free-consultation"
+              to="/free-consultation"
               className="inline-flex items-center justify-center bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 whitespace-nowrap"
               style={{ fontSize: "15px", padding: "14px 28px" }}
             >

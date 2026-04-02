@@ -14,7 +14,7 @@ export default function FreeConsultationPage() {
       <Navbar />
       <main className="flex-1 flex flex-col">
         <iframe
-          src="https://ti.sympletax.com/free-consultation"
+          src="/free-consultation"
           title="Free Consultation"
           className="w-full flex-1 border-0"
           style={{ minHeight: "calc(100vh - 80px)" }}

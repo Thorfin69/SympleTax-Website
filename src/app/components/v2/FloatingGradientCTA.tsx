@@ -25,7 +25,7 @@ export function FloatingGradientCTA({
   title,
   description,
   primaryLabel = "Get a Free Consultation",
-  primaryHref = "https://ti.sympletax.com/free-consultation",
+  primaryHref = "/free-consultation",
   primaryExternal = true,
   secondaryLabel,
   secondaryTo,

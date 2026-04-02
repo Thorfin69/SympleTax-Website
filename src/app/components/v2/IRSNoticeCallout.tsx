@@ -87,7 +87,7 @@ export function IRSNoticeCallout() {
                   transition={{ delay: idx * 0.06, duration: 0.35 }}
                 >
                   <Link
-                    to="https://ti.sympletax.com/free-consultation"
+                    to="/free-consultation"
                     className="flex items-center gap-[20px] py-[14px] border-b border-[#d8d3c8] group hover:pl-[6px] transition-all duration-200"
                   >
                     <span
@@ -156,7 +156,7 @@ export function IRSNoticeCallout() {
                 </p>
               </div>
               <Link
-                to="https://ti.sympletax.com/free-consultation"
+                to="/free-consultation"
                 className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full text-center transition-all duration-200 shadow-[0_6px_20px_rgba(0,164,164,0.3)]"
                 style={{ fontSize: "15px", padding: "14px 24px" }}
               >

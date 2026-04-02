@@ -220,7 +220,7 @@ export function TwoTrackLayout() {
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-[14px] flex-shrink-0">
             <Link
-              to="https://ti.sympletax.com/free-consultation"
+              to="/free-consultation"
               className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold px-[24px] py-[12px] rounded-full transition-colors duration-200 whitespace-nowrap hover:scale-[1.02]"
               style={{ fontSize: "14px" }}
             >

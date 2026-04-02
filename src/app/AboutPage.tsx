@@ -364,7 +364,7 @@ export default function AboutPage() {
 
                 <div className="flex flex-col sm:flex-row gap-[14px]">
                   <Link
-                    to="https://ti.sympletax.com/free-consultation"
+                    to="/free-consultation"
                     className="inline-flex items-center justify-center text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
                     style={{
                       fontSize: "15px",
@@ -1004,7 +1004,7 @@ export default function AboutPage() {
                     </div>
 
                     <Link
-                      to="https://ti.sympletax.com/free-consultation"
+                      to="/free-consultation"
                       className="inline-flex items-center justify-center bg-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-200 self-start"
                       style={{ fontSize: "14px", padding: "13px 26px", color: "#00A4A4" }}
                     >

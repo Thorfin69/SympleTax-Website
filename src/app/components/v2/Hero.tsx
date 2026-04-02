@@ -111,7 +111,7 @@ export function Hero() {
           className="flex flex-col items-center gap-[12px] mt-[28px] lg:hidden"
         >
           <Link
-            to="https://ti.sympletax.com/free-consultation"
+            to="/free-consultation"
             className="inline-flex items-center justify-center bg-white text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)] transition-all duration-300 shadow-[0_8px_28px_rgba(0,0,0,0.15)] w-full"
             style={{ fontSize: "15px", padding: "15px 37px", letterSpacing: "-0.3px" }}
             aria-label="Get started with a free tax consultation"
@@ -197,7 +197,7 @@ export function Hero() {
           style={{ paddingLeft: "80px", paddingBottom: "80px" }}
         >
           <Link
-            to="https://ti.sympletax.com/free-consultation"
+            to="/free-consultation"
             className="inline-flex items-center justify-center bg-white text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] hover:shadow-[0_16px_40px_rgba(0,0,0,0.2)] transition-all duration-300 shadow-[0_8px_28px_rgba(0,0,0,0.15)] w-full"
             style={{ fontSize: "16px", padding: "18px 48px", letterSpacing: "-0.3px" }}
             aria-label="Get started with a free tax consultation"

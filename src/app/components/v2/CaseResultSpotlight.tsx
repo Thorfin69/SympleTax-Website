@@ -157,7 +157,7 @@ export function CaseResultSpotlight() {
             {/* CTA + arrow */}
             <div className="flex items-center gap-[24px] mt-[4px]">
               <Link
-                to="https://ti.sympletax.com/free-consultation"
+                to="/free-consultation"
                 className="border-[2px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-[10px] px-[28px] py-[13px] hover:bg-[#00A4A4] hover:text-white transition-all duration-200 uppercase tracking-wide"
                 style={{ fontSize: "15px" }}
               >

@@ -182,7 +182,7 @@ export function HomeFAQ() {
           </p>
 
           <Link
-            to="https://ti.sympletax.com/free-consultation"
+            to="/free-consultation"
             className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300"
             style={{
               fontSize: "15px",

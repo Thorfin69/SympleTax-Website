@@ -245,7 +245,7 @@ export default function ServiceDetailPage() {
                 className="flex flex-wrap gap-[14px]"
               >
                 <a
-                  href="https://ti.sympletax.com/free-consultation"
+                  href="/free-consultation"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-[10px] font-['DM_Sans'] font-bold text-white rounded-full transition-all duration-300 hover:scale-[1.03]"
@@ -351,7 +351,7 @@ export default function ServiceDetailPage() {
                       Speak with a licensed professional today. We'll tell you honestly if you qualify — and what your best path forward is.
                     </p>
                     <a
-                      href="https://ti.sympletax.com/free-consultation"
+                      href="/free-consultation"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex w-full items-center justify-center gap-[8px] font-['DM_Sans'] font-bold text-white rounded-full transition-all duration-300 hover:scale-[1.02]"
@@ -454,7 +454,7 @@ export default function ServiceDetailPage() {
 
                 <div className="mt-[40px]">
                   <a
-                    href="https://ti.sympletax.com/free-consultation"
+                    href="/free-consultation"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-[10px] font-['DM_Sans'] font-bold text-white rounded-full transition-all duration-300 hover:scale-[1.02]"
@@ -564,7 +564,7 @@ export default function ServiceDetailPage() {
 
             <div className="mt-[48px] flex flex-wrap gap-[16px] items-center">
               <a
-                href="https://ti.sympletax.com/free-consultation"
+                href="/free-consultation"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-[10px] font-['DM_Sans'] font-bold text-white rounded-full transition-all duration-300 hover:scale-[1.02]"
@@ -613,7 +613,7 @@ export default function ServiceDetailPage() {
                   </h2>
                 </div>
                 <a
-                  href="https://ti.sympletax.com/free-consultation"
+                  href="/free-consultation"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex shrink-0 items-center gap-[8px] font-['DM_Sans'] font-bold text-white rounded-full transition-all duration-300 hover:scale-[1.02]"

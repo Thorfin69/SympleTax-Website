@@ -297,12 +297,12 @@ export default function ContactPage() {
                     </p>
                   </div>
                   <a
-                    href="https://ti.sympletax.com/free-consultation"
+                    href="/free-consultation"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-[8px] border border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:bg-[#00A4A4] hover:text-white transition-all duration-200 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
                     style={{ fontSize: "13px", padding: "10px 20px", whiteSpace: "nowrap" }}
-                    aria-label="Start full intake form at ti.sympletax.com/free-consultation (opens in new tab)"
+                    aria-label="Start full intake form at /free-consultation"
                   >
                     Start Full Intake Form
                     <ExternalLink className="w-[13px] h-[13px]" aria-hidden="true" />

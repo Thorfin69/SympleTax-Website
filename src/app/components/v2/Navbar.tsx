@@ -78,7 +78,7 @@ const CASE_ACCESS_LINKS = {
   left: {
     heading: "SympleTax Portals",
     links: [
-      { name: "Client Login", href: "https://ti.sympletax.com/free-consultation", external: true },
+      { name: "Client Login", href: "/free-consultation", external: true },
     ],
   },
   right: {
@@ -130,7 +130,7 @@ const MOBILE_NAV_ITEMS = [
     name: "Case Access",
     href: "#",
     accordion: [
-      { name: "Client Login", href: "https://ti.sympletax.com/free-consultation" },
+      { name: "Client Login", href: "/free-consultation" },
       { name: "Free Consultation", href: "/contact" },
     ],
   },
@@ -492,7 +492,7 @@ export function Navbar() {
                 (949) 287-3015
               </a>
               <Link
-                to="https://ti.sympletax.com/free-consultation"
+                to="/free-consultation"
                 className={`font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none whitespace-nowrap ${
                   isScrolled
                     ? "bg-[#00A4A4] hover:bg-[#007a7a] text-white shadow-[0_4px_16px_rgba(0,164,164,0.28)]"
@@ -644,7 +644,7 @@ export function Navbar() {
               <div className="px-[20px] py-[24px] shrink-0" style={{ borderTop: "1px solid #f0ece4" }}>
                 <div className="flex flex-col gap-[10px]">
                   <a
-                    href="https://ti.sympletax.com/free-consultation"
+                    href="/free-consultation"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeMobileMenu}
@@ -654,7 +654,7 @@ export function Navbar() {
                     Client Login
                   </a>
                   <Link
-                    to="https://ti.sympletax.com/free-consultation"
+                    to="/free-consultation"
                     onClick={closeMobileMenu}
                     className="w-full py-[15px] rounded-full bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold text-center transition-all shadow-[0_6px_20px_rgba(0,164,164,0.3)] focus:outline-none"
                     style={{ fontSize: "15px" }}

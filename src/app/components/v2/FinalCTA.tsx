@@ -91,7 +91,7 @@ export function FinalCTA() {
           {/* CTA button — teal, uppercase with arrow */}
           <div className="flex flex-wrap items-center gap-[20px] mb-[20px]">
             <Link
-              to="https://ti.sympletax.com/free-consultation"
+              to="/free-consultation"
               className="inline-flex items-center gap-[12px] bg-[#00A4A4] hover:bg-[#007a7a] hover:scale-[1.02] text-white font-['DM_Sans'] font-bold rounded-full uppercase transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)] hover:shadow-[0_12px_32px_rgba(0,164,164,0.4)]"
               style={{ fontSize: "14px", letterSpacing: "0.08em", padding: "17px 32px" }}
             >
