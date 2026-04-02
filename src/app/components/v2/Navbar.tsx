@@ -41,7 +41,7 @@ const SERVICES_DROPDOWN = {
     title: "Not sure where to start?",
     body: "A licensed professional will review your case for free.",
     cta: "Get a Free Consultation",
-    href: "https://ti.sympletax.com/free-consultation",
+    href: "/free-consultation",
   },
 };
 
@@ -70,7 +70,7 @@ const RESOURCES_LINKS = {
     src: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&h=500&fit=crop&q=80",
     headline: "We're Here To Help.",
     cta: "Get Started",
-    href: "https://ti.sympletax.com/free-consultation",
+    href: "/free-consultation",
   },
 };
 
@@ -84,7 +84,7 @@ const CASE_ACCESS_LINKS = {
   right: {
     heading: "New Client",
     links: [
-      { name: "Free Consultation", href: "https://ti.sympletax.com/free-consultation", external: true },
+      { name: "Free Consultation", href: "/free-consultation" },
     ],
   },
 };
@@ -145,7 +145,7 @@ const MOBILE_NAV_ITEMS = [
     href: "#",
     accordion: [
       { name: "Client Login", href: "https://myportal.sympletax.com" },
-      { name: "Free Consultation", href: "https://ti.sympletax.com/free-consultation" },
+      { name: "Free Consultation", href: "/free-consultation" },
     ],
   },
   { name: "Contact Us", href: "/contact" },
@@ -561,7 +561,7 @@ export function Navbar() {
                 (260) 254-8538
               </a>
               <a
-                href="https://ti.sympletax.com/free-consultation"
+                href="/free-consultation"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none whitespace-nowrap ${
@@ -725,7 +725,7 @@ export function Navbar() {
                     Client Login
                   </a>
                   <a
-                    href="https://ti.sympletax.com/free-consultation"
+                    href="/free-consultation"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeMobileMenu}

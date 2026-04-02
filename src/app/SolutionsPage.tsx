@@ -88,7 +88,7 @@ const PROBLEMS = [
     icon: Search,
     name: "IRS Audit",
     desc: "Under IRS review or examination — don't face it alone without representation.",
-    href: "https://ti.sympletax.com/free-consultation",
+    href: "/free-consultation",
   },
   {
     icon: FileX,
@@ -389,7 +389,7 @@ export default function SolutionsPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-[16px]">
                 <Link
-                  to="https://ti.sympletax.com/free-consultation"
+                  to="/free-consultation"
                   className="inline-flex items-center justify-center gap-[10px] text-[#007a7a] font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)]"
                   style={{
                     fontSize: "16px",
@@ -691,7 +691,7 @@ export default function SolutionsPage() {
                       </p>
                     </div>
                     <Link
-                      to="https://ti.sympletax.com/free-consultation"
+                      to="/free-consultation"
                       className="mt-auto inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold text-[#00A4A4] hover:text-[#007a7a] transition-colors"
                       style={{ fontSize: "13px" }}
                     >
@@ -860,7 +860,7 @@ export default function SolutionsPage() {
                   Not finding your answer? Our licensed team will walk you through your specific situation — for free.
                 </p>
                 <Link
-                  to="https://ti.sympletax.com/free-consultation"
+                  to="/free-consultation"
                   className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] self-start"
                   style={{
                     fontSize: "14px",

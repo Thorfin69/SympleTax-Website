@@ -164,7 +164,7 @@ export default function ServicesPage() {
                 className="hidden lg:flex flex-col gap-[12px] shrink-0"
               >
                 <Link
-                  to="https://ti.sympletax.com/free-consultation"
+                  to="/free-consultation"
                   className="inline-flex items-center gap-[10px] bg-white hover:bg-white/90 text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                   style={{ fontSize: "15px", padding: "16px 36px" }}
                 >
@@ -252,7 +252,7 @@ export default function ServicesPage() {
                         </p>
                       </div>
                       <Link
-                        to="https://ti.sympletax.com/free-consultation"
+                        to="/free-consultation"
                         className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-bold rounded-full transition-all duration-200 hover:scale-[1.02] focus:outline-none focus-visible:ring-2"
                         style={{
                           fontSize: "13px",
@@ -389,7 +389,7 @@ export default function ServicesPage() {
                     </div>
 
                     <Link
-                        to="https://ti.sympletax.com/free-consultation"
+                        to="/free-consultation"
                       className="inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold hover:gap-[10px] transition-all duration-200 focus:outline-none focus-visible:underline mt-auto"
                       style={{ fontSize: "13px", color: program.color }}
                       aria-label={`Learn more about ${program.title}`}

@@ -210,7 +210,7 @@ export default function ProcessPage() {
             </p>
             <div className="flex items-center justify-center gap-[20px] flex-wrap">
               <Link
-                to="https://ti.sympletax.com/free-consultation"
+                to="/free-consultation"
                 className="inline-flex items-center gap-[12px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 shadow-[0_8px_28px_rgba(0,164,164,0.28)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] focus-visible:ring-offset-2"
                 style={{ fontSize: "16px", padding: "18px 48px" }}
                 aria-label="Get a free tax consultation"

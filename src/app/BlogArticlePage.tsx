@@ -145,7 +145,7 @@ function InlineCTA() {
         </p>
       </div>
       <Link
-        to="https://ti.sympletax.com/free-consultation"
+        to="/free-consultation"
         className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
         style={{
           fontSize: "14px",
@@ -393,7 +393,7 @@ function SidebarCTA() {
         </p>
 
         <Link
-          to="https://ti.sympletax.com/free-consultation"
+          to="/free-consultation"
           className="flex items-center justify-center gap-[8px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
           style={{
             fontSize: "13px",
@@ -740,7 +740,7 @@ export default function BlogArticlePage() {
           <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
             <div className="text-center">
               <Link
-                to="https://ti.sympletax.com/free-consultation"
+                to="/free-consultation"
                 className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
                   fontSize: "16px",
@@ -777,7 +777,7 @@ export default function BlogArticlePage() {
               Get a free, no-obligation IRS account review.
             </p>
             <Link
-              to="https://ti.sympletax.com/free-consultation"
+              to="/free-consultation"
               className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
               style={{
                 fontSize: "15px",

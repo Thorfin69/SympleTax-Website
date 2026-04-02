@@ -803,7 +803,7 @@ export default function ServiceDetailPage() {
                   Everything you need to know about {service.eyebrow.toLowerCase()}.
                 </p>
                 <a
-                  href="https://ti.sympletax.com/free-consultation"
+                  href="/free-consultation"
                   className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-semibold text-[#00A4A4] hover:text-[#007a7a] transition-colors"
                   style={{ fontSize: "14px" }}
                 >

@@ -661,7 +661,7 @@ export default function ResourcesPage() {
 
                 <div>
                   <Link
-                    to="https://ti.sympletax.com/free-consultation"
+                    to="/free-consultation"
                     className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
                     style={{
                       fontSize: "14px",
@@ -762,7 +762,7 @@ export default function ResourcesPage() {
 
               <div className="flex flex-col items-center gap-[14px]">
                 <Link
-                  to="https://ti.sympletax.com/free-consultation"
+                  to="/free-consultation"
                   className="inline-flex items-center gap-[12px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
                   style={{
                     fontSize: "16px",

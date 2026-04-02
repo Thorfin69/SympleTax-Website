@@ -179,7 +179,7 @@ function ProcessCard({ step, colorIdx }: { step: (typeof PROCESS_STEPS)[0]; colo
       {/* Right CTA */}
       <div className="shrink-0 flex flex-row lg:flex-col items-center justify-start lg:justify-center gap-[8px] lg:min-w-[140px]">
         <Link
-          to="https://ti.sympletax.com/free-consultation"
+          to="/free-consultation"
           className="inline-flex items-center gap-[8px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
           style={{
             fontSize: "13px",
@@ -379,7 +379,7 @@ export default function AboutPage() {
                     Let's talk.
                   </Link>
                   <Link
-                    to="https://ti.sympletax.com/free-consultation"
+                    to="/free-consultation"
                     className="inline-flex items-center justify-center font-['DM_Sans'] font-medium text-[#0f172a] hover:text-[#00A4A4] transition-colors whitespace-nowrap rounded-full"
                     style={{ fontSize: "15px", padding: "16px 32px", border: "1.5px solid #e2e8f0" }}
                   >
@@ -552,7 +552,7 @@ export default function AboutPage() {
               className="mt-[48px] text-center"
             >
               <Link
-                to="https://ti.sympletax.com/free-consultation"
+                to="/free-consultation"
                 className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
                 style={{ fontSize: "15px", padding: "15px 36px" }}
                 aria-label="Work with the SympleTax team"
@@ -684,7 +684,7 @@ export default function AboutPage() {
 
               <div className="flex items-center gap-[16px] shrink-0">
                 <Link
-                  to="https://ti.sympletax.com/free-consultation"
+                  to="/free-consultation"
                   className="inline-flex items-center gap-[8px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02]"
                   style={{
                     fontSize: "15px",
@@ -902,7 +902,7 @@ export default function AboutPage() {
 
                 <div>
                   <Link
-                    to="https://ti.sympletax.com/free-consultation"
+                    to="/free-consultation"
                     className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
                     style={{ fontSize: "15px", padding: "15px 36px" }}
                     aria-label="See if you qualify for SympleTax"

@@ -190,7 +190,7 @@ export function Testimonials() {
         className="flex justify-center mt-[56px]"
       >
         <a
-          href="https://ti.sympletax.com/free-consultation"
+          href="/free-consultation"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-[10px] border-[1.5px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:bg-[#00A4A4] hover:text-white transition-all duration-300 hover:scale-[1.02]"

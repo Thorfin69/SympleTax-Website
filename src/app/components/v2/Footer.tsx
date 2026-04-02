@@ -15,7 +15,7 @@ const COMPANY_LINKS = [
   { name: "How It Works", href: "/process" },
   { name: "Our Services", href: "/services" },
   { name: "Contact Us", href: "/contact" },
-  { name: "Free Consultation", href: "https://ti.sympletax.com/free-consultation" },
+  { name: "Free Consultation", href: "/free-consultation" },
   { name: "Sitemap", href: "/sitemap" },
 ];
 
