@@ -198,11 +198,13 @@ const DATA: ServiceData[] = [
       ],
     },
     approach: {
-      heading: "How SympleTax Gets Your Penalties Removed",
+      heading: "How to Apply for Penalty Abatement",
       steps: [
-        { number: "01", title: "Penalty Audit", body: "We pull your IRS account transcript and identify every penalty that has been assessed — and which abatement program each one qualifies for." },
-        { number: "02", title: "Abatement Application", body: "We draft and submit penalty abatement requests, including supporting documentation and a written argument for each applicable program. The IRS receives thousands of poorly prepared requests — ours are built to succeed." },
-        { number: "03", title: "Appeal If Needed", body: "If the initial request is denied, we file an appeal with the IRS Office of Appeals. Denials are often overturned with proper representation." },
+        { number: "01", title: "Contact SympleTax", body: "Speak with one of our licensed representatives who will review your account, identify which penalties you qualify to have removed, and determine the strongest path forward." },
+        { number: "02", title: "We Review Your Full Tax History", body: "We pull your IRS transcripts, assess your compliance status, and identify any missing returns or outstanding balances that need to be addressed before filing." },
+        { number: "03", title: "We Build Your Case", body: "Whether you qualify for First Time Penalty Abatement or Reasonable Cause, we prepare the written request, gather supporting documentation, and handle every detail on your behalf." },
+        { number: "04", title: "We Submit Directly to the IRS", body: "As your authorized representative, we communicate with the IRS for you. You never have to make a single call or write a single letter." },
+        { number: "05", title: "We Fight If They Push Back", body: "If the IRS denies the request, we file a formal appeal with the IRS Office of Appeals and continue advocating until we've exhausted every available option." },
       ],
     },
     faqs: [
@@ -402,7 +404,7 @@ const DATA: ServiceData[] = [
     eyebrow: "IRS Fresh Start Program",
     title: "The IRS's Own Program to Help Struggling Taxpayers",
     subtitle:
-      "Launched in 2011, the IRS Fresh Start Program expanded access to Offers in Compromise, raised installment agreement thresholds, and made it easier for millions of Americans to resolve tax debt.",
+      "Launched in 2011, the IRS Fresh Start Program expanded access to Offers in Compromise, made installment agreements more accessible, and made it easier for millions of Americans to resolve tax debt.",
     heroStats: [
       { value: "2011", label: "Year the IRS expanded Fresh Start access" },
       { value: "Easier OIC", label: "Qualification streamlined for more taxpayers" },
@@ -412,7 +414,7 @@ const DATA: ServiceData[] = [
       heading: "What Is the IRS Fresh Start Program?",
       paragraphs: [
         "The IRS Fresh Start Program is not a single program but a collection of policy changes the IRS made in 2011 and 2012 to make it easier for struggling taxpayers to resolve tax debt. The initiative expanded the Offer in Compromise program, raised the threshold for streamlined installment agreements, and changed how the IRS calculates a taxpayer's \"ability to pay.\"",
-        "Key Fresh Start changes include: allowing taxpayers to use the current value of their retirement accounts (with a 20% reduction) rather than full face value in OIC calculations, raising the streamlined installment agreement threshold from $25,000 to $50,000, and extending repayment terms from 60 to 72 months.",
+        "Key Fresh Start changes include: allowing taxpayers to use the current value of their retirement accounts (with a 20% reduction) rather than full face value in OIC calculations, and expanding streamlined installment agreement eligibility.",
         "The practical result is that more taxpayers qualify for reduced settlements and more manageable payment plans than before. Working with a licensed professional who understands the Fresh Start changes can dramatically improve your resolution outcome.",
       ],
       callout: { big: "More taxpayers qualify", label: "Fresh Start expanded OIC access beyond prior rules" },
@@ -421,8 +423,8 @@ const DATA: ServiceData[] = [
       heading: "Key Components of the Fresh Start Initiative",
       steps: [
         { title: "Expanded OIC Eligibility", body: "The IRS revised how it calculates the \"reasonable collection potential\" used in OIC calculations — particularly for self-employed taxpayers and those with retirement assets — making more taxpayers eligible." },
-        { title: "Streamlined Installment Agreements", body: "Raised threshold from $25,000 to $50,000 (no financial disclosure required) and extended terms from 60 to 72 months." },
-        { title: "Lien Relief", body: "The IRS began withdrawing tax liens more readily when taxpayers enter direct debit installment agreements and balance falls below $25,000." },
+        { title: "Streamlined Installment Agreements", body: "Expanded eligibility so more taxpayers can set up payment plans without financial disclosure requirements." },
+        { title: "Lien Relief", body: "The IRS began withdrawing tax liens more readily when taxpayers enter direct debit installment agreements with qualifying payment plans." },
         { title: "Federal Tax Lien Withdrawals", body: "The IRS expanded grounds for lien withdrawal, making it easier for taxpayers with payment plans to have liens withdrawn rather than simply released." },
       ],
     },
@@ -431,7 +433,7 @@ const DATA: ServiceData[] = [
       desc: "Fresh Start changes affect several resolution programs. Here's who benefits most:",
       points: [
         { title: "OIC candidates with retirement accounts", desc: "The revised calculation allows retirement accounts to be valued at a discount — potentially lowering your minimum offer amount significantly." },
-        { title: "Taxpayers with $25–50K in debt", desc: "The raised streamlined threshold means these taxpayers can set up payment plans without submitting financial disclosure statements." },
+        { title: "Taxpayers with significant debt", desc: "The raised streamlined threshold means many taxpayers can set up payment plans without submitting financial disclosure statements." },
         { title: "Self-employed taxpayers", desc: "Revised income averaging rules benefit self-employed individuals with fluctuating income." },
         { title: "Anyone currently in collection", desc: "Fresh Start lien relief provisions mean a payment plan may result in lien withdrawal — protecting your credit." },
       ],
@@ -659,7 +661,7 @@ const DATA: ServiceData[] = [
     howItWorks: {
       heading: "Options to Remove or Reduce a Federal Tax Lien",
       steps: [
-        { title: "Lien Withdrawal", body: "The IRS withdraws the public Notice of Federal Tax Lien — removing it from public records as if it never existed. Available when entering a direct debit installment agreement with a balance under $25,000 (Fresh Start)." },
+        { title: "Lien Withdrawal", body: "The IRS withdraws the public Notice of Federal Tax Lien — removing it from public records as if it never existed. Available when entering a direct debit installment agreement under Fresh Start criteria." },
         { title: "Lien Release", body: "The lien is released when the tax debt is fully paid, an OIC is accepted, or the collection statute expires. A release removes the IRS's legal claim but remains in credit records." },
         { title: "Lien Discharge", body: "Removes the lien from a specific property (e.g., to allow a sale) while leaving it attached to other assets. Allows a property transaction to proceed." },
         { title: "Lien Subordination", body: "Allows another creditor's claim to take priority over the IRS lien — making it possible to obtain refinancing or a mortgage even with a lien in place." },
@@ -669,7 +671,7 @@ const DATA: ServiceData[] = [
       heading: "When Can You Get a Lien Withdrawn or Removed?",
       desc: "The method available to you depends on your balance, payment status, and type of resolution.",
       points: [
-        { title: "Balance under $25K on direct debit", desc: "The Fresh Start initiative allows lien withdrawal when you enter a direct debit installment agreement with a balance at or below $25,000." },
+        { title: "Direct debit compliance", desc: "The Fresh Start initiative allows lien withdrawal when you enter a qualifying direct debit installment agreement." },
         { title: "OIC accepted", desc: "When an OIC is accepted and paid, the lien is released as part of the settlement." },
         { title: "Property sale pending", desc: "If you're selling a property and proceeds will satisfy the lien, we can arrange a discharge to allow the sale to close." },
         { title: "Refinancing needed", desc: "Subordination allows a new mortgage lender to take priority over the IRS lien — enabling a refinance even with an active lien." },
@@ -677,11 +679,13 @@ const DATA: ServiceData[] = [
       ],
     },
     approach: {
-      heading: "How SympleTax Handles Federal Tax Liens",
+      heading: "How to Resolve Your Federal Tax Lien",
       steps: [
-        { number: "01", title: "Lien Analysis", body: "We review the lien filing, your assets, and outstanding balance to determine which lien relief option applies and what path resolves both the lien and the underlying debt most effectively." },
-        { number: "02", title: "Resolution or Relief Application", body: "We pursue the appropriate relief — withdrawal, discharge, subordination, or lien release through OIC or installment agreement — handling all IRS correspondence." },
-        { number: "03", title: "Debt Resolution", body: "With the lien addressed, we finalize resolution of the underlying tax balance through the most favorable available program." },
+        { number: "01", title: "Contact SympleTax", body: "Speak with one of our licensed representatives who will analyze your lien situation, review your account balance and filing status, and identify which resolution strategy—withdrawal, discharge, subordination, or full resolution—is right for you." },
+        { number: "02", title: "We Review Your Full Tax History", body: "We pull your IRS transcripts and determine what's required to satisfy the lien. If you qualify for Fresh Start or a direct debit installment agreement, we'll unlock withdrawal eligibility. If an OIC makes sense, we calculate the settlement amount." },
+        { number: "03", title: "We Build Your Case", body: "Whether you need to discharge a property, subordinate to a refinancing lender, or prepare for withdrawal, we gather all documentation, prepare the formal request, and build the strongest possible case for lien resolution or removal." },
+        { number: "04", title: "We Submit Directly to the IRS", body: "As your authorized representative, we file the lien withdrawal, discharge, or subordination request with the appropriate IRS office. You never contact the IRS directly—we handle every communication on your behalf." },
+        { number: "05", title: "We Fight If They Push Back", body: "If the IRS denies the request or requires additional information, we file a formal appeal and escalate within the IRS system to resolve the lien. We don't stop until we've exhausted every option available." },
       ],
     },
     faqs: [
