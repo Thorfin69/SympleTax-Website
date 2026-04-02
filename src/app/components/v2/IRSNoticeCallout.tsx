@@ -49,7 +49,7 @@ export function IRSNoticeCallout() {
                 className="font-['DM_Sans'] font-bold uppercase text-[#0f172a]"
                 style={{ fontSize: "13px", letterSpacing: "0.04em" }}
               >
-                Tax Help
+                IRS Notice Center
               </span>
             </div>
 
@@ -73,7 +73,7 @@ export function IRSNoticeCallout() {
               className="font-['DM_Sans'] font-normal text-[#475569] leading-[1.65]"
               style={{ fontSize: "16px", letterSpacing: "-0.3px", maxWidth: "460px" }}
             >
-              Don't panic — but don't wait. Whether it's an audit, levy notice, or balance due, our licensed experts decode it and respond within 24 hours.
+              Don't panic — but don't wait. Whether it's an audit, levy notice, or balance due, our licensed experts will help.
             </p>
 
             {/* Notice types — clean list */}
@@ -87,7 +87,7 @@ export function IRSNoticeCallout() {
                   transition={{ delay: idx * 0.06, duration: 0.35 }}
                 >
                   <Link
-                    to="/free-consultation"
+                    to="/resources/irs-cp90-notice"
                     className="flex items-center gap-[20px] py-[14px] border-b border-[#d8d3c8] group hover:pl-[6px] transition-all duration-200"
                   >
                     <span
@@ -156,16 +156,12 @@ export function IRSNoticeCallout() {
                 </p>
               </div>
               <Link
-                to="/free-consultation"
-                className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full text-center transition-all duration-200 shadow-[0_6px_20px_rgba(0,164,164,0.3)]"
+                to="/resources/irs-cp90-notice"
+                className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full text-center transition-all duration-200"
                 style={{ fontSize: "15px", padding: "14px 24px" }}
               >
                 Analyze My Notice
               </Link>
-              <div className="flex items-center gap-[8px]">
-                <div className="w-2 h-2 rounded-full bg-green-400" />
-                <span className="font-['DM_Sans'] text-[13px] text-[#475569]">Free 24h review — no obligation</span>
-              </div>
             </div>
           </motion.div>
 

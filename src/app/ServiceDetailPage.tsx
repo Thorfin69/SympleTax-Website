@@ -150,23 +150,8 @@ export default function ServiceDetailPage() {
         {/* ── 01 HERO ─────────────────────────────────────────────────────────── */}
         <section
           className="relative overflow-hidden pt-[140px] pb-[100px] lg:pt-[160px] lg:pb-[120px]"
-          style={{ background: "linear-gradient(135deg, #0a1628 0%, #0f2040 50%, #0a1628 100%)" }}
+          style={{ backgroundColor: "#00A4A4" }}
         >
-          {/* Background grid lines */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage: "linear-gradient(rgba(0,164,164,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,164,164,0.07) 1px, transparent 1px)",
-              backgroundSize: "72px 72px",
-            }}
-          />
-          {/* Diagonal accent lines */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-40"
-            style={{
-              backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 80px, rgba(0,164,164,0.04) 80px, rgba(0,164,164,0.04) 81px)",
-            }}
-          />
           {/* Glow orb */}
           <div
             className="absolute pointer-events-none"
@@ -196,16 +181,16 @@ export default function ServiceDetailPage() {
                 Solutions
               </Link>
               <ChevronRight className="w-[12px] h-[12px] text-white/25" />
-              <span className="font-['DM_Sans'] text-[#00A4A4]" style={{ fontSize: "13px" }}>
+              <span className="font-['DM_Sans'] text-white/80" style={{ fontSize: "13px" }}>
                 {service.eyebrow}
               </span>
             </nav>
 
             {/* Eyebrow */}
             <div className="flex items-center gap-[10px] mb-[20px]">
-              <div className="h-px w-[35px]" style={{ background: "#00A4A4" }} />
+              <div className="h-px w-[35px]" style={{ background: "rgba(255,255,255,0.4)" }} />
               <span
-                className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+                className="font-['DM_Sans'] font-medium uppercase text-white/70"
                 style={{ fontSize: "13px", letterSpacing: "0.07em" }}
               >
                 {isResolution ? "Resolution Program" : "Tax Problem"}
@@ -248,19 +233,18 @@ export default function ServiceDetailPage() {
                   href="/free-consultation"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-[10px] font-['DM_Sans'] font-bold text-white rounded-full transition-all duration-300 hover:scale-[1.03]"
+                  className="inline-flex items-center gap-[10px] font-['DM_Sans'] font-bold text-[#00A4A4] rounded-full transition-all duration-300 hover:scale-[1.03]"
                   style={{
                     fontSize: "15px",
                     padding: "14px 28px",
-                    background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-                    boxShadow: "0 8px 28px rgba(0,164,164,0.38)",
+                    background: "white",
                   }}
                 >
                   Get a Free Case Evaluation
                   <ArrowRight className="w-[16px] h-[16px]" />
                 </a>
                 <a
-                  href="tel:+19492873015"
+                  href="tel:+12602548538"
                   className="inline-flex items-center gap-[10px] font-['DM_Sans'] font-semibold rounded-full transition-all duration-300 hover:bg-white/15"
                   style={{
                     fontSize: "15px",
@@ -271,7 +255,7 @@ export default function ServiceDetailPage() {
                   }}
                 >
                   <Phone className="w-[15px] h-[15px]" />
-                  (949) 287-3015
+                  (260) 254-8538
                 </a>
               </motion.div>
             </div>
@@ -359,7 +343,6 @@ export default function ServiceDetailPage() {
                         fontSize: "14px",
                         padding: "13px 24px",
                         background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-                        boxShadow: "0 6px 20px rgba(0,164,164,0.35)",
                       }}
                     >
                       Free Case Evaluation
@@ -462,7 +445,6 @@ export default function ServiceDetailPage() {
                       fontSize: "14px",
                       padding: "13px 26px",
                       background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-                      boxShadow: "0 6px 20px rgba(0,164,164,0.3)",
                     }}
                   >
                     Check If You Qualify
@@ -572,18 +554,17 @@ export default function ServiceDetailPage() {
                   fontSize: "15px",
                   padding: "14px 28px",
                   background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-                  boxShadow: "0 8px 28px rgba(0,164,164,0.38)",
                 }}
               >
                 Start Your Free Evaluation
                 <ArrowRight className="w-[16px] h-[16px]" />
               </a>
               <a
-                href="tel:+19492873015"
+                href="tel:+12602548538"
                 className="font-['DM_Sans'] font-semibold text-[#64748b] hover:text-[#0f172a] transition-colors"
                 style={{ fontSize: "14px" }}
               >
-                Or call (949) 287-3015
+                Or call (260) 254-8538
               </a>
             </div>
           </div>
@@ -741,14 +722,6 @@ export default function ServiceDetailPage() {
                           className="h-[130px] relative overflow-hidden flex items-end p-[20px]"
                           style={{ background: `linear-gradient(135deg, ${gradFrom} 0%, ${gradTo} 100%)` }}
                         >
-                          {/* Dot grid overlay */}
-                          <div
-                            className="absolute inset-0"
-                            style={{
-                              backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px)",
-                              backgroundSize: "18px 18px",
-                            }}
-                          />
                           <span
                             className="relative z-10 font-['DM_Sans'] font-medium text-white/70 rounded-full px-[10px] py-[4px]"
                             style={{ fontSize: "11px", letterSpacing: "0.05em", background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)" }}
@@ -830,7 +803,7 @@ export default function ServiceDetailPage() {
                   Everything you need to know about {service.eyebrow.toLowerCase()}.
                 </p>
                 <a
-                  href="/contact"
+                  href="https://ti.sympletax.com/free-consultation"
                   className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-semibold text-[#00A4A4] hover:text-[#007a7a] transition-colors"
                   style={{ fontSize: "14px" }}
                 >

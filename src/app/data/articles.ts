@@ -117,11 +117,6 @@ export const ARTICLES: Article[] = [
           "Future Income: The IRS multiplies your monthly disposable income (income minus IRS-allowed living expenses) by 12 for a lump-sum offer or 24 for a periodic payment offer.",
         ],
       },
-      {
-        type: "callout",
-        variant: "tip",
-        text: "Example: If your net assets total $8,000 and your disposable income is $300/month, your RCP for a lump-sum offer would be $8,000 + ($300 × 12) = $11,600. That's the floor the IRS will accept.",
-      },
       { type: "h2", id: "three-types", text: "The Three Types of OIC" },
       { type: "h3", id: "doubt-liability", text: "1. Doubt as to Liability" },
       {
@@ -147,7 +142,7 @@ export const ARTICLES: Article[] = [
           "Calculate your RCP — document your income, expenses, and assets on IRS Form 433-A (OIC)",
           "Determine your offer amount — it must equal or exceed your calculated RCP",
           "Submit the application — Form 656, Form 433-A, the $205 application fee, and your first payment",
-          "Wait for IRS review — OIC cases typically take 6 to 24 months to process",
+          "Wait for IRS review and respond quickly to each request",
           "Respond promptly to any IRS information requests during review",
           "Once accepted, complete all required payments and maintain compliance for 5 years",
         ],
@@ -418,11 +413,11 @@ export const ARTICLES: Article[] = [
       {
         type: "ol",
         items: [
-          "Bring your account into compliance first — file any missing returns and pay what you can",
-          "Call the IRS at the number on your notice or submit a written request",
-          "For FTA: state your prior clean history and explicitly request abatement under the First Time Penalty Abatement administrative waiver",
-          "For Reasonable Cause: provide a detailed written explanation with supporting documentation",
-          "If denied, file a formal appeal with the IRS Office of Appeals within 30 days",
+          "Contact SympleTax — speak with one of our licensed representatives who will review your account, identify which penalties you qualify to have removed, and determine the strongest path forward.",
+          "We review your full tax history — we pull your IRS transcripts, assess your compliance status, and identify any missing returns or outstanding balances that need to be addressed before filing.",
+          "We build your case — whether you qualify for First Time Penalty Abatement or Reasonable Cause, we prepare the written request, gather supporting documentation, and handle every detail on your behalf.",
+          "We submit directly to the IRS — as your authorized representative, we communicate with the IRS for you. You never have to make a single call or write a single letter.",
+          "We fight if they push back — if the IRS denies the request, we file a formal appeal with the IRS Office of Appeals and continue advocating until we've exhausted every available option.",
         ],
       },
     ],
@@ -494,7 +489,7 @@ export const ARTICLES: Article[] = [
     content: [
       {
         type: "p",
-        text: "Not every tax issue requires professional help. A simple return, a minor math error, or a basic payment plan can often be handled independently. But certain situations carry consequences serious enough that navigating them without expert guidance is a gamble you shouldn't take.",
+        text: "Certain situations carry consequences serious enough that navigating them without expert guidance is a gamble you shouldn't take.",
       },
       { type: "h2", id: "sign-1", text: "1. You've Received a Final Notice or Intent to Levy" },
       {
@@ -549,12 +544,12 @@ export const ARTICLES: Article[] = [
       { type: "h3", id: "guaranteed", text: "Guaranteed Installment Agreement" },
       {
         type: "p",
-        text: "If you owe $10,000 or less in combined tax, penalties, and interest, and have filed all required returns, the IRS is legally required to accept a payment plan if you request one. No financial disclosure is required. You simply need to propose monthly payments that will pay off the balance within 3 years.",
+        text: "If you owe $10,000 or less in combined tax, penalties, and interest, and have filed all required returns, the IRS is legally required to accept a payment plan. SympleTax will propose monthly payments that will pay off the balance quickly after significantly negotiating the balance down with the IRS.",
       },
       { type: "h3", id: "streamlined", text: "Streamlined Installment Agreement" },
       {
         type: "p",
-        text: "For balances up to $50,000, the IRS offers a streamlined agreement with no detailed financial disclosure required. You have up to 72 months to pay. Balances between $50,001 and $100,000 can qualify through the IRS online payment agreement tool with extended terms.",
+        text: "For balances up to $50,000, the IRS offers a streamlined agreement with no detailed financial disclosure required. SympleTax will work to qualify your case with the IRS and obtain extended terms whilst gaining a reduction on the existing balances for all tax years.",
       },
       { type: "h3", id: "partial-pay", text: "Partial Pay Installment Agreement (PPIA)" },
       {
@@ -566,11 +561,6 @@ export const ARTICLES: Article[] = [
         variant: "tip",
         text: "A PPIA can effectively function like a mini Offer in Compromise for taxpayers who don't qualify for an OIC. It requires full financial disclosure and IRS approval, but the long-term savings can be significant.",
       },
-      { type: "h2", id: "the-downside", text: "The Real Cost of an Installment Agreement" },
-      {
-        type: "p",
-        text: "Here's what most people don't realize: penalties and interest continue to accrue on the unpaid balance throughout the entire life of the installment agreement. On a $100,000 balance at a 72-month repayment pace, you could end up paying $130,000 or more by the time it's done. For some taxpayers, an OIC or other strategy would have resulted in a dramatically lower total payment.",
-      },
       { type: "cta" },
       { type: "h2", id: "when-right", text: "When an Installment Agreement Is the Right Choice" },
       {
@@ -579,7 +569,7 @@ export const ARTICLES: Article[] = [
           "Your balance is fully payable within the collection statute period and you have stable income",
           "You have sufficient assets or income to disqualify you from an OIC",
           "You need to stop a levy or garnishment quickly — an IA is faster to set up than an OIC",
-          "Your debt is under $50,000 and you want a simple, no-disclosure resolution path",
+          "A Licensed, IRS-educated Professional determines a no-disclosure resolution path",
         ],
       },
     ],

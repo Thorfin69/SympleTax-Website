@@ -14,8 +14,8 @@ import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 const FAQS = [
   {
     id: "01",
-    q: "How long does IRS tax resolution typically take?",
-    a: "It depends on the resolution path. Installment agreements can be set up in days. An Offer in Compromise typically takes 6 to 24 months. Getting into Currently Not Collectible status can happen in weeks. We'll give you a realistic timeline for your specific situation during your free consultation.",
+    q: "How can I protect my home from the IRS?",
+    a: "The IRS can place a lien on your home if you have unpaid taxes. The best way to protect your home is to act before a lien is filed — SympleTax has options that can stop collection action in its tracks. If a lien has already been filed, we can work to get it withdrawn or discharged. The sooner you address the debt, the more options you have to keep your home protected.",
   },
   {
     id: "02",
@@ -252,7 +252,6 @@ function CategoryPill({
         color: active ? "white" : "#475569",
         border: active ? "1.5px solid #00A4A4" : "1.5px solid #e2e8f0",
         whiteSpace: "nowrap",
-        boxShadow: active ? "0 4px 12px rgba(0,164,164,0.25)" : "none",
       }}
       aria-pressed={active}
     >
@@ -662,13 +661,12 @@ export default function ResourcesPage() {
 
                 <div>
                   <Link
-                    to="/contact"
+                    to="https://ti.sympletax.com/free-consultation"
                     className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
                     style={{
                       fontSize: "14px",
                       padding: "15px 28px",
                       background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-                      boxShadow: "0 8px 24px rgba(0,164,164,0.3)",
                     }}
                     aria-label="Get a free tax consultation"
                   >
@@ -764,13 +762,12 @@ export default function ResourcesPage() {
 
               <div className="flex flex-col items-center gap-[14px]">
                 <Link
-                  to="/contact"
+                  to="https://ti.sympletax.com/free-consultation"
                   className="inline-flex items-center gap-[12px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
                   style={{
                     fontSize: "16px",
                     padding: "18px 44px",
                     background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-                    boxShadow: "0 12px 32px rgba(0,164,164,0.3)",
                   }}
                   aria-label="Get a free tax consultation with SympleTax"
                 >

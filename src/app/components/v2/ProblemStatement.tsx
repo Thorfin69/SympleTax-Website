@@ -74,7 +74,7 @@ export function ProblemStatement() {
             </p>
             <Link
               to="/services"
-              className="bg-gradient-to-r from-[#00A4A4] to-[#007a7a] hover:from-[#007a7a] hover:to-[#005f5f] text-white flex items-center gap-[14px] px-[28px] py-[14px] rounded-full transition-all whitespace-nowrap shadow-[0_8px_24px_rgba(0,164,164,0.3)] hover:scale-[1.02]"
+              className="bg-gradient-to-r from-[#00A4A4] to-[#007a7a] hover:from-[#007a7a] hover:to-[#005f5f] text-white flex items-center gap-[14px] px-[28px] py-[14px] rounded-full transition-all whitespace-nowrap hover:scale-[1.02]"
             >
               <span className="font-['DM_Sans'] font-semibold" style={{ fontSize: "15px" }}>
                 View All Services

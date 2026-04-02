@@ -18,6 +18,7 @@ const PHASE_TWO_STEPS = [
   { step: "03", title: "Respond to IRS Requests", body: "The IRS may request additional documentation during the review process. We handle every response on your behalf, keeping the process moving forward." },
   { step: "04", title: "File Any Missing Returns", body: "Outstanding tax returns must be filed before resolution. We prepare and file any missing or unfiled returns as part of your case at no extra charge." },
   { step: "05", title: "Close Your Case", body: "Once the IRS approves your resolution, we verify the final settlement, confirm case closure, and provide you with documentation of your fresh start." },
+  { step: "06", title: "Stay in Compliance", body: "We make sure you stay in compliance after we resolve your tax debts, including filing annual tax returns, obtaining the correct tax deductions, and ensuring that you do not go back into the same situation." },
 ];
 
 export default function ProcessPage() {
@@ -43,7 +44,7 @@ export default function ProcessPage() {
         {/* Hero */}
         <section
           className="pt-[120px] lg:pt-[160px] pb-[60px] lg:pb-[100px]"
-          style={{ backgroundColor: "#0f172a" }}
+          style={{ backgroundColor: "#00A4A4" }}
           aria-label="Our process"
         >
           <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
@@ -54,9 +55,9 @@ export default function ProcessPage() {
               className="max-w-[680px]"
             >
               <div className="flex items-center gap-[10px] mb-[24px]">
-                <div className="bg-[#00A4A4] h-px w-[35px]" />
+                <div className="bg-white/30 h-px w-[35px]" />
                 <span
-                  className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+                  className="font-['DM_Sans'] font-medium uppercase text-white/70"
                   style={{ fontSize: "13px", letterSpacing: "0.08em" }}
                 >
                   How It Works
@@ -209,7 +210,7 @@ export default function ProcessPage() {
             </p>
             <div className="flex items-center justify-center gap-[20px] flex-wrap">
               <Link
-                to="/contact"
+                to="https://ti.sympletax.com/free-consultation"
                 className="inline-flex items-center gap-[12px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 shadow-[0_8px_28px_rgba(0,164,164,0.28)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4] focus-visible:ring-offset-2"
                 style={{ fontSize: "16px", padding: "18px 48px" }}
                 aria-label="Get a free tax consultation"
@@ -217,12 +218,12 @@ export default function ProcessPage() {
                 Get a Free Consultation
               </Link>
               <a
-                href="tel:+19492873015"
+                href="tel:+12602548538"
                 className="font-['DM_Sans'] font-semibold text-[#0f172a] hover:text-[#00A4A4] transition-colors focus:outline-none focus-visible:underline"
                 style={{ fontSize: "16px" }}
-                aria-label="Call SympleTax at (949) 287-3015"
+                aria-label="Call SympleTax at (260) 254-8538"
               >
-                Or call (949) 287-3015
+                Or call (260) 254-8538
               </a>
             </div>
           </div>

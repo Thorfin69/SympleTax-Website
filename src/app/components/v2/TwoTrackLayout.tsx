@@ -219,13 +219,15 @@ export function TwoTrackLayout() {
             </span>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-[14px] flex-shrink-0">
-            <Link
-              to="/free-consultation"
+            <a
+              href="https://ti.sympletax.com/free-consultation"
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold px-[24px] py-[12px] rounded-full transition-colors duration-200 whitespace-nowrap hover:scale-[1.02]"
               style={{ fontSize: "14px" }}
             >
               Get a Free Consultation
-            </Link>
+            </a>
             <Link
               to="/services"
               className="text-[#0f172a] font-['DM_Sans'] font-medium flex items-center gap-[4px] hover:text-[#00A4A4] transition-colors whitespace-nowrap"

@@ -75,7 +75,6 @@ export function BlogPreview() {
                 background: "#00A4A4",
                 fontSize: "15px",
                 letterSpacing: "-0.3px",
-                boxShadow: "0 4px 20px rgba(0,164,164,0.35)",
               }}
             >
               View All Articles

@@ -165,8 +165,8 @@ function PrivacyPolicy() {
 
       <Section title="12. Contact Us">
         <p>Privacy questions or requests: <a href="mailto:privacy@sympletax.com" className="text-[#00A4A4] hover:underline">privacy@sympletax.com</a><br />
-        SympleTax Privacy Office, 111 West Ocean Blvd, Long Beach, CA 90802<br />
-        Phone: <a href="tel:+19492873015" className="text-[#00A4A4] hover:underline">(949) 287-3015</a></p>
+        SympleTax Privacy Office, 3333 Michelson Drive, Irvine, CA 92612<br />
+        Phone: <a href="tel:+12602548538" className="text-[#00A4A4] hover:underline">(260) 254-8538</a></p>
       </Section>
 
       <EffectiveDate date={EFFECTIVE_DATE} />
@@ -285,8 +285,10 @@ function TermsOfService() {
         <p>You agree to indemnify and hold harmless SympleTax, its officers, employees, and agents from any claims, damages, losses, or expenses (including reasonable attorneys' fees) arising out of your use of our services, your violation of these Terms, or your violation of any rights of another party.</p>
       </Section>
 
-      <Section title="15. Governing Law & Disputes">
-        <p>These Terms are governed by the laws of the State of California, without regard to conflict of law provisions. Any disputes not resolved informally shall be submitted to binding arbitration in Los Angeles County, California, under the rules of the American Arbitration Association, except that either party may seek injunctive relief in a court of competent jurisdiction.</p>
+      <Section title="15. Governing Law, Dispute Resolution, and Class Action Waiver">
+        <p>These Terms are governed by the laws of the State of California, without regard to conflict of law provisions. Any dispute, claim, or controversy arising out of or relating to these Terms, your use of SympleTax's services, or any engagement with SympleTax LLC shall be resolved exclusively through binding individual arbitration administered by a recognized arbitration provider under its applicable rules.</p>
+        <p className="mt-[12px]">By agreeing to these Terms, you expressly waive any right to bring or participate in any class action lawsuit, class-wide arbitration, private attorney general action, or any other representative proceeding of any kind against SympleTax LLC, its officers, employees, agents, or affiliates. No arbitration or claim under these Terms shall be joined with any other arbitration or claim, and no class or collective arbitration shall be conducted.</p>
+        <p className="mt-[12px]">If for any reason a dispute proceeds in court rather than in arbitration, you and SympleTax LLC each waive any right to a jury trial and agree that such proceeding shall be brought solely in an individual capacity. This class action waiver is an essential and material term of this agreement, and it shall survive any termination of your relationship with SympleTax LLC.</p>
       </Section>
 
       <Section title="16. Changes to Terms">
@@ -295,8 +297,8 @@ function TermsOfService() {
 
       <Section title="17. Contact Us">
         <p>Legal and Terms inquiries: <a href="mailto:info@sympletax.com" className="text-[#00A4A4] hover:underline">info@sympletax.com</a><br />
-        111 West Ocean Blvd, Long Beach, CA 90802<br />
-        Phone: <a href="tel:+19492873015" className="text-[#00A4A4] hover:underline">(949) 287-3015</a></p>
+        3333 Michelson Drive, Irvine, CA 92612<br />
+        Phone: <a href="tel:+12602548538" className="text-[#00A4A4] hover:underline">(260) 254-8538</a></p>
       </Section>
 
       <EffectiveDate date={EFFECTIVE_DATE} />
@@ -344,7 +346,7 @@ function Disclaimer() {
       </Section>
 
       <Section title="6. Testimonials & Case Results">
-        <p>Testimonials and case results featured on our website were provided by actual SympleTax clients. Clients were not compensated for their testimonials. These represent individual client experiences and outcomes, which reflect unique circumstances and should not be interpreted as typical or guaranteed results. Dollar amounts referenced in case results represent the difference between the original IRS assessment and the final resolution amount, and may not reflect all fees, penalties, or other amounts applicable to your situation.</p>
+        <p>Clients were not compensated for their testimonials. These represent individual client experiences and outcomes, which reflect unique circumstances and should not be interpreted as typical or guaranteed results. Dollar amounts referenced in case results represent the difference between the original IRS assessment and the final resolution amount, and may not reflect all fees, penalties, or other amounts applicable to your situation.</p>
       </Section>
 
       <Section title="7. Third-Party Links & Resources">
@@ -453,8 +455,8 @@ function CaliforniaPrivacy() {
         <p>To exercise your California privacy rights, contact us through any of the following channels:</p>
         <UL items={[
           "Email: privacy@sympletax.com",
-          "Phone: (949) 287-3015",
-          "Mail: SympleTax Privacy Office, 111 West Ocean Blvd, Long Beach, CA 90802",
+          "Phone: (260) 254-8538",
+          "Mail: SympleTax Privacy Office, 3333 Michelson Drive, Irvine, CA 92612",
         ]} />
         <p className="mt-[12px]">We will verify your identity before processing your request. We will respond within 45 days of receipt. We may extend the response period by an additional 45 days when reasonably necessary, with prior notice.</p>
         <p className="mt-[12px]">You may make a verifiable consumer request up to twice in a 12-month period at no charge.</p>
@@ -471,8 +473,8 @@ function CaliforniaPrivacy() {
       <Section title="10. Contact for California Privacy Requests">
         <p>
           Email: <a href="mailto:privacy@sympletax.com" className="text-[#00A4A4] hover:underline">privacy@sympletax.com</a><br />
-          Phone: <a href="tel:+19492873015" className="text-[#00A4A4] hover:underline">(949) 287-3015</a><br />
-          Mail: 111 West Ocean Blvd, Long Beach, CA 90802
+          Phone: <a href="tel:+12602548538" className="text-[#00A4A4] hover:underline">(260) 254-8538</a><br />
+          Mail: 3333 Michelson Drive, Irvine, CA 92612
         </p>
       </Section>
 

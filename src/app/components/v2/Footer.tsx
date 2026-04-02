@@ -1,4 +1,4 @@
-import { Linkedin, Instagram, Facebook, Youtube } from "lucide-react";
+import { Linkedin, Facebook, Youtube } from "lucide-react";
 import { FooterSympleTaxLogo } from "./BrandWordmarks";
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -15,7 +15,7 @@ const COMPANY_LINKS = [
   { name: "How It Works", href: "/process" },
   { name: "Our Services", href: "/services" },
   { name: "Contact Us", href: "/contact" },
-  { name: "Free Consultation", href: "/contact" },
+  { name: "Free Consultation", href: "https://ti.sympletax.com/free-consultation" },
   { name: "Sitemap", href: "/sitemap" },
 ];
 
@@ -41,7 +41,6 @@ const RESOURCES = [
 ];
 
 const SOCIALS = [
-  { icon: Instagram, href: "https://www.instagram.com/sympletax", label: "SympleTax on Instagram" },
   { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61583684011496", label: "SympleTax on Facebook" },
   { icon: Linkedin, href: "https://www.linkedin.com/company/sympletax/", label: "SympleTax on LinkedIn" },
   { icon: TikTokIcon, href: "https://tiktok.com/sympletax", label: "SympleTax on TikTok" },
@@ -58,18 +57,40 @@ function FooterCol({ heading, links }: { heading: string; links: { name: string;
         {heading}
       </p>
       <ul className="flex flex-col gap-[14px]" role="list">
-        {links.map((link) => (
-          <li key={link.name}>
-            <Link
-              to={link.href}
-              className="group relative inline-block font-['DM_Sans'] font-normal text-white/55 hover:text-[#00A4A4] transition-colors duration-200 focus:outline-none focus-visible:underline"
-              style={{ fontSize: "16px", letterSpacing: "-0.1px" }}
-            >
-              {link.name}
-              <span className="absolute -bottom-[2px] left-0 w-0 h-[1px] bg-[#00A4A4] transition-all duration-300 group-hover:w-full" />
-            </Link>
-          </li>
-        ))}
+        {links.map((link) => {
+          const isExternal = link.href.startsWith("http");
+          const className =
+            "group relative inline-block font-['DM_Sans'] font-normal text-white/55 hover:text-[#00A4A4] transition-colors duration-200 focus:outline-none focus-visible:underline";
+          const spanEl = (
+            <span className="absolute -bottom-[2px] left-0 w-0 h-[1px] bg-[#00A4A4] transition-all duration-300 group-hover:w-full" />
+          );
+
+          return (
+            <li key={link.name}>
+              {isExternal ? (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={className}
+                  style={{ fontSize: "16px", letterSpacing: "-0.1px" }}
+                >
+                  {link.name}
+                  {spanEl}
+                </a>
+              ) : (
+                <Link
+                  to={link.href}
+                  className={className}
+                  style={{ fontSize: "16px", letterSpacing: "-0.1px" }}
+                >
+                  {link.name}
+                  {spanEl}
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
@@ -108,15 +129,15 @@ export function Footer() {
                 className="font-['DM_Sans'] font-normal text-white/55"
                 style={{ fontSize: "16px" }}
               >
-                111 West Ocean Blvd, Long Beach, CA 90802
+                3333 Michelson Drive, Irvine, CA 92612
               </p>
               <a
-                href="tel:+19492873015"
+                href="tel:+12602548538"
                 className="group relative inline-block font-['DM_Sans'] font-semibold text-[#00A4A4] hover:text-[#00c0c0] transition-colors focus:outline-none focus-visible:underline"
                 style={{ fontSize: "16px" }}
-                aria-label="Call SympleTax at (949) 287-3015"
+                aria-label="Call SympleTax at (260) 254-8538"
               >
-                (949) 287-3015
+                (260) 254-8538
                 <span className="absolute -bottom-[2px] left-0 w-0 h-[1px] bg-[#00c0c0] transition-all duration-300 group-hover:w-full" />
               </a>
               <a

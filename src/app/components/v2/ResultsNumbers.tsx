@@ -137,8 +137,8 @@ export function ResultsNumbers() {
           className="flex items-center gap-[24px] mt-[48px]"
         >
           <Link
-            to="/free-consultation"
-            className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
+            to="https://ti.sympletax.com/free-consultation"
+            className="bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 "
             style={{ fontSize: "16px", padding: "16px 32px" }}
           >
             Join 12,000+ Resolved Cases

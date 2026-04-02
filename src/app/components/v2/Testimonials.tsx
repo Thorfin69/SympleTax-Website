@@ -112,7 +112,7 @@ export function Testimonials() {
             >
               {/* Card */}
               <div
-                className="flex flex-col justify-between bg-white px-[24px] py-[28px] rounded-[20px] shadow-[0_4px_24px_rgba(0,0,0,0.07)]"
+                className="flex flex-col justify-between bg-white px-[24px] py-[28px] rounded-[20px]"
                 style={{ minHeight: "260px", borderRight: "1.5px solid rgba(0,164,164,0.25)" }}
               >
                 {/* Stars */}
@@ -189,8 +189,10 @@ export function Testimonials() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="flex justify-center mt-[56px]"
       >
-        <Link
-            to="/free-consultation"
+        <a
+          href="https://ti.sympletax.com/free-consultation"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-[10px] border-[1.5px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:bg-[#00A4A4] hover:text-white transition-all duration-300 hover:scale-[1.02]"
           style={{ fontSize: "15px", padding: "14px 36px", letterSpacing: "-0.2px" }}
           aria-label="See all case studies"
@@ -199,7 +201,7 @@ export function Testimonials() {
           <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-        </Link>
+        </a>
       </motion.div>
 
     </section>

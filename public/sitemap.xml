@@ -176,6 +176,31 @@
     <priority>0.75</priority>
   </url>
   <url>
+    <loc>https://www.sympletax.com/resources/irs-tax-debt-relief</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.sympletax.com/resources/ignore-irs-tax-debt</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.sympletax.com/resources/how-much-owe-irs</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.sympletax.com/resources/offer-in-compromise-acceptance-rate</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.sympletax.com/resources/stop-irs-wage-garnishment</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
     <loc>https://www.sympletax.com/resources/lib-v1-b01-what-is-tax-relief-and-how-can-it-help-y</loc>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>

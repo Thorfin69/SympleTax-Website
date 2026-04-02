@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { PaintStreak } from "../ui/PaintStreak";
 
 const CONTACT_ITEMS = [
-  { icon: Phone, label: "+1 (949) 287-3015", sub: "Call or text anytime", href: "tel:+19492873015" },
+  { icon: Phone, label: "+1 (260) 254-8538", sub: "Call or text anytime", href: "tel:+12602548538" },
   { icon: Mail, label: "info@sympletax.com", sub: "General inquiries", href: "mailto:info@sympletax.com" },
   { icon: Mail, label: "support@sympletax.com", sub: "Client support", href: "mailto:support@sympletax.com" },
   { icon: MapPin, label: "Irvine, CA", sub: "Serving clients nationwide", href: null },
@@ -164,7 +164,6 @@ export function HomeContactForm() {
               style={{
                 borderRadius: "24px",
                 padding: "48px",
-                boxShadow: "0 16px 64px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04)",
               }}
             >
               {submitted ? (
@@ -317,7 +316,6 @@ export function HomeContactForm() {
                       background: "#00A4A4",
                       paddingTop: "17px",
                       paddingBottom: "17px",
-                      boxShadow: "0 8px 28px rgba(0,164,164,0.35)",
                     }}
                   >
                     <span

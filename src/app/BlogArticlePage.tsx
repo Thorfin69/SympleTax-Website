@@ -10,7 +10,6 @@ import {
   BookOpen,
   ChevronRight,
   User,
-  Calendar,
 } from "lucide-react";
 import {
   CATEGORY_GRADIENT,
@@ -45,58 +44,6 @@ function DiagPattern({ dark = true }: { dark?: boolean }) {
         backgroundSize: "60px 60px",
       }}
     />
-  );
-}
-
-// ─── Article Thumbnail ────────────────────────────────────────────────────────
-
-function ArticleThumbnail({
-  category,
-  coverImage,
-  imageAlt = "",
-}: {
-  category: string;
-  coverImage?: string;
-  imageAlt?: string;
-}) {
-  const [from, to] = CATEGORY_GRADIENT[category] ?? ["#0f172a", "#1e293b"];
-  if (coverImage) {
-    return (
-      <div className="absolute inset-0">
-        <ImageWithFallback
-          src={coverImage}
-          alt={imageAlt || "Article cover image"}
-          className="w-full h-full object-cover"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(15,23,42,0.2) 0%, rgba(15,23,42,0.55) 100%)",
-          }}
-          aria-hidden="true"
-        />
-      </div>
-    );
-  }
-  return (
-    <div
-      className="absolute inset-0"
-      style={{ background: `linear-gradient(135deg, ${from} 0%, ${to} 100%)` }}
-    >
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.7) 1px, transparent 1px)",
-          backgroundSize: "30px 30px",
-        }}
-      />
-      <BookOpen
-        className="absolute text-white/10"
-        style={{ width: "80px", height: "80px", bottom: "24px", right: "24px" }}
-        aria-hidden="true"
-      />
-    </div>
   );
 }
 
@@ -198,13 +145,12 @@ function InlineCTA() {
         </p>
       </div>
       <Link
-        to="/contact"
+        to="https://ti.sympletax.com/free-consultation"
         className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
         style={{
           fontSize: "14px",
           padding: "14px 28px",
           background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-          boxShadow: "0 8px 24px rgba(0,164,164,0.35)",
           whiteSpace: "nowrap",
         }}
         aria-label="Get a free tax consultation"
@@ -364,7 +310,7 @@ function TableOfContents({
         className="font-['DM_Sans'] font-bold text-[#0f172a] mb-[16px] uppercase"
         style={{ fontSize: "11px", letterSpacing: "0.1em" }}
       >
-        In This Article
+        Quick Answers
       </p>
       <div className="flex flex-col gap-[2px]">
         {items.map((item) => {
@@ -447,13 +393,12 @@ function SidebarCTA() {
         </p>
 
         <Link
-          to="/contact"
+          to="https://ti.sympletax.com/free-consultation"
           className="flex items-center justify-center gap-[8px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
           style={{
             fontSize: "13px",
             padding: "13px 20px",
             background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-            boxShadow: "0 6px 16px rgba(0,164,164,0.3)",
           }}
           aria-label="Get a free tax consultation"
         >
@@ -673,60 +618,6 @@ export default function BlogArticlePage() {
             >
               {article.title}
             </motion.h1>
-
-            {/* Meta row */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="flex flex-wrap items-center gap-[20px] mb-[48px]"
-            >
-              <div className="flex items-center gap-[8px]">
-                <div
-                  className="w-[32px] h-[32px] rounded-full bg-[#00A4A4] flex items-center justify-center"
-                >
-                  <User style={{ width: "14px", height: "14px", color: "white" }} aria-hidden="true" />
-                </div>
-                <span className="font-['DM_Sans'] font-medium text-white/70" style={{ fontSize: "14px" }}>
-                  {article.author}
-                </span>
-              </div>
-
-              <div className="w-[1px] h-[18px] bg-white/10 hidden lg:block" aria-hidden="true" />
-
-              <div className="flex items-center gap-[6px]">
-                <Calendar style={{ width: "14px", height: "14px", color: "rgba(255,255,255,0.4)" }} aria-hidden="true" />
-                <span className="font-['DM_Sans'] font-normal text-white/50" style={{ fontSize: "14px" }}>
-                  {article.date}
-                </span>
-              </div>
-
-              <div className="w-[1px] h-[18px] bg-white/10 hidden lg:block" aria-hidden="true" />
-
-              <div className="flex items-center gap-[6px]">
-                <Clock style={{ width: "14px", height: "14px", color: "rgba(255,255,255,0.4)" }} aria-hidden="true" />
-                <span className="font-['DM_Sans'] font-normal text-white/50" style={{ fontSize: "14px" }}>
-                  {article.readTime}
-                </span>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Hero image — full width of container */}
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative rounded-t-[24px] overflow-hidden"
-              style={{ height: "clamp(200px, 35vw, 400px)" }}
-            >
-              <ArticleThumbnail
-                category={article.category}
-                coverImage={article.coverImage}
-                imageAlt={article.title}
-              />
-            </motion.div>
           </div>
         </section>
 
@@ -741,32 +632,6 @@ export default function BlogArticlePage() {
                   {article.content.map((block, idx) => renderBlock(block, idx))}
                 </div>
 
-                {/* Author byline at end */}
-                <div
-                  className="flex items-center gap-[16px] mt-[64px] pt-[32px] border-t"
-                  style={{ borderColor: "#e8ecf2" }}
-                >
-                  <div
-                    className="w-[48px] h-[48px] rounded-full flex items-center justify-center shrink-0"
-                    style={{ background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)" }}
-                  >
-                    <User style={{ width: "20px", height: "20px", color: "white" }} aria-hidden="true" />
-                  </div>
-                  <div>
-                    <p
-                      className="font-['DM_Sans'] font-semibold text-[#0f172a]"
-                      style={{ fontSize: "15px", letterSpacing: "-0.2px" }}
-                    >
-                      {article.author}
-                    </p>
-                    <p
-                      className="font-['DM_Sans'] font-normal text-[#94a3b8]"
-                      style={{ fontSize: "13px" }}
-                    >
-                      Licensed Tax Professionals · SympleTax
-                    </p>
-                  </div>
-                </div>
               </article>
 
               {/* Sticky sidebar — desktop only */}
@@ -837,14 +702,14 @@ export default function BlogArticlePage() {
                       className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
                       style={{ fontSize: "14px", letterSpacing: "0.05em" }}
                     >
-                      Keep Reading
+                      Resources
                     </span>
                   </div>
                   <h2
                     className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
                     style={{ fontSize: "clamp(26px, 3vw, 42px)", letterSpacing: "-1.5px" }}
                   >
-                    More From SympleTax
+                    Related Resources
                   </h2>
                 </div>
                 <Link
@@ -868,6 +733,29 @@ export default function BlogArticlePage() {
           </section>
         )}
 
+        <section
+          className="py-[64px] lg:py-[90px] bg-white"
+          aria-label="Get a free consultation"
+        >
+          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
+            <div className="text-center">
+              <Link
+                to="https://ti.sympletax.com/free-consultation"
+                className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02]"
+                style={{
+                  fontSize: "16px",
+                  padding: "16px 34px",
+                  background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
+                }}
+                aria-label="Get a free consultation"
+              >
+                Get a Free Consultation
+                <ArrowRight style={{ width: "14px", height: "14px" }} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* ── Mobile CTA (bottom) ──────────────────────────────────────────── */}
         <section
           className="py-[60px] lg:hidden relative overflow-hidden"
@@ -889,13 +777,12 @@ export default function BlogArticlePage() {
               Get a free, no-obligation IRS account review.
             </p>
             <Link
-              to="/contact"
+              to="https://ti.sympletax.com/free-consultation"
               className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
               style={{
                 fontSize: "15px",
                 padding: "15px 32px",
                 background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-                boxShadow: "0 8px 24px rgba(0,164,164,0.35)",
               }}
               aria-label="Get a free tax consultation"
             >

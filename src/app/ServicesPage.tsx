@@ -115,7 +115,7 @@ export default function ServicesPage() {
         {/* ── Hero ──────────────────────────────────────────────────────────── */}
         <section
           className="pt-[120px] lg:pt-[160px] pb-[64px] lg:pb-[100px] relative overflow-hidden"
-          style={{ backgroundColor: "#0f172a" }}
+          style={{ backgroundColor: "#00A4A4" }}
           aria-label="Tax resolution services"
         >
           <div
@@ -134,9 +134,9 @@ export default function ServicesPage() {
                 className="max-w-[680px]"
               >
                 <div className="flex items-center gap-[10px] mb-[24px]">
-                  <div className="bg-[#00A4A4] h-px w-[35px]" />
+                  <div className="bg-white h-px w-[35px]" />
                   <span
-                    className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+                    className="font-['DM_Sans'] font-medium uppercase text-white"
                     style={{ fontSize: "13px", letterSpacing: "0.08em" }}
                   >
                     Tax Resolution Services
@@ -147,7 +147,7 @@ export default function ServicesPage() {
                   style={{ fontSize: "clamp(32px, 5.5vw, 72px)", letterSpacing: "-2.5px" }}
                 >
                   Our Expertise,<br />
-                  <span className="text-[#00A4A4]">Your Success</span>
+                  <span className="text-white">Your Success</span>
                 </h1>
                 <p
                   className="font-['DM_Sans'] font-normal text-white/70 leading-[1.65]"
@@ -164,8 +164,8 @@ export default function ServicesPage() {
                 className="hidden lg:flex flex-col gap-[12px] shrink-0"
               >
                 <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
+                  to="https://ti.sympletax.com/free-consultation"
+                  className="inline-flex items-center gap-[10px] bg-white hover:bg-white/90 text-[#00A4A4] font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
                   style={{ fontSize: "15px", padding: "16px 36px" }}
                 >
                   Get Free Consultation
@@ -252,7 +252,7 @@ export default function ServicesPage() {
                         </p>
                       </div>
                       <Link
-                        to="/contact"
+                        to="https://ti.sympletax.com/free-consultation"
                         className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-bold rounded-full transition-all duration-200 hover:scale-[1.02] focus:outline-none focus-visible:ring-2"
                         style={{
                           fontSize: "13px",
@@ -389,7 +389,7 @@ export default function ServicesPage() {
                     </div>
 
                     <Link
-                      to="/contact"
+                        to="https://ti.sympletax.com/free-consultation"
                       className="inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold hover:gap-[10px] transition-all duration-200 focus:outline-none focus-visible:underline mt-auto"
                       style={{ fontSize: "13px", color: program.color }}
                       aria-label={`Learn more about ${program.title}`}

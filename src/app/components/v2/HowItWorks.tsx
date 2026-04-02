@@ -200,13 +200,15 @@ export function HowItWorks() {
 
           {/* Right: buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-[16px] shrink-0">
-            <Link
-              to="/free-consultation"
+            <a
+              href="https://ti.sympletax.com/free-consultation"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 whitespace-nowrap"
               style={{ fontSize: "15px", padding: "14px 28px" }}
             >
               Get a Free Consultation
-            </Link>
+            </a>
             <Link
               to="/services"
               className="font-['DM_Sans'] font-medium text-[#0f172a] hover:text-[#00A4A4] transition-colors whitespace-nowrap flex items-center gap-[5px]"

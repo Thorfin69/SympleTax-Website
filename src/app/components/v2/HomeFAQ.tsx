@@ -6,9 +6,9 @@ import { Plus, Minus } from "lucide-react";
 const HOME_FAQS = [
   {
     id: "01",
-    question: "How long does the tax resolution process take?",
+    question: "How can I protect my home from the IRS?",
     answer:
-      "The timeline depends on the complexity of your case. Simple resolutions can take 2–4 months, while complex Offer in Compromise cases may take 6–12 months. However, we take immediate action within 24–48 hours to stop active collections, levies, or garnishments.",
+      "The IRS can place a lien on your home if you have unpaid taxes. The best way to protect your home is to act before a lien is filed — SympleTax has options that can stop collection action in its tracks. If a lien has already been filed, we can work to get it withdrawn or discharged. The sooner you address the debt, the more options you have to keep your home protected.",
   },
   {
     id: "02",
@@ -181,14 +181,15 @@ export function HomeFAQ() {
             Navigating the IRS can feel overwhelming. Here are the questions our clients ask most often.
           </p>
 
-          <Link
-            to="/free-consultation"
+          <a
+            href="https://ti.sympletax.com/free-consultation"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300"
             style={{
               fontSize: "15px",
               padding: "15px 32px",
               letterSpacing: "-0.2px",
-              boxShadow: "0 8px 28px rgba(0,164,164,0.28)",
             }}
             aria-label="Get a free consultation with a tax resolution specialist"
           >
@@ -196,7 +197,7 @@ export function HomeFAQ() {
             <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </Link>
+          </a>
         </motion.div>
 
         {/* BOTTOM: 2-column FAQ grid */}

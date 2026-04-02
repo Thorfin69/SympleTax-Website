@@ -9,8 +9,8 @@ import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import {
   CheckCircle, Calendar, Zap, Shield, UserCheck, FileText,
   TrendingDown, Scissors, Lock, AlertCircle, Search, FileX,
-  Briefcase, Building2, Users, Heart,
-  ArrowRight, Instagram, Plus, Minus,
+  Briefcase, Building2, Users, Heart, Accessibility, BadgeDollarSign,
+  ArrowRight, Facebook, Plus, Minus,
 } from "lucide-react";
 
 import feedImg1 from "../../650321405_122097914025122800_4577503060609393561_n.jpg";
@@ -88,7 +88,7 @@ const PROBLEMS = [
     icon: Search,
     name: "IRS Audit",
     desc: "Under IRS review or examination — don't face it alone without representation.",
-    href: "/contact",
+    href: "https://ti.sympletax.com/free-consultation",
   },
   {
     icon: FileX,
@@ -123,27 +123,39 @@ const PERSONAS = [
     problem: "Old tax debt resurfacing, threatening retirement savings, Social Security, or a pension.",
     help: "We protect your fixed income and assets — negotiating CNC status or an OIC based on your real ability to pay.",
   },
+  {
+    icon: BadgeDollarSign,
+    type: "Unemployed",
+    problem: "Income has dropped but IRS balances and notices keep increasing.",
+    help: "We evaluate hardship-based options and negotiate relief that fits your current financial reality.",
+  },
+  {
+    icon: Accessibility,
+    type: "Disability",
+    problem: "Fixed benefits and medical costs make IRS payments impossible to sustain.",
+    help: "We pursue compliant hardship and settlement paths designed to protect your essentials.",
+  },
 ];
 
 const PROCESS_STEPS = [
   {
     number: "01",
     title: "Free Consultation",
-    duration: "Within 24 hours",
+    duration: "",
     body: "A licensed professional reviews your IRS account, outstanding balances, and active collection notices — then explains every option available to you, at no cost.",
     items: ["Full IRS balance review", "Collection action assessment", "Clear options explained"],
   },
   {
     number: "02",
     title: "Investigation & Strategy",
-    duration: "3–5 business days",
+    duration: "",
     body: "We pull your complete IRS transcripts, file Power of Attorney (Form 2848), and immediately halt active collections. Our team selects the optimal resolution path.",
     items: ["IRS transcripts obtained", "POA filed — collections stopped", "Resolution strategy selected"],
   },
   {
     number: "03",
     title: "Negotiation & Resolution",
-    duration: "2–12 months",
+    duration: "",
     body: "We take over all IRS communication and negotiate aggressively — whether that's an OIC, Installment Agreement, Penalty Abatement, or CNC status.",
     items: ["All IRS communication handled", "Maximum reduction negotiated", "Missing returns filed if needed", "Full case closure"],
   },
@@ -195,9 +207,9 @@ const RESULTS = [
 const FAQS = [
   {
     id: "01",
-    question: "How long does tax resolution take?",
+    question: "How can I protect my home from the IRS?",
     answer:
-      "It depends on your situation. Penalty abatement and installment agreements can be resolved in 30–90 days. Offer in Compromise cases typically take 6–12 months from submission to IRS acceptance. We set realistic timelines upfront — no false promises.",
+      "The IRS can place a lien on your home if you have unpaid taxes. The best way to protect your home is to act before a lien is filed — SympleTax has options that can stop collection action in its tracks. If a lien has already been filed, we can work to get it withdrawn or discharged. The sooner you address the debt, the more options you have to keep your home protected.",
   },
   {
     id: "02",
@@ -338,18 +350,9 @@ export default function SolutionsPage() {
         {/* ── 01. Hero ──────────────────────────────────────────────────────── */}
         <section
           className="pt-[120px] lg:pt-[160px] pb-[72px] lg:pb-[100px] relative overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #009090 0%, #00A4A4 40%, #007a7a 100%)" }}
+          style={{ backgroundColor: "#00A4A4" }}
           aria-label="Solutions hero"
         >
-          {/* Subtle grid lines */}
-          <div
-            className="absolute pointer-events-none inset-0"
-            style={{
-              backgroundImage: "linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)",
-              backgroundSize: "72px 72px",
-            }}
-            aria-hidden="true"
-          />
           <div
             className="absolute pointer-events-none inset-0"
             style={{ background: "radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.12) 0%, transparent 55%)" }}
@@ -386,13 +389,12 @@ export default function SolutionsPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-[16px]">
                 <Link
-                  to="/contact"
+                  to="https://ti.sympletax.com/free-consultation"
                   className="inline-flex items-center justify-center gap-[10px] text-[#007a7a] font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)]"
                   style={{
                     fontSize: "16px",
                     padding: "17px 40px",
                     background: "white",
-                    boxShadow: "0 8px 24px rgba(0,0,0,0.14)",
                   }}
                 >
                   Talk to an Expert
@@ -689,7 +691,7 @@ export default function SolutionsPage() {
                       </p>
                     </div>
                     <Link
-                      to="/contact"
+                      to="https://ti.sympletax.com/free-consultation"
                       className="mt-auto inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold text-[#00A4A4] hover:text-[#007a7a] transition-colors"
                       style={{ fontSize: "13px" }}
                     >
@@ -705,15 +707,6 @@ export default function SolutionsPage() {
 
         {/* ── 04. Process Overview ─────────────────────────────────────────── */}
         <section className="py-[64px] lg:py-[120px] relative overflow-hidden" style={{ backgroundColor: "#f4f7f6" }} aria-label="Our process">
-          {/* Background grid lines */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage: "linear-gradient(rgba(0,164,164,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,164,164,0.06) 1px, transparent 1px)",
-              backgroundSize: "64px 64px",
-            }}
-            aria-hidden="true"
-          />
           <div className="relative z-10 max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
 
             <motion.div
@@ -772,12 +765,14 @@ export default function SolutionsPage() {
                       >
                         {step.title}
                       </h3>
-                      <span
-                        className="font-['DM_Sans'] font-normal text-[#00A4A4]"
-                        style={{ fontSize: "12px" }}
-                      >
-                        {step.duration}
-                      </span>
+                      {step.duration ? (
+                        <span
+                          className="font-['DM_Sans'] font-normal text-[#00A4A4]"
+                          style={{ fontSize: "12px" }}
+                        >
+                          {step.duration}
+                        </span>
+                      ) : null}
                     </div>
                   </div>
 
@@ -865,13 +860,12 @@ export default function SolutionsPage() {
                   Not finding your answer? Our licensed team will walk you through your specific situation — for free.
                 </p>
                 <Link
-                  to="/contact"
+                  to="https://ti.sympletax.com/free-consultation"
                   className="inline-flex items-center gap-[10px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] self-start"
                   style={{
                     fontSize: "14px",
                     padding: "14px 28px",
                     background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-                    boxShadow: "0 8px 24px rgba(0,164,164,0.28)",
                   }}
                 >
                   Ask a Question
@@ -929,14 +923,14 @@ export default function SolutionsPage() {
                 </h2>
               </div>
               <a
-                href="https://www.instagram.com/sympletax"
+                href="https://www.facebook.com/profile.php?id=61583684011496"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-medium text-[#00A4A4] hover:text-[#007a7a] transition-colors shrink-0"
                 style={{ fontSize: "15px" }}
               >
-                <Instagram className="w-[18px] h-[18px]" />
-                Follow @sympletax
+                <Facebook className="w-[18px] h-[18px]" />
+                Follow on Facebook
               </a>
             </motion.div>
 
@@ -944,7 +938,7 @@ export default function SolutionsPage() {
               {[feedImg1, feedImg2, feedImg3, feedImg4].map((src, idx) => (
                 <motion.a
                   key={idx}
-                  href="https://www.instagram.com/sympletax"
+                  href="https://www.facebook.com/profile.php?id=61583684011496"
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20 }}
@@ -953,7 +947,7 @@ export default function SolutionsPage() {
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
                   className="group relative rounded-[16px] overflow-hidden block aspect-square"
                   style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
-                  aria-label="View on Instagram"
+                  aria-label="View on Facebook"
                 >
                   <ImageWithFallback
                     src={src}
@@ -961,7 +955,7 @@ export default function SolutionsPage() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   />
                   <div className="absolute inset-0 bg-[#0f172a]/0 group-hover:bg-[#0f172a]/30 transition-all duration-300 flex items-center justify-center">
-                    <Instagram className="w-[28px] h-[28px] text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <Facebook className="w-[28px] h-[28px] text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                 </motion.a>
               ))}

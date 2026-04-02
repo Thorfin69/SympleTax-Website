@@ -6,7 +6,24 @@ import { Testimonials } from "./components/v2/Testimonials";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { useEffect, useRef } from "react";
 import { usePageSEO } from "./hooks/usePageSEO";
-import { Shield, TrendingDown, Users, Eye, CheckCircle, Star, Instagram } from "lucide-react";
+import { Shield, TrendingDown, Users, Eye, CheckCircle, Star, Facebook } from "lucide-react";
+
+// Cream decorative divider for section separation
+function SectionDivider() {
+  return (
+    <div className="py-[0px] overflow-hidden" aria-hidden="true">
+      <svg
+        className="w-full h-auto"
+        viewBox="0 0 1400 40"
+        preserveAspectRatio="none"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line x1="0" y1="20" x2="1400" y2="20" stroke="#f5f3f0" strokeWidth="0.5" opacity="0.6" />
+      </svg>
+    </div>
+  );
+}
 
 import ariFounderPhoto from "../assets/ari-founder.jpg";
 import feedImg1 from "../../650321405_122097914025122800_4577503060609393561_n.jpg";
@@ -16,13 +33,6 @@ import feedImg4 from "../../653106919_122102903481122800_5641194311721553293_n.j
 import feedImg5 from "../../654349707_122104586823122800_5314580373899672598_n.jpg";
 import feedImg6 from "../../655591656_122104586829122800_5873864143193721839_n.jpg";
 import feedImg7 from "../../649497464_122096904597122800_6185958289926593262_n.jpg";
-import portraitRobert from "../assets/portrait_robert_new.jpg";
-import portraitJames from "../assets/portrait_james_new.jpg";
-import portraitRamon from "../assets/portrait_ramon_new.jpg";
-import portraitElena from "../assets/portrait_elena_new.jpg";
-import portraitSandra from "../assets/portrait_sandra_new.jpg";
-import portraitNicole from "../assets/portrait_nicole_new.jpg";
-import familyPhoto from "../assets/family-double-piggyback-small.jpg";
 import seniorsPhoto from "../assets/depositphotos_12485569-Happy-senior-friends-having-breakfast.webp";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
@@ -54,21 +64,21 @@ const PROCESS_STEPS = [
   {
     number: "01",
     title: "Free Consultation",
-    duration: "Within 24 hours",
+    duration: "",
     body: "A licensed professional reviews your IRS account, outstanding balances, and the collection actions against you — then explains your options clearly, at no cost.",
     items: ["IRS account review", "Collection action assessment", "Clear explanation of options"],
   },
   {
     number: "02",
     title: "Investigation & Strategy",
-    duration: "3–5 business days",
+    duration: "",
     body: "We pull your full IRS transcripts, file Power of Attorney (Form 2848), and stop active collections. Our team builds a complete picture and selects the optimal resolution path.",
     items: ["Full IRS transcript pull", "Power of Attorney filed", "Collections stopped immediately", "Resolution strategy selected"],
   },
   {
     number: "03",
     title: "Negotiation & Resolution",
-    duration: "2–12 months",
+    duration: "",
     body: "We take over all IRS communication and negotiate the best possible outcome — whether that's an Offer in Compromise, Installment Agreement, Penalty Abatement, or CNC status.",
     items: ["All IRS communication handled", "Aggressive negotiation on your behalf", "Filing of missing returns if needed", "Full case closure"],
   },
@@ -93,11 +103,6 @@ const TEAM = [
   },
 ];
 
-
-const CAROUSEL_IMAGES = [
-  portraitRobert, portraitJames, portraitRamon,
-  portraitElena, portraitSandra, portraitNicole,
-];
 
 const CARD_COLORS = ["#e4f8f8", "#eef2ff", "#fdf8ee"];
 const CARD_BORDER = ["rgba(0,164,164,0.15)", "rgba(99,102,241,0.12)", "rgba(245,158,11,0.15)"];
@@ -174,13 +179,12 @@ function ProcessCard({ step, colorIdx }: { step: (typeof PROCESS_STEPS)[0]; colo
       {/* Right CTA */}
       <div className="shrink-0 flex flex-row lg:flex-col items-center justify-start lg:justify-center gap-[8px] lg:min-w-[140px]">
         <Link
-          to="/contact"
+          to="https://ti.sympletax.com/free-consultation"
           className="inline-flex items-center gap-[8px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] whitespace-nowrap"
           style={{
             fontSize: "13px",
             padding: "12px 20px",
             background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-            boxShadow: "0 8px 20px rgba(0,164,164,0.28)",
           }}
           aria-label={`Get started — ${step.title}`}
         >
@@ -370,13 +374,12 @@ export default function AboutPage() {
                       fontSize: "15px",
                       padding: "16px 32px",
                       background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-                      boxShadow: "0 8px 24px rgba(0,164,164,0.3)",
                     }}
                   >
-                    Get a Free Consultation
+                    Let's talk.
                   </Link>
                   <Link
-                    to="/contact"
+                    to="https://ti.sympletax.com/free-consultation"
                     className="inline-flex items-center justify-center font-['DM_Sans'] font-medium text-[#0f172a] hover:text-[#00A4A4] transition-colors whitespace-nowrap rounded-full"
                     style={{ fontSize: "15px", padding: "16px 32px", border: "1.5px solid #e2e8f0" }}
                   >
@@ -387,71 +390,21 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Infinite scroll image carousel — stays in viewport at bottom of hero */}
-          <div className="relative z-10 overflow-hidden pb-[40px] lg:pb-[56px]">
-            <motion.div
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ duration: 65, ease: "linear", repeat: Infinity }}
-              className="flex gap-[18px] pl-[18px]"
-              style={{ width: "max-content" }}
-            >
-              {[...CAROUSEL_IMAGES, ...CAROUSEL_IMAGES].map((src, i) => (
-                <div
-                  key={i}
-                  className="shrink-0 rounded-[24px] overflow-hidden"
-                  style={{
-                    width: "clamp(200px, 17vw, 270px)",
-                    height: "clamp(280px, 32vh, 400px)",
-                  }}
-                >
-                  <ImageWithFallback
-                    src={src}
-                    alt=""
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-              ))}
-            </motion.div>
-          </div>
         </section>
+
+        <SectionDivider />
 
         {/* ── 03. Our Story ─────────────────────────────────────────────────── */}
         <section className="py-[64px] lg:py-[120px] bg-white" aria-label="Our story">
           <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-            <div className="flex flex-col gap-[48px] lg:flex-row lg:gap-[100px] lg:items-stretch">
+            <div className="flex flex-col gap-[48px]">
 
-              {/* Left: Story photo */}
+              {/* Story text */}
               <motion.div
-                initial={{ opacity: 0, x: -24 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
-                className="w-full lg:w-[420px] lg:shrink-0 group"
-              >
-                <div
-                  className="relative rounded-[24px] overflow-hidden h-full"
-                  style={{ minHeight: "480px" }}
-                >
-                  <ImageWithFallback
-                    src={familyPhoto}
-                    alt="Happy family relieved after resolving their tax debt"
-                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                  {/* Subtle dark overlay that lightens on hover */}
-                  <div
-                    className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0"
-                    style={{ background: "linear-gradient(180deg, transparent 40%, rgba(15,23,42,0.35) 100%)" }}
-                    aria-hidden="true"
-                  />
-                </div>
-              </motion.div>
-
-              {/* Right: Story text */}
-              <motion.div
-                initial={{ opacity: 0, x: 24 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.1 }}
                 className="flex flex-col gap-[28px]"
               >
                 <div>
@@ -498,7 +451,122 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── 04. Values / Why Us ───────────────────────────────────────────── */}
+        <SectionDivider />
+
+        {/* ── 04. Team / Credentials ────────────────────────────────────────── */}
+        <section className="py-[64px] lg:py-[120px]" style={{ backgroundColor: "#f9fafb" }} aria-label="Our team">
+          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-[48px] lg:mb-[64px]"
+            >
+              <div className="flex items-center gap-[10px] mb-[20px]">
+                <div className="bg-[#00A4A4] h-px w-[35px]" />
+                <span
+                  className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
+                  style={{ fontSize: "14px", letterSpacing: "0.05em" }}
+                >
+                  Our Team
+                </span>
+              </div>
+              <h2
+                className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
+                style={{ fontSize: "clamp(28px, 4vw, 52px)", letterSpacing: "-1.5px" }}
+              >
+                The People Behind Your Resolution
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[28px]">
+              {TEAM.map((member, idx) => (
+                <motion.div
+                  key={member.name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.12 }}
+                  className="rounded-[24px] overflow-hidden relative"
+                  style={{
+                    height: "clamp(380px, 50vw, 480px)",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.10)",
+                  }}
+                >
+                  {/* Photo / gradient background */}
+                  {idx === 0 ? (
+                    <ImageWithFallback
+                      src={ariFounderPhoto}
+                      alt="Ari AlaEddin, Founder of SympleTax"
+                      className="absolute inset-0 w-full h-full object-cover object-center"
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0 flex items-center justify-center"
+                      style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)" }}
+                    >
+                      <span
+                        className="font-['DM_Sans'] font-bold text-white/20 select-none"
+                        style={{ fontSize: "clamp(80px, 15vw, 140px)", letterSpacing: "-4px" }}
+                        aria-hidden="true"
+                      >
+                        {member.initials}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Bottom frosted overlay — shorter fade on mobile */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 p-[28px] lg:p-[32px] max-lg:[background:linear-gradient(transparent_0%,transparent_50%,rgba(15,23,42,0.85)_82%,rgba(15,23,42,0.97)_100%)] lg:[background:linear-gradient(transparent_0%,rgba(15,23,42,0.85)_35%,rgba(15,23,42,0.97)_100%)]"
+                  >
+                    <h3
+                      className="font-['DM_Sans'] font-bold text-white leading-[1.2] mb-[4px]"
+                      style={{ fontSize: "clamp(18px, 2.5vw, 22px)", letterSpacing: "-0.5px" }}
+                    >
+                      {member.name}
+                    </h3>
+                    <p
+                      className="font-['DM_Sans'] font-medium text-[#00A4A4] mb-[10px]"
+                      style={{ fontSize: "14px" }}
+                    >
+                      {member.title}
+                    </p>
+                    <p
+                      className="font-['DM_Sans'] font-normal text-white/65 leading-[1.6]"
+                      style={{ fontSize: "14px", letterSpacing: "-0.1px" }}
+                    >
+                      {member.bio}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-[48px] text-center"
+            >
+              <Link
+                to="https://ti.sympletax.com/free-consultation"
+                className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
+                style={{ fontSize: "15px", padding: "15px 36px" }}
+                aria-label="Work with the SympleTax team"
+              >
+                Work With Our Team
+              </Link>
+            </motion.div>
+
+          </div>
+        </section>
+
+        <SectionDivider />
+
+        {/* ── 05. Values / Why Us ───────────────────────────────────────────── */}
         <section className="py-[64px] lg:py-[120px]" style={{ backgroundColor: "#f9fafb" }} aria-label="Why clients choose SympleTax">
           <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
 
@@ -567,7 +635,7 @@ export default function AboutPage() {
 
                     {/* Learn More */}
                     <Link
-                      to="/contact"
+                      to="/services"
                       className="inline-flex items-center gap-[6px] font-['DM_Sans'] font-semibold text-[#00A4A4] hover:text-[#007a7a] transition-colors"
                       style={{ fontSize: "15px" }}
                     >
@@ -616,13 +684,12 @@ export default function AboutPage() {
 
               <div className="flex items-center gap-[16px] shrink-0">
                 <Link
-                  to="/contact"
+                  to="https://ti.sympletax.com/free-consultation"
                   className="inline-flex items-center gap-[8px] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02]"
                   style={{
                     fontSize: "15px",
                     padding: "14px 28px",
                     background: "linear-gradient(135deg, #00A4A4 0%, #007a7a 100%)",
-                    boxShadow: "0 8px 24px rgba(0,164,164,0.3)",
                   }}
                 >
                   Get Free Consultation
@@ -642,6 +709,8 @@ export default function AboutPage() {
 
           </div>
         </section>
+
+        <SectionDivider />
 
         {/* ── 04b. Our Process ──────────────────────────────────────────────── */}
         <section className="py-[64px] lg:py-[120px] bg-white" aria-label="How SympleTax resolves your tax debt">
@@ -750,119 +819,12 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── 05. Team / Credentials ────────────────────────────────────────── */}
-        <section className="py-[64px] lg:py-[120px]" style={{ backgroundColor: "#f9fafb" }} aria-label="Our team">
-          <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-[48px] lg:mb-[64px]"
-            >
-              <div className="flex items-center gap-[10px] mb-[20px]">
-                <div className="bg-[#00A4A4] h-px w-[35px]" />
-                <span
-                  className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
-                  style={{ fontSize: "14px", letterSpacing: "0.05em" }}
-                >
-                  Our Team
-                </span>
-              </div>
-              <h2
-                className="font-['DM_Sans'] font-bold text-[#0f172a] leading-[1.08]"
-                style={{ fontSize: "clamp(28px, 4vw, 52px)", letterSpacing: "-1.5px" }}
-              >
-                The People Behind Your Resolution
-              </h2>
-            </motion.div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-[28px]">
-              {TEAM.map((member, idx) => (
-                <motion.div
-                  key={member.name}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.12 }}
-                  className="rounded-[24px] overflow-hidden relative"
-                  style={{
-                    height: "clamp(380px, 50vw, 480px)",
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.10)",
-                  }}
-                >
-                  {/* Photo / gradient background */}
-                  {idx === 0 ? (
-                    <ImageWithFallback
-                      src={ariFounderPhoto}
-                      alt="Ari AlaEddin, Founder of SympleTax"
-                      className="absolute inset-0 w-full h-full object-cover object-center"
-                    />
-                  ) : (
-                    <div
-                      className="absolute inset-0 flex items-center justify-center"
-                      style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)" }}
-                    >
-                      <span
-                        className="font-['DM_Sans'] font-bold text-white/20 select-none"
-                        style={{ fontSize: "clamp(80px, 15vw, 140px)", letterSpacing: "-4px" }}
-                        aria-hidden="true"
-                      >
-                        {member.initials}
-                      </span>
-                    </div>
-                  )}
-
-                  {/* Bottom frosted overlay — shorter fade on mobile */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 p-[28px] lg:p-[32px] max-lg:[background:linear-gradient(transparent_0%,transparent_50%,rgba(15,23,42,0.85)_82%,rgba(15,23,42,0.97)_100%)] lg:[background:linear-gradient(transparent_0%,rgba(15,23,42,0.85)_35%,rgba(15,23,42,0.97)_100%)]"
-                  >
-                    <h3
-                      className="font-['DM_Sans'] font-bold text-white leading-[1.2] mb-[4px]"
-                      style={{ fontSize: "clamp(18px, 2.5vw, 22px)", letterSpacing: "-0.5px" }}
-                    >
-                      {member.name}
-                    </h3>
-                    <p
-                      className="font-['DM_Sans'] font-medium text-[#00A4A4] mb-[10px]"
-                      style={{ fontSize: "14px" }}
-                    >
-                      {member.title}
-                    </p>
-                    <p
-                      className="font-['DM_Sans'] font-normal text-white/65 leading-[1.6]"
-                      style={{ fontSize: "14px", letterSpacing: "-0.1px" }}
-                    >
-                      {member.bio}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-[48px] text-center"
-            >
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
-                style={{ fontSize: "15px", padding: "15px 36px" }}
-                aria-label="Work with the SympleTax team"
-              >
-                Work With Our Team
-              </Link>
-            </motion.div>
-
-          </div>
-        </section>
+        <SectionDivider />
 
         {/* ── 06. Client Testimonials ───────────────────────────────────────── */}
         <Testimonials />
+
+        <SectionDivider />
 
         {/* ── 06b. Our Guarantee ────────────────────────────────────────────── */}
         <section className="py-[64px] lg:py-[120px] bg-white" aria-label="The SympleTax Guarantee">
@@ -940,7 +902,7 @@ export default function AboutPage() {
 
                 <div>
                   <Link
-                    to="/contact"
+                    to="https://ti.sympletax.com/free-consultation"
                     className="inline-flex items-center gap-[10px] bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold rounded-full hover:scale-[1.02] transition-all duration-300 shadow-[0_8px_24px_rgba(0,164,164,0.3)]"
                     style={{ fontSize: "15px", padding: "15px 36px" }}
                     aria-label="See if you qualify for SympleTax"
@@ -1018,6 +980,8 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <SectionDivider />
+
         {/* ── 07. Social Feed ───────────────────────────────────────────────── */}
         <section className="py-[64px] lg:py-[120px] bg-white" aria-label="SympleTax social feed">
           <div className="max-w-[1330px] mx-auto px-[25px] lg:px-[70px]">
@@ -1043,14 +1007,14 @@ export default function AboutPage() {
                 </h2>
               </div>
               <a
-                href="https://www.instagram.com/sympletax"
+                href="https://www.facebook.com/profile.php?id=61583684011496"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-medium text-[#00A4A4] hover:text-[#007a7a] transition-colors shrink-0"
                 style={{ fontSize: "15px" }}
               >
-                <Instagram className="w-[18px] h-[18px]" />
-                Follow @sympletax
+                <Facebook className="w-[18px] h-[18px]" />
+                Follow on Facebook
               </a>
             </motion.div>
 
@@ -1058,7 +1022,7 @@ export default function AboutPage() {
               {[feedImg1, feedImg2, feedImg3, feedImg4, feedImg5, feedImg6, feedImg7].slice(0, 4).map((src, idx) => (
                 <motion.a
                   key={idx}
-                  href="https://www.instagram.com/sympletax"
+                  href="https://www.facebook.com/profile.php?id=61583684011496"
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20 }}
@@ -1067,7 +1031,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
                   className="group relative rounded-[16px] overflow-hidden block aspect-square"
                   style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.08)" }}
-                  aria-label="View on Instagram"
+                  aria-label="View on Facebook"
                 >
                   <ImageWithFallback
                     src={src}
@@ -1075,7 +1039,7 @@ export default function AboutPage() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   />
                   <div className="absolute inset-0 bg-[#0f172a]/0 group-hover:bg-[#0f172a]/30 transition-all duration-300 flex items-center justify-center">
-                    <Instagram className="w-[28px] h-[28px] text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <Facebook className="w-[28px] h-[28px] text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                 </motion.a>
               ))}

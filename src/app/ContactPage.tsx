@@ -3,7 +3,7 @@ import { Navbar } from "./components/v2/Navbar";
 import { Footer } from "./components/v2/Footer";
 import { Testimonials } from "./components/v2/Testimonials";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
-import { Phone, Mail, MapPin, Clock, Shield, ExternalLink, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Shield, ExternalLink, Facebook } from "lucide-react";
 import { useState } from "react";
 import { usePageSEO } from "./hooks/usePageSEO";
 
@@ -30,9 +30,9 @@ const CONTACT_DETAILS = [
   {
     icon: Phone,
     label: "Call Us Directly",
-    value: "(949) 287-3015",
+    value: "(260) 254-8538",
     sub: "Mon–Fri, 8am–6pm PT",
-    href: "tel:+19492873015",
+    href: "tel:+12602548538",
     color: "#00A4A4",
   },
   {
@@ -166,7 +166,7 @@ export default function ContactPage() {
                     className="font-['DM_Sans'] font-medium uppercase text-[#00A4A4]"
                     style={{ fontSize: "13px", letterSpacing: "0.08em" }}
                   >
-                    Free Consultation
+                    Talk To SympleTax
                   </span>
                 </div>
                 <h1
@@ -180,7 +180,7 @@ export default function ContactPage() {
                   className="font-['DM_Sans'] font-normal text-white/70 leading-[1.65]"
                   style={{ fontSize: "clamp(15px, 1.5vw, 18px)", letterSpacing: "-0.3px" }}
                 >
-                  This call is free. No sales pressure. Just an honest conversation about your options — with a licensed professional who has seen it all before.
+                  Talk to a licensed tax resolution specialist for free. We’ll help you understand your options, including offers in compromise, payment plans, and stopping IRS collections.
                 </p>
               </motion.div>
 
@@ -559,15 +559,15 @@ export default function ContactPage() {
                 </h2>
               </div>
               <a
-                href="https://www.instagram.com/sympletax"
+                href="https://www.facebook.com/profile.php?id=61583684011496"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-[8px] font-['DM_Sans'] font-medium text-[#00A4A4] hover:text-[#007a7a] transition-colors shrink-0 focus:outline-none focus-visible:underline"
                 style={{ fontSize: "15px" }}
-                aria-label="Follow SympleTax on Instagram (opens in new tab)"
+                aria-label="Follow SympleTax on Facebook (opens in new tab)"
               >
-                <Instagram style={{ width: "18px", height: "18px" }} aria-hidden="true" />
-                Follow @sympletax
+                <Facebook style={{ width: "18px", height: "18px" }} aria-hidden="true" />
+                Follow SympleTax
               </a>
             </motion.div>
 
@@ -575,7 +575,7 @@ export default function ContactPage() {
               {FEED_IMAGES.slice(0, 4).map((src, idx) => (
                 <motion.a
                   key={idx}
-                  href="https://www.instagram.com/sympletax"
+                  href="https://www.facebook.com/profile.php?id=61583684011496"
                   target="_blank"
                   rel="noopener noreferrer"
                   initial={{ opacity: 0, scale: 0.96 }}
@@ -584,11 +584,11 @@ export default function ContactPage() {
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
                   className="group relative rounded-[16px] overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00A4A4]"
                   style={{ aspectRatio: "1 / 1" }}
-                  aria-label={`SympleTax Instagram post ${idx + 1} (opens in new tab)`}
+                  aria-label={`SympleTax Facebook post ${idx + 1} (opens in new tab)`}
                 >
                   <ImageWithFallback
                     src={src}
-                    alt={`SympleTax Instagram post ${idx + 1}`}
+                    alt={`SympleTax Facebook post ${idx + 1}`}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
                   />
                   <div
@@ -596,7 +596,7 @@ export default function ContactPage() {
                     style={{ backgroundColor: "rgba(0,164,164,0.55)" }}
                     aria-hidden="true"
                   >
-                    <Instagram style={{ width: "28px", height: "28px", color: "white" }} />
+                    <Facebook style={{ width: "28px", height: "28px", color: "white" }} />
                   </div>
                 </motion.a>
               ))}

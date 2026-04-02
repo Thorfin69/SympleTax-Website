@@ -41,7 +41,7 @@ const SERVICES_DROPDOWN = {
     title: "Not sure where to start?",
     body: "A licensed professional will review your case for free.",
     cta: "Get a Free Consultation",
-    href: "/contact",
+    href: "https://ti.sympletax.com/free-consultation",
   },
 };
 
@@ -70,7 +70,7 @@ const RESOURCES_LINKS = {
     src: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&h=500&fit=crop&q=80",
     headline: "We're Here To Help.",
     cta: "Get Started",
-    href: "/contact",
+    href: "https://ti.sympletax.com/free-consultation",
   },
 };
 
@@ -78,20 +78,27 @@ const CASE_ACCESS_LINKS = {
   left: {
     heading: "SympleTax Portals",
     links: [
-      { name: "Client Login", href: "/free-consultation", external: true },
+      { name: "Client Login", href: "https://myportal.sympletax.com", external: true },
     ],
   },
   right: {
     heading: "New Client",
     links: [
-      { name: "Free Consultation", href: "/contact", external: false },
+      { name: "Free Consultation", href: "https://ti.sympletax.com/free-consultation", external: true },
     ],
   },
 };
 
+const COMPANY_DROPDOWN = {
+  links: [
+    { name: "About Our Company", href: "/about" },
+    { name: "Our Process", href: "/process" },
+  ],
+};
+
 const NAV_LINKS = [
   { name: "Home", href: "/" },
-  { name: "Our Company", href: "/about" },
+  { name: "Our Company", href: "/about", dropdown: "company" },
   { name: "Our Services", href: "/services", dropdown: "services" },
   { name: "Resources", href: "/resources", dropdown: "resources" },
   { name: "Case Access", href: "#", dropdown: "case" },
@@ -99,7 +106,14 @@ const NAV_LINKS = [
 
 const MOBILE_NAV_ITEMS = [
   { name: "Home", href: "/" },
-  { name: "Our Company", href: "/about" },
+  {
+    name: "Our Company",
+    href: "/about",
+    accordion: [
+      { name: "About Our Company", href: "/about" },
+      { name: "Our Process", href: "/process" },
+    ],
+  },
   {
     name: "Our Services",
     href: "/services",
@@ -130,8 +144,8 @@ const MOBILE_NAV_ITEMS = [
     name: "Case Access",
     href: "#",
     accordion: [
-      { name: "Client Login", href: "/free-consultation" },
-      { name: "Free Consultation", href: "/contact" },
+      { name: "Client Login", href: "https://myportal.sympletax.com" },
+      { name: "Free Consultation", href: "https://ti.sympletax.com/free-consultation" },
     ],
   },
   { name: "Contact Us", href: "/contact" },
@@ -219,20 +233,38 @@ export function Navbar() {
                 onMouseLeave={() => link.dropdown ? scheduleClose() : undefined}
               >
                 {link.dropdown ? (
-                  <button
-                    className={`font-['DM_Sans'] font-medium transition-colors whitespace-nowrap flex items-center gap-[5px] focus:outline-none focus-visible:underline ${
-                      isScrolled ? "text-[#0f172a]/75 hover:text-[#0f172a]" : "text-white/90 hover:text-white"
-                    }`}
-                    style={{ fontSize: "14px" }}
-                    aria-haspopup="true"
-                    aria-expanded={activeDropdown === link.dropdown}
-                  >
-                    {link.name}
-                    <ChevronDown
-                      className={`w-[13px] h-[13px] transition-transform duration-200 shrink-0 ${activeDropdown === link.dropdown ? "rotate-180" : ""}`}
-                      aria-hidden="true"
-                    />
-                  </button>
+                  link.href !== "#" ? (
+                    <Link
+                      to={link.href!}
+                      className={`font-['DM_Sans'] font-medium transition-colors whitespace-nowrap flex items-center gap-[5px] focus:outline-none focus-visible:underline ${
+                        isScrolled ? "text-[#0f172a]/75 hover:text-[#0f172a]" : "text-white/90 hover:text-white"
+                      }`}
+                      style={{ fontSize: "14px" }}
+                      aria-haspopup="true"
+                      aria-expanded={activeDropdown === link.dropdown}
+                    >
+                      {link.name}
+                      <ChevronDown
+                        className={`w-[13px] h-[13px] transition-transform duration-200 shrink-0 ${activeDropdown === link.dropdown ? "rotate-180" : ""}`}
+                        aria-hidden="true"
+                      />
+                    </Link>
+                  ) : (
+                    <button
+                      className={`font-['DM_Sans'] font-medium transition-colors whitespace-nowrap flex items-center gap-[5px] focus:outline-none focus-visible:underline ${
+                        isScrolled ? "text-[#0f172a]/75 hover:text-[#0f172a]" : "text-white/90 hover:text-white"
+                      }`}
+                      style={{ fontSize: "14px" }}
+                      aria-haspopup="true"
+                      aria-expanded={activeDropdown === link.dropdown}
+                    >
+                      {link.name}
+                      <ChevronDown
+                        className={`w-[13px] h-[13px] transition-transform duration-200 shrink-0 ${activeDropdown === link.dropdown ? "rotate-180" : ""}`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                  )
                 ) : (
                   <Link
                     to={link.href!}
@@ -246,6 +278,41 @@ export function Navbar() {
                       isScrolled ? "bg-[#00A4A4]" : "bg-white"
                     }`} />
                   </Link>
+                )}
+
+                {/* ── Company Dropdown ── */}
+                {link.dropdown === "company" && (
+                  <AnimatePresence>
+                    {activeDropdown === "company" && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-[calc(100%+20px)] left-1/2 -translate-x-1/2 bg-white rounded-[20px] overflow-hidden"
+                        style={{ width: "320px", boxShadow: "0 20px 64px rgba(0,0,0,0.13), 0 4px 16px rgba(0,0,0,0.06)", border: "1px solid rgba(0,0,0,0.07)" }}
+                        onMouseEnter={() => openDropdown("company")}
+                        onMouseLeave={scheduleClose}
+                        role="region"
+                        aria-label="Our company menu"
+                      >
+                        <div className="p-[28px] flex flex-col gap-[10px]">
+                          {COMPANY_DROPDOWN.links.map((item) => (
+                            <Link
+                              key={item.name}
+                              to={item.href}
+                              onClick={() => setActiveDropdown(null)}
+                              className="font-['DM_Sans'] font-normal text-[#334155] hover:text-[#00A4A4] transition-colors duration-150 flex items-center gap-[9px] group/company focus:outline-none focus-visible:underline"
+                              style={{ fontSize: "15px" }}
+                            >
+                              <span className="w-[5px] h-[5px] rounded-full bg-[#00A4A4]/25 group-hover/company:bg-[#00A4A4] transition-colors shrink-0" aria-hidden="true" />
+                              {item.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 )}
 
                 {/* ── Services Mega-Menu ── */}
@@ -455,16 +522,18 @@ export function Navbar() {
                             </p>
                             <div className="h-px bg-[#e8e4da] mb-[14px]" />
                             {CASE_ACCESS_LINKS.right.links.map((item) => (
-                              <Link
+                              <a
                                 key={item.name}
-                                to={item.href}
+                                href={item.href}
                                 onClick={() => setActiveDropdown(null)}
                                 className="font-['DM_Sans'] font-normal text-[#334155] hover:text-[#00A4A4] transition-colors flex items-center gap-[9px] group/nc focus:outline-none whitespace-nowrap"
                                 style={{ fontSize: "15px" }}
+                                target="_blank"
+                                rel="noopener noreferrer"
                               >
                                 <span className="w-[5px] h-[5px] rounded-full bg-[#00A4A4]/25 group-hover/nc:bg-[#00A4A4] transition-colors shrink-0" aria-hidden="true" />
                                 {item.name}
-                              </Link>
+                              </a>
                             ))}
                           </div>
                         </div>
@@ -481,18 +550,20 @@ export function Navbar() {
             {/* Desktop */}
             <div className="hidden lg:flex items-center gap-[24px]">
               <a
-                href="tel:+19492873015"
+                href="tel:+12602548538"
                 className={`flex items-center gap-[7px] font-['DM_Sans'] font-semibold transition-colors focus:outline-none whitespace-nowrap ${
                   isScrolled ? "text-[#0f172a]/70 hover:text-[#0f172a]" : "text-white/90 hover:text-white"
                 }`}
                 style={{ fontSize: "14px" }}
-                aria-label="Call SympleTax at (949) 287-3015"
+                aria-label="Call SympleTax at (260) 254-8538"
               >
                 <Phone className={`w-[14px] h-[14px] shrink-0 ${isScrolled ? "text-[#00A4A4]" : "text-white"}`} aria-hidden="true" />
-                (949) 287-3015
+                (260) 254-8538
               </a>
-              <Link
-                to="/free-consultation"
+              <a
+                href="https://ti.sympletax.com/free-consultation"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`font-['DM_Sans'] font-bold rounded-full transition-all duration-300 hover:scale-[1.02] focus:outline-none whitespace-nowrap ${
                   isScrolled
                     ? "bg-[#00A4A4] hover:bg-[#007a7a] text-white shadow-[0_4px_16px_rgba(0,164,164,0.28)]"
@@ -502,13 +573,13 @@ export function Navbar() {
                 aria-label="Get a free consultation"
               >
                 Free Consultation
-              </Link>
+              </a>
             </div>
 
             {/* Mobile */}
             <div className="flex lg:hidden items-center gap-[10px]">
               <a
-                href="tel:+19492873015"
+                href="tel:+12602548538"
                 className={`w-[38px] h-[38px] rounded-full border flex items-center justify-center transition-colors focus:outline-none ${
                   isScrolled ? "border-[#00A4A4] text-[#00A4A4]" : "border-white/40 text-white"
                 }`}
@@ -630,21 +701,21 @@ export function Navbar() {
                 ))}
 
                 <a
-                  href="tel:+19492873015"
+                  href="tel:+12602548538"
                   className="flex items-center gap-[12px] py-[18px] font-['DM_Sans'] font-semibold text-[#00A4A4]"
                   style={{ fontSize: "16px", borderBottom: "1px solid #f5f3ef" }}
                 >
                   <div className="w-[36px] h-[36px] rounded-full border border-[#00A4A4] flex items-center justify-center shrink-0">
                     <Phone className="w-[15px] h-[15px]" aria-hidden="true" />
                   </div>
-                  (949) 287-3015
+                  (260) 254-8538
                 </a>
               </div>
 
               <div className="px-[20px] py-[24px] shrink-0" style={{ borderTop: "1px solid #f0ece4" }}>
                 <div className="flex flex-col gap-[10px]">
                   <a
-                    href="/free-consultation"
+                    href="https://myportal.sympletax.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeMobileMenu}
@@ -653,14 +724,16 @@ export function Navbar() {
                   >
                     Client Login
                   </a>
-                  <Link
-                    to="/free-consultation"
+                  <a
+                    href="https://ti.sympletax.com/free-consultation"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={closeMobileMenu}
                     className="w-full py-[15px] rounded-full bg-[#00A4A4] hover:bg-[#007a7a] text-white font-['DM_Sans'] font-bold text-center transition-all shadow-[0_6px_20px_rgba(0,164,164,0.3)] focus:outline-none"
                     style={{ fontSize: "15px" }}
                   >
                     Free Consultation
-                  </Link>
+                  </a>
                 </div>
               </div>
             </motion.div>

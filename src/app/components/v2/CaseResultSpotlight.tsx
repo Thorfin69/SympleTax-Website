@@ -15,7 +15,7 @@ import portraitNicole from "../../../assets/portrait_nicole_new.jpg";
 const CASE_RESULTS = [
   {
     firstName: "Ramon",
-    fromAmount: "$17,000",
+    fromAmount: "$19,349",
     toAmount: "$200",
     saved: "99%",
     situation:
@@ -110,7 +110,7 @@ export function CaseResultSpotlight() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative bg-white rounded-[24px] overflow-hidden flex flex-col lg:flex-row gap-0 mb-[60px] shadow-[0_8px_48px_rgba(0,0,0,0.08)]"
+          className="relative bg-white rounded-[24px] overflow-hidden flex flex-col lg:flex-row gap-0 mb-[60px]"
         >
           {/* Left: Text */}
           <div className="flex-1 flex flex-col gap-[24px] p-[28px] lg:p-[40px] lg:max-w-[600px]">
@@ -156,13 +156,15 @@ export function CaseResultSpotlight() {
 
             {/* CTA + arrow */}
             <div className="flex items-center gap-[24px] mt-[4px]">
-              <Link
-                to="/free-consultation"
+              <a
+                href="https://ti.sympletax.com/free-consultation"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border-[2px] border-[#00A4A4] text-[#00A4A4] font-['DM_Sans'] font-bold rounded-[10px] px-[28px] py-[13px] hover:bg-[#00A4A4] hover:text-white transition-all duration-200 uppercase tracking-wide"
                 style={{ fontSize: "15px" }}
               >
                 Learn How
-              </Link>
+              </a>
               <div style={{ transform: "rotate(-10deg)" }}>
                 <HandDrawnArrow />
               </div>
@@ -240,7 +242,7 @@ export function CaseResultSpotlight() {
             {carouselItems.map((item, idx) => (
               <div
                 key={idx}
-                className="w-[360px] bg-white rounded-[20px] overflow-hidden shrink-0 border border-[#e8e4da] hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] transition-all duration-300"
+                className="w-[360px] bg-white rounded-[20px] overflow-hidden shrink-0 border border-[#e8e4da] transition-all duration-300"
               >
                 {/* Photo area */}
                 <div className="relative h-[320px] overflow-hidden" style={{ backgroundColor: "#00A4A4" }}>

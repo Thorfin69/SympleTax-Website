@@ -82,7 +82,7 @@ export function FloatingGradientCTA({
               <a
                 href={primaryHref}
                 {...(primaryExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="inline-flex items-center gap-[10px] font-['DM_Sans'] font-bold text-[#00A4A4] bg-white rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_10px_36px_rgba(0,0,0,0.2)] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00A4A4]"
+                className="inline-flex items-center gap-[10px] font-['DM_Sans'] font-bold text-[#00A4A4] bg-white rounded-full transition-all duration-300 hover:scale-[1.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#00A4A4]"
                 style={{ fontSize: "15px", padding: "14px 30px" }}
               >
                 {primaryLabel}
