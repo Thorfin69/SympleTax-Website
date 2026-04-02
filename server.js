@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || 'sk_test_51TAHlXH225E6WTMYH08zt5tpLjdhzSh8HgMiUme28eqBf9yfnwbfqbHYfgdg0OC3s7qB4A1flFjKGKjDGgXQEiA600s6DNEbMp');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
