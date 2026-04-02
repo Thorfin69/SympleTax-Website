@@ -14,6 +14,7 @@ import LegalPage from "./LegalPage";
 import SolutionsPage from "./SolutionsPage";
 import ServiceDetailPage from "./ServiceDetailPage";
 import SitemapPage from "./SitemapPage";
+import FreeConsultationPage from "./FreeConsultationPage";
 
 const redirectHome = {
   element: createElement(Navigate, { to: "/", replace: true }),
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: "/home",
         Component: HomePageV2,
+      },
+      {
+        path: "/free-consultation",
+        Component: FreeConsultationPage,
       },
       {
         path: "/legal/:tab",
