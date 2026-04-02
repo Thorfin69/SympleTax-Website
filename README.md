@@ -1,20 +1,11 @@
-# SimpleTax Website
 
-Tax filing made simple.
+  # Clone Design One-to-One
 
-## Project Structure
+  This is a code bundle for Clone Design One-to-One. The original project is available at https://www.figma.com/design/L1rnatmeUx8oMpKWxBsbhr/Clone-Design-One-to-One.
 
-- `src/` - Source code
-- `public/` - Static assets
-- `docs/` - Documentation
+  ## Running the code
 
-## Getting Started
+  Run `npm i` to install the dependencies.
 
-```bash
-npm install
-npm run dev
-```
-
-## Deployment
-
-Vercel deployment configured.
+  Run `npm run dev` to start the development server.
+  
